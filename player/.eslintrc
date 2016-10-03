@@ -1,0 +1,10 @@
+{
+	"extends": "airbnb",
+	"rules": {
+		"indent": ["error", "tab"],
+		"comma-dangle": ["error", "never"],
+		"no-trailing-spaces": ["error", { "skipBlankLines": true }],
+		"react/jsx-indent-props": ["error", "tab"],
+		"react/jsx-indent": ["error", "tab"]
+	}
+}

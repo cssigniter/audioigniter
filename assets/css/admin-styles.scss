@@ -1,0 +1,589 @@
+@import 'mixins';
+
+$brand-color: #1c4866 !default;
+$brand-secondary-color: #ffcc00 !default;
+$lighter-grey: #f1f1f1 !default;
+$light-grey: #eeeeee !default;
+$medium-grey: #d7d7d7 !default;
+$dark-grey: #cccccc !default;
+$white: #ffffff !default;
+$blue: #0073aa !default;
+$red: #ff0000 !default;
+$green: #14b552 !default;
+$base-pad: 15px !default;
+$transition-time: .18s;
+
+.sr-only {
+	@include sr-only;
+}
+
+.ai-row {
+	@include clearfix;
+	margin-left: -15px;
+	margin-right: -15px;
+	box-sizing: border-box;
+}
+
+[class^="ai-col"] {
+	float: left;
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 50%;
+	box-sizing: border-box;
+}
+
+.ai-btn {
+	display: inline-block;
+	font-weight: normal;
+	margin: 0;
+	line-height: normal;
+	border: 0;
+	box-shadow: none;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	white-space: nowrap;
+	user-select: none;
+	border-radius: 2px;
+	width: auto;
+	height: auto;
+	background-image: none;
+	padding: 11px 20px 11px;
+	font-size: 12px;
+	text-transform: uppercase;
+	background-color: $brand-color;
+	color: $white;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		color: $white;
+		background-color: darken($brand-color, 5%);
+	}
+}
+
+.ai-btn-green {
+	background-color: $green;
+
+	&:hover,
+	&:focus {
+		color: $white;
+		background-color: darken($green, 5%);
+	}
+}
+
+//
+// Brand Modules
+//
+.ai-brand-module {
+	background-color: $brand-color;
+	padding: $base-pad;
+	color: $white;
+	font-size: 12px;
+
+	p {
+		font-size: 12px;
+	}
+
+	a:not(.ai-btn) {
+		color: $brand-secondary-color;
+		text-decoration: none;
+	}
+}
+
+.ai-brand-module-actions {
+	text-align: right;
+
+	p {
+		margin: 0;
+	}
+}
+
+//
+// Header
+//
+.ai-header {
+	margin: 12px 0 -12px;
+	height: 40px;
+}
+
+.ai-header-actions {
+	text-align: right;
+}
+
+.ai-logo {
+	display: inline-block;
+	position: relative;
+	top: -2px;
+
+	img {
+		height: 44px;
+	}
+}
+
+//
+// Footer
+//
+.ai-note {
+	font-style: italic;
+}
+
+.ai-list-inline {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		display: inline-block;
+		margin: 0 5px 0 0;
+	}
+}
+
+//
+// General
+//
+.ai-module {
+	@include clearfix;
+	border: 1px solid $light-grey;
+	margin-top: 12px;
+	padding: $base-pad;
+}
+
+.ai-container {
+	margin-top: 12px;
+}
+
+//
+// Field Controls
+//
+.ai-field-controls-wrap {
+	@include clearfix;
+	padding: $base-pad;
+	border: 1px solid $light-grey;
+}
+
+.ai-field-controls {
+	float: left;
+
+	.button {
+		margin-right: 5px;
+	}
+}
+
+.ai-field-controls-visibility {
+	float: right;
+	padding-top: 4px;
+}
+
+.ai-field-controls-visibility {
+	a {
+		text-decoration: none;
+	}
+}
+
+.ai-fields-expand-all {
+	margin-right: 8px;
+	padding-right: 6px;
+	border-right: 1px solid $lighter-grey;
+}
+
+//
+// Fields general structure
+//
+.ai-fields-container {
+	padding: $base-pad;
+	border-left: 1px solid $light-grey;
+	border-right: 1px solid $light-grey;
+}
+
+.ai-field-repeatable {
+	margin-bottom: $base-pad;
+	border: 1px solid $medium-grey;
+	box-shadow: 1px 1px 2px rgba(black, .07);
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&:only-child {
+		.ai-remove-field {
+			display: none;
+		}
+	}
+}
+
+.ai-field-container {
+	@include clearfix;
+	padding: $base-pad;
+	background-color: $white;
+}
+
+.ai-field-head {
+	@include clearfix;
+	padding: 8px $base-pad 5px;
+	line-height: normal;
+	background-color: $medium-grey;
+	background: linear-gradient(to bottom, $lighter-grey, $medium-grey);
+	border-bottom: 1px solid $dark-grey;
+
+	.toggle-indicator {
+		border-radius: 50%;
+	}
+
+	.ai-fields-sortable & {
+		cursor: move;
+	}
+}
+
+.ai-field-sort-handle {
+	position: relative;
+	top: 1px;
+	color: $blue;
+
+	.dashicons {
+		font-size: 18px;
+	}
+}
+
+.ai-field-title {
+	font-weight: bold;
+	font-size: 1.05em;
+	margin-left: 8px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-width: 80%;
+	display: inline-block;
+}
+
+.ai-field-toggle {
+	float: right;
+}
+
+.ai-field-cover {
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin-right: $base-pad;
+	background-color: $light-grey;
+	border: 1px solid $dark-grey;
+}
+
+.ai-field-split {
+	float: left;
+	width: calc(50% - 66px);
+	margin-right: $base-pad;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+//
+// Form elements
+//
+.ai-container,
+.ai-module {
+	.button {
+		.dashicons {
+			font-size: 1.2em;
+			line-height: 1.7em;
+		}
+	}
+}
+
+.ai-form-field {
+	margin-bottom: $base-pad;
+
+	label {
+		display: inline-block;
+		font-weight: bold;
+		margin-bottom: 3px;
+	}
+
+	input[type="text"],
+	input[type="url"],
+	input[type="search"],
+	input[type="email"],
+	input[type="password"],
+	input[type="number"],
+	input[type="tel"],
+	input[type="date"] {
+		width: 100%;
+	}
+
+	input[type="checkbox"],
+	input[type="radio"] {
+		display: inline-block;
+		position: relative;
+		top: 1px;
+	}
+}
+
+.ai-form-field-addon {
+	position: relative;
+
+	input {
+		padding-right: 80px;
+	}
+
+	button {
+		position: absolute;
+		top: 0;
+		right: -2px;
+	}
+}
+
+.ai-field-help {
+	margin: 5px 0 0;
+	font-style: italic;
+	color: #999;
+}
+
+.ai-remove-field {
+	float: right;
+}
+
+.ai-field-upload-cover {
+	display: block;
+	position: relative;
+	width: 100px;
+	height: 100px;
+	text-decoration: none;
+	color: initial;
+	overflow: hidden;
+
+	img {
+		max-width: 100%;
+		display: none;
+	}
+}
+
+.ai-has-cover {
+	.ai-remove-cover {
+		display: block;
+	}
+
+	.ai-field-cover-placeholder {
+		display: none;
+	}
+
+	img {
+		display: inline-block;
+	}
+}
+
+.ai-field-cover-placeholder {
+	text-align: center;
+	font-style: normal;
+	font-size: .9em;
+	opacity: .8;
+	padding-top: 28px;
+
+	&::before {
+		@include dashicon($icon: "\f128");
+		display: block;
+	}
+
+	.ai-track-loading & {
+		&::before {
+			content: "\f463";
+			animation: rotation 1.2s infinite linear;
+		}
+	}
+}
+
+.ai-remove-cover {
+	color: $white;
+	background-color: $red;
+	width: 16px;
+	height: 16px;
+	font-size: 12px;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: .9;
+	transition: opacity $transition-time ease-in;
+	display: none;
+	text-align: center;
+
+	&:hover {
+		opacity: 1;
+	}
+
+	.dashicons {
+		font-size: 16px;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.ai-remove-all-fields,
+.ai-remove-field {
+	.dashicons {
+		color: $red;
+	}
+}
+
+.ai-add-field-batch,
+.ai-add-field {
+	.dashicons {
+		color: $blue;
+	}
+}
+
+//
+// Sortable specific
+//
+.ai-drop-placeholder {
+	background-color: $lighter-grey;
+	border: 2px dashed $dark-grey;
+	opacity: 0.5;
+	margin-bottom: $base-pad;
+}
+
+//
+// Collapsible
+//
+.ai-collapsed {
+	.ai-field-container {
+		display: none;
+	}
+
+	.toggle-indicator {
+		&::before {
+			content: "\f140" !important;
+		}
+	}
+}
+
+//
+// Shortcode field
+//
+.ai-module-shortcode {
+	.code {
+		display: block;
+		width: 100%;
+		margin-top: 3px;
+		padding: 10px 10px 8px;
+		font-weight: bold;
+		background: $lighter-grey;
+	}
+}
+
+//
+// Soundcloud module
+//
+.ai-sync-soundcloud.button { // Overcoming specificity
+	display: none;
+
+	&::before {
+		content: "\f463";
+		color: #d54e21;
+		display: inline-block;
+		font: 400 19px/1 dashicons;
+		speak: none;
+		position: relative;
+		left: -1px;
+		top: 4px;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		vertical-align: top;
+	}
+
+	.ai-track-loading & {
+		&::before {
+			animation: rotation 1.2s infinite linear;
+		}
+	}
+}
+
+.ai-soundcloud-track {
+	.ai-sync-soundcloud {
+		display: inline-block;
+	}
+
+	.ai-upload {
+		display: none;
+	}
+}
+
+//
+// Media queries
+//
+@media (max-width: 1100px) {
+	.ai-field-controls,
+	.ai-field-controls-visibility {
+		margin: 0;
+		float: none;
+		width: 100%;
+	}
+
+	.ai-field-controls {
+		margin-bottom: 5px;
+	}
+
+	.ai-field-split {
+		float: none;
+		width: 100%;
+	}
+
+	.ai-field-cover {
+		margin-bottom: $base-pad;
+	}
+
+	.ai-footer {
+		text-align: center;
+
+		.ai-brand-module-actions {
+			text-align: center;
+			margin-top: 10px;
+		}
+
+		[class^="ai-col"] {
+			width: 100%;
+		}
+	}
+}
+
+@media (max-width: 782px) {
+	.ai-container,
+	.ai-module {
+		.button {
+			.dashicons {
+				line-height: 1.2em;
+			}
+		}
+	}
+
+	.ai-form-field-addon {
+		.button {
+			top: 2px;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.ai-field-controls {
+		.button {
+			width: 100%;
+		}
+	}
+
+	.ai-header {
+		text-align: center;
+
+		.ai-brand-module-actions {
+			margin-top: 10px;
+		}
+
+		.ai-btn {
+			display: block;
+		}
+
+		[class^="ai-col"] {
+			width: 100%;
+		}
+	}
+}

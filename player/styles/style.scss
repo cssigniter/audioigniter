@@ -1,0 +1,655 @@
+@import '../../assets/css/mixins';
+
+//
+// Variables
+//
+$bg-color: #202020 !default;
+$primary-color: #f70f5d !default;
+$text-on-primary: #ffffff !default;
+$text-color: #ffffff !default;
+$control-color: #3e3e3e !default;
+
+$player-height: 130px !default;
+$transition-time: .18s !default;
+$loading-transition-time: 1.5s !default;
+$text-opacity: .7 !default;
+$spacing: 20px !default;
+
+$screen-sm-max: 480px !default;
+$screen-xs-max: 320px !default;
+
+.ai-wrap {
+	padding: $spacing;
+	background-color: $bg-color;
+	color: $text-color;
+	max-width: 100%;
+	font-family: sans-serif;
+	font-weight: normal;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	line-height: normal;
+	margin-bottom: $spacing;
+	letter-spacing: 0;
+
+	&::after,
+	&::before {
+		box-sizing: border-box;
+	}
+
+	* {
+		box-sizing: border-box;
+
+		&::after,
+		&::before {
+			box-sizing: border-box;;
+		}
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+		border: 0;
+		box-shadow: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	p {
+		margin: 0;
+		padding: 0;
+		font-weight: normal;
+		line-height: normal;
+	}
+
+	span {
+		margin: 0;
+		padding: 0;
+		font-weight: normal;
+		line-height: normal;
+	}
+
+	a {
+		font-weight: normal;
+		box-shadow: none;
+		border: 0;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.ai-btn,
+	.ai-audio-control {
+		@include btn-reset;
+	}
+
+	//
+	// Structure & Size
+	//
+	.ai-control-wrap {
+		@include clearfix;
+		height: $player-height;
+	}
+
+	.ai-control-wrap-thumb {
+		width: 130px;
+		float: left;
+		height: 100%;
+		overflow: hidden;
+		margin-right: $spacing;
+		position: relative;
+
+		&::after {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			transition: opacity $loading-transition-time ease;
+			@include animatedBackground($width: 300%, $height: 100%, $top: 0);
+			opacity: 0;
+		}
+
+		img {
+			margin: 0;
+			border: 0;
+			box-shadow: none;
+		}
+	}
+
+	.ai-control-wrap-controls {
+		position: relative;
+		float: left;
+		width: calc(100% - (130px + #{$spacing}));
+		height: 100%;
+	}
+
+	.ai-control-wrap-fullwidth {
+		.ai-control-wrap-controls {
+			float: none;
+			width: 100%;
+		}
+	}
+
+	//
+	// Play/pause button & track title/subtitle
+	//
+	.ai-audio-controls-main {
+		display: table;
+		width: 100%;
+		margin-bottom: $spacing - 3px;
+	}
+
+	.ai-audio-control {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		display: inline-block;
+		vertical-align: middle;
+		color: $text-on-primary;
+		background-color: $primary-color;
+		opacity: 1;
+		transition: opacity $loading-transition-time ease;
+		padding: 0;
+
+		&:hover,
+		&:focus {
+			border: 0;
+			background-color: $primary-color;
+		}
+
+		&.ai-audio-playing {
+			svg {
+				left: 0;
+			}
+		}
+
+		svg {
+			fill: $text-on-primary;
+			height: 16px;
+			position: relative;
+			left: 2px;
+			top: 1px;
+		}
+	}
+
+	.ai-track-info {
+		display: table-cell;
+		vertical-align: middle;
+		padding-left: $spacing;
+		width: 100000px;
+		overflow: hidden;
+	}
+
+	.ai-track-title {
+		margin: 0 0 4px;
+		font-size: 16px;
+		line-height: normal;
+
+		span {
+			opacity: 1;
+			transition: opacity $loading-transition-time ease;
+		}
+	}
+
+	.ai-track-subtitle {
+		margin: 0;
+		line-height: normal;
+		font-size: 13px;
+		opacity: $text-opacity;
+
+		span {
+			opacity: 1;
+			transition: opacity $loading-transition-time ease;
+		}
+	}
+
+	//
+	// Track Progress
+	//
+	.ai-audio-controls-progress {
+		@include clearfix;
+		margin-bottom: $spacing;
+	}
+
+	.ai-track-progress-bar {
+		position: relative;
+		top: 5px;
+		float: left;
+		width: calc(100% - 65px);
+		height: 5px;
+		cursor: pointer;
+		background-color: $control-color;
+	}
+
+	.ai-track-progress {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		pointer-events: none;
+		background-color: $primary-color;
+		transition: width .28s ease;
+	}
+
+	.ai-track-time {
+		font-size: 13px;
+		opacity: $text-opacity;
+		float: right;
+		width: 65px;
+		text-align: right;
+		cursor: pointer;
+	}
+
+	//
+	// Volume Controls
+	//
+	.ai-audio-volume-control {
+		@include clearfix;
+		display: inline-block;
+	}
+
+	.ai-audio-volume-bars {
+		@include clearfix;
+		float: left;
+		margin-right: 5px;
+		height: 30px;
+	}
+
+	.ai-volume-bar {
+		float: left;
+		position: relative;
+		width: 4px;
+		height: 100%;
+		background-color: $control-color;
+		cursor: pointer;
+		border-right: 1px solid $bg-color;
+
+		&::before {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			transition: background-color $transition-time ease;
+		}
+
+		&.ai-volume-bar-active {
+			&::before {
+				background-color: $primary-color;
+			}
+		}
+	}
+
+	@for $i from 1 through 11 {
+		.ai-volume-bar:nth-child(#{$i}) {
+			&::before {
+				height: 10% * ($i - 1);
+			}
+		}
+	}
+
+	//
+	// Audio Controls
+	//
+	.ai-audio-controls-meta {
+		@include clearfix;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		opacity: 1;
+		transition: opacity $transition-time*2 ease;
+	}
+
+	.ai-audio-controls-meta-left {
+		float: left;
+
+		.ai-btn {
+			margin-right: 5px;
+		}
+	}
+
+	.ai-audio-controls-meta-right {
+		float: right;
+	}
+
+	.ai-btn {
+		width: 30px;
+		height: 30px;
+		font-size: 14px;
+		padding: 0;
+		background-image: none;
+		background-color: $control-color;
+		color: $text-color;
+		transition: color $transition-time ease;
+		box-shadow: none;
+
+		svg {
+			position: relative;
+			fill: $text-color;
+			height: 10px;
+			transition: fill $transition-time ease;
+		}
+
+		&:hover,
+		&:focus {
+			color: $primary-color;
+			background-color: $control-color;
+			border: 0;
+
+			svg {
+				fill: $primary-color;
+			}
+		}
+	}
+
+	.ai-tracklist-toggle {
+		svg {
+			height: 16px;
+			top: 2px;
+		}
+	}
+
+	//
+	// Playlist
+	//
+	.ai-tracklist-wrap {
+		opacity: 1;
+		transition: opacity $loading-transition-time ease;
+	}
+
+	.ai-tracklist-open {
+		margin-top: $spacing;
+
+		+ .ai-footer {
+			margin-top: -1px;
+			border-top: 0;
+		}
+	}
+
+	.ai-tracklist {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.ai-track {
+		@include clearfix;
+		position: relative;
+		margin: 0 0 1px;
+		padding: 0;
+		list-style: none;
+		display: block;
+		height: 40px;
+		cursor: pointer;
+		background-color: $control-color;
+		transition: background-color $transition-time ease;
+
+		&:hover,
+		&.ai-track-active {
+			background-color: $primary-color;
+			color: $text-on-primary;
+
+			.ai-track-btn {
+				color: $text-on-primary;
+
+				svg {
+					fill: $text-on-primary;
+				}
+			}
+		}
+	}
+
+	.ai-track-control {
+		@include clearfix;
+		height: 100%;
+		float: left;
+		width: 100%;
+	}
+
+	.ai-track-thumb {
+		display: inline-block;
+		width: 41px;
+		max-height: 100%;
+		margin: 0;
+		float: left;
+		overflow: hidden;
+		border-right: 1px solid $bg-color;
+
+		img {
+			width: 40px;
+			max-height: 100%;
+			box-shadow: none;
+			border: 0;
+			margin: 0;
+		}
+	}
+
+	.ai-track-no-thumb {
+		display: block;
+		width: 130px;
+		height: 130px;
+		line-height: 150px;
+		text-align: center;
+		background-color: $control-color;
+
+		svg {
+			fill: $text-color;
+			height: 40px;
+			opacity: 0.6;
+		}
+
+		&.ai-track-thumb {
+			width: 41px;
+			height: 40px;
+			line-height: 50px;
+
+			svg {
+				height: 16px;
+			}
+		}
+	}
+
+	.ai-track-name {
+		display: block;
+		margin-top: 12px;
+		padding: 0 45px 0 10px;
+		font-size: 13px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		line-height: normal;
+	}
+
+	.ai-track-control-buttons {
+		@include clearfix;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	.ai-track-btn {
+		display: inline-block;
+		float: right;
+		width: 40px;
+		height: 40px;
+		text-align: center;
+		font-size: 13px;
+		line-height: 40px;
+		box-shadow: none;
+		border: 0;
+		border-left: 1px solid $bg-color;
+		color: $text-color;
+		background: none;
+
+		svg {
+			position: relative;
+			fill: $text-color;
+			height: 14px;
+			transition: fill $transition-time ease;
+			top: 2px;
+		}
+	}
+
+	//
+	// Footer
+	//
+	.ai-footer {
+		border-top: 1px solid $control-color;
+		margin-top: $spacing;
+		padding-top: $spacing;
+		text-align: center;
+		font-size: 11px;
+
+		a {
+			color: $primary-color;
+			text-decoration: none;
+			box-shadow: none;
+			border: 0;
+			opacity: 1;
+
+			&:hover {
+				color: $primary-color;
+				border: 0;
+				opacity: 1;
+			}
+		}
+
+		p {
+			opacity: $text-opacity;
+			margin: 0;
+			font-size: 11px;
+		}
+	}
+
+	//
+	// Loading Animations
+	//
+	&.ai-is-loading {
+		.ai-track-title {
+			position: relative;
+
+			span {
+				opacity: 0;
+			}
+
+			&::after {
+				@include animatedBackground($top: -10px);
+			}
+		}
+
+		.ai-track-subtitle {
+			position: relative;
+
+			span {
+				opacity: 0;
+			}
+
+			&::after {
+				@include animatedBackground($width: 100px, $height: 6px, $top: 2px);
+			}
+		}
+
+		.ai-audio-controls-meta {
+			opacity: 0;
+		}
+
+		.ai-audio-control {
+			opacity: 0.5;
+		}
+
+		.ai-control-wrap-thumb {
+			&::after {
+				opacity: 1;
+			}
+		}
+
+		.ai-tracklist-wrap {
+			opacity: 1;
+		}
+	}
+
+	.ai-tracklist-enter {
+		opacity: 0;
+
+		&.ai-tracklist-enter-active {
+			opacity: 1;
+			transition: opacity .5s ease-in;
+		}
+	}
+
+	//
+	// Scroll specific styles
+	//
+	.ai-scroll-wrap {
+		.ai-tracklist {
+			margin-right: 15px;
+		}
+
+		> div:last-child {
+			top: 0 !important;
+			bottom: 0 !important;
+			background-color: rgba($control-color, .5);
+
+			div {
+				background-color: $primary-color !important;
+			}
+		}
+	}
+}
+
+
+//
+// Mediaqueries
+//
+
+@mixin sm-max() {
+	.ai-control-wrap {
+		height: auto;
+	}
+
+	.ai-control-wrap-thumb {
+		width: 100%;
+		float: none;
+		margin: 0 0 $spacing;
+	}
+
+	.ai-control-wrap-controls {
+		float: none;
+		width: 100%;
+	}
+
+	.ai-audio-controls-meta {
+		position: relative;
+	}
+}
+
+@mixin xs-max() {
+	.ai-track-thumb {
+		display: none;
+	}
+}
+
+.ai-narrow {
+	@include sm-max;
+	@include xs-max;
+}
+
+@media (max-width: $screen-sm-max) {
+	.ai-wrap {
+		@include sm-max;
+	}
+
+	.ai-wrap {
+		.ai-scroll-wrap {
+			.ai-tracklist {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+@media (max-width: $screen-xs-max) {
+	.ai-wrap {
+		@include xs-max;
+	}
+}
