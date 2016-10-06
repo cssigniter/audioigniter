@@ -262,7 +262,7 @@ export default class Player extends React.Component {
 						volume={volume}
 						// eslint-disable-next-line no-shadow
 						onPlaying={({ duration, position }) => this.setState({ duration, position })}
-						onFinishedPlaying={this.nextTrack}
+						onFinishedPlaying={activeIndex === tracks.length - 1 ? this.togglePlay : this.nextTrack}
 					/>
 				}
 			</div>
