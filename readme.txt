@@ -14,7 +14,7 @@ AudioIgniter lets you create music playlists and embed them in your WordPress po
 
 https://www.youtube.com/watch?v=AmRDYlVW_3M
 
-Check out [the demo](http://www.cssigniter.com/preview/audioigniter/) now!
+Check out [the demo](https://www.cssigniter.com/preview/audioigniter/) now!
 
 **Features:**
 
@@ -34,7 +34,7 @@ Check out [the demo](http://www.cssigniter.com/preview/audioigniter/) now!
 * Maximum player width
 * Heavily tested on the 150 most popular free themes on WordPress.org
 
-But wait, there's more. A [Pro version](http://www.cssigniter.com/ignite/plugins/audioigniter-pro) is also available! Here's what you get if you decide to upgrade:
+But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugins/audioigniter-pro) is also available! Here's what you get if you decide to upgrade:
 
 * Bulk upload functionality
 * Total color customization control

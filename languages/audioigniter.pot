@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: AudioIgniter\n"
-"POT-Creation-Date: 2016-10-10 17:46+0300\n"
+"POT-Creation-Date: 2016-10-10 17:53+0300\n"
 "PO-Revision-Date: 2016-08-29 19:22+0300\n"
 "Last-Translator: Anastis Sourgoutsidis <anastis@cssigniter.com>\n"
 "Language-Team: Anastis Sourgoutsidis <anastis@cssigniter.com>\n"
@@ -256,7 +256,7 @@ msgid "AudioIgniter"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://www.cssigniter.com/ignite/plugins/audioigniter/"
+msgid "https://www.cssigniter.com/ignite/plugins/audioigniter/"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -271,5 +271,5 @@ msgid "The CSSIgniter Team"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://www.cssigniter.com"
+msgid "https://www.cssigniter.com"
 msgstr ""

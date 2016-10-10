@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name: AudioIgniter
- * Plugin URI: http://www.cssigniter.com/ignite/plugins/audioigniter/
+ * Plugin URI: https://www.cssigniter.com/ignite/plugins/audioigniter/
  * Description: AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types and serve your audio content in style!
  * Author: The CSSIgniter Team
- * Author URI: http://www.cssigniter.com
+ * Author URI: https://www.cssigniter.com
  * Version: 1.0.1
  * Text Domain: audioigniter
  * Domain Path: languages
@@ -333,7 +333,7 @@ class AudioIgniter {
 		<div class="ai-header ai-brand-module">
 			<div class="ai-row">
 				<div class="ai-col-left">
-					<a href="http://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=dashboard&utm_medium=link&utm_content=audioigniter&utm_campaign=logo" target="_blank" class="ai-logo">
+					<a href="https://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=dashboard&utm_medium=link&utm_content=audioigniter&utm_campaign=logo" target="_blank" class="ai-logo">
 						<img
 							src="<?php echo esc_url( $this->plugin_url() . 'assets/images/logo.svg' ); ?>"
 							alt="<?php esc_attr_e( 'AudioIgniter Logo', 'audioigniter' ); ?>"
@@ -344,7 +344,7 @@ class AudioIgniter {
 				<?php if ( apply_filters( 'audioigniter_metabox_tracks_show_upgrade_button', true ) ) : ?>
 					<div class="ai-col-right">
 						<div class="ai-brand-module-actions">
-							<a href="http://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=dashboard&utm_medium=link&utm_content=audioigniter&utm_campaign=upgrade-pro" class="ai-btn ai-btn-green" target="_blank">
+							<a href="https://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=dashboard&utm_medium=link&utm_content=audioigniter&utm_campaign=upgrade-pro" class="ai-btn ai-btn-green" target="_blank">
 								<?php esc_html_e( 'Upgrade to Pro', 'audioigniter' ); ?>
 							</a>
 						</div>
@@ -374,7 +374,7 @@ class AudioIgniter {
 								),
 								'documentation' => array(
 									'title' => __( 'Documentation', 'audioigniter' ),
-									'url'   => 'http://www.cssigniter.com/docs/audioigniter/',
+									'url'   => 'https://www.cssigniter.com/docs/audioigniter/',
 								),
 								'rate_plugin'   => array(
 									'title' => __( 'Rate this plugin', 'audioigniter' ),
@@ -398,7 +398,7 @@ class AudioIgniter {
 
 				<div class="ai-col-right">
 					<?php
-						$url  = 'http://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=dashboard&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link';
+						$url  = 'https://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=dashboard&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link';
 						$copy = sprintf( __( 'Thank you for creating with <a href="%s" target="_blank">AudioIgniter</a>', 'audioigniter' ),
 							esc_url( $url )
 						);
