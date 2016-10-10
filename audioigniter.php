@@ -5,7 +5,7 @@
  * Description: AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types and serve your audio content in style!
  * Author: The CSSIgniter Team
  * Author URI: http://www.cssigniter.com
- * Version: 1.0.0
+ * Version: 1.0.1
  * Text Domain: audioigniter
  * Domain Path: languages
  *
@@ -37,7 +37,7 @@ class AudioIgniter {
 	 * @var string
 	 * @since 1.0.0
 	 */
-	public static $version = '1.0.0';
+	public static $version = '1.0.1';
 
 	/**
 	 * Instance of this class.
@@ -198,13 +198,13 @@ class AudioIgniter {
 		wp_register_script( 'audioigniter', $this->plugin_url() . 'player/build/app.js', array(), self::$version, true );
 		wp_register_script( 'audioigniter-admin', $this->plugin_url() . 'assets/js/audioigniter.js', array(), self::$version, true );
 
-		wp_localize_script('audioigniter-admin', 'ai_scripts', array(
+		wp_localize_script( 'audioigniter-admin', 'ai_scripts', array(
 			'messages' => array(
-				'confirm_clear_tracks' => esc_html__( 'Do you really want to remove all tracks? (This will not delete your audio files).', 'audioigniter' ),
-				'media_title_upload' => esc_html__( 'Select or upload audio media', 'audioigniter' ),
+				'confirm_clear_tracks'     => esc_html__( 'Do you really want to remove all tracks? (This will not delete your audio files).', 'audioigniter' ),
+				'media_title_upload'       => esc_html__( 'Select or upload audio media', 'audioigniter' ),
 				'media_title_upload_cover' => esc_html__( 'Select a cover image', 'audioigniter' ),
 			),
-		));
+		) );
 	}
 
 	/**
@@ -225,7 +225,7 @@ class AudioIgniter {
 	public function enqueue_admin_scripts( $hook ) {
 		$screen = get_current_screen();
 
-		if ( 'post' == $screen->base && $screen->post_type == $this->post_type ) {
+		if ( 'post' === $screen->base && $screen->post_type === $this->post_type ) {
 			wp_enqueue_media();
 			wp_enqueue_style( 'audioigniter-admin' );
 			wp_enqueue_script( 'audioigniter-admin' );
@@ -262,7 +262,7 @@ class AudioIgniter {
 			'hierarchical'    => false,
 			'has_archive'     => false,
 			'supports'        => array( 'title' ),
-			'menu_icon'       => 'dashicons-controls-volumeon'
+			'menu_icon'       => 'dashicons-controls-volumeon',
 		);
 
 		register_post_type( $this->post_type, $args );
@@ -276,8 +276,8 @@ class AudioIgniter {
 	 */
 	public function add_meta_boxes() {
 		add_meta_box( 'ai-meta-box-tracks', esc_html__( 'Tracks', 'audioigniter' ), array( $this, 'metabox_tracks' ), $this->post_type, 'normal', 'high' );
-		add_meta_box( 'ai-meta-box-settings', esc_html( 'Settings', 'audioigniter' ), array( $this, 'metabox_settings' ), $this->post_type, 'normal', 'high' );
-		add_meta_box( 'ai-meta-box-shortcode', esc_html( 'Shortcode', 'audioigniter' ), array( $this, 'metabox_shortcode' ), $this->post_type, 'normal', 'high' );
+		add_meta_box( 'ai-meta-box-settings', esc_html__( 'Settings', 'audioigniter' ), array( $this, 'metabox_settings' ), $this->post_type, 'normal', 'high' );
+		add_meta_box( 'ai-meta-box-shortcode', esc_html__( 'Shortcode', 'audioigniter' ), array( $this, 'metabox_shortcode' ), $this->post_type, 'normal', 'high' );
 	}
 
 	/**
@@ -341,7 +341,7 @@ class AudioIgniter {
 					</a>
 				</div>
 
-				<?php if ( apply_filters( 'audioigniter_metabox_tracks_show_upgrade_button', true ) ): ?>
+				<?php if ( apply_filters( 'audioigniter_metabox_tracks_show_upgrade_button', true ) ) : ?>
 					<div class="ai-col-right">
 						<div class="ai-brand-module-actions">
 							<a href="http://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=dashboard&utm_medium=link&utm_content=audioigniter&utm_campaign=upgrade-pro" class="ai-btn ai-btn-green" target="_blank">
@@ -413,7 +413,7 @@ class AudioIgniter {
 	}
 
 	protected function metabox_tracks_repeatable_track_field( $track = array() ) {
-		$track = wp_parse_args( $track, $this->get_default_track_values() );
+		$track = wp_parse_args( $track, self::get_default_track_values() );
 
 		$cover_id  = $track['cover_id'];
 		$title     = $track['title'];
@@ -451,7 +451,7 @@ class AudioIgniter {
 
 			<div class="ai-field-container">
 				<div class="ai-field-cover">
-					<a href="#" class="ai-field-upload-cover <?php echo ! empty ( $cover_url ) ? 'ai-has-cover' : ''; ?>">
+					<a href="#" class="ai-field-upload-cover <?php echo ! empty( $cover_url ) ? 'ai-has-cover' : ''; ?>">
 						<span class="ai-remove-cover">
 							<span class="screen-reader-text">
 								<?php esc_html_e( 'Remove Cover Image', 'audioigniter' ); ?>
@@ -459,9 +459,9 @@ class AudioIgniter {
 							<span class="dashicons dashicons-no-alt"></span>
 						</span>
 
-						<?php if ( ! empty( $cover_url ) ): ?>
+						<?php if ( ! empty( $cover_url ) ) : ?>
 							<img src="<?php echo esc_url( $cover_url ); ?>" alt="<?php echo esc_attr( $cover_data['alt'] ); ?>">
-						<?php else: ?>
+						<?php else : ?>
 							<img src="#" alt="">
 						<?php endif; ?>
 
@@ -824,8 +824,8 @@ class AudioIgniter {
 
 	public function save_post( $post_id ) {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return false; }
-		if ( isset( $_POST['post_view'] ) && $_POST['post_view'] == 'list' ) { return false; }
-		if ( ! isset( $_POST['post_type'] ) || $_POST['post_type'] != $this->post_type ) { return false; }
+		if ( isset( $_POST['post_view'] ) && $_POST['post_view'] === 'list' ) { return false; }
+		if ( ! isset( $_POST['post_type'] ) || $_POST['post_type'] !== $this->post_type ) { return false; }
 		if ( ! isset( $_POST[ $this->post_type . '_nonce' ] ) || ! wp_verify_nonce( $_POST[ $this->post_type . '_nonce' ], basename( __FILE__ ) ) ) { return false; }
 		$post_type_obj = get_post_type_object( $this->post_type );
 		if ( ! current_user_can( $post_type_obj->cap->edit_post, $post_id ) ) { return false; }
@@ -862,7 +862,7 @@ class AudioIgniter {
 	public function register_widgets() {
 		$widgets = apply_filters( 'audioigniter_register_widgets', array() );
 
-		foreach( $widgets as $class => $file ) {
+		foreach ( $widgets as $class => $file ) {
 			require_once( $file );
 			register_widget( $class );
 		}
@@ -922,7 +922,7 @@ class AudioIgniter {
 	}
 
 	public function convert_bool_string( $value ) {
-		if( $value ) {
+		if ( $value ) {
 			return 'true';
 		}
 
@@ -993,7 +993,7 @@ class AudioIgniter {
 
 		$value = $default;
 
-		if ( is_array( $keys ) && in_array( $key, $keys ) ) {
+		if ( is_array( $keys ) && in_array( $key, $keys, true ) ) {
 			$value = get_post_meta( $post_id, $key, true );
 		}
 

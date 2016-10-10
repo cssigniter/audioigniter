@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: AudioIgniter\n"
-"POT-Creation-Date: 2016-08-29 19:22+0300\n"
+"POT-Creation-Date: 2016-10-10 17:46+0300\n"
 "PO-Revision-Date: 2016-08-29 19:22+0300\n"
 "Last-Translator: Anastis Sourgoutsidis <anastis@cssigniter.com>\n"
 "Language-Team: Anastis Sourgoutsidis <anastis@cssigniter.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.9\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: audioigniter.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -84,6 +84,14 @@ msgstr ""
 
 #: audioigniter.php:278
 msgid "Tracks"
+msgstr ""
+
+#: audioigniter.php:279
+msgid "Settings"
+msgstr ""
+
+#: audioigniter.php:280
+msgid "Shortcode"
 msgstr ""
 
 #: audioigniter.php:339
