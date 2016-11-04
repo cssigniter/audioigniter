@@ -1,5 +1,5 @@
 === AudioIgniter ===
-Contributors: anastis, silencerius, tsiger
+Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, soundcloud, mp3 player, music, radio stream, radio player, sound player, playlist
 Requires at least: 4.4
 Tested up to: 4.6.1
