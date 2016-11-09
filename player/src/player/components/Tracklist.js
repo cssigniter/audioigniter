@@ -32,9 +32,16 @@ export default class Tracklist extends React.Component {
 	}
 
 	renderButtons(track) {
+		const { buyButtonsTarget } = this.props;
+
 		return (
 			<div className="ai-track-control-buttons">
-				<a href={track.buyUrl} className="ai-track-btn" target="_blank">
+				<a
+					href={track.buyUrl}
+					className="ai-track-btn"
+					rel={buyButtonsTarget ? 'noopener noreferrer' : undefined}
+					target={buyButtonsTarget ? '_blank' : '_self'}
+				>
 					<CartIcon />
 				</a>
 			</div>
@@ -151,6 +158,7 @@ Tracklist.propTypes = {
 	limitTracklistHeight: React.PropTypes.bool,
 	tracklistHeight: React.PropTypes.number,
 	displayBuyButtons: React.PropTypes.bool,
+	buyButtonsTarget: React.PropTypes.bool,
 	displayCovers: React.PropTypes.bool,
 	displayArtistNames: React.PropTypes.bool
 };

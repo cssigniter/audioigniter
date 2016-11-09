@@ -17,6 +17,7 @@ Array.prototype.slice.call(nodes).forEach(node => {
 			displayTracklist={JSON.parse(node.getAttribute('data-display-tracklist'))}
 			displayTrackNo={JSON.parse(node.getAttribute('data-display-track-no'))}
 			displayBuyButtons={JSON.parse(node.getAttribute('data-display-buy-buttons'))}
+			buyButtonsTarget={JSON.parse(node.getAttribute('data-buy-buttons-target'))}
 			displayArtistNames={JSON.parse(node.getAttribute('data-display-artist-names'))}
 			cycleTracks={JSON.parse(node.getAttribute('data-cycle-tracks'))}
 			limitTracklistHeight={JSON.parse(node.getAttribute('data-limit-tracklist-height'))}

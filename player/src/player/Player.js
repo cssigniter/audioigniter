@@ -149,6 +149,7 @@ export default class Player extends React.Component {
 			limitTracklistHeight,
 			tracklistHeight,
 			displayBuyButtons,
+			buyButtonsTarget,
 			displayArtistNames,
 			maxWidth
 		} = this.props;
@@ -269,6 +270,7 @@ export default class Player extends React.Component {
 								displayTrackNo={displayTrackNo}
 								displayCovers={displayTracklistCovers}
 								displayBuyButtons={displayBuyButtons}
+								buyButtonsTarget={buyButtonsTarget}
 								displayArtistNames={displayArtistNames}
 								reverseTrackOrder={reverseTrackOrder}
 								limitTracklistHeight={limitTracklistHeight}
@@ -312,6 +314,7 @@ Player.propTypes = {
 	limitTracklistHeight: React.PropTypes.bool,
 	tracklistHeight: React.PropTypes.number,
 	displayBuyButtons: React.PropTypes.bool,
+	buyButtonsTarget: React.PropTypes.bool,
 	displayArtistNames: React.PropTypes.bool,
 	cycleTracks: React.PropTypes.bool,
 	maxWidth: React.PropTypes.string,
