@@ -239,7 +239,7 @@ export default class Player extends React.Component {
 								</Button>
 							</div>
 
-							{(tracks.length > 1 && displayTracklist) &&
+							{displayTracklist &&
 								<div className="ai-audio-controls-meta-right">
 									<Button
 										className="ai-btn ai-tracklist-toggle"
@@ -253,7 +253,7 @@ export default class Player extends React.Component {
 					</div>
 				</div>
 
-				{(tracks.length > 1 && displayTracklist) &&
+				{displayTracklist &&
 					<div className={`ai-tracklist-wrap ${isTrackListOpen ? 'ai-tracklist-open' : ''}`}>
 						<ReactCSSTransitionGroup
 							transitionName="ai-tracklist"
