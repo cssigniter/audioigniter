@@ -607,6 +607,7 @@ class AudioIgniter {
 		$active_thumb              = $this->get_post_meta( $object->ID, '_audioigniter_show_active_cover', 1 );
 		$artist                    = $this->get_post_meta( $object->ID, '_audioigniter_show_artist', 1 );
 		$buy_links                 = $this->get_post_meta( $object->ID, '_audioigniter_show_buy_links', 1 );
+		$buy_links_new_target      = $this->get_post_meta( $object->ID, '_audioigniter_buy_links_new_target', 1 );
 		$cycle_tracks              = $this->get_post_meta( $object->ID, '_audioigniter_cycle_tracks', 0 );
 		$track_listing             = $this->get_post_meta( $object->ID, '_audioigniter_show_track_listing', 1 );
 		$credit                    = $this->get_post_meta( $object->ID, '_audioigniter_show_credit', 0 );
@@ -715,7 +716,21 @@ class AudioIgniter {
 				/>
 
 				<label for="_audioigniter_show_buy_links">
-					<?php esc_html_e( 'Show buy link', 'audioigniter' ); ?>
+					<?php esc_html_e( 'Show track buy links', 'audioigniter' ); ?>
+				</label>
+			</div>
+
+			<div class="ai-form-field">
+				<input
+					type="checkbox"
+					class="ai-checkbox"
+					id="_audioigniter_buy_links_new_target"
+					name="_audioigniter_buy_links_new_target"
+					value="1" <?php checked( $buy_links_new_target, true ); ?>
+				/>
+
+				<label for="_audioigniter_buy_links_new_target">
+					<?php esc_html_e( 'Open buy links in new window', 'audioigniter' ); ?>
 				</label>
 			</div>
 
@@ -857,6 +872,7 @@ class AudioIgniter {
 		update_post_meta( $post_id, '_audioigniter_show_active_cover', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_active_cover'] ) );
 		update_post_meta( $post_id, '_audioigniter_show_artist', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_artist'] ) );
 		update_post_meta( $post_id, '_audioigniter_show_buy_links', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_buy_links'] ) );
+		update_post_meta( $post_id, '_audioigniter_buy_links_new_target', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_buy_links_new_target'] ) );
 		update_post_meta( $post_id, '_audioigniter_cycle_tracks', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_cycle_tracks'] ) );
 		update_post_meta( $post_id, '_audioigniter_show_track_listing', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_track_listing'] ) );
 		update_post_meta( $post_id, '_audioigniter_show_credit', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_credit'] ) );
@@ -918,6 +934,7 @@ class AudioIgniter {
 			'data-display-active-cover'     => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_active_cover', 1 ) ),
 			'data-display-artist-names'     => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_artist', 1 ) ),
 			'data-display-buy-buttons'      => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_buy_links', 1 ) ),
+			'data-buy-buttons-target'      => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_buy_links_new_target', 1 ) ),
 			'data-cycle-tracks'             => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_cycle_tracks', 0 ) ),
 			'data-display-credits'          => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_credit', 1 ) ),
 			'data-display-tracklist'        => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_track_listing', 1 ) ),
