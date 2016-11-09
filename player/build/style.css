@@ -445,6 +445,11 @@
   fill: #ffffff;
 }
 
+.ai-wrap .ai-btn-repeat svg {
+  height: 17px;
+  top: 2px;
+}
+
 .ai-wrap .ai-tracklist-toggle svg {
   height: 16px;
   top: 2px;

@@ -350,6 +350,13 @@ $screen-xs-max: 320px !default;
 		}
 	}
 
+	.ai-btn-repeat {
+		svg {
+			height: 17px;
+			top: 2px;
+		}
+	}
+
 	.ai-tracklist-toggle {
 		svg {
 			height: 16px;

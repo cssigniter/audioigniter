@@ -233,7 +233,7 @@ export default class Player extends React.Component {
 								/>
 
 								<Button
-									className={`ai-btn ${cycleTracks && 'ai-btn-active'}`}
+									className={`ai-btn ai-btn-repeat ${cycleTracks && 'ai-btn-active'}`}
 									onClick={this.toggleTrackCycling}
 								>
 									<RefreshIcon />
