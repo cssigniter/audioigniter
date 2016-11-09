@@ -426,14 +426,23 @@
   transition: fill 0.18s ease;
 }
 
-.ai-wrap .ai-btn:hover, .ai-wrap .ai-btn:focus {
+.ai-wrap .ai-btn:hover {
   color: #f70f5d;
   background-color: #3e3e3e;
   border: 0;
 }
 
-.ai-wrap .ai-btn:hover svg, .ai-wrap .ai-btn:focus svg {
+.ai-wrap .ai-btn:hover svg {
   fill: #f70f5d;
+}
+
+.ai-wrap .ai-btn.ai-btn-active {
+  color: #ffffff;
+  background-color: #f70f5d;
+}
+
+.ai-wrap .ai-btn.ai-btn-active svg {
+  fill: #ffffff;
 }
 
 .ai-wrap .ai-tracklist-toggle svg {

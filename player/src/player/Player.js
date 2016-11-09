@@ -8,12 +8,19 @@ import Time from './components/Time';
 import VolumeControl from './components/VolumeControl';
 import Button from './components/Button';
 import Cover from './components/Cover';
-import { PlayIcon, PauseIcon, NextIcon, PreviousIcon, PlaylistIcon } from './components/Icons';
+import {
+	PlayIcon,
+	PauseIcon,
+	NextIcon,
+	PreviousIcon,
+	PlaylistIcon,
+	RefreshIcon
+} from './components/Icons';
 import SoundCloud from '../utils/soundcloud';
 
 export default class Player extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		this.state = {
 			tracks: [],
@@ -22,7 +29,8 @@ export default class Player extends React.Component {
 			position: 0,
 			duration: 0,
 			volume: 100,
-			isTrackListOpen: true
+			isTrackListOpen: true,
+			cycleTracks: this.props.cycleTracks
 		};
 
 		this.togglePlay = this.togglePlay.bind(this);
@@ -31,6 +39,7 @@ export default class Player extends React.Component {
 		this.nextTrack = this.nextTrack.bind(this);
 		this.prevTrack = this.prevTrack.bind(this);
 		this.toggleTracklist = this.toggleTracklist.bind(this);
+		this.toggleTrackCycling = this.toggleTrackCycling.bind(this);
 		this.isNarrowContext = this.isNarrowContext.bind(this);
 	}
 
@@ -104,6 +113,20 @@ export default class Player extends React.Component {
 		this.setState({ isTrackListOpen: !this.state.isTrackListOpen });
 	}
 
+	toggleTrackCycling() {
+		this.setState({ cycleTracks: !this.state.cycleTracks });
+	}
+
+	maybePlayNextTrack() {
+		const { cycleTracks, activeIndex, tracks } = this.state;
+
+		if (cycleTracks) {
+			return this.nextTrack();
+		}
+
+		return activeIndex === tracks.length - 1 ? this.togglePlay() : this.nextTrack();
+	}
+
 	render() {
 		const {
 			tracks,
@@ -112,7 +135,8 @@ export default class Player extends React.Component {
 			position,
 			duration,
 			volume,
-			isTrackListOpen
+			isTrackListOpen,
+			cycleTracks
 		} = this.state;
 
 		const {
@@ -206,6 +230,13 @@ export default class Player extends React.Component {
 									// eslint-disable-next-line no-shadow
 									setVolume={(volume) => { this.setState({ volume }); }}
 								/>
+
+								<Button
+									className={`ai-btn ${cycleTracks && 'ai-btn-active'}`}
+									onClick={this.toggleTrackCycling}
+								>
+									<RefreshIcon />
+								</Button>
 							</div>
 
 							{(tracks.length > 1 && displayTracklist) &&
@@ -262,7 +293,7 @@ export default class Player extends React.Component {
 						volume={volume}
 						// eslint-disable-next-line no-shadow
 						onPlaying={({ duration, position }) => this.setState({ duration, position })}
-						onFinishedPlaying={activeIndex === tracks.length - 1 ? this.togglePlay : this.nextTrack}
+						onFinishedPlaying={() => this.maybePlayNextTrack()}
 					/>
 				}
 			</div>
@@ -282,6 +313,7 @@ Player.propTypes = {
 	tracklistHeight: React.PropTypes.number,
 	displayBuyButtons: React.PropTypes.bool,
 	displayArtistNames: React.PropTypes.bool,
+	cycleTracks: React.PropTypes.bool,
 	maxWidth: React.PropTypes.string,
 	soundcloudClientId: React.PropTypes.string
 };

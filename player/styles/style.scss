@@ -330,14 +330,22 @@ $screen-xs-max: 320px !default;
 			transition: fill $transition-time ease;
 		}
 
-		&:hover,
-		&:focus {
+		&:hover {
 			color: $primary-color;
 			background-color: $control-color;
 			border: 0;
 
 			svg {
 				fill: $primary-color;
+			}
+		}
+
+		&.ai-btn-active {
+			color: $text-on-primary;
+			background-color: $primary-color;
+
+			svg {
+				fill: $text-on-primary;
 			}
 		}
 	}

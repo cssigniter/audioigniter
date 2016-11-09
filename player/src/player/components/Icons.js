@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable max-len, react/no-multi-comp */
 import React from 'react';
 
 export class PlayIcon extends React.Component {
@@ -153,3 +153,21 @@ export class CartIcon extends React.Component {
 		);
 	}
 }
+
+export class RefreshIcon extends React.Component {
+	shouldComponentUpdate() {
+		return false;
+	}
+
+	render() {
+		return (
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+			>
+				<path d="M20.5,18.9c0.4,0.4,0.4,1.1,0,1.6c-2.3,2.3-5.3,3.5-8.5,3.5s-6.3-1.3-8.5-3.5c-2.3-2.3-3.5-5.3-3.5-8.5s1.3-6.3,3.5-8.5C5.9,1.3,8.9,0,12.1,0s6.3,1.3,8.5,3.5l1.4,1.4V1c0-0.6,0.5-1,1-1c0.6,0,1,0.5,1,1v6.6c0,0.1,0,0.2-0.1,0.3v0.2c-0.1,0.1-0.1,0.2-0.2,0.3c0,0-0.1,0-0.1,0.1c-0.1,0.1-0.2,0.1-0.2,0.2h-0.2h-6.7c-0.6,0-1-0.5-1-1c0-0.5,0.5-1,1-1h4l-1.5-1.5c-1.9-1.9-4.3-2.8-6.9-2.8s-5.1,1-7,2.9c-1.9,1.9-2.9,4.3-2.9,7s1,5.1,2.9,7c1.9,1.9,4.3,2.9,7,2.9s5.1-1,7-2.9C19.5,18.4,20.1,18.4,20.5,18.9z" />
+			</svg>
+		);
+	}
+}
+
