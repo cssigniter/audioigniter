@@ -56,7 +56,7 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugin
 3. Advanced player customization
 
 == Changelog ==
-= 1.0.2 =
+= 1.1.0 =
 * Updated CSSIgniter links to https
 * Added a button to enable repeating the playlist. Added admin option for the default state of the repeat button.
 * Fixed a bug where the playlist would not get shown if it contained only one track.
