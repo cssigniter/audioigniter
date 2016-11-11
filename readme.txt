@@ -3,7 +3,7 @@ Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, soundcloud, mp3 player, music, radio stream, radio player, sound player, playlist
 Requires at least: 4.4
 Tested up to: 4.6.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,12 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugin
 3. Advanced player customization
 
 == Changelog ==
+= 1.0.2 =
+* Updated CSSIgniter links to https
+* Added a button to enable repeating the playlist. Added admin option for the default state of the repeat button.
+* Fixed a bug where the playlist would not get shown if it contained only one track.
+* Added option to choose whether track links should open in a new window or not.
+
 = 1.0.1 =
 * Stop looping over the tracklist when the player finishes playing the last track.
 * A couple of strings could not be translated.

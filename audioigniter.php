@@ -5,7 +5,7 @@
  * Description: AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types and serve your audio content in style!
  * Author: The CSSIgniter Team
  * Author URI: https://www.cssigniter.com
- * Version: 1.0.1
+ * Version: 1.0.2
  * Text Domain: audioigniter
  * Domain Path: languages
  *
@@ -37,7 +37,7 @@ class AudioIgniter {
 	 * @var string
 	 * @since 1.0.0
 	 */
-	public static $version = '1.0.1';
+	public static $version = '1.0.2';
 
 	/**
 	 * Instance of this class.
@@ -934,7 +934,7 @@ class AudioIgniter {
 			'data-display-active-cover'     => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_active_cover', 1 ) ),
 			'data-display-artist-names'     => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_artist', 1 ) ),
 			'data-display-buy-buttons'      => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_buy_links', 1 ) ),
-			'data-buy-buttons-target'      => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_buy_links_new_target', 1 ) ),
+			'data-buy-buttons-target'       => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_buy_links_new_target', 1 ) ),
 			'data-cycle-tracks'             => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_cycle_tracks', 0 ) ),
 			'data-display-credits'          => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_credit', 1 ) ),
 			'data-display-tracklist'        => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_track_listing', 1 ) ),
