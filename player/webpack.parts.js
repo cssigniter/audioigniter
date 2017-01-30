@@ -4,10 +4,10 @@ const autoprefixer = require('autoprefixer');
 
 exports.setupSass = paths => ({
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.scss$/,
-				loaders: ['style', 'css', 'sass'],
+				use: ['style-loader', 'css-loader', 'sass-loader'],
 				include: paths
 			}
 		]
@@ -16,32 +16,55 @@ exports.setupSass = paths => ({
 
 exports.extractCSS = paths => ({
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.scss$/,
-				loader: ExtractTextPlugin.extract('style',
-					['css?-minimize', 'postcss', 'sass?outputStyle=expanded']
-				),
+				use: ExtractTextPlugin.extract({
+					fallbackLoader: 'style-loader',
+					loader: [
+						{
+							loader: 'css-loader',
+							options: {
+								minimize: false,
+								importLoaders: 2
+							}
+						},
+						{
+							loader: 'postcss-loader',
+							options: {
+								ident: 'postcss',
+								plugins: () => [
+									autoprefixer({
+										browsers: [
+											'Chrome >= 46',
+											'Firefox ESR',
+											'Edge >= 12',
+											'Explorer >= 9',
+											'iOS >= 8',
+											'Safari >= 8',
+											'Android >= 4'
+										],
+										cascade: false
+									})
+								]
+							}
+						},
+						{
+							loader: 'sass-loader',
+							options: {
+								outputStyle: 'expanded'
+							}
+						}
+					]
+				}),
 				include: paths
 			}
 		]
 	},
-	postcss() {
-		return [autoprefixer({
-			browsers: [
-				'Chrome >= 35',
-				'Firefox ESR',
-				'Edge >= 12',
-				'Explorer >= 9',
-				'iOS >= 8',
-				'Safari >= 8',
-				'Android >= 4'
-			],
-			cascade: false
-		})];
-	},
 	plugins: [
-		new ExtractTextPlugin('[name].css')
+		new ExtractTextPlugin({
+			filename: '[name].css'
+		})
 	]
 });
 
@@ -66,7 +89,11 @@ exports.minify = () => ({
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {
 				warnings: false,
-				drop_console: true
+				drop_console: true,
+				screw_ie8: true
+			},
+			output: {
+				comments: false
 			}
 		})
 	]

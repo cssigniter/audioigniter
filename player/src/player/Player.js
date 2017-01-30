@@ -1,4 +1,3 @@
-/* global window fetch */
 import React from 'react';
 import Sound from 'react-sound';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';

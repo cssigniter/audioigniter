@@ -1,6 +1,5 @@
 const path = require('path');
 const merge = require('webpack-merge');
-const validate = require('webpack-validator');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const parts = require('./webpack.parts');
 
@@ -29,13 +28,13 @@ const common = {
 		})
 	],
 	resolve: {
-		extensions: ['', '.js', '.jsx']
+		extensions: ['.js', '.jsx']
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.jsx?$/,
-				loaders: ['babel?cacheDirectory'],
+				use: ['babel-loader?cacheDirectory'],
 				include: PATHS.app
 			}
 		]
@@ -51,11 +50,11 @@ switch (TARGET) {
 			common,
 			{
 				resolve: {
-					root: path.resolve(__dirname),
+					modules: [path.resolve(__dirname), 'node_modules'],
 					alias: {
 						soundmanager2: 'soundmanager2/script/soundmanager2-nodebug-jsmin.js'
 					},
-					extensions: ['', '.js', '.jsx']
+					extensions: ['.js', '.jsx']
 				}
 			},
 			parts.minify(),
@@ -82,4 +81,4 @@ switch (TARGET) {
 	}
 }
 
-module.exports = validate(config);
+module.exports = config;
