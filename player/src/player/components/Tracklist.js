@@ -1,6 +1,6 @@
 import React from 'react';
-import Cover from './Cover';
 import { Scrollbars } from 'react-custom-scrollbars';
+import Cover from './Cover';
 import { CartIcon } from './Icons';
 
 export default class Tracklist extends React.Component {
@@ -134,7 +134,7 @@ export default class Tracklist extends React.Component {
 				{limitTracklistHeight ?
 					<Scrollbars
 						className="ai-scroll-wrap"
-						ref={(ref) => this.scrollbarsRef = ref} // eslint-disable-line no-return-assign
+						ref={ref => this.scrollbarsRef = ref} // eslint-disable-line no-return-assign
 						style={{ height: tracklistHeight }}
 					>
 						{this.renderTracks()}
@@ -147,7 +147,7 @@ export default class Tracklist extends React.Component {
 }
 
 Tracklist.propTypes = {
-	tracks: React.PropTypes.array.isRequired,
+	tracks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 	activeTrackIndex: React.PropTypes.number.isRequired,
 	onTrackClick: React.PropTypes.func.isRequired,
 	isOpen: React.PropTypes.bool,

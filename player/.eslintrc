@@ -3,12 +3,19 @@
 	"env": {
 		"browser": true
 	},
+	"plugins": [
+		"import"
+	],
 	"rules": {
 		"indent": ["error", "tab"],
+		"no-tabs": 0,
+		"arrow-parens": ["error", "as-needed"],
 		"comma-dangle": ["error", "never"],
 		"no-trailing-spaces": ["error", { "skipBlankLines": true }],
 		"react/jsx-indent-props": ["error", "tab"],
 		"react/jsx-indent": ["error", "tab"],
-		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+		"react/require-default-props": 0,
+		"jsx-a11y/no-static-element-interactions": 0
 	}
 }

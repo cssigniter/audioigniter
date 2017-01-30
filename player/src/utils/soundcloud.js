@@ -15,8 +15,8 @@ export default class SoundCloud {
 	 *
 	 * @returns {boolean}
 	 */
-	isSoundCloudUrl(url) {
-		return ~url.indexOf('soundcloud.com');
+	static isSoundCloudUrl(url) {
+		return url.indexOf('soundcloud.com') > -1;
 	}
 
 	/**
@@ -51,7 +51,7 @@ export default class SoundCloud {
 	 */
 	fetchSoundCloudStreams(tracks) {
 		const scTracks = tracks
-			.filter(track => this.isSoundCloudUrl(track.audio))
+			.filter(track => SoundCloud.isSoundCloudUrl(track.audio))
 			.map(track => this.resolve(track.audio));
 
 		return Promise.all(scTracks);
@@ -72,10 +72,10 @@ export default class SoundCloud {
 		let i = 0;
 
 		return tracks.map(track => {
-			if (this.isSoundCloudUrl(track.audio)) {
+			if (SoundCloud.isSoundCloudUrl(track.audio)) {
 				// eslint-disable-next-line no-param-reassign
 				track.audio = `${scTracks[i].stream_url}?client_id=${this.clientId}`;
-				i++;
+				i++; // eslint-disable-line no-plusplus
 			}
 
 			return track;

@@ -6,14 +6,13 @@ export default class VolumeControl extends React.Component {
 	renderVolumeBars() {
 		const { volume, setVolume } = this.props;
 
-		return Array.apply(null, Array(11)).map((bar, i) => (
+		return Array(...Array(11)).map((bar, i) =>
 			<span
-				key={i}
+				key={i} // eslint-disable-line react/no-array-index-key
 				className={`ai-volume-bar ${i <= volume / 10 ? 'ai-volume-bar-active' : ''}`}
 				onClick={() => setVolume(i * 10)}
-			>
-			</span>
-		));
+			/>
+		);
 	}
 
 	render() {

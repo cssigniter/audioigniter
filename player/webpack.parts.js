@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
-exports.setupSass = (paths) => ({
+exports.setupSass = paths => ({
 	module: {
 		loaders: [
 			{
@@ -14,7 +14,7 @@ exports.setupSass = (paths) => ({
 	}
 });
 
-exports.extractCSS = (paths) => ({
+exports.extractCSS = paths => ({
 	module: {
 		loaders: [
 			{
@@ -45,7 +45,7 @@ exports.extractCSS = (paths) => ({
 	]
 });
 
-exports.devServer = (options) => ({
+exports.devServer = options => ({
 	devServer: {
 		historyApiFallback: true,
 		hot: true,

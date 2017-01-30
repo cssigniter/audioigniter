@@ -20,7 +20,9 @@ export default class Time extends React.Component {
 	 */
 	formatTime(position, duration) {
 		const { showRemaining } = this.state;
-		const positionInSeconds = showRemaining ? (duration - position) / 1000 : position / 1000;
+		const positionInSeconds = showRemaining
+			? (duration - position) / 1000
+			: position / 1000;
 		const hours = Math.floor(positionInSeconds / 3600);
 		let min = Math.floor((positionInSeconds % 3600) / 60);
 		let sec = Math.floor(positionInSeconds % 60);

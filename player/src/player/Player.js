@@ -45,18 +45,21 @@ export default class Player extends React.Component {
 
 	componentDidMount() {
 		const { tracksUrl, soundcloudClientId } = this.props;
-		const tracks = fetch(tracksUrl).then(res => res.json());
+		const tracksPromised = fetch(tracksUrl).then(res => res.json());
 
 		if (!soundcloudClientId) {
-			tracks.then(tracks => this.setState({ tracks }));
+			tracksPromised.then(tracks => this.setState({ tracks }));
 			return;
 		}
 
 		const sc = new SoundCloud(soundcloudClientId);
-		const scTracks = tracks.then(tracks => sc.fetchSoundCloudStreams(tracks));
+		const scTracks = tracksPromised
+			.then(tracks => sc.fetchSoundCloudStreams(tracks))
+			.catch(err => console.error(err)); // eslint-disable-line no-console
 
-		// Make sure if SoundCloud fetching fails we delegate and load our tracks anyway
-		const promiseArray = [tracks, scTracks].map(p => p.catch(error => ({
+		// Make sure if SoundCloud fetching fails
+		// we delegate and load our tracks anyway
+		const promiseArray = [tracksPromised, scTracks].map(p => p.catch(error => ({
 			status: 'error',
 			error
 		})));
@@ -158,7 +161,7 @@ export default class Player extends React.Component {
 
 		return (
 			<div
-				ref={(ref) => this.root = ref} // eslint-disable-line no-return-assign
+				ref={ref => this.root = ref} // eslint-disable-line no-return-assign
 				className={
 					`ai-wrap ${tracks.length ? '' : 'ai-is-loading'}${this.isNarrowContext() ? 'ai-narrow' : ''}`
 				}
@@ -229,7 +232,7 @@ export default class Player extends React.Component {
 								<VolumeControl
 									volume={volume}
 									// eslint-disable-next-line no-shadow
-									setVolume={(volume) => { this.setState({ volume }); }}
+									setVolume={volume => { this.setState({ volume }); }}
 								/>
 
 								<Button
