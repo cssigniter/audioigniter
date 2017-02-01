@@ -32,7 +32,6 @@ exports.extractCSS = paths => ({
 						{
 							loader: 'postcss-loader',
 							options: {
-								ident: 'postcss',
 								plugins: () => [
 									autoprefixer({
 										browsers: [
