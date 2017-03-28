@@ -27,7 +27,7 @@ export default class Player extends React.Component {
 			playStatus: Sound.status.STOPPED,
 			position: 0,
 			duration: 0,
-			volume: 100,
+			volume: this.props.volume == null ? 100 : this.props.volume,
 			isTrackListOpen: true,
 			cycleTracks: this.props.cycleTracks
 		};
@@ -317,6 +317,7 @@ Player.propTypes = {
 	tracklistHeight: React.PropTypes.number,
 	displayBuyButtons: React.PropTypes.bool,
 	buyButtonsTarget: React.PropTypes.bool,
+	volume: React.PropTypes.number,
 	displayArtistNames: React.PropTypes.bool,
 	cycleTracks: React.PropTypes.bool,
 	maxWidth: React.PropTypes.string,

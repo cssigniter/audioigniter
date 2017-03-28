@@ -613,6 +613,7 @@ class AudioIgniter {
 		$credit                    = $this->get_post_meta( $object->ID, '_audioigniter_show_credit', 0 );
 		$limit_tracklisting_height = $this->get_post_meta( $object->ID, '_audioigniter_limit_tracklisting_height', 1 );
 		$tracklisting_height       = $this->get_post_meta( $object->ID, '_audioigniter_tracklisting_height', 185 );
+		$volume                    = $this->get_post_meta( $object->ID, '_audioigniter_volume', 100 );
 		$max_width                 = $this->get_post_meta( $object->ID, '_audioigniter_max_width' );
 
 		wp_nonce_field( basename( __FILE__ ), $object->post_type . '_nonce' );
@@ -771,6 +772,28 @@ class AudioIgniter {
 			</div>
 
 			<div class="ai-form-field">
+				<label for="_audioigniter_volume">
+					<?php esc_html_e( 'Starting volume', 'audioigniter' ); ?>
+				</label>
+
+				<input
+					type="number"
+					min="0"
+					max="100"
+					step="10"
+					id="_audioigniter_volume"
+					class="ai-track-title"
+					name="_audioigniter_volume"
+					placeholder="<?php esc_attr_e( '0-100', 'audioigniter' ); ?>"
+					value="<?php echo esc_attr( $volume ); ?>"
+				/>
+
+				<p class="ai-field-help">
+					<?php esc_html_e( 'Enter a value of 0% to 100% in increments of 10%', 'audioigniter' ); ?>
+				</p>
+			</div>
+
+			<div class="ai-form-field">
 				<input
 					type="checkbox"
 					class="ai-checkbox"
@@ -878,6 +901,7 @@ class AudioIgniter {
 		update_post_meta( $post_id, '_audioigniter_show_credit', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_credit'] ) );
 		update_post_meta( $post_id, '_audioigniter_limit_tracklisting_height', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_limit_tracklisting_height'] ) );
 		update_post_meta( $post_id, '_audioigniter_tracklisting_height', intval( $_POST['_audioigniter_tracklisting_height'] ) );
+		update_post_meta( $post_id, '_audioigniter_volume', intval( $_POST['_audioigniter_volume'] ) );
 		update_post_meta( $post_id, '_audioigniter_max_width', $this->sanitizer->intval_or_empty( $_POST['_audioigniter_max_width'] ) );
 	}
 
@@ -939,6 +963,7 @@ class AudioIgniter {
 			'data-display-credits'          => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_credit', 1 ) ),
 			'data-display-tracklist'        => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_track_listing', 1 ) ),
 			'data-limit-tracklist-height'   => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_limit_tracklisting_height', 1 ) ),
+			'data-volume'                   => intval( $this->get_post_meta( $id, '_audioigniter_volume', 100 ) ),
 			'data-tracklist-height'         => intval( $this->get_post_meta( $id, '_audioigniter_tracklisting_height', 185 ) ),
 			'data-max-width'                => $this->get_post_meta( $id, '_audioigniter_max_width' ),
 		), $id, $post );
