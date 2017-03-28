@@ -119,7 +119,9 @@ export default class Player extends React.Component {
 	}
 
 	toggleTrackCycling() {
-		this.setState({ cycleTracks: !this.state.cycleTracks });
+		this.setState(state => ({
+			cycleTracks: !state.cycleTracks
+		}));
 	}
 
 	maybePlayNextTrack() {
