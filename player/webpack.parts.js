@@ -20,13 +20,12 @@ exports.extractCSS = paths => ({
 			{
 				test: /\.scss$/,
 				use: ExtractTextPlugin.extract({
-					fallbackLoader: 'style-loader',
-					loader: [
+					fallback: 'style-loader',
+					use: [
 						{
 							loader: 'css-loader',
 							options: {
-								minimize: false,
-								importLoaders: 2
+								minimize: false
 							}
 						},
 						{
@@ -69,12 +68,17 @@ exports.extractCSS = paths => ({
 
 exports.devServer = options => ({
 	devServer: {
+		contentBase: __dirname,
 		historyApiFallback: true,
 		hot: true,
 		inline: true,
 		stats: 'errors-only',
 		host: options.host,
-		port: options.port
+		port: options.port,
+		overlay: {
+			warnings: true,
+			errors: true
+		}
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin({

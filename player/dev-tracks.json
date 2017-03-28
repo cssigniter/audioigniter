@@ -1,0 +1,58 @@
+[
+	{
+		"title": "Sunrise",
+		"subtitle": "Thoribass",
+		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
+		"buyUrl": "https://www.cssigniter.com",
+		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/Thoribass-Sunrise.jpg"
+	},
+	{
+		"title": "Another Day",
+		"subtitle": "The Fisherman",
+		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/anotherday.mp3",
+		"buyUrl": "",
+		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/The-Fisherman-Another-Day.jpg"
+	},
+	{
+		"title": "Remix Safety Guide",
+		"subtitle": "Rocavaco",
+		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/remix.mp3",
+		"buyUrl": "https://www.cssigniter.com",
+		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/Rocavaco-Remix-Safety-Guide.jpg"
+	},
+	{
+		"title": "Tomorrow",
+		"subtitle": "MegaEnx",
+		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/tomorrow.mp3",
+		"buyUrl": "",
+		"cover": ""
+	},
+	{
+		"title": "Is It Because I'm Black (David August Reconstruction)",
+		"subtitle": "Syl Johnson (SoundCloud)",
+		"audio": "https://soundcloud.com/1zero2music/syl-johnson-is-it-because-im-black-david-august-reconstruction",
+		"buyUrl": "",
+		"cover": "https://www.cssigniter.com/preview/audioigniter/files/2016/08/artworks-000103551140-ez6k4x-t500x500.jpg"
+	},
+	{
+		"title": "ABC Lounge radio stream",
+		"subtitle": "",
+		"audio": "https://streaming.radionomy.com/ABC-Lounge",
+		"buyUrl": "https://www.cssigniter.com",
+		"cover": "https://www.cssigniter.com/preview/audioigniter/files/2016/08/Rocavaco-Remix-Safety-Guide.jpg"
+	},
+	{
+		"title": "Flash of Light",
+		"subtitle": "Kxmode",
+		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/flashlight.mp3",
+		"buyUrl": "https://www.cssigniter.com",
+		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/Kxmode-Flash-of-Light.jpg"
+	},
+	{
+		"title": "We Get Mental",
+		"subtitle": "BitBurner",
+		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/mental.mp3",
+		"buyUrl": "",
+		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/BitBurner-We-Get-Mental.jpg"
+	}
+]
