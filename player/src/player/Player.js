@@ -1,6 +1,5 @@
 import React from 'react';
 import Sound from 'react-sound';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Tracklist from './components/Tracklist';
 import ProgressBar from './components/ProgressBar';
 import Time from './components/Time';
@@ -21,6 +20,8 @@ export default class Player extends React.Component {
 	constructor(props) {
 		super(props);
 
+		console.log(this.props);
+
 		this.state = {
 			tracks: [],
 			activeIndex: 0, // Determine active track by index
@@ -28,7 +29,7 @@ export default class Player extends React.Component {
 			position: 0,
 			duration: 0,
 			volume: this.props.volume == null ? 100 : this.props.volume,
-			isTrackListOpen: true,
+			isTrackListOpen: this.props.displayTracklist,
 			cycleTracks: this.props.cycleTracks
 		};
 
@@ -112,7 +113,9 @@ export default class Player extends React.Component {
 	}
 
 	toggleTracklist() {
-		this.setState({ isTrackListOpen: !this.state.isTrackListOpen });
+		this.setState(state => ({
+			isTrackListOpen: !state.isTrackListOpen
+		}));
 	}
 
 	toggleTrackCycling() {
@@ -142,7 +145,6 @@ export default class Player extends React.Component {
 		} = this.state;
 
 		const {
-			displayTracklist,
 			reverseTrackOrder,
 			displayTrackNo,
 			displayTracklistCovers,
@@ -242,7 +244,7 @@ export default class Player extends React.Component {
 								</Button>
 							</div>
 
-							{displayTracklist &&
+							{tracks.length > 1 &&
 								<div className="ai-audio-controls-meta-right">
 									<Button
 										className="ai-btn ai-tracklist-toggle"
@@ -256,30 +258,24 @@ export default class Player extends React.Component {
 					</div>
 				</div>
 
-				{displayTracklist &&
+				{tracks.length > 1 &&
 					<div className={`ai-tracklist-wrap ${isTrackListOpen ? 'ai-tracklist-open' : ''}`}>
-						<ReactCSSTransitionGroup
-							transitionName="ai-tracklist"
-							transitionEnterTimeout={500}
-							transitionLeaveTimeout={1000}
-						>
-							<Tracklist
-								className="ai-tracklist"
-								trackClassName="ai-track"
-								tracks={tracks}
-								activeTrackIndex={activeIndex}
-								isOpen={isTrackListOpen}
-								displayTrackNo={displayTrackNo}
-								displayCovers={displayTracklistCovers}
-								displayBuyButtons={displayBuyButtons}
-								buyButtonsTarget={buyButtonsTarget}
-								displayArtistNames={displayArtistNames}
-								reverseTrackOrder={reverseTrackOrder}
-								limitTracklistHeight={limitTracklistHeight}
-								tracklistHeight={tracklistHeight}
-								onTrackClick={this.playTrack}
-							/>
-						</ReactCSSTransitionGroup>
+						<Tracklist
+							className="ai-tracklist"
+							trackClassName="ai-track"
+							tracks={tracks}
+							activeTrackIndex={activeIndex}
+							isOpen={isTrackListOpen}
+							displayTrackNo={displayTrackNo}
+							displayCovers={displayTracklistCovers}
+							displayBuyButtons={displayBuyButtons}
+							buyButtonsTarget={buyButtonsTarget}
+							displayArtistNames={displayArtistNames}
+							reverseTrackOrder={reverseTrackOrder}
+							limitTracklistHeight={limitTracklistHeight}
+							tracklistHeight={tracklistHeight}
+							onTrackClick={this.playTrack}
+						/>
 					</div>
 				}
 
