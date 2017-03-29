@@ -4,13 +4,15 @@
 		"subtitle": "Thoribass",
 		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
 		"buyUrl": "https://www.cssigniter.com",
+		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
 		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/Thoribass-Sunrise.jpg"
 	},
 	{
-		"title": "Another Day",
+		"title": "Seriously long title lorem ipsum dolor sit amet, consectetur adipiscing elit. Non est enim.",
 		"subtitle": "The Fisherman",
 		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/anotherday.mp3",
-		"buyUrl": "",
+		"buyUrl": "https://www.cssigniter.com",
+		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
 		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/The-Fisherman-Another-Day.jpg"
 	},
 	{
@@ -25,6 +27,7 @@
 		"subtitle": "MegaEnx",
 		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/tomorrow.mp3",
 		"buyUrl": "",
+		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
 		"cover": ""
 	},
 	{

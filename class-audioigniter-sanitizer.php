@@ -51,11 +51,12 @@ class AudioIgniter_Sanitizer {
 
 		$sanitized_track = array();
 
-		$sanitized_track['cover_id']  = intval( $track['cover_id'] );
-		$sanitized_track['title']     = sanitize_text_field( $track['title'] );
-		$sanitized_track['artist']    = sanitize_text_field( $track['artist'] );
-		$sanitized_track['track_url'] = esc_url_raw( $track['track_url'] );
-		$sanitized_track['buy_link']  = esc_url_raw( $track['buy_link'] );
+		$sanitized_track['cover_id']     = intval( $track['cover_id'] );
+		$sanitized_track['title']        = sanitize_text_field( $track['title'] );
+		$sanitized_track['artist']       = sanitize_text_field( $track['artist'] );
+		$sanitized_track['track_url']    = esc_url_raw( $track['track_url'] );
+		$sanitized_track['buy_link']     = esc_url_raw( $track['buy_link'] );
+		$sanitized_track['download_url'] = esc_url_raw( $track['download_url'] );
 
 		$sanitized_track = array_map( 'trim', $sanitized_track );
 

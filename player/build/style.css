@@ -604,10 +604,10 @@
 .ai-wrap .ai-track-btn svg {
   position: relative;
   fill: #ffffff;
-  height: 14px;
+  height: 15px;
   -webkit-transition: fill 0.18s ease;
   transition: fill 0.18s ease;
-  top: 2px;
+  top: 3px;
 }
 
 .ai-wrap .ai-footer {

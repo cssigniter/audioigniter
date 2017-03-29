@@ -499,9 +499,9 @@ $screen-xs-max: 320px !default;
 		svg {
 			position: relative;
 			fill: $text-color;
-			height: 14px;
+			height: 15px;
 			transition: fill $transition-time ease;
-			top: 2px;
+			top: 3px;
 		}
 	}
 

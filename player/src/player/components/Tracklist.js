@@ -1,7 +1,7 @@
 import React from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Cover from './Cover';
-import { CartIcon } from './Icons';
+import { CartIcon, DownloadIcon } from './Icons';
 
 export default class Tracklist extends React.Component {
 	componentWillReceiveProps(nextProps) {
@@ -36,14 +36,22 @@ export default class Tracklist extends React.Component {
 
 		return (
 			<div className="ai-track-control-buttons">
-				<a
-					href={track.buyUrl}
-					className="ai-track-btn"
-					rel={buyButtonsTarget ? 'noopener noreferrer' : undefined}
-					target={buyButtonsTarget ? '_blank' : '_self'}
-				>
-					<CartIcon />
-				</a>
+				{track.buyUrl &&
+					<a
+						href={track.buyUrl}
+						className="ai-track-btn"
+						rel={buyButtonsTarget ? 'noopener noreferrer' : undefined}
+						target={buyButtonsTarget ? '_blank' : '_self'}
+					>
+						<CartIcon />
+					</a>
+				}
+
+				{track.downloadUrl &&
+					<a href={track.downloadUrl} className="ai-track-btn">
+						<DownloadIcon />
+					</a>
+				}
 			</div>
 		);
 	}
@@ -83,6 +91,8 @@ export default class Tracklist extends React.Component {
 			displayCovers
 		} = this.props;
 
+		const paddingRight = track.downloadUrl && track.buyUrl ? '90px' : '';
+
 		return (
 			<li
 				key={idx}
@@ -101,12 +111,15 @@ export default class Tracklist extends React.Component {
 						/>
 					}
 
-					<span className="ai-track-name">
+					<span
+						className="ai-track-name"
+						style={{ paddingRight }}
+					>
 						{this.renderTrackTitle(track, idx)}
 					</span>
 				</div>
 
-				{displayBuyButtons && track.buyUrl && this.renderButtons(track)}
+				{displayBuyButtons && (track.buyUrl || track.downloadUrl) && this.renderButtons(track)}
 			</li>
 		);
 	}

@@ -67,14 +67,14 @@
 .ai-field-sort-handle { position: relative; top: 1px; color: #0073aa; }
 .ai-field-sort-handle .dashicons { font-size: 18px; }
 
-.ai-field-title { font-weight: bold; font-size: 1.05em; margin-left: 8px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; max-width: 80%; display: inline-block; }
+.ai-field-title { font-weight: bold; font-size: 1.05em; margin-left: 8px; padding-top: 3px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; max-width: 80%; display: inline-block; }
 
 .ai-field-toggle { float: right; }
 
 .ai-field-cover { float: left; width: 100px; height: 100px; margin-right: 15px; background-color: #eeeeee; border: 1px solid #cccccc; }
 
-.ai-field-split { float: left; width: calc(50% - 66px); margin-right: 15px; }
-.ai-field-split:last-child { margin-right: 0; }
+.ai-field-split { float: left; width: calc(50% - 71px); margin-right: 15px; }
+.ai-field-split:nth-child(2n + 1) { margin-right: 0; }
 
 .ai-container .button .dashicons, .ai-module .button .dashicons { font-size: 1.2em; line-height: 1.7em; }
 

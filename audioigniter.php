@@ -415,11 +415,12 @@ class AudioIgniter {
 	protected function metabox_tracks_repeatable_track_field( $track = array() ) {
 		$track = wp_parse_args( $track, self::get_default_track_values() );
 
-		$cover_id  = $track['cover_id'];
-		$title     = $track['title'];
-		$artist    = $track['artist'];
-		$track_url = $track['track_url'];
-		$buy_link  = $track['buy_link'];
+		$cover_id     = $track['cover_id'];
+		$title        = $track['title'];
+		$artist       = $track['artist'];
+		$track_url    = $track['track_url'];
+		$buy_link     = $track['buy_link'];
+		$download_url = $track['download_url'];
 
 		$cover_url = wp_get_attachment_image_src( intval( $cover_id ), 'thumbnail' );
 		if ( ! empty( $cover_url[0] ) ) {
@@ -511,6 +512,22 @@ class AudioIgniter {
 							value="<?php echo esc_attr( $artist ); ?>"
 						/>
 					</div>
+
+					<div class="ai-form-field">
+						<label
+							for="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-buy_link"
+							class="screen-reader-text">
+							<?php esc_html_e( 'Buy link', 'audioigniter' ); ?>
+						</label>
+						<input
+							type="text"
+							id="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-buy_link"
+							class="ai-track-buy-link"
+							name="ai_playlist_tracks[<?php echo esc_attr( $uid ); ?>][buy_link]"
+							placeholder="<?php esc_attr_e( 'Buy link', 'audioigniter' ); ?>"
+							value="<?php echo esc_url( $buy_link ); ?>"
+						/>
+					</div>
 				</div>
 
 				<div class="ai-field-split">
@@ -537,19 +554,20 @@ class AudioIgniter {
 							<?php do_action( 'audioigniter_metabox_tracks_repeatable_track_field_after_track_upload_button' ); ?>
 						</div>
 					</div>
+
 					<div class="ai-form-field">
 						<label
-							for="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-buy_link"
+							for="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-download_url"
 							class="screen-reader-text">
-							<?php esc_html_e( 'Buy link', 'audioigniter' ); ?>
+							<?php esc_html_e( 'Download URL', 'audioigniter' ); ?>
 						</label>
 						<input
 							type="text"
-							id="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-buy_link"
-							class="ai-track-buy-link"
-							name="ai_playlist_tracks[<?php echo esc_attr( $uid ); ?>][buy_link]"
-							placeholder="<?php esc_attr_e( 'Buy link', 'audioigniter' ); ?>"
-							value="<?php echo esc_url( $buy_link ); ?>"
+							id="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-download_url"
+							class="ai-track-download-url"
+							name="ai_playlist_tracks[<?php echo esc_attr( $uid ); ?>][download_url]"
+							placeholder="<?php esc_attr_e( 'Download URL', 'audioigniter' ); ?>"
+							value="<?php echo esc_url( $download_url ); ?>"
 						/>
 					</div>
 
@@ -558,6 +576,7 @@ class AudioIgniter {
 						<?php esc_html_e( 'Remove Track', 'audioigniter' ); ?>
 					</button>
 				</div>
+
 			</div>
 		</div>
 		<?php
@@ -907,11 +926,12 @@ class AudioIgniter {
 
 	public static function get_default_track_values() {
 		return apply_filters( 'audioigniter_default_track_values', array(
-			'cover_id'  => '',
-			'title'     => '',
-			'artist'    => '',
-			'track_url' => '',
-			'buy_link'  => '',
+			'cover_id'     => '',
+			'title'        => '',
+			'artist'       => '',
+			'track_url'    => '',
+			'buy_link'     => '',
+			'download_url' => '',
 		) );
 	}
 
@@ -1019,10 +1039,11 @@ class AudioIgniter {
 		foreach ( $tracks as $track ) {
 			$tmp = array();
 
-			$tmp['title']    = $track['title'];
-			$tmp['subtitle'] = $track['artist'];
-			$tmp['audio']    = $track['track_url'];
-			$tmp['buyUrl']   = $track['buy_link'];
+			$tmp['title']       = $track['title'];
+			$tmp['subtitle']    = $track['artist'];
+			$tmp['audio']       = $track['track_url'];
+			$tmp['buyUrl']      = $track['buy_link'];
+			$tmp['downloadUrl'] = $track['download_url'];
 
 			$cover_url = wp_get_attachment_image_src( intval( $track['cover_id'] ), 'audioigniter_cover' );
 			if ( ! empty( $cover_url[0] ) ) {

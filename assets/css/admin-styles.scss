@@ -249,6 +249,7 @@ $transition-time: .18s;
 	font-weight: bold;
 	font-size: 1.05em;
 	margin-left: 8px;
+	padding-top: 3px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -271,10 +272,10 @@ $transition-time: .18s;
 
 .ai-field-split {
 	float: left;
-	width: calc(50% - 66px);
+	width: calc(50% - 71px);
 	margin-right: $base-pad;
 
-	&:last-child {
+	&:nth-child(2n + 1) {
 		margin-right: 0;
 	}
 }
