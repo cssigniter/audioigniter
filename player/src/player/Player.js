@@ -246,40 +246,36 @@ export default class Player extends React.Component {
 								</Button>
 							</div>
 
-							{tracks.length > 1 &&
-								<div className="ai-audio-controls-meta-right">
-									<Button
-										className="ai-btn ai-tracklist-toggle"
-										onClick={this.toggleTracklist}
-									>
-										<PlaylistIcon />
-									</Button>
-								</div>
-							}
+							<div className="ai-audio-controls-meta-right">
+								<Button
+									className="ai-btn ai-tracklist-toggle"
+									onClick={this.toggleTracklist}
+								>
+									<PlaylistIcon />
+								</Button>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				{tracks.length > 1 &&
-					<div className={`ai-tracklist-wrap ${isTrackListOpen ? 'ai-tracklist-open' : ''}`}>
-						<Tracklist
-							className="ai-tracklist"
-							trackClassName="ai-track"
-							tracks={tracks}
-							activeTrackIndex={activeIndex}
-							isOpen={isTrackListOpen}
-							displayTrackNo={displayTrackNo}
-							displayCovers={displayTracklistCovers}
-							displayBuyButtons={displayBuyButtons}
-							buyButtonsTarget={buyButtonsTarget}
-							displayArtistNames={displayArtistNames}
-							reverseTrackOrder={reverseTrackOrder}
-							limitTracklistHeight={limitTracklistHeight}
-							tracklistHeight={tracklistHeight}
-							onTrackClick={this.playTrack}
-						/>
-					</div>
-				}
+				<div className={`ai-tracklist-wrap ${isTrackListOpen ? 'ai-tracklist-open' : ''}`}>
+					<Tracklist
+						className="ai-tracklist"
+						trackClassName="ai-track"
+						tracks={tracks}
+						activeTrackIndex={activeIndex}
+						isOpen={isTrackListOpen}
+						displayTrackNo={displayTrackNo}
+						displayCovers={displayTracklistCovers}
+						displayBuyButtons={displayBuyButtons}
+						buyButtonsTarget={buyButtonsTarget}
+						displayArtistNames={displayArtistNames}
+						reverseTrackOrder={reverseTrackOrder}
+						limitTracklistHeight={limitTracklistHeight}
+						tracklistHeight={tracklistHeight}
+						onTrackClick={this.playTrack}
+					/>
+				</div>
 
 				{displayCredits &&
 					<div className="ai-footer">
