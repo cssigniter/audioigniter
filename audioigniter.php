@@ -760,7 +760,7 @@ class AudioIgniter {
 					id="_audioigniter_show_credit"
 					name="_audioigniter_show_credit"
 					value="1" <?php checked( $credit, true ); ?>
-			/>
+				/>
 
 				<label for="_audioigniter_show_credit">
 					<?php esc_html_e( 'Show "Powered by AudioIgniter" link', 'audioigniter' ); ?>
@@ -789,7 +789,7 @@ class AudioIgniter {
 				/>
 
 				<p class="ai-field-help">
-					<?php esc_html_e( 'Enter a value of 0% to 100% in increments of 10%', 'audioigniter' ); ?>
+					<?php esc_html_e( 'Enter a value between 0% and 100% in increments of 10%', 'audioigniter' ); ?>
 				</p>
 			</div>
 
@@ -881,7 +881,7 @@ class AudioIgniter {
 
 	public function save_post( $post_id ) {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return false; }
-		if ( isset( $_POST['post_view'] ) && $_POST['post_view'] === 'list' ) { return false; }
+		if ( isset( $_POST['post_view'] ) && 'list' === $_POST['post_view'] ) { return false; }
 		if ( ! isset( $_POST['post_type'] ) || $_POST['post_type'] !== $this->post_type ) { return false; }
 		if ( ! isset( $_POST[ $this->post_type . '_nonce' ] ) || ! wp_verify_nonce( $_POST[ $this->post_type . '_nonce' ], basename( __FILE__ ) ) ) { return false; }
 		$post_type_obj = get_post_type_object( $this->post_type );
@@ -964,11 +964,15 @@ class AudioIgniter {
 			'data-display-tracklist'        => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_track_listing', 1 ) ),
 			'data-limit-tracklist-height'   => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_limit_tracklisting_height', 1 ) ),
 			'data-volume'                   => intval( $this->get_post_meta( $id, '_audioigniter_volume', 100 ) ),
+			'data-volume1'                   => '',
+			'data-volume2'                   => null,
+			'data-volume3'                   => '0',
+			'data-volume4'                   => 0,
 			'data-tracklist-height'         => intval( $this->get_post_meta( $id, '_audioigniter_tracklisting_height', 185 ) ),
 			'data-max-width'                => $this->get_post_meta( $id, '_audioigniter_max_width' ),
 		), $id, $post );
 
-		$params = array_filter( $params );
+		$params = array_filter( $params, array( $this->sanitizer, 'array_filter_empty_null' ) );
 		$params = $this->sanitizer->html_data_attributes_array( $params );
 
 		$data = '';

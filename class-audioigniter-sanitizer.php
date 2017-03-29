@@ -193,4 +193,22 @@ class AudioIgniter_Sanitizer {
 	}
 
 
+	/**
+	 * Returns false when value is empty or null.
+	 * Only use with array_filter() or similar, as the naming can lead to confusion.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @param mixed $value Array value to check whether empty or null.
+	 *
+	 * @return bool false if empty or null, true otherwise.
+	 */
+	public static function array_filter_empty_null( $value ) {
+		if ( '' === $value || is_null( $value ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
 }
