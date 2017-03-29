@@ -964,10 +964,6 @@ class AudioIgniter {
 			'data-display-tracklist'        => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_track_listing', 1 ) ),
 			'data-limit-tracklist-height'   => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_limit_tracklisting_height', 1 ) ),
 			'data-volume'                   => intval( $this->get_post_meta( $id, '_audioigniter_volume', 100 ) ),
-			'data-volume1'                   => '',
-			'data-volume2'                   => null,
-			'data-volume3'                   => '0',
-			'data-volume4'                   => 0,
 			'data-tracklist-height'         => intval( $this->get_post_meta( $id, '_audioigniter_tracklisting_height', 185 ) ),
 			'data-max-width'                => $this->get_post_meta( $id, '_audioigniter_max_width' ),
 		), $id, $post );
