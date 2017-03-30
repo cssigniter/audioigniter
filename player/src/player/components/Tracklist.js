@@ -48,7 +48,11 @@ export default class Tracklist extends React.Component {
 				}
 
 				{track.downloadUrl &&
-					<a href={track.downloadUrl} className="ai-track-btn">
+					<a
+						href={track.downloadUrl}
+						download={track.downloadUrl}
+						className="ai-track-btn"
+					>
 						<DownloadIcon />
 					</a>
 				}
