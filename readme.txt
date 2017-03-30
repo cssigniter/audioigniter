@@ -2,15 +2,15 @@
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, soundcloud, mp3 player, music, radio stream, radio player, sound player, playlist
 Requires at least: 4.4
-Tested up to: 4.6.1
-Stable tag: 1.0.1
+Tested up to: 4.7.3
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types and serve your audio content in style!
 
 == Description ==
-AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types. By using the standard WordPress media upload functionality, you can create new playlists in minutes. Oh, you can use AudioIgniter to stream your radio show too!
+Looking for a music player? AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types. By using the standard WordPress media upload functionality, you can create new audio playlists in minutes. Oh, you can use AudioIgniter to stream your radio show too!
 
 https://www.youtube.com/watch?v=AmRDYlVW_3M
 
@@ -56,6 +56,12 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugin
 3. Advanced player customization
 
 == Changelog ==
+= 1.2.0 =
+* Added support for initial volume setting.
+* Show the tracklist toggle button when the tracklist is hidden by default.
+* Added support for downloading tracks.
+* Fixed issue where tracklist wouldn't display when there was only one track.
+
 = 1.1.0 =
 * Updated CSSIgniter links to https
 * Added a button to enable repeating the playlist. Added admin option for the default state of the repeat button.
