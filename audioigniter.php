@@ -1037,13 +1037,14 @@ class AudioIgniter {
 		$tracks   = $this->get_post_meta( $playlist_id, '_audioigniter_tracks', array() );
 
 		foreach ( $tracks as $track ) {
-			$tmp = array();
+			$track          = wp_parse_args( $track, self::get_default_track_values() );
+			$track_response = array();
 
-			$tmp['title']       = $track['title'];
-			$tmp['subtitle']    = $track['artist'];
-			$tmp['audio']       = $track['track_url'];
-			$tmp['buyUrl']      = $track['buy_link'];
-			$tmp['downloadUrl'] = $track['download_url'];
+			$track_response['title']       = $track['title'];
+			$track_response['subtitle']    = $track['artist'];
+			$track_response['audio']       = $track['track_url'];
+			$track_response['buyUrl']      = $track['buy_link'];
+			$track_response['downloadUrl'] = $track['download_url'];
 
 			$cover_url = wp_get_attachment_image_src( intval( $track['cover_id'] ), 'audioigniter_cover' );
 			if ( ! empty( $cover_url[0] ) ) {
@@ -1052,9 +1053,11 @@ class AudioIgniter {
 				$cover_url = '';
 			}
 
-			$tmp['cover'] = $cover_url;
+			$track_response['cover'] = $cover_url;
 
-			$response[] = $tmp;
+			$track_response = apply_filters( 'audioigniter_playlist_endpoint_track', $track_response, $track, $playlist_id, $post );
+
+			$response[] = $track_response;
 		}
 
 		wp_send_json( $response );
