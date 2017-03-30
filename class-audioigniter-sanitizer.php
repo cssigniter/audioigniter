@@ -3,34 +3,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Class AudioIgniter_Sanitizer
+ *
+ * Provides static sanitization functions.
+ *
+ * @since 1.0.0
+ */
 class AudioIgniter_Sanitizer {
 	/**
 	 * Sanitizes a playlist (repeatable tracks).
 	 *
+	 * @version 1.2.0
 	 * @since 1.0.0
 	 *
 	 * @uses AudioIgniter_Sanitizer::playlist_track()
 	 *
-	 * @param array $POST_tracks Input values to sanitize, as passed by the playlist metabox.
+	 * @param array $post_tracks Input values to sanitize, as passed by the playlist metabox.
 	 * @param int|null $post_id Optional. Post ID where the track belongs to.
 	 *
 	 * @return array
 	 */
-	public static function metabox_playlist( $POST_tracks, $post_id = null ) {
-		if ( empty( $POST_tracks ) || ! is_array( $POST_tracks ) ) {
+	public static function metabox_playlist( $post_tracks, $post_id = null ) {
+		if ( empty( $post_tracks ) || ! is_array( $post_tracks ) ) {
 			return array();
 		}
 
 		$tracks = array();
 
-		foreach( $POST_tracks as $uid => $track_data ) {
-			$track = AudioIgniter_Sanitizer::playlist_track( $track_data, $post_id, $uid );
-			if( $track !== false ) {
+		foreach ( $post_tracks as $uid => $track_data ) {
+			$track = self::playlist_track( $track_data, $post_id, $uid );
+			if ( false !== $track ) {
 				$tracks[] = $track;
 			}
 		}
 
-		return apply_filters( 'audioigniter_sanitize_playlist', $tracks, $POST_tracks, $post_id );
+		return apply_filters( 'audioigniter_sanitize_playlist', $tracks, $post_tracks, $post_id );
 	}
 
 	/**
@@ -78,7 +86,7 @@ class AudioIgniter_Sanitizer {
 	 * @return int|string Returns 1 if $input evaluates to 1, an empty string otherwise.
 	 */
 	public static function checkbox( $input ) {
-		if ( $input == 1 ) {
+		if ( 1 == $input ) { // WPCS: loose comparison ok.
 			return 1;
 		}
 
@@ -99,7 +107,7 @@ class AudioIgniter_Sanitizer {
 	 * @return int|string Returns 1 if $input evaluates to 1, an empty string otherwise.
 	 */
 	public static function checkbox_ref( &$input ) {
-		if ( $input == 1 ) {
+		if ( 1 == $input ) { // WPCS: loose comparison ok.
 			return 1;
 		}
 
@@ -117,11 +125,11 @@ class AudioIgniter_Sanitizer {
 	 * @return int|string Integer value (including zero), or an empty string otherwise.
 	 */
 	public static function intval_or_empty( $input ) {
-		if ( is_null( $input ) || $input === false || $input === '' ) {
+		if ( is_null( $input ) || false === $input || '' === $input ) {
 			return '';
 		}
 
-		if ( $input == 0 ) {
+		if ( 0 == $input ) { // WPCS: loose comparison ok.
 			return 0;
 		}
 
@@ -141,24 +149,24 @@ class AudioIgniter_Sanitizer {
 	 * @return string A valid hex color code on success, an empty string on failure.
 	 */
 	public static function hex_color( $str, $return_hash = true, $return_fail = '' ) {
-		if( $str === false || empty( $str ) || $str == 'false' ) {
+		if ( false === $str || empty( $str ) || 'false' === $str ) {
 			return $return_fail;
 		}
 
 		// Allow keywords and predefined colors
-		if ( in_array( $str, array( 'transparent', 'initial', 'inherit', 'black', 'silver', 'gray', 'grey', 'white', 'maroon', 'red', 'purple', 'fuchsia', 'green', 'lime', 'olive', 'yellow', 'navy', 'blue', 'teal', 'aqua', 'orange', 'aliceblue', 'antiquewhite', 'aquamarine', 'azure', 'beige', 'bisque', 'blanchedalmond', 'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue', 'cornsilk', 'crimson', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgrey', 'darkgreen', 'darkkhaki', 'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray', 'darkslategrey', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue', 'dimgray', 'dimgrey', 'dodgerblue', 'firebrick', 'floralwhite', 'forestgreen', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'greenyellow', 'grey', 'honeydew', 'hotpink', 'indianred', 'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush', 'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan', 'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightgrey', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightslategrey', 'lightsteelblue', 'lightyellow', 'limegreen', 'linen', 'mediumaquamarine', 'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'navajowhite', 'oldlace', 'olivedrab', 'orangered', 'orchid', 'palegoldenrod', 'palegreen', 'paleturquoise', 'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum', 'powderblue', 'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna', 'skyblue', 'slateblue', 'slategray', 'slategrey', 'snow', 'springgreen', 'steelblue', 'tan', 'thistle', 'tomato', 'turquoise', 'violet', 'wheat', 'whitesmoke', 'yellowgreen', 'rebeccapurple' ) ) ) {
+		if ( in_array( $str, array( 'transparent', 'initial', 'inherit', 'black', 'silver', 'gray', 'grey', 'white', 'maroon', 'red', 'purple', 'fuchsia', 'green', 'lime', 'olive', 'yellow', 'navy', 'blue', 'teal', 'aqua', 'orange', 'aliceblue', 'antiquewhite', 'aquamarine', 'azure', 'beige', 'bisque', 'blanchedalmond', 'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue', 'cornsilk', 'crimson', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgrey', 'darkgreen', 'darkkhaki', 'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray', 'darkslategrey', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue', 'dimgray', 'dimgrey', 'dodgerblue', 'firebrick', 'floralwhite', 'forestgreen', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'greenyellow', 'grey', 'honeydew', 'hotpink', 'indianred', 'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush', 'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan', 'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightgrey', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightslategrey', 'lightsteelblue', 'lightyellow', 'limegreen', 'linen', 'mediumaquamarine', 'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'navajowhite', 'oldlace', 'olivedrab', 'orangered', 'orchid', 'palegoldenrod', 'palegreen', 'paleturquoise', 'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum', 'powderblue', 'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna', 'skyblue', 'slateblue', 'slategray', 'slategrey', 'snow', 'springgreen', 'steelblue', 'tan', 'thistle', 'tomato', 'turquoise', 'violet', 'wheat', 'whitesmoke', 'yellowgreen', 'rebeccapurple' ), true ) ) {
 			return $str;
 		}
 
 		// Include the hash if not there.
 		// The regex below depends on in.
-		if ( substr( $str, 0, 1 ) != '#' ) {
+		if ( substr( $str, 0, 1 ) !== '#' ) {
 			$str = '#' . $str;
 		}
 
 		preg_match( '/(#)([0-9a-fA-F]{6})/', $str, $matches );
 
-		if ( count( $matches ) == 3 ) {
+		if ( count( $matches ) === 3 ) {
 			if ( $return_hash ) {
 				return $matches[1] . $matches[2];
 			} else {
@@ -185,7 +193,7 @@ class AudioIgniter_Sanitizer {
 
 		// Remove keys that are not data attributes.
 		foreach ( $keys as $key ) {
-			if ( substr( $key, 0, strlen( $key_prefix ) ) != $key_prefix ) {
+			if ( substr( $key, 0, strlen( $key_prefix ) ) !== $key_prefix ) {
 				unset( $array[ $key ] );
 			}
 		}
