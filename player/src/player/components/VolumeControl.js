@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from './Button';
 import { VolumeUpIcon, VolumeDownIcon } from './Icons';
 
@@ -43,6 +44,6 @@ export default class VolumeControl extends React.Component {
 }
 
 VolumeControl.propTypes = {
-	volume: React.PropTypes.number.isRequired,
-	setVolume: React.PropTypes.func.isRequired
+	volume: PropTypes.number.isRequired,
+	setVolume: PropTypes.func.isRequired
 };

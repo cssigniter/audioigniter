@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Cover from './Cover';
 import { CartIcon, DownloadIcon } from './Icons';
@@ -164,18 +165,18 @@ export default class Tracklist extends React.Component {
 }
 
 Tracklist.propTypes = {
-	tracks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-	activeTrackIndex: React.PropTypes.number.isRequired,
-	onTrackClick: React.PropTypes.func.isRequired,
-	isOpen: React.PropTypes.bool,
-	className: React.PropTypes.string,
-	trackClassName: React.PropTypes.string,
-	reverseTrackOrder: React.PropTypes.bool,
-	displayTrackNo: React.PropTypes.bool,
-	limitTracklistHeight: React.PropTypes.bool,
-	tracklistHeight: React.PropTypes.number,
-	displayBuyButtons: React.PropTypes.bool,
-	buyButtonsTarget: React.PropTypes.bool,
-	displayCovers: React.PropTypes.bool,
-	displayArtistNames: React.PropTypes.bool
+	tracks: PropTypes.arrayOf(PropTypes.object).isRequired,
+	activeTrackIndex: PropTypes.number.isRequired,
+	onTrackClick: PropTypes.func.isRequired,
+	isOpen: PropTypes.bool,
+	className: PropTypes.string,
+	trackClassName: PropTypes.string,
+	reverseTrackOrder: PropTypes.bool,
+	displayTrackNo: PropTypes.bool,
+	limitTracklistHeight: PropTypes.bool,
+	tracklistHeight: PropTypes.number,
+	displayBuyButtons: PropTypes.bool,
+	buyButtonsTarget: PropTypes.bool,
+	displayCovers: PropTypes.bool,
+	displayArtistNames: PropTypes.bool
 };

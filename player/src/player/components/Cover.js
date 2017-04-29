@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MusicNoteIcon } from './Icons';
 
 const Cover = ({
@@ -15,9 +16,9 @@ const Cover = ({
 );
 
 Cover.propTypes = {
-	className: React.PropTypes.string,
-	title: React.PropTypes.string,
-	src: React.PropTypes.string
+	className: PropTypes.string,
+	title: PropTypes.string,
+	src: PropTypes.string
 };
 
 export default Cover;

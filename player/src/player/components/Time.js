@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Time extends React.Component {
 	constructor() {
@@ -62,6 +63,6 @@ export default class Time extends React.Component {
 }
 
 Time.propTypes = {
-	position: React.PropTypes.number.isRequired,
-	duration: React.PropTypes.number.isRequired
+	position: PropTypes.number.isRequired,
+	duration: PropTypes.number.isRequired
 };

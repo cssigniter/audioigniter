@@ -43,10 +43,11 @@
   },
   "dependencies": {
     "es6-promise": "^4.1.0",
-    "react": "^15.4.2",
-    "react-addons-css-transition-group": "^15.4.2",
-    "react-custom-scrollbars": "^4.0.2",
-    "react-dom": "^15.4.2",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-addons-css-transition-group": "^15.5.2",
+    "react-custom-scrollbars": "^4.1.1",
+    "react-dom": "^15.5.4",
     "react-sound": "0.5.2",
     "soundmanager2": "2.97.20150601-a",
     "whatwg-fetch": "0.11.1"
