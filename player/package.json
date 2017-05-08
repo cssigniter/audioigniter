@@ -37,8 +37,8 @@
     "precss": "1.4.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
-    "webpack": "^2.3.2",
-    "webpack-dev-server": "^2.4.2",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.5",
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
@@ -48,7 +48,7 @@
     "react-addons-css-transition-group": "^15.5.2",
     "react-custom-scrollbars": "^4.1.1",
     "react-dom": "^15.5.4",
-    "react-sound": "0.5.2",
+    "react-sound": "^0.6.1",
     "soundmanager2": "2.97.20150601-a",
     "whatwg-fetch": "0.11.1"
   }

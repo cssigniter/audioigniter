@@ -70,7 +70,7 @@ exports.devServer = options => ({
 	devServer: {
 		contentBase: __dirname,
 		historyApiFallback: true,
-		hot: true,
+		hot: false,
 		inline: true,
 		stats: 'errors-only',
 		host: options.host,
@@ -79,12 +79,7 @@ exports.devServer = options => ({
 			warnings: true,
 			errors: true
 		}
-	},
-	plugins: [
-		new webpack.HotModuleReplacementPlugin({
-			multiStep: true
-		})
-	]
+	}
 });
 
 exports.minify = () => ({

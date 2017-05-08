@@ -8,11 +8,11 @@ export default class ProgressBar extends React.Component {
 	}
 
 	handleClick(e) {
-		const { duration, onSeek } = this.props;
+		const { duration, setPosition } = this.props;
 		const offsetX = e.pageX - e.currentTarget.getBoundingClientRect().left;
 		const posX = offsetX / e.currentTarget.offsetWidth;
 
-		onSeek(posX * duration);
+		setPosition(posX * duration);
 	}
 
 	render() {
@@ -33,7 +33,7 @@ export default class ProgressBar extends React.Component {
 }
 
 ProgressBar.propTypes = {
-	onSeek: PropTypes.func.isRequired,
+	setPosition: PropTypes.func.isRequired,
 	position: PropTypes.number.isRequired,
 	duration: PropTypes.number.isRequired
 };

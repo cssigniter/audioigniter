@@ -1,180 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Scrollbars } from 'react-custom-scrollbars';
-import Cover from './Cover';
-import { CartIcon, DownloadIcon } from './Icons';
+import Track from './Track';
 
 export default class Tracklist extends React.Component {
-	componentWillReceiveProps(nextProps) {
-		const { activeTrackIndex, limitTracklistHeight } = this.props;
-
-		if (activeTrackIndex !== nextProps.activeTrackIndex && limitTracklistHeight) {
-			this.scrollToTrack(nextProps.activeTrackIndex);
-		}
-	}
-
-	scrollToTrack(trackIndex) {
-		const { tracks } = this.props;
-		const trackHeight = this.scrollbarsRef.getScrollHeight() / tracks.length;
-
-		if (!this.isTrackVisible(trackIndex)) {
-			this.scrollbarsRef.scrollTop(trackHeight * trackIndex);
-		}
-	}
-
-	isTrackVisible(trackIndex) {
-		const { tracks } = this.props;
-		const trackHeight = this.scrollbarsRef.getScrollHeight() / tracks.length;
-		const trackPosition = trackHeight * trackIndex;
-		const scrollTop = this.scrollbarsRef.getScrollTop();
-		const scrollBottom = scrollTop + this.scrollbarsRef.getClientHeight();
-
-		return !(trackPosition < scrollTop || trackPosition > scrollBottom);
-	}
-
-	renderButtons(track) {
-		const { buyButtonsTarget } = this.props;
-
-		return (
-			<div className="ai-track-control-buttons">
-				{track.buyUrl &&
-					<a
-						href={track.buyUrl}
-						className="ai-track-btn"
-						rel={buyButtonsTarget ? 'noopener noreferrer' : undefined}
-						target={buyButtonsTarget ? '_blank' : '_self'}
-					>
-						<CartIcon />
-					</a>
-				}
-
-				{track.downloadUrl &&
-					<a
-						href={track.downloadUrl}
-						download={track.downloadUrl}
-						className="ai-track-btn"
-					>
-						<DownloadIcon />
-					</a>
-				}
-			</div>
-		);
-	}
-
-	renderTrackTitle(track, idx) {
-		const {
-			tracks,
-			reverseTrackOrder,
-			displayArtistNames,
-			displayTrackNo
-		} = this.props;
-
-		let trackTitle = track.title;
-		let trackNo = idx + 1;
-
-		if (reverseTrackOrder) {
-			trackNo = tracks.length - idx;
-		}
-
-		if (displayArtistNames && track.subtitle) {
-			trackTitle = `${track.title} - ${track.subtitle}`;
-		}
-
-		if (displayTrackNo) {
-			trackTitle = `${trackNo}. ${trackTitle}`;
-		}
-
-		return trackTitle;
-	}
-
-	renderTrack(track, idx) {
-		const {
-			trackClassName,
-			onTrackClick,
-			activeTrackIndex,
-			displayBuyButtons,
-			displayCovers
-		} = this.props;
-
-		const paddingRight = track.downloadUrl && track.buyUrl ? '90px' : '';
-
-		return (
-			<li
-				key={idx}
-				className={trackClassName + (activeTrackIndex === idx ? ' ai-track-active' : '')}
-			>
-				<div
-					className="ai-track-control"
-					onClick={() => onTrackClick(idx)}
-				>
-
-					{displayCovers &&
-						<Cover
-							className="ai-track-thumb"
-							src={track.cover}
-							alt={track.title}
-						/>
-					}
-
-					<span
-						className="ai-track-name"
-						style={{ paddingRight }}
-					>
-						{this.renderTrackTitle(track, idx)}
-					</span>
-				</div>
-
-				{displayBuyButtons && (track.buyUrl || track.downloadUrl) && this.renderButtons(track)}
-			</li>
-		);
-	}
-
-	renderTracks() {
-		const { className, reverseTrackOrder } = this.props;
-		let tracks = this.props.tracks;
-
-		if (reverseTrackOrder) {
-			tracks = this.props.tracks.slice().reverse();
-		}
-
-		return (
-			<ul className={className}>
-				{tracks && tracks.map((track, idx) => this.renderTrack(track, idx))}
-			</ul>
-		);
-	}
-
 	render() {
-		const { isOpen, limitTracklistHeight, tracklistHeight } = this.props;
+		const { tracks } = this.props;
 
 		return (
-			<div style={{ display: isOpen ? 'block' : 'none' }}>
-				{limitTracklistHeight ?
-					<Scrollbars
-						className="ai-scroll-wrap"
-						ref={ref => this.scrollbarsRef = ref} // eslint-disable-line no-return-assign
-						style={{ height: tracklistHeight }}
-					>
-						{this.renderTracks()}
-					</Scrollbars> :
-					this.renderTracks()
-				}
-			</div>
+			<ul className={this.props.className}>
+				{tracks && tracks.map((track, index) => {
+					const trackNo = this.props.reverseTrackOrder
+						? tracks.length - index
+						: index + 1;
+
+					return (
+						<Track
+							key={index}
+							track={track}
+							index={index}
+							trackNo={this.props.displayTrackNo ? trackNo : undefined}
+							isActive={this.props.activeTrackIndex === index}
+							buyButtonsTarget={this.props.buyButtonsTarget}
+							displayArtistNames={this.props.displayArtistNames}
+							displayBuyButtons={this.props.displayBuyButtons}
+							displayCovers={this.props.displayCovers}
+							onTrackClick={this.props.onTrackClick}
+							className={this.props.trackClassName}
+						/>
+					);
+				})}
+			</ul>
 		);
 	}
 }
 
 Tracklist.propTypes = {
 	tracks: PropTypes.arrayOf(PropTypes.object).isRequired,
-	activeTrackIndex: PropTypes.number.isRequired,
+	activeTrackIndex: PropTypes.number,
 	onTrackClick: PropTypes.func.isRequired,
-	isOpen: PropTypes.bool,
 	className: PropTypes.string,
 	trackClassName: PropTypes.string,
 	reverseTrackOrder: PropTypes.bool,
 	displayTrackNo: PropTypes.bool,
-	limitTracklistHeight: PropTypes.bool,
-	tracklistHeight: PropTypes.number,
 	displayBuyButtons: PropTypes.bool,
 	buyButtonsTarget: PropTypes.bool,
 	displayCovers: PropTypes.bool,

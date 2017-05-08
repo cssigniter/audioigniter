@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Sound from 'react-sound';
-import Tracklist from './components/Tracklist';
+import TracklistWrap from './components/TracklistWrap';
 import ProgressBar from './components/ProgressBar';
 import Time from './components/Time';
 import VolumeControl from './components/VolumeControl';
@@ -14,102 +15,22 @@ import {
 	PlaylistIcon,
 	RefreshIcon
 } from './components/Icons';
-import SoundCloud from '../utils/soundcloud';
+import soundProvider from './soundProvider';
 
-export default class Player extends React.Component {
+class Player extends React.Component {
 	constructor(props) {
 		super(props);
 
-		console.log(this.props);
-
 		this.state = {
-			tracks: [],
-			activeIndex: 0, // Determine active track by index
-			playStatus: Sound.status.STOPPED,
-			position: 0,
-			duration: 0,
-			volume: this.props.volume == null ? 100 : this.props.volume,
-			isTrackListOpen: this.props.displayTracklist,
-			cycleTracks: this.props.cycleTracks
+			isTrackListOpen: this.props.displayTracklist
 		};
 
-		this.togglePlay = this.togglePlay.bind(this);
-		this.playTrack = this.playTrack.bind(this);
-		this.onSeek = this.onSeek.bind(this);
-		this.nextTrack = this.nextTrack.bind(this);
-		this.prevTrack = this.prevTrack.bind(this);
 		this.toggleTracklist = this.toggleTracklist.bind(this);
-		this.toggleTrackCycling = this.toggleTrackCycling.bind(this);
 		this.isNarrowContext = this.isNarrowContext.bind(this);
-	}
-
-	componentDidMount() {
-		const { tracksUrl, soundcloudClientId } = this.props;
-		const tracksPromised = fetch(tracksUrl).then(res => res.json());
-
-		if (!soundcloudClientId) {
-			tracksPromised.then(tracks => this.setState({ tracks }));
-			return;
-		}
-
-		const sc = new SoundCloud(soundcloudClientId);
-		const scTracks = tracksPromised
-			.then(tracks => sc.fetchSoundCloudStreams(tracks))
-			.catch(err => console.error(err)); // eslint-disable-line no-console
-
-		// Make sure if SoundCloud fetching fails
-		// we delegate and load our tracks anyway
-		const promiseArray = [tracksPromised, scTracks].map(p => p.catch(error => ({
-			status: 'error',
-			error
-		})));
-
-		Promise.all(promiseArray)
-			.then(res => {
-				if (res[1].status === 'error') {
-					return this.setState({ tracks: res[0] });
-				}
-
-				return this.setState({ tracks: sc.mapStreamsToTracks(...res) });
-			});
-	}
-
-	onSeek(position) {
-		this.setState({ position });
 	}
 
 	isNarrowContext() {
 		return this.root && this.root.offsetWidth < 480 && window.innerWidth > 480;
-	}
-
-	playTrack(idx, e) {
-		if (e) {
-			e.preventDefault();
-		}
-
-		const { playStatus } = this.state;
-		this.setState({ activeIndex: idx, position: 0 });
-
-		if (playStatus !== Sound.status.PLAYING) {
-			this.setState({ playStatus: Sound.status.PLAYING });
-		}
-	}
-
-	togglePlay() {
-		const status = this.state.playStatus === Sound.status.PLAYING ?
-			Sound.status.PAUSED : Sound.status.PLAYING;
-
-		this.setState({ playStatus: status });
-	}
-
-	nextTrack() {
-		const { activeIndex, tracks } = this.state;
-		this.playTrack(activeIndex === tracks.length - 1 ? 0 : activeIndex + 1);
-	}
-
-	prevTrack() {
-		const { activeIndex, tracks } = this.state;
-		this.playTrack(activeIndex === 0 ? tracks.length - 1 : activeIndex - 1);
 	}
 
 	toggleTracklist() {
@@ -118,35 +39,27 @@ export default class Player extends React.Component {
 		}));
 	}
 
-	toggleTrackCycling() {
-		this.setState(state => ({
-			cycleTracks: !state.cycleTracks
-		}));
-	}
-
-	maybePlayNextTrack() {
-		const { cycleTracks, activeIndex, tracks } = this.state;
-
-		if (cycleTracks) {
-			return this.nextTrack();
-		}
-
-		return activeIndex === tracks.length - 1 ? this.togglePlay() : this.nextTrack();
-	}
-
 	render() {
+		const { isTrackListOpen } = this.state;
+
 		const {
 			tracks,
 			playStatus,
 			activeIndex,
+			volume,
 			position,
 			duration,
-			volume,
-			isTrackListOpen,
-			cycleTracks
-		} = this.state;
 
-		const {
+			currentTrack,
+			playTrack,
+			togglePlay,
+			nextTrack,
+			prevTrack,
+			setPosition,
+			setVolume,
+			toggleTrackCycling,
+			cycleTracks,
+
 			reverseTrackOrder,
 			displayTrackNo,
 			displayTracklistCovers,
@@ -159,8 +72,6 @@ export default class Player extends React.Component {
 			displayArtistNames,
 			maxWidth
 		} = this.props;
-
-		const currentTrack = tracks[activeIndex] || {};
 
 		return (
 			<div
@@ -182,7 +93,7 @@ export default class Player extends React.Component {
 					<div className="ai-control-wrap-controls">
 						<div className="ai-audio-controls-main">
 							<Button
-								onClick={this.togglePlay}
+								onClick={togglePlay}
 								className={`ai-audio-control ${playStatus === Sound.status.PLAYING ? 'ai-audio-playing' : ''}`}
 							>
 								{playStatus === Sound.status.PLAYING ? <PauseIcon /> : <PlayIcon />}
@@ -202,7 +113,7 @@ export default class Player extends React.Component {
 
 						<div className="ai-audio-controls-progress">
 							<ProgressBar
-								onSeek={this.onSeek}
+								setPosition={setPosition}
 								duration={duration}
 								position={position}
 							/>
@@ -217,7 +128,7 @@ export default class Player extends React.Component {
 								{tracks.length > 1 &&
 									<Button
 										className="ai-btn ai-tracklist-prev"
-										onClick={this.prevTrack}
+										onClick={prevTrack}
 									>
 										<PreviousIcon />
 									</Button>
@@ -226,7 +137,7 @@ export default class Player extends React.Component {
 								{tracks.length > 1 &&
 									<Button
 										className="ai-btn ai-tracklist-next"
-										onClick={this.nextTrack}
+										onClick={nextTrack}
 									>
 										<NextIcon />
 									</Button>
@@ -235,12 +146,12 @@ export default class Player extends React.Component {
 								<VolumeControl
 									volume={volume}
 									// eslint-disable-next-line no-shadow
-									setVolume={volume => { this.setState({ volume }); }}
+									setVolume={setVolume}
 								/>
 
 								<Button
 									className={`ai-btn ai-btn-repeat ${cycleTracks && 'ai-btn-active'}`}
-									onClick={this.toggleTrackCycling}
+									onClick={toggleTrackCycling}
 								>
 									<RefreshIcon />
 								</Button>
@@ -259,7 +170,7 @@ export default class Player extends React.Component {
 				</div>
 
 				<div className={`ai-tracklist-wrap ${isTrackListOpen ? 'ai-tracklist-open' : ''}`}>
-					<Tracklist
+					<TracklistWrap
 						className="ai-tracklist"
 						trackClassName="ai-track"
 						tracks={tracks}
@@ -273,7 +184,7 @@ export default class Player extends React.Component {
 						reverseTrackOrder={reverseTrackOrder}
 						limitTracklistHeight={limitTracklistHeight}
 						tracklistHeight={tracklistHeight}
-						onTrackClick={this.playTrack}
+						onTrackClick={playTrack}
 					/>
 				</div>
 
@@ -282,38 +193,53 @@ export default class Player extends React.Component {
 						<p>Powered by <a href="https://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=player&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link" target="_blank" rel="noopener noreferrer">AudioIgniter</a></p>
 					</div>
 				}
-
-				{tracks.length > 0 &&
-					<Sound
-						url={currentTrack.audio}
-						playStatus={playStatus}
-						position={position}
-						volume={volume}
-						// eslint-disable-next-line no-shadow
-						onPlaying={({ duration, position }) => this.setState({ duration, position })}
-						onFinishedPlaying={() => this.maybePlayNextTrack()}
-					/>
-				}
 			</div>
 		);
 	}
 }
 
 Player.propTypes = {
-	tracksUrl: React.PropTypes.string.isRequired,
-	displayTracklist: React.PropTypes.bool,
-	reverseTrackOrder: React.PropTypes.bool,
-	displayTrackNo: React.PropTypes.bool,
-	displayCredits: React.PropTypes.bool,
-	displayActiveCover: React.PropTypes.bool,
-	displayTracklistCovers: React.PropTypes.bool,
-	limitTracklistHeight: React.PropTypes.bool,
-	tracklistHeight: React.PropTypes.number,
-	displayBuyButtons: React.PropTypes.bool,
-	buyButtonsTarget: React.PropTypes.bool,
-	volume: React.PropTypes.number,
-	displayArtistNames: React.PropTypes.bool,
-	cycleTracks: React.PropTypes.bool,
-	maxWidth: React.PropTypes.string,
-	soundcloudClientId: React.PropTypes.string
+	tracks: PropTypes.arrayOf(PropTypes.object),
+	playStatus: PropTypes.oneOf([
+		Sound.status.PLAYING,
+		Sound.status.PAUSED,
+		Sound.status.STOPPED
+	]),
+	activeIndex: PropTypes.number,
+	volume: PropTypes.number,
+	position: PropTypes.number,
+	duration: PropTypes.number,
+	currentTrack: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+	playTrack: PropTypes.func.isRequired,
+	togglePlay: PropTypes.func.isRequired,
+	nextTrack: PropTypes.func.isRequired,
+	prevTrack: PropTypes.func.isRequired,
+	setPosition: PropTypes.func.isRequired,
+	setVolume: PropTypes.func.isRequired,
+	toggleTrackCycling: PropTypes.func.isRequired,
+	cycleTracks: PropTypes.bool.isRequired,
+	displayTracklist: PropTypes.bool,
+	reverseTrackOrder: PropTypes.bool,
+	displayTrackNo: PropTypes.bool,
+	displayCredits: PropTypes.bool,
+	displayActiveCover: PropTypes.bool,
+	displayTracklistCovers: PropTypes.bool,
+	limitTracklistHeight: PropTypes.bool,
+	tracklistHeight: PropTypes.number,
+	displayBuyButtons: PropTypes.bool,
+	buyButtonsTarget: PropTypes.bool,
+	displayArtistNames: PropTypes.bool,
+	maxWidth: PropTypes.string
 };
+
+export default soundProvider(Player, {
+	onFinishedPlaying(props) {
+		if (props.cycleTracks) {
+			return props.nextTrack();
+		}
+
+		return props.activeIndex === props.tracks.length - 1
+			? props.togglePlay()
+			: props.nextTrack();
+	}
+});
