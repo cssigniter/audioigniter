@@ -4,36 +4,42 @@ import Sound from 'react-sound';
 import soundProvider from './soundProvider';
 import Tracklist from './components/Tracklist';
 
-class SimplePlayer extends React.Component {
-	render() {
-		const { playStatus } = this.props;
-		const activeIndex = playStatus === Sound.status.PLAYING || playStatus === Sound.status.PAUSED
-			? this.props.activeIndex
-			: undefined;
+const SimplePlayer = props => {
+	const { playStatus } = props;
+	const activeIndex = (playStatus === Sound.status.PLAYING || playStatus === Sound.status.PAUSED)
+		? props.activeIndex
+		: undefined;
 
-		return (
-			<div
-				className="ai-wrap"
-				style={{ maxWidth: this.props.maxWidth }}
-			>
-				<div className="ai-tracklist">
-					<Tracklist
-						tracks={this.props.tracks}
-						activeTrackIndex={activeIndex}
-						onTrackClick={this.props.playTrack}
-						className="ai-tracklist"
-						trackClassName="ai-track"
-						reverseTrackOrder={this.props.reverseTrackOrder}
-						displayTrackNo={this.props.displayTrackNo}
-						displayBuyButtons={this.props.displayBuyButtons}
-						buyButtonsTarget={this.props.buyButtonsTarget}
-						displayArtistNames={this.props.displayArtistNames}
-					/>
-				</div>
+	return (
+		<div className="ai-wrap" style={{ maxWidth: props.maxWidth }}>
+			<div className="ai-tracklist ai-tracklist-open">
+				<Tracklist
+					tracks={props.tracks}
+					playStatus={props.playStatus}
+					activeTrackIndex={activeIndex}
+					onTrackClick={props.togglePlay}
+					setPosition={props.setPosition}
+					duration={props.duration}
+					position={props.position}
+					className="ai-tracklist"
+					trackClassName="ai-track"
+					reverseTrackOrder={props.reverseTrackOrder}
+					displayTrackNo={props.displayTrackNo}
+					displayBuyButtons={props.displayBuyButtons}
+					buyButtonsTarget={props.buyButtonsTarget}
+					displayArtistNames={props.displayArtistNames}
+					standaloneTracks
+				/>
 			</div>
-		);
-	}
-}
+
+			{props.displayCredits &&
+				<div className="ai-footer">
+					<p>Powered by <a href="https://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=player&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link" target="_blank" rel="noopener noreferrer">AudioIgniter</a></p>
+				</div>
+			}
+		</div>
+	);
+};
 
 SimplePlayer.propTypes = {
 	tracks: PropTypes.arrayOf(PropTypes.object),
@@ -45,8 +51,8 @@ SimplePlayer.propTypes = {
 	activeIndex: PropTypes.number,
 	position: PropTypes.number,
 	duration: PropTypes.number,
-	playTrack: PropTypes.func.isRequired,
 	setPosition: PropTypes.func.isRequired,
+	togglePlay: PropTypes.func.isRequired,
 
 	maxWidth: PropTypes.string,
 	reverseTrackOrder: PropTypes.bool,

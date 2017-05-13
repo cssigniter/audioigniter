@@ -1,42 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Sound from 'react-sound';
 import Track from './Track';
 
-export default class Tracklist extends React.Component {
-	render() {
-		const { tracks } = this.props;
+const Tracklist = ({ ...props }) => {
+	const { tracks } = props;
 
-		return (
-			<ul className={this.props.className}>
-				{tracks && tracks.map((track, index) => {
-					const trackNo = this.props.reverseTrackOrder
-						? tracks.length - index
-						: index + 1;
+	return (
+		<ul className={props.className}>
+			{tracks && tracks.map((track, index) => {
+				const trackNo = props.reverseTrackOrder
+					? tracks.length - index
+					: index + 1;
 
-					return (
-						<Track
-							key={index}
-							track={track}
-							index={index}
-							trackNo={this.props.displayTrackNo ? trackNo : undefined}
-							isActive={this.props.activeTrackIndex === index}
-							buyButtonsTarget={this.props.buyButtonsTarget}
-							displayArtistNames={this.props.displayArtistNames}
-							displayBuyButtons={this.props.displayBuyButtons}
-							displayCovers={this.props.displayCovers}
-							onTrackClick={this.props.onTrackClick}
-							className={this.props.trackClassName}
-						/>
-					);
-				})}
-			</ul>
-		);
-	}
-}
+				return (
+					<Track
+						key={index}
+						track={track}
+						index={index}
+						trackNo={props.displayTrackNo ? trackNo : undefined}
+						playStatus={props.playStatus}
+						isActive={props.activeTrackIndex === index}
+						buyButtonsTarget={props.buyButtonsTarget}
+						displayArtistNames={props.displayArtistNames}
+						displayBuyButtons={props.displayBuyButtons}
+						displayCovers={props.displayCovers}
+						onTrackClick={props.onTrackClick}
+						setPosition={props.setPosition}
+						duration={props.duration}
+						position={props.position}
+						className={props.trackClassName}
+						isStandalone={props.standaloneTracks}
+					/>
+				);
+			})}
+		</ul>
+	);
+};
 
 Tracklist.propTypes = {
 	tracks: PropTypes.arrayOf(PropTypes.object).isRequired,
+	playStatus: PropTypes.oneOf([
+		Sound.status.PLAYING,
+		Sound.status.PAUSED,
+		Sound.status.STOPPED
+	]),
 	activeTrackIndex: PropTypes.number,
+	position: PropTypes.number,
+	duration: PropTypes.number,
+	setPosition: PropTypes.func,
+	standaloneTracks: PropTypes.bool,
 	onTrackClick: PropTypes.func.isRequired,
 	className: PropTypes.string,
 	trackClassName: PropTypes.string,
@@ -47,3 +60,5 @@ Tracklist.propTypes = {
 	displayCovers: PropTypes.bool,
 	displayArtistNames: PropTypes.bool
 };
+
+export default Tracklist;

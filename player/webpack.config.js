@@ -75,7 +75,7 @@ switch (TARGET) {
 			parts.setupSass(PATHS.style),
 			parts.devServer({
 				host: process.env.HOST,
-				port: process.env.PORT
+				port: process.env.PORT,
 			})
 		);
 	}

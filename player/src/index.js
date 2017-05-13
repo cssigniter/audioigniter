@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
-import Promise from 'es6-promise'; // eslint-disable-line no-unused-vars
+import 'es6-promise/auto';
 import 'whatwg-fetch';
 import Player from './player/Player';
 import SimplePlayer from './player/SimplePlayer';

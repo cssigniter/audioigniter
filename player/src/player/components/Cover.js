@@ -5,9 +5,13 @@ import { MusicNoteIcon } from './Icons';
 const Cover = ({
 	className,
 	title,
-	src
+	src,
+	onClick
 }) => (
-	<div className={className + (src ? '' : ' ai-track-no-thumb')}>
+	<div
+		className={className + (src ? '' : ' ai-track-no-thumb')}
+		onClick={onClick}
+	>
 		{src ?
 			<img src={src} alt={title || ''} /> :
 			<MusicNoteIcon />
@@ -18,7 +22,8 @@ const Cover = ({
 Cover.propTypes = {
 	className: PropTypes.string,
 	title: PropTypes.string,
-	src: PropTypes.string
+	src: PropTypes.string,
+	onClick: PropTypes.func,
 };
 
 export default Cover;

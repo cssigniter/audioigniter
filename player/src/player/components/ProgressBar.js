@@ -7,10 +7,15 @@ export default class ProgressBar extends React.Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	handleClick(e) {
+	handleClick(event) {
 		const { duration, setPosition } = this.props;
-		const offsetX = e.pageX - e.currentTarget.getBoundingClientRect().left;
-		const posX = offsetX / e.currentTarget.offsetWidth;
+
+		if (setPosition == null) {
+			return;
+		}
+
+		const offsetX = event.pageX - event.currentTarget.getBoundingClientRect().left;
+		const posX = offsetX / event.currentTarget.offsetWidth;
 
 		setPosition(posX * duration);
 	}
@@ -33,7 +38,7 @@ export default class ProgressBar extends React.Component {
 }
 
 ProgressBar.propTypes = {
-	setPosition: PropTypes.func.isRequired,
+	setPosition: PropTypes.func,
 	position: PropTypes.number.isRequired,
 	duration: PropTypes.number.isRequired
 };

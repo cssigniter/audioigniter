@@ -33,7 +33,6 @@ TrackTitle.propTypes = {
 	trackNo: PropTypes.number,
 	style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 	className: PropTypes.string,
-	displayTrackNo: PropTypes.bool,
 	displayArtistNames: PropTypes.bool
 };
 

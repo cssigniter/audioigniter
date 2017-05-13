@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Sound from 'react-sound';
 import SoundCloud from '../utils/soundcloud';
 
-const soundProvider = (Player, events) =>
-	class extends React.Component {
+const soundProvider = (Player, events) => {
+	class EnhancedPlayer extends React.Component {
 		constructor(props) {
 			super(props);
 
@@ -21,6 +21,7 @@ const soundProvider = (Player, events) =>
 			};
 
 			this.playTrack = this.playTrack.bind(this);
+			this.pauseTrack = this.pauseTrack.bind(this);
 			this.togglePlay = this.togglePlay.bind(this);
 			this.nextTrack = this.nextTrack.bind(this);
 			this.prevTrack = this.prevTrack.bind(this);
@@ -68,74 +69,6 @@ const soundProvider = (Player, events) =>
 				});
 		}
 
-		playTrack(index, e) {
-			if (e) {
-				e.preventDefault();
-			}
-
-			const { playStatus } = this.state;
-			this.setState(() => ({ activeIndex: index, position: 0 }));
-
-			if (playStatus !== Sound.status.PLAYING) {
-				this.setState(() => ({ playStatus: Sound.status.PLAYING }));
-			}
-		}
-
-		togglePlay() {
-			const status = this.state.playStatus === Sound.status.PLAYING ?
-				Sound.status.PAUSED : Sound.status.PLAYING;
-
-			this.setState(() => ({ playStatus: status }));
-		}
-
-		nextTrack() {
-			const { activeIndex, tracks } = this.state;
-			this.playTrack(activeIndex === tracks.length - 1 ? 0 : activeIndex + 1);
-		}
-
-		prevTrack() {
-			const { activeIndex, tracks } = this.state;
-			this.playTrack(activeIndex === 0 ? tracks.length - 1 : activeIndex - 1);
-		}
-
-		setPosition(position) {
-			this.setState(() => ({ position }));
-		}
-
-		setVolume(volume) {
-			this.setState(() => ({ volume }));
-		}
-
-		toggleTrackCycling() {
-			this.setState(state => ({
-				cycleTracks: !state.cycleTracks
-			}));
-		}
-
-		reverseTracks() {
-			this.setState(state => ({
-				tracks: state.tracks.slice().reverse()
-			}));
-		}
-
-		getFinalProps() {
-			const { tracks, activeIndex } = this.state;
-			const currentTrack = tracks[activeIndex] || {};
-
-			return {
-				playTrack: this.playTrack,
-				togglePlay: this.togglePlay,
-				nextTrack: this.nextTrack,
-				prevTrack: this.prevTrack,
-				setPosition: this.setPosition,
-				setVolume: this.setVolume,
-				toggleTrackCycling: this.toggleTrackCycling,
-				currentTrack,
-				...this.props,
-				...this.state
-			};
-		}
-
 		// Events
 		onPlaying({ duration, position }) {
 			this.setState(() => ({ duration, position }), () => {
@@ -149,6 +82,98 @@ const soundProvider = (Player, events) =>
 			if (events && events.onFinishedPlaying) {
 				events.onFinishedPlaying(this.getFinalProps());
 			}
+		}
+
+		getFinalProps() {
+			const { tracks, activeIndex } = this.state;
+			const currentTrack = tracks[activeIndex] || {};
+
+			return {
+				playTrack: this.playTrack,
+				pauseTrack: this.pauseTrack,
+				togglePlay: this.togglePlay,
+				nextTrack: this.nextTrack,
+				prevTrack: this.prevTrack,
+				setPosition: this.setPosition,
+				setVolume: this.setVolume,
+				toggleTrackCycling: this.toggleTrackCycling,
+				currentTrack,
+				...this.props,
+				...this.state
+			};
+		}
+
+		setVolume(volume) {
+			this.setState(() => ({ volume }));
+		}
+
+		setPosition(position) {
+			this.setState(() => ({ position }));
+		}
+
+		playTrack(index, event) {
+			if (event) {
+				event.preventDefault();
+			}
+
+			const { playStatus } = this.state;
+			this.setState(() => ({ activeIndex: index, position: 0 }));
+
+			if (playStatus !== Sound.status.PLAYING) {
+				this.setState(() => ({ playStatus: Sound.status.PLAYING }));
+			}
+		}
+
+		pauseTrack(event) {
+			if (event) {
+				event.preventDefault();
+			}
+
+			const { playStatus } = this.state;
+
+			if (playStatus === Sound.status.PLAYING) {
+				this.setState(() => ({ playStatus: Sound.status.PAUSED }));
+			}
+		}
+
+		togglePlay(index, event) {
+			if (event) {
+				event.preventDefault();
+			}
+
+			const { playStatus, activeIndex } = this.state;
+
+			if (typeof index === 'number' && index !== activeIndex) {
+				this.playTrack(index);
+				return;
+			}
+
+			const status = playStatus === Sound.status.PLAYING
+				? Sound.status.PAUSED
+				: Sound.status.PLAYING;
+			this.setState(() => ({ playStatus: status }));
+		}
+
+		nextTrack() {
+			const { activeIndex, tracks } = this.state;
+			this.playTrack(activeIndex === tracks.length - 1 ? 0 : activeIndex + 1);
+		}
+
+		prevTrack() {
+			const { activeIndex, tracks } = this.state;
+			this.playTrack(activeIndex === 0 ? tracks.length - 1 : activeIndex - 1);
+		}
+
+		toggleTrackCycling() {
+			this.setState(state => ({
+				cycleTracks: !state.cycleTracks
+			}));
+		}
+
+		reverseTracks() {
+			this.setState(state => ({
+				tracks: state.tracks.slice().reverse()
+			}));
 		}
 
 		render() {
@@ -179,6 +204,17 @@ const soundProvider = (Player, events) =>
 				</div>
 			);
 		}
+	}
+
+	EnhancedPlayer.propTypes = {
+		volume: PropTypes.number,
+		cycleTracks: PropTypes.bool,
+		tracksUrl: PropTypes.string,
+		soundcloudClientId: PropTypes.string,
+		reverseTrackOrder: PropTypes.bool
 	};
+
+	return EnhancedPlayer;
+};
 
 export default soundProvider;

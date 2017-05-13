@@ -268,6 +268,21 @@
   background-color: #3e3e3e;
 }
 
+.ai-wrap .ai-track .ai-track-progress-bar {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  float: none;
+  background-color: transparent;
+}
+
+.ai-wrap .ai-track .ai-track-progress-bar:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
 .ai-wrap .ai-track-progress {
   position: absolute;
   top: 0;
@@ -277,6 +292,11 @@
   background-color: #f70f5d;
   -webkit-transition: width .28s ease;
   transition: width .28s ease;
+}
+
+.ai-wrap .ai-track .ai-track-progress {
+  background-color: #fff;
+  opacity: .5;
 }
 
 .ai-wrap .ai-track-time {
@@ -477,22 +497,19 @@
 }
 
 .ai-wrap .ai-track {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   position: relative;
   margin: 0 0 1px;
   padding: 0;
   list-style: none;
-  display: block;
   height: 40px;
   cursor: pointer;
   background-color: #3e3e3e;
   -webkit-transition: background-color 0.18s ease;
   transition: background-color 0.18s ease;
-}
-
-.ai-wrap .ai-track::after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 .ai-wrap .ai-track:hover, .ai-wrap .ai-track.ai-track-active {
@@ -509,25 +526,33 @@
 }
 
 .ai-wrap .ai-track-control {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   height: 100%;
-  float: left;
-  width: 100%;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow: hidden;
+  border-left: 1px solid #202020;
 }
 
-.ai-wrap .ai-track-control::after {
-  content: "";
-  display: table;
-  clear: both;
+.ai-wrap .ai-track-control:first-child {
+  border-left: 0;
 }
 
 .ai-wrap .ai-track-thumb {
   display: inline-block;
-  width: 41px;
+  width: 40px;
   max-height: 100%;
   margin: 0;
-  float: left;
   overflow: hidden;
-  border-right: 1px solid #202020;
 }
 
 .ai-wrap .ai-track-thumb img {
@@ -554,7 +579,7 @@
 }
 
 .ai-wrap .ai-track-no-thumb.ai-track-thumb {
-  width: 41px;
+  width: 40px;
   height: 40px;
   line-height: 50px;
 }
@@ -564,9 +589,8 @@
 }
 
 .ai-wrap .ai-track-name {
-  display: block;
-  margin-top: 12px;
-  padding: 0 45px 0 10px;
+  display: inline-block;
+  padding: 0 10px;
   font-size: 13px;
   overflow: hidden;
   white-space: nowrap;
@@ -575,20 +599,11 @@
 }
 
 .ai-wrap .ai-track-control-buttons {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.ai-wrap .ai-track-control-buttons::after {
-  content: "";
-  display: table;
-  clear: both;
+  margin-left: auto;
 }
 
 .ai-wrap .ai-track-btn {
   display: inline-block;
-  float: right;
   width: 40px;
   height: 40px;
   text-align: center;
@@ -599,6 +614,7 @@
   border-left: 1px solid #202020;
   color: #ffffff;
   background: none;
+  cursor: pointer;
 }
 
 .ai-wrap .ai-track-btn svg {
@@ -608,6 +624,14 @@
   -webkit-transition: fill 0.18s ease;
   transition: fill 0.18s ease;
   top: 3px;
+}
+
+.ai-wrap .ai-track-inline-play-btn:first-child {
+  border-left: 0;
+}
+
+.ai-wrap .ai-track-inline-play-btn svg {
+  top: 0;
 }
 
 .ai-wrap .ai-footer {

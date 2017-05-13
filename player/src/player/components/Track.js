@@ -4,58 +4,79 @@ import Sound from 'react-sound';
 import TrackTitle from './TrackTitle';
 import Cover from './Cover';
 import TrackButtons from './TrackButtons';
+import ProgressBar from './ProgressBar';
+import { PlayIcon, PauseIcon } from './Icons';
 
-class Track extends React.Component {
-	render() {
-		const {
-			track,
-			index,
-			trackNo,
-			isActive,
-			buyButtonsTarget,
-			displayArtistNames,
-			displayCovers,
-			displayBuyButtons,
-			onTrackClick,
-			className
-		} = this.props;
+const Track = ({
+	track,
+	index,
+	trackNo,
+	isActive,
+	playStatus,
+	duration,
+	position,
+	setPosition,
+	isStandalone,
+	buyButtonsTarget,
+	displayArtistNames,
+	displayCovers,
+	displayBuyButtons,
+	onTrackClick,
+	className
+}) => {
+	const isPlaying = isActive && playStatus === Sound.status.PLAYING;
+	const hasProgressBar = typeof position !== 'undefined' && typeof duration !== 'undefined' && isActive && isStandalone;
 
-		const paddingRight = track.downloadUrl && track.buyUrl ? '90px' : '';
+	return (
+		<li className={className + (isActive ? ' ai-track-active' : '')}>
+			{displayCovers &&
+				<Cover
+					className="ai-track-thumb"
+					src={track.cover}
+					alt={track.title}
+					onClick={() => onTrackClick(index)}
+				/>
+			}
 
-		return (
-			<li className={className + (isActive ? ' ai-track-active' : '')}>
-				<div
-					className="ai-track-control"
+			{isStandalone &&
+				<button
+					className="ai-track-btn ai-track-inline-play-btn"
 					onClick={() => onTrackClick(index)}
 				>
-					{displayCovers &&
-						<Cover
-							className="ai-track-thumb"
-							src={track.cover}
-							alt={track.title}
-						/>
-					}
+					{isPlaying ? <PauseIcon /> : <PlayIcon />}
+				</button>
+			}
 
-					<TrackTitle
-						className="ai-track-name"
-						style={{ paddingRight }}
-						track={track}
-						trackNo={trackNo}
-						displayArtistNames={displayArtistNames}
-					/>
-				</div>
+			<div
+				className="ai-track-control"
+				onClick={() => onTrackClick(index)}
+			>
+				<TrackTitle
+					className="ai-track-name"
+					track={track}
+					trackNo={trackNo}
+					displayArtistNames={displayArtistNames}
+				/>
+			</div>
 
-				{displayBuyButtons &&
-					<TrackButtons
-						buyButtonsTarget={buyButtonsTarget}
-						buyUrl={track.buyUrl}
-						downloadUrl={track.downloadUrl}
-					/>
-				}
-			</li>
-		);
-	}
-}
+			{displayBuyButtons &&
+				<TrackButtons
+					buyButtonsTarget={buyButtonsTarget}
+					buyUrl={track.buyUrl}
+					downloadUrl={track.downloadUrl}
+				/>
+			}
+
+			{hasProgressBar &&
+				<ProgressBar
+					setPosition={setPosition}
+					duration={duration}
+					position={position}
+				/>
+			}
+		</li>
+	);
+};
 
 Track.propTypes = {
 	track: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -64,6 +85,7 @@ Track.propTypes = {
 	isActive: PropTypes.bool,
 	position: PropTypes.number,
 	duration: PropTypes.number,
+	setPosition: PropTypes.func,
 	playStatus: PropTypes.oneOf([
 		Sound.status.PLAYING,
 		Sound.status.PAUSED,
@@ -71,6 +93,7 @@ Track.propTypes = {
 	]),
 	onTrackClick: PropTypes.func.isRequired,
 	className: PropTypes.string.isRequired,
+	isStandalone: PropTypes.bool,
 	buyButtonsTarget: PropTypes.bool,
 	displayArtistNames: PropTypes.bool,
 	displayCovers: PropTypes.bool,

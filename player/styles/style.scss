@@ -219,6 +219,22 @@ $screen-xs-max: 320px !default;
 		height: 5px;
 		cursor: pointer;
 		background-color: $control-color;
+
+		@at-root .ai-wrap .ai-track .ai-track-progress-bar {
+			position: absolute;
+			top: auto;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			float: none;
+			background-color: transparent;
+			// TODO ^ make sure this works customizer
+
+			&:hover {
+				background-color: rgba(white, .3);
+			}
+		}
 	}
 
 	.ai-track-progress {
@@ -229,6 +245,11 @@ $screen-xs-max: 320px !default;
 		pointer-events: none;
 		background-color: $primary-color;
 		transition: width .28s ease;
+
+		@at-root .ai-wrap .ai-track .ai-track-progress {
+			background-color: #fff;
+			opacity: .5;
+		}
 	}
 
 	.ai-track-time {
@@ -388,12 +409,11 @@ $screen-xs-max: 320px !default;
 	}
 
 	.ai-track {
-		@include clearfix;
+		display: flex;
 		position: relative;
 		margin: 0 0 1px;
 		padding: 0;
 		list-style: none;
-		display: block;
 		height: 40px;
 		cursor: pointer;
 		background-color: $control-color;
@@ -415,20 +435,26 @@ $screen-xs-max: 320px !default;
 	}
 
 	.ai-track-control {
-		@include clearfix;
+		display: flex;
 		height: 100%;
-		float: left;
-		width: 100%;
+		align-items: center;
+		flex: 1;
+		overflow: hidden;
+		border-left: 1px solid $bg-color;
+
+		&:first-child {
+			border-left: 0;
+		}
 	}
 
 	.ai-track-thumb {
 		display: inline-block;
-		width: 41px;
+		width: 40px;
 		max-height: 100%;
 		margin: 0;
-		float: left;
 		overflow: hidden;
-		border-right: 1px solid $bg-color;
+		// TODO: remove this from customizer settings
+		//border-right: 1px solid $bg-color;
 
 		img {
 			width: 40px;
@@ -454,7 +480,7 @@ $screen-xs-max: 320px !default;
 		}
 
 		&.ai-track-thumb {
-			width: 41px;
+			width: 40px;
 			height: 40px;
 			line-height: 50px;
 
@@ -465,9 +491,8 @@ $screen-xs-max: 320px !default;
 	}
 
 	.ai-track-name {
-		display: block;
-		margin-top: 12px;
-		padding: 0 45px 0 10px;
+		display: inline-block;
+		padding: 0 10px;
 		font-size: 13px;
 		overflow: hidden;
 		white-space: nowrap;
@@ -476,15 +501,11 @@ $screen-xs-max: 320px !default;
 	}
 
 	.ai-track-control-buttons {
-		@include clearfix;
-		position: absolute;
-		top: 0;
-		right: 0;
+		margin-left: auto;
 	}
 
 	.ai-track-btn {
 		display: inline-block;
-		float: right;
 		width: 40px;
 		height: 40px;
 		text-align: center;
@@ -495,6 +516,7 @@ $screen-xs-max: 320px !default;
 		border-left: 1px solid $bg-color;
 		color: $text-color;
 		background: none;
+		cursor: pointer;
 
 		svg {
 			position: relative;
@@ -502,6 +524,16 @@ $screen-xs-max: 320px !default;
 			height: 15px;
 			transition: fill $transition-time ease;
 			top: 3px;
+		}
+	}
+
+	.ai-track-inline-play-btn {
+		&:first-child {
+			border-left: 0;
+		}
+
+		svg {
+			top: 0;
 		}
 	}
 
