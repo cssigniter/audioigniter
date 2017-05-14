@@ -23,7 +23,7 @@ Cover.propTypes = {
 	className: PropTypes.string,
 	title: PropTypes.string,
 	src: PropTypes.string,
-	onClick: PropTypes.func,
+	onClick: PropTypes.func
 };
 
 export default Cover;
