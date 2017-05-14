@@ -77,7 +77,7 @@ class Player extends React.Component {
 			<div
 				ref={ref => this.root = ref} // eslint-disable-line no-return-assign
 				className={
-					`ai-wrap ${tracks.length ? '' : 'ai-is-loading'}${this.isNarrowContext() ? 'ai-narrow' : ''}`
+					`ai-wrap ai-type-full ${tracks.length ? '' : 'ai-is-loading'}${this.isNarrowContext() ? 'ai-narrow' : ''}`
 				}
 				style={{ maxWidth }}
 			>

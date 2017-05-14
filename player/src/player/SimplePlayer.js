@@ -11,7 +11,7 @@ const SimplePlayer = props => {
 		: undefined;
 
 	return (
-		<div className="ai-wrap" style={{ maxWidth: props.maxWidth }}>
+		<div className="ai-wrap ai-type-simple" style={{ maxWidth: props.maxWidth }}>
 			<div className="ai-tracklist ai-tracklist-open">
 				<Tracklist
 					tracks={props.tracks}

@@ -615,6 +615,8 @@
   color: #ffffff;
   background: none;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
 
 .ai-wrap .ai-track-btn svg {
@@ -628,10 +630,6 @@
 
 .ai-wrap .ai-track-inline-play-btn:first-child {
   border-left: 0;
-}
-
-.ai-wrap .ai-track-inline-play-btn svg {
-  top: 0;
 }
 
 .ai-wrap .ai-footer {
