@@ -620,6 +620,7 @@ class AudioIgniter {
 	 * @param array $box
 	 */
 	function metabox_settings( $object, $box ) {
+		$type                      = $this->get_post_meta( $object->ID, '_audioigniter_player_type', 'full' );
 		$numbers                   = $this->get_post_meta( $object->ID, '_audioigniter_show_numbers', 1 );
 		$numbers_reverse           = $this->get_post_meta( $object->ID, '_audioigniter_show_numbers_reverse', 0 );
 		$thumb                     = $this->get_post_meta( $object->ID, '_audioigniter_show_covers', 1 );
@@ -638,6 +639,41 @@ class AudioIgniter {
 		wp_nonce_field( basename( __FILE__ ), $object->post_type . '_nonce' );
 		?>
 		<div class="ai-module ai-module-settings">
+			<div class="ai-form-field">
+				<label for="_audioigniter_player_type">
+					<?php esc_html_e( 'Player Type', 'audioigniter' ); ?>
+				</label>
+
+				<?php
+					// Each player type has a number of settings that it might not support
+					// E.g. "Simple Player" does not support track listing visibility, covers
+					// and others. Provide every setting that's not supported based on the `name`
+					// attribute of each setting input (input, select, textarea), *without
+					// the _audioigniter_ prefix* in a `data-no-support` property on the option.
+					// To allow support for every setting simply leave `data-no-support` empty.
+				?>
+				<select
+					class="widefat ai-form-select-player-type"
+					id="_audioigniter_player_type"
+					name="_audioigniter_player_type"
+				>
+					<option
+						value="full"
+						data-no-support=""
+						<?php selected( $type, 'full'); ?>
+					>
+						<?php esc_html_e( 'Full Player', 'audioigniter' ); ?>
+					</option>
+					<option
+						value="simple"
+						data-no-support="show_track_listing, show_covers, show_active_cover, limit_tracklisting_height, tracklisting_height"
+						<?php selected( $type, 'simple'); ?>
+					>
+						<?php esc_html_e( 'Simple Player', 'audioigniter' ); ?>
+					</option>
+				</select>
+			</div>
+
 			<div class="ai-form-field">
 				<input
 					type="checkbox"
@@ -676,12 +712,8 @@ class AudioIgniter {
 				/>
 
 				<label for="_audioigniter_show_numbers_revese">
-					<?php esc_html_e( 'Show numbers in reverse order', 'audioigniter' ); ?>
+					<?php esc_html_e( 'Reverse track order', 'audioigniter' ); ?>
 				</label>
-
-				<p class="ai-field-help">
-					<?php esc_html_e( 'For this to work, the "Show track numbers in tracklist" option above must be enabled.', 'audioigniter' ); ?>
-				</p>
 			</div>
 
 			<div class="ai-form-field">
@@ -736,7 +768,7 @@ class AudioIgniter {
 				/>
 
 				<label for="_audioigniter_show_buy_links">
-					<?php esc_html_e( 'Show track buy links', 'audioigniter' ); ?>
+					<?php esc_html_e( 'Show track extra buttons (buy link, download button etc)', 'audioigniter' ); ?>
 				</label>
 			</div>
 
@@ -768,7 +800,7 @@ class AudioIgniter {
 				</label>
 
 				<p class="ai-field-help">
-					<?php esc_html_e( 'Note that users still have the option to turn it on or off in the player regardless of this option.', 'audioigniter' ); ?>
+					<?php esc_html_e( 'Note that users still have the option to turn it on or off in some player types, regardless of this option.', 'audioigniter' ); ?>
 				</p>
 			</div>
 
@@ -917,6 +949,8 @@ class AudioIgniter {
 		update_post_meta( $post_id, '_audioigniter_buy_links_new_target', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_buy_links_new_target'] ) );
 		update_post_meta( $post_id, '_audioigniter_cycle_tracks', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_cycle_tracks'] ) );
 		update_post_meta( $post_id, '_audioigniter_show_track_listing', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_track_listing'] ) );
+		// TODO sanitize select box
+		update_post_meta( $post_id, '_audioigniter_player_type', $_POST['_audioigniter_player_type'] );
 		update_post_meta( $post_id, '_audioigniter_show_credit', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_credit'] ) );
 		update_post_meta( $post_id, '_audioigniter_limit_tracklisting_height', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_limit_tracklisting_height'] ) );
 		update_post_meta( $post_id, '_audioigniter_tracklisting_height', intval( $_POST['_audioigniter_tracklisting_height'] ) );
@@ -971,6 +1005,8 @@ class AudioIgniter {
 		}
 
 		$params = apply_filters( 'audioigniter_shortcode_data_attributes_array', array(
+			// TODO do we need any kind of escaping here?
+			'data-player-type'              => $this->get_post_meta( $id, '_audioigniter_player_type', 'full' ),
 			'data-tracks-url'               => add_query_arg( array( 'audioigniter_playlist_id' => $id ), home_url( '/' ) ),
 			'data-display-track-no'         => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_numbers', 1 ) ),
 			'data-reverse-track-order'      => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_numbers_reverse', 0 ) ),

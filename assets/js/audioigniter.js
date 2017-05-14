@@ -402,6 +402,55 @@ jQuery(function ($) {
 		});
 
 		/**
+		 * Hide / show options based on player type
+		 *
+		 * Different player types support different kind of options.
+		 * E.g. "Simple Player" doesn't support tracklist height, etc.
+		 */
+		var $settingsWrap = $('.ai-module-settings');
+		var $typeSelect = $('.ai-form-select-player-type');
+
+		function getUnsupportedSettings($el) {
+			var settingsString = $el.data('no-support');
+
+			if (typeof settingsString !== 'string') {
+				return [];
+			}
+
+			return settingsString
+				.replace(/\s/g, '') // remove all whitespace
+				.split(',')
+				.map(function (x) {
+					return '_audioigniter_' + x;
+				});
+		}
+
+		function filterSettings() {
+			var $formFields;
+			var $type = $typeSelect.find(':selected');
+			var unsupportedSettings = getUnsupportedSettings($type);
+
+			if (unsupportedSettings.length === 0) {
+				$formFields = $settingsWrap.find('.ai-form-field');
+				$formFields.show();
+				return;
+			}
+
+			$settingsWrap.find('input', 'select', 'textarea').each(function () {
+				var $this = $(this);
+				var $parent = $this.parents('.ai-form-field');
+				if (unsupportedSettings.indexOf($this.attr('name')) > -1) {
+					$parent.hide();
+				} else {
+					$parent.show();
+				}
+			});
+		}
+
+		filterSettings();
+		$typeSelect.on('change', filterSettings);
+
+		/**
 		 * Shortcode select on click
 		 */
 		el.$shortcodeInputField.on('click', function () {
