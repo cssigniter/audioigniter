@@ -238,8 +238,10 @@ export default soundProvider(Player, {
 			return props.nextTrack();
 		}
 
-		return props.activeIndex === props.tracks.length - 1
-			? props.togglePlay()
-			: props.nextTrack();
+		if (props.activeIndex !== props.tracks.length - 1) {
+			props.nextTrack();
+		}
+
+		return undefined;
 	}
 });

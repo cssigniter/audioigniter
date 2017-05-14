@@ -79,6 +79,8 @@ const soundProvider = (Player, events) => {
 		}
 
 		onFinishedPlaying() {
+			this.setState(() => ({ playStatus: Sound.status.STOPPED }));
+
 			if (events && events.onFinishedPlaying) {
 				events.onFinishedPlaying(this.getFinalProps());
 			}

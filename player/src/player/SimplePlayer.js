@@ -63,4 +63,16 @@ SimplePlayer.propTypes = {
 	displayCredits: PropTypes.bool
 };
 
-export default soundProvider(SimplePlayer);
+export default soundProvider(SimplePlayer, {
+	onFinishedPlaying(props) {
+		if (props.cycleTracks) {
+			return props.nextTrack();
+		}
+
+		if (props.activeIndex !== props.tracks.length - 1) {
+			props.nextTrack();
+		}
+
+		return undefined;
+	}
+});
