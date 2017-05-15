@@ -949,8 +949,7 @@ class AudioIgniter {
 		update_post_meta( $post_id, '_audioigniter_buy_links_new_target', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_buy_links_new_target'] ) );
 		update_post_meta( $post_id, '_audioigniter_cycle_tracks', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_cycle_tracks'] ) );
 		update_post_meta( $post_id, '_audioigniter_show_track_listing', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_track_listing'] ) );
-		// TODO sanitize select box
-		update_post_meta( $post_id, '_audioigniter_player_type', $_POST['_audioigniter_player_type'] );
+		update_post_meta( $post_id, '_audioigniter_player_type', in_array( $_POST['_audioigniter_player_type'], array( 'full', 'simple' ), true ) ? $_POST['_audioigniter_player_type'] : 'full' );
 		update_post_meta( $post_id, '_audioigniter_show_credit', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_credit'] ) );
 		update_post_meta( $post_id, '_audioigniter_limit_tracklisting_height', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_limit_tracklisting_height'] ) );
 		update_post_meta( $post_id, '_audioigniter_tracklisting_height', intval( $_POST['_audioigniter_tracklisting_height'] ) );
@@ -1005,7 +1004,6 @@ class AudioIgniter {
 		}
 
 		$params = apply_filters( 'audioigniter_shortcode_data_attributes_array', array(
-			// TODO do we need any kind of escaping here?
 			'data-player-type'              => $this->get_post_meta( $id, '_audioigniter_player_type', 'full' ),
 			'data-tracks-url'               => add_query_arg( array( 'audioigniter_playlist_id' => $id ), home_url( '/' ) ),
 			'data-display-track-no'         => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_numbers', 1 ) ),
