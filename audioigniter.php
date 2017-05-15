@@ -840,7 +840,7 @@ class AudioIgniter {
 				/>
 
 				<p class="ai-field-help">
-					<?php esc_html_e( 'Enter a value between 0% and 100% in increments of 10%', 'audioigniter' ); ?>
+					<?php esc_html_e( 'Enter a value between 0 and 100 in increments of 10', 'audioigniter' ); ?>
 				</p>
 			</div>
 
