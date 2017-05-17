@@ -229,7 +229,6 @@ $screen-xs-max: 320px !default;
 			height: 3px;
 			float: none;
 			background-color: transparent;
-			// TODO ^ make sure this works customizer
 
 			&:hover {
 				background-color: rgba(white, .3);
@@ -453,8 +452,6 @@ $screen-xs-max: 320px !default;
 		max-height: 100%;
 		margin: 0;
 		overflow: hidden;
-		// TODO: remove this from customizer settings
-		//border-right: 1px solid $bg-color;
 
 		img {
 			width: 40px;
