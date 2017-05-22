@@ -57,9 +57,12 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugin
 
 == Changelog ==
 = 1.3.0 =
-* Added a new player type (simple), in addition to the existing one (full).
+* Added a new player type! From now on you can use a simpler playlist type if you don't need the full fledged player.
 * Player type can now be selected via a simple dropdown.
-* Removed percentage sing from the initial volume value prompt.
+* Updated some settings' labels to reflect the setting's function more accurately.
+* Fixed an issue which prevented the player from working in IE11 sometimes.
+* Fixed an issue where reversing a playlist would result in playing the incorrect tracks.
+* Dropped IE9 support.
 
 = 1.2.0 =
 * Added support for initial volume setting.
