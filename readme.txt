@@ -1,9 +1,9 @@
 === AudioIgniter ===
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, soundcloud, mp3 player, music, radio stream, radio player, sound player, playlist
-Requires at least: 4.4
-Tested up to: 4.7.3
-Stable tag: 1.1.0
+Requires at least: 4.6
+Tested up to: 4.7.5
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,11 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugin
 3. Advanced player customization
 
 == Changelog ==
+= 1.3.0 =
+* Added a new player type (simple), in addition to the existing one (full).
+* Player type can now be selected via a simple dropdown.
+* Removed percentage sing from the initial volume value prompt.
+
 = 1.2.0 =
 * Added support for initial volume setting.
 * Show the tracklist toggle button when the tracklist is hidden by default.
