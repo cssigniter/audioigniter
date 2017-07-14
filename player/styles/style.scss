@@ -15,6 +15,7 @@ $loading-transition-time: 1.5s !default;
 $text-opacity: .7 !default;
 $spacing: 20px !default;
 
+$screen-md-max: 767px !default;
 $screen-sm-max: 480px !default;
 $screen-xs-max: 320px !default;
 
@@ -643,7 +644,7 @@ $screen-xs-max: 320px !default;
 		margin: 0;
 
 		.ai-control-wrap {
-			min-height: 0;
+			min-height: 70px;
 		}
 
 		.ai-control-wrap-thumb {
@@ -727,6 +728,36 @@ $screen-xs-max: 320px !default;
 .ai-narrow {
 	@include sm-max;
 	@include xs-max;
+}
+
+@media (max-width: $screen-md-max) {
+	.ai-wrap {
+		&.ai-type-global-footer {
+			.ai-track-time,
+			.ai-thumb,
+			.ai-btn-repeat,
+			.ai-audio-volume-control {
+				display: none;
+			}
+
+			.ai-track-title {
+				font-size: 15px;
+			}
+
+			.ai-audio-controls-main {
+				padding-left: $spacing / 2;
+				padding-right: $spacing / 2;
+			}
+
+			.ai-track-info {
+				padding-left: $spacing / 2;
+			}
+
+			.ai-audio-controls-meta {
+				margin-left: $spacing / 2;
+			}
+		}
+	}
 }
 
 @media (max-width: $screen-sm-max) {
