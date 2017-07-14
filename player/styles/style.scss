@@ -662,7 +662,7 @@ $screen-xs-max: 320px !default;
 		.ai-audio-controls-main {
 			padding: 0 25px;
 			margin: 0;
-			height: 100%;
+			flex: auto;
 		}
 
 		.ai-audio-controls-meta {
