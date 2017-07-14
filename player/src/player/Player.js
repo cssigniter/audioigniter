@@ -81,7 +81,7 @@ class Player extends React.Component {
 				}
 				style={{ maxWidth }}
 			>
-				<div className={`ai-control-wrap ${displayActiveCover ? '' : 'ai-control-wrap-fullwidth'}`}>
+				<div className="ai-control-wrap">
 					{displayActiveCover &&
 						<Cover
 							className="ai-thumb ai-control-wrap-thumb"
@@ -117,6 +117,7 @@ class Player extends React.Component {
 								duration={duration}
 								position={position}
 							/>
+
 							<Time
 								duration={duration}
 								position={position}
@@ -124,47 +125,43 @@ class Player extends React.Component {
 						</div>
 
 						<div className="ai-audio-controls-meta">
-							<div className="ai-audio-controls-meta-left">
-								{tracks.length > 1 &&
-									<Button
-										className="ai-btn ai-tracklist-prev"
-										onClick={prevTrack}
-									>
-										<PreviousIcon />
-									</Button>
-								}
-
-								{tracks.length > 1 &&
-									<Button
-										className="ai-btn ai-tracklist-next"
-										onClick={nextTrack}
-									>
-										<NextIcon />
-									</Button>
-								}
-
-								<VolumeControl
-									volume={volume}
-									// eslint-disable-next-line no-shadow
-									setVolume={setVolume}
-								/>
-
+							{tracks.length > 1 &&
 								<Button
-									className={`ai-btn ai-btn-repeat ${cycleTracks && 'ai-btn-active'}`}
-									onClick={toggleTrackCycling}
+									className="ai-btn ai-tracklist-prev"
+									onClick={prevTrack}
 								>
-									<RefreshIcon />
+									<PreviousIcon />
 								</Button>
-							</div>
+							}
 
-							<div className="ai-audio-controls-meta-right">
+							{tracks.length > 1 &&
 								<Button
-									className="ai-btn ai-tracklist-toggle"
-									onClick={this.toggleTracklist}
+									className="ai-btn ai-tracklist-next"
+									onClick={nextTrack}
 								>
-									<PlaylistIcon />
+									<NextIcon />
 								</Button>
-							</div>
+							}
+
+							<VolumeControl
+								volume={volume}
+								// eslint-disable-next-line no-shadow
+								setVolume={setVolume}
+							/>
+
+							<Button
+								className={`ai-btn ai-btn-repeat ${cycleTracks && 'ai-btn-active'}`}
+								onClick={toggleTrackCycling}
+							>
+								<RefreshIcon />
+							</Button>
+
+							<Button
+								className="ai-btn ai-tracklist-toggle"
+								onClick={this.toggleTracklist}
+							>
+								<PlaylistIcon />
+							</Button>
 						</div>
 					</div>
 				</div>

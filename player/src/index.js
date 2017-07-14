@@ -5,12 +5,17 @@ import 'es6-promise/auto';
 import 'whatwg-fetch';
 import Player from './player/Player';
 import SimplePlayer from './player/SimplePlayer';
+import FixedPlayer from './player/FixedPlayer';
 
 const nodes = document.getElementsByClassName('audioigniter-root');
 
 const App = ({ type, ...props }) => {
 	if (type === 'simple') {
 		return <SimplePlayer {...props} />;
+	}
+
+	if (type === 'fixed') {
+		return <FixedPlayer {...props} />;
 	}
 
 	return <Player {...props} />;

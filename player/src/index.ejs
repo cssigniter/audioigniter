@@ -4,6 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<title><%= htmlWebpackPlugin.options.title %></title>
+
+	<style>
+		body {
+			padding-bottom: 120px;
+		}
+	</style>
 </head>
 <body>
 <div
@@ -18,7 +24,7 @@
   data-display-artist-names="true"
   data-display-buy-buttons="true"
 	data-buy-buttons-target="true"
-  data-volume="90"
+  data-volume="50"
   data-cycle-tracks="false"
   data-limit-tracklist-height="true"
   data-tracklist-height="185"
@@ -36,7 +42,28 @@
   data-display-artist-names="true"
   data-display-buy-buttons="true"
 	data-buy-buttons-target="true"
-  data-volume="90"
+  data-volume="50"
+  data-reverse-track-order="false"
+  data-max-width="600px"
+  data-soundcloud-client-id="82cc6c6339fe76c30c37c243df710290"
+></div>
+
+<div
+	class="audioigniter-root"
+	data-player-type="fixed"
+	data-tracks-url="/dev-tracks.json"
+	data-display-active-cover="true"
+	data-display-tracklist-covers="true"
+  data-display-credits="true"
+  data-display-tracklist="true"
+  data-display-track-no="true"
+  data-display-artist-names="true"
+  data-display-buy-buttons="true"
+	data-buy-buttons-target="true"
+  data-volume="50"
+  data-cycle-tracks="false"
+  data-limit-tracklist-height="true"
+  data-tracklist-height="185"
   data-reverse-track-order="false"
   data-max-width="600px"
   data-soundcloud-client-id="82cc6c6339fe76c30c37c243df710290"

@@ -86,14 +86,14 @@ $screen-xs-max: 320px !default;
 	// Structure & Size
 	//
 	.ai-control-wrap {
-		@include clearfix;
-		height: $player-height;
+		display: flex;
+		min-height: $player-height;
 	}
 
 	.ai-control-wrap-thumb {
 		width: 130px;
-		float: left;
 		height: 100%;
+		flex: none;
 		overflow: hidden;
 		margin-right: $spacing;
 		position: relative;
@@ -118,23 +118,15 @@ $screen-xs-max: 320px !default;
 
 	.ai-control-wrap-controls {
 		position: relative;
-		float: left;
-		width: calc(100% - (130px + #{$spacing}));
-		height: 100%;
-	}
-
-	.ai-control-wrap-fullwidth {
-		.ai-control-wrap-controls {
-			float: none;
-			width: 100%;
-		}
+		width: 100%;
 	}
 
 	//
 	// Play/pause button & track title/subtitle
 	//
 	.ai-audio-controls-main {
-		display: table;
+		display: flex;
+		align-items: center;
 		width: 100%;
 		margin-bottom: $spacing - 3px;
 	}
@@ -144,6 +136,7 @@ $screen-xs-max: 320px !default;
 		height: 50px;
 		border-radius: 50%;
 		display: inline-block;
+		flex: none;
 		vertical-align: middle;
 		color: $text-on-primary;
 		background-color: $primary-color;
@@ -173,11 +166,10 @@ $screen-xs-max: 320px !default;
 	}
 
 	.ai-track-info {
-		display: table-cell;
-		vertical-align: middle;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		padding-left: $spacing;
-		width: 100000px;
-		overflow: hidden;
 	}
 
 	.ai-track-title {
@@ -207,15 +199,15 @@ $screen-xs-max: 320px !default;
 	// Track Progress
 	//
 	.ai-audio-controls-progress {
-		@include clearfix;
+		display: flex;
+		align-items: center;
 		margin-bottom: $spacing;
 	}
 
 	.ai-track-progress-bar {
+		display: block;
+		flex: 1;
 		position: relative;
-		top: 5px;
-		float: left;
-		width: calc(100% - 65px);
 		height: 5px;
 		cursor: pointer;
 		background-color: $control-color;
@@ -227,7 +219,6 @@ $screen-xs-max: 320px !default;
 			left: 0;
 			width: 100%;
 			height: 3px;
-			float: none;
 			background-color: transparent;
 
 			&:hover {
@@ -252,9 +243,9 @@ $screen-xs-max: 320px !default;
 	}
 
 	.ai-track-time {
+		flex: none;
 		font-size: 13px;
 		opacity: $text-opacity;
-		float: right;
 		width: 65px;
 		text-align: right;
 		cursor: pointer;
@@ -313,23 +304,14 @@ $screen-xs-max: 320px !default;
 	//
 	.ai-audio-controls-meta {
 		@include clearfix;
-		position: absolute;
-		bottom: 0;
+		display: flex;
 		width: 100%;
 		opacity: 1;
 		transition: opacity $transition-time*2 ease;
-	}
-
-	.ai-audio-controls-meta-left {
-		float: left;
 
 		.ai-btn {
 			margin-right: 5px;
 		}
-	}
-
-	.ai-audio-controls-meta-right {
-		float: right;
 	}
 
 	.ai-btn {
@@ -378,6 +360,9 @@ $screen-xs-max: 320px !default;
 	}
 
 	.ai-tracklist-toggle {
+		margin-left: auto;
+		margin-right: 0;
+
 		svg {
 			height: 16px;
 			top: 2px;
@@ -637,6 +622,63 @@ $screen-xs-max: 320px !default;
 			}
 		}
 	}
+
+	//
+	// Fixed Player
+	//
+	&.ai-type-fixed {
+		width: 100%;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: 0;
+		margin: 0;
+
+		.ai-control-wrap {
+			min-height: 0;
+		}
+
+		.ai-control-wrap-thumb {
+			width: 80px;
+			height: 80px;
+			margin: 0;
+			line-height: 115px;
+		}
+
+		.ai-control-wrap-controls {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.ai-audio-controls-main {
+			padding: 0 25px;
+			margin: 0;
+			height: 100%;
+		}
+
+		.ai-audio-controls-meta {
+			width: auto;
+			margin-left: $spacing;
+			flex: none;
+		}
+
+		.ai-audio-controls-meta-right {
+			margin-left: auto;
+		}
+
+		.ai-track-progress-bar {
+			flex: initial;
+		}
+
+		.ai-tracklist-toggle {
+			margin-left: 15px;
+		}
+
+		.ai-audio-controls-progress {
+			margin-bottom: 0;
+		}
+	}
 }
 
 
@@ -647,17 +689,12 @@ $screen-xs-max: 320px !default;
 @mixin sm-max() {
 	.ai-control-wrap {
 		height: auto;
+		flex-wrap: wrap;
 	}
 
 	.ai-control-wrap-thumb {
 		width: 100%;
-		float: none;
 		margin: 0 0 $spacing;
-	}
-
-	.ai-control-wrap-controls {
-		float: none;
-		width: 100%;
 	}
 
 	.ai-audio-controls-meta {
