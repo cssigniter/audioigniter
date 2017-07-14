@@ -672,11 +672,11 @@ class AudioIgniter {
 						<?php esc_html_e( 'Simple Player', 'audioigniter' ); ?>
 					</option>
 					<option
-						value="fixed"
-						data-no-support="show_credit"
-						<?php selected( $type, 'fixed'); ?>
+						value="global-footer"
+						data-no-support="show_credit, max_width"
+						<?php selected( $type, 'global-footer'); ?>
 					>
-						<?php esc_html_e( 'Fixed Player', 'audioigniter' ); ?>
+						<?php esc_html_e( 'Global Footer Player', 'audioigniter' ); ?>
 					</option>
 				</select>
 			</div>
@@ -956,7 +956,7 @@ class AudioIgniter {
 		update_post_meta( $post_id, '_audioigniter_buy_links_new_target', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_buy_links_new_target'] ) );
 		update_post_meta( $post_id, '_audioigniter_cycle_tracks', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_cycle_tracks'] ) );
 		update_post_meta( $post_id, '_audioigniter_show_track_listing', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_track_listing'] ) );
-		update_post_meta( $post_id, '_audioigniter_player_type', in_array( $_POST['_audioigniter_player_type'], array( 'full', 'simple', 'fixed' ), true ) ? $_POST['_audioigniter_player_type'] : 'full' );
+		update_post_meta( $post_id, '_audioigniter_player_type', in_array( $_POST['_audioigniter_player_type'], array( 'full', 'simple', 'global-footer' ), true ) ? $_POST['_audioigniter_player_type'] : 'full' );
 		update_post_meta( $post_id, '_audioigniter_show_credit', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_credit'] ) );
 		update_post_meta( $post_id, '_audioigniter_limit_tracklisting_height', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_limit_tracklisting_height'] ) );
 		update_post_meta( $post_id, '_audioigniter_tracklisting_height', intval( $_POST['_audioigniter_tracklisting_height'] ) );

@@ -5,7 +5,7 @@ import 'es6-promise/auto';
 import 'whatwg-fetch';
 import Player from './player/Player';
 import SimplePlayer from './player/SimplePlayer';
-import FixedPlayer from './player/FixedPlayer';
+import GlobalFooterPlayer from './player/GlobalFooterPlayer';
 
 const nodes = document.getElementsByClassName('audioigniter-root');
 
@@ -14,8 +14,8 @@ const App = ({ type, ...props }) => {
 		return <SimplePlayer {...props} />;
 	}
 
-	if (type === 'fixed') {
-		return <FixedPlayer {...props} />;
+	if (type === 'global-footer') {
+		return <GlobalFooterPlayer {...props} />;
 	}
 
 	return <Player {...props} />;
