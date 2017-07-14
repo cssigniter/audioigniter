@@ -4,7 +4,7 @@
   "description": "React audio player",
   "main": "index.js",
   "scripts": {
-    "start": "HOST=0.0.0.0 webpack-dev-server --public 192.168.1.6:8080",
+    "start": "webpack-dev-server",
     "build": "rm -rf ./build && webpack",
     "test:lint:js": "eslint ./src --ext .js --ext .jsx --cache || true",
     "test": "echo \"Error: no test specified\" && exit 1"
