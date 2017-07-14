@@ -827,7 +827,10 @@
 .ai-wrap.ai-type-global-footer .ai-audio-controls-main {
   padding: 0 25px;
   margin: 0;
-  height: 100%;
+  -webkit-box-flex: 1;
+  -webkit-flex: auto;
+  -ms-flex: auto;
+  flex: auto;
 }
 
 .ai-wrap.ai-type-global-footer .ai-audio-controls-meta {
