@@ -614,6 +614,7 @@ class AudioIgniter {
 	/**
 	 * Echoes the Settings metabox markup.
 	 *
+	 * @version TODO
 	 * @since 1.0.0
 	 *
 	 * @param WP_Post $object
@@ -644,40 +645,20 @@ class AudioIgniter {
 					<?php esc_html_e( 'Player Type', 'audioigniter' ); ?>
 				</label>
 
-				<?php
-					// Each player type has a number of settings that it might not support
-					// E.g. "Simple Player" does not support track listing visibility, covers
-					// and others. Provide every setting that's not supported based on the `name`
-					// attribute of each setting input (input, select, textarea), *without
-					// the _audioigniter_ prefix* in a `data-no-support` property on the option.
-					// To allow support for every setting simply leave `data-no-support` empty.
-				?>
 				<select
 					class="widefat ai-form-select-player-type"
 					id="_audioigniter_player_type"
 					name="_audioigniter_player_type"
 				>
-					<option
-						value="full"
-						data-no-support=""
-						<?php selected( $type, 'full'); ?>
-					>
-						<?php esc_html_e( 'Full Player', 'audioigniter' ); ?>
-					</option>
-					<option
-						value="simple"
-						data-no-support="show_track_listing, show_covers, show_active_cover, limit_tracklisting_height, tracklisting_height"
-						<?php selected( $type, 'simple'); ?>
-					>
-						<?php esc_html_e( 'Simple Player', 'audioigniter' ); ?>
-					</option>
-					<option
-						value="global-footer"
-						data-no-support="show_credit, max_width"
-						<?php selected( $type, 'global-footer'); ?>
-					>
-						<?php esc_html_e( 'Global Footer Player', 'audioigniter' ); ?>
-					</option>
+					<?php foreach ( $this->get_player_types() as $player_key => $player_type ) : ?>
+						<option
+							value="<?php echo esc_attr( $player_key ); ?>"
+							data-no-support="<?php echo esc_attr( implode( ', ', $player_type['no-support'] ) ); ?>"
+							<?php selected( $type, $player_key ); ?>
+						>
+							<?php echo wp_kses( $player_type['label'], 'strip' ); ?>
+						</option>
+					<?php endforeach; ?>
 				</select>
 			</div>
 
@@ -937,6 +918,42 @@ class AudioIgniter {
 		<?php
 	}
 
+	/**
+	 * Returns the available player types and their data.
+	 *
+	 * @version TODO
+	 * @since TODO
+	 *
+	 * @return array
+	 */
+	public function get_player_types() {
+		// Each player type has a number of settings that it might not support
+		// E.g. "Simple Player" does not support track listing visibility, covers
+		// and others. Provide every setting that's not supported based on the `name`
+		// attribute of each setting input (input, select, textarea), *without
+		// the _audioigniter_ prefix* in a `data-no-support` property on the option.
+		// To allow support for every setting simply leave `data-no-support` empty.
+
+		$player_types = array(
+			'full'   => array(
+				'label'      => __( 'Full Player', 'audioigniter' ),
+				'no-support' => array(),
+			),
+			'simple' => array(
+				'label'      => __( 'Simple Player', 'audioigniter' ),
+				'no-support' => array(
+					'show_track_listing',
+					'show_covers',
+					'show_active_cover',
+					'limit_tracklisting_height',
+					'tracklisting_height',
+				),
+			),
+		);
+
+		return apply_filters( 'audioigniter_player_types', $player_types );
+	}
+
 	public function save_post( $post_id ) {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return false; }
 		if ( isset( $_POST['post_view'] ) && 'list' === $_POST['post_view'] ) { return false; }
@@ -956,7 +973,7 @@ class AudioIgniter {
 		update_post_meta( $post_id, '_audioigniter_buy_links_new_target', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_buy_links_new_target'] ) );
 		update_post_meta( $post_id, '_audioigniter_cycle_tracks', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_cycle_tracks'] ) );
 		update_post_meta( $post_id, '_audioigniter_show_track_listing', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_track_listing'] ) );
-		update_post_meta( $post_id, '_audioigniter_player_type', in_array( $_POST['_audioigniter_player_type'], array( 'full', 'simple', 'global-footer' ), true ) ? $_POST['_audioigniter_player_type'] : 'full' );
+		update_post_meta( $post_id, '_audioigniter_player_type', $this->sanitizer->player_type( $_POST['_audioigniter_player_type'] ) );
 		update_post_meta( $post_id, '_audioigniter_show_credit', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_credit'] ) );
 		update_post_meta( $post_id, '_audioigniter_limit_tracklisting_height', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_limit_tracklisting_height'] ) );
 		update_post_meta( $post_id, '_audioigniter_tracklisting_height', intval( $_POST['_audioigniter_tracklisting_height'] ) );

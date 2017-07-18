@@ -12,6 +12,27 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class AudioIgniter_Sanitizer {
 	/**
+	 * Sanitizes the player type.
+	 *
+	 * @version TODO
+	 * @since TODO
+	 *
+	 * @uses AudioIgniter->get_player_types()
+	 *
+	 * @param string $value Player type to sanitize.
+	 *
+	 * @return string
+	 */
+	public static function player_type( $value ) {
+		$choices = AudioIgniter()->get_player_types();
+		if ( array_key_exists( $value, $choices ) ) {
+			return $value;
+		}
+
+		return 'full';
+	}
+
+	/**
 	 * Sanitizes a playlist (repeatable tracks).
 	 *
 	 * @version 1.2.0
