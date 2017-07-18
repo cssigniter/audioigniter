@@ -922,7 +922,7 @@ class AudioIgniter {
 	 * Returns the available player types and their data.
 	 *
 	 * @version TODO
-	 * @since TODO
+	 * @since   TODO
 	 *
 	 * @return array
 	 */
@@ -979,6 +979,11 @@ class AudioIgniter {
 		update_post_meta( $post_id, '_audioigniter_tracklisting_height', intval( $_POST['_audioigniter_tracklisting_height'] ) );
 		update_post_meta( $post_id, '_audioigniter_volume', intval( $_POST['_audioigniter_volume'] ) );
 		update_post_meta( $post_id, '_audioigniter_max_width', $this->sanitizer->intval_or_empty( $_POST['_audioigniter_max_width'] ) );
+
+		/**
+		 * @since TODO
+		 */
+		do_action( 'audioigniter_save_post', $post_id );
 	}
 
 	public static function get_default_track_values() {
@@ -1009,45 +1014,98 @@ class AudioIgniter {
 		add_shortcode( 'ai_playlist', array( $this, 'shortcode_ai_playlist' ) );
 	}
 
+	/**
+	 * Checks whether passed post object or ID is an AudioIgniter playlist.
+	 *
+	 * @version TODO
+	 * @since   TODO
+	 *
+	 * @param int|WP_Post $post Post ID or post object.
+	 *
+	 * @return bool
+	 */
+	public function is_playlist( $post ) {
+		$post = get_post( $post );
+
+		if ( is_wp_error( $post ) || empty( $post ) || is_null( $post ) || $post->post_type !== $this->post_type ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Returns a data attributes array for the given playlist.
+	 *
+	 * @version TODO
+	 * @since   TODO
+	 *
+	 * @param int $post_id Post ID.
+	 *
+	 * @return array
+	 */
+	public function get_playlist_data_attributes_array( $post_id ) {
+		$post_id = intval( $post_id );
+
+		if ( ! $this->is_playlist( $post_id ) ) {
+			return array();
+		}
+
+		$attrs = array(
+			'data-player-type'              => $this->get_post_meta( $post_id, '_audioigniter_player_type', 'full' ),
+			'data-tracks-url'               => add_query_arg( array( 'audioigniter_playlist_id' => $post_id ), home_url( '/' ) ),
+			'data-display-track-no'         => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_numbers', 1 ) ),
+			'data-reverse-track-order'      => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_numbers_reverse', 0 ) ),
+			'data-display-tracklist-covers' => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_covers', 1 ) ),
+			'data-display-active-cover'     => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_active_cover', 1 ) ),
+			'data-display-artist-names'     => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_artist', 1 ) ),
+			'data-display-buy-buttons'      => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_buy_links', 1 ) ),
+			'data-buy-buttons-target'       => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_buy_links_new_target', 1 ) ),
+			'data-cycle-tracks'             => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_cycle_tracks', 0 ) ),
+			'data-display-credits'          => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_credit', 1 ) ),
+			'data-display-tracklist'        => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_track_listing', 1 ) ),
+			'data-limit-tracklist-height'   => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_limit_tracklisting_height', 1 ) ),
+			'data-volume'                   => intval( $this->get_post_meta( $post_id, '_audioigniter_volume', 100 ) ),
+			'data-tracklist-height'         => intval( $this->get_post_meta( $post_id, '_audioigniter_tracklisting_height', 185 ) ),
+			'data-max-width'                => $this->get_post_meta( $post_id, '_audioigniter_max_width' ),
+		);
+
+		return $attrs;
+	}
+
+	/**
+	 * Returns the output of the [ai_playlist] shortcode.
+	 *
+	 * @version TODO
+	 * @since   1.0.0
+	 *
+	 * @param array       $atts    The shortcode attributes.
+	 * @param string|null $content Content, when used with a shortcode closing tag.
+	 * @param string      $tag     The shortcode name used to reach this function.
+	 *
+	 * @return string
+	 */
 	public function shortcode_ai_playlist( $atts, $content = null, $tag ) {
 		$atts = shortcode_atts( array(
 			'id' => '',
 		), $atts, $tag );
 
-		$id = $atts['id'];
+		$id = intval( $atts['id'] );
 
-		if ( empty( $id ) ) {
+		if ( ! $this->is_playlist( $id ) ) {
 			return '';
 		}
 
-		$id   = intval( $id );
 		$post = get_post( $id );
 
-		if ( empty( $post ) || $post->post_type !== $this->post_type ) {
-			return '';
-		}
-
-		$params = apply_filters( 'audioigniter_shortcode_data_attributes_array', array(
-			'data-player-type'              => $this->get_post_meta( $id, '_audioigniter_player_type', 'full' ),
-			'data-tracks-url'               => add_query_arg( array( 'audioigniter_playlist_id' => $id ), home_url( '/' ) ),
-			'data-display-track-no'         => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_numbers', 1 ) ),
-			'data-reverse-track-order'      => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_numbers_reverse', 0 ) ),
-			'data-display-tracklist-covers' => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_covers', 1 ) ),
-			'data-display-active-cover'     => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_active_cover', 1 ) ),
-			'data-display-artist-names'     => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_artist', 1 ) ),
-			'data-display-buy-buttons'      => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_buy_links', 1 ) ),
-			'data-buy-buttons-target'       => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_buy_links_new_target', 1 ) ),
-			'data-cycle-tracks'             => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_cycle_tracks', 0 ) ),
-			'data-display-credits'          => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_credit', 1 ) ),
-			'data-display-tracklist'        => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_show_track_listing', 1 ) ),
-			'data-limit-tracklist-height'   => $this->convert_bool_string( $this->get_post_meta( $id, '_audioigniter_limit_tracklisting_height', 1 ) ),
-			'data-volume'                   => intval( $this->get_post_meta( $id, '_audioigniter_volume', 100 ) ),
-			'data-tracklist-height'         => intval( $this->get_post_meta( $id, '_audioigniter_tracklisting_height', 185 ) ),
-			'data-max-width'                => $this->get_post_meta( $id, '_audioigniter_max_width' ),
-		), $id, $post );
-
+		$params = apply_filters( 'audioigniter_shortcode_data_attributes_array', $this->get_playlist_data_attributes_array( $id ), $id, $post );
 		$params = array_filter( $params, array( $this->sanitizer, 'array_filter_empty_null' ) );
 		$params = $this->sanitizer->html_data_attributes_array( $params );
+
+		// Returning a truthy value from the filter, will short-circuit execution of the shortcode.
+		if ( false !== apply_filters( 'audioigniter_shortcode_shortcircuit', false, $id, $post, $params ) ) {
+			return '';
+		}
 
 		$data = '';
 		foreach ( $params as $attribute => $value ) {
