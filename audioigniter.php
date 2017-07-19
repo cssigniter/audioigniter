@@ -399,6 +399,7 @@ class AudioIgniter {
 				<div class="ai-col-right">
 					<?php
 						$url  = 'https://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=dashboard&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link';
+						/* translators: %s is a URL. */
 						$copy = sprintf( __( 'Thank you for creating with <a href="%s" target="_blank">AudioIgniter</a>', 'audioigniter' ),
 							esc_url( $url )
 						);
@@ -655,7 +656,7 @@ class AudioIgniter {
 						<option
 							value="<?php echo esc_attr( $player_key ); ?>"
 							data-no-support="<?php echo esc_attr( implode( ', ', $player_type['no-support'] ) ); ?>"
-							data-info="<?php echo ! empty( $player_type['info'] ) ? esc_attr( $player_type['info'] ) : ''; ?>"
+							data-info="<?php echo esc_attr( $player_type['info'] ); ?>"
 							<?php selected( $type, $player_key ); ?>
 						>
 							<?php echo wp_kses( $player_type['label'], 'strip' ); ?>
@@ -933,13 +934,14 @@ class AudioIgniter {
 		// E.g. "Simple Player" does not support track listing visibility, covers
 		// and others. Provide every setting that's not supported based on the `name`
 		// attribute of each setting input (input, select, textarea), *without
-		// the _audioigniter_ prefix* in a `data-no-support` property on the option.
-		// To allow support for every setting simply leave `data-no-support` empty.
+		// the _audioigniter_ prefix* in the `no-support` array.
+		// To allow support for every setting simply set `no-support` to an empty array.
 
 		$player_types = array(
 			'full'   => array(
 				'label'      => __( 'Full Player', 'audioigniter' ),
 				'no-support' => array(),
+				'info'       => '',
 			),
 			'simple' => array(
 				'label'      => __( 'Simple Player', 'audioigniter' ),
@@ -950,6 +952,7 @@ class AudioIgniter {
 					'limit_tracklisting_height',
 					'tracklisting_height',
 				),
+				'info'       => '',
 			),
 		);
 
