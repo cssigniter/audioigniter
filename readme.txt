@@ -1,9 +1,9 @@
 === AudioIgniter ===
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, soundcloud, mp3 player, music, radio stream, radio player, sound player, playlist
-Requires at least: 4.6
-Tested up to: 4.7.5
-Stable tag: 1.2.0
+Requires at least: 4.7
+Tested up to: 4.8
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,11 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugin
 3. Advanced player customization
 
 == Changelog ==
+= 1.4.0 =
+* Code changes to accommodate a new player type, Global Footer Player, available in AudioIgniter Pro.
+* Introduced AudioIgniter::is_playlist() for easier playlist ID validation.
+* Added some translators comments.
+
 = 1.3.0 =
 * Added a new player type! From now on you can use a simpler playlist type if you don't need the full fledged player.
 * Player type can now be selected via a simple dropdown.

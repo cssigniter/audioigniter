@@ -5,7 +5,7 @@
  * Description: AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types and serve your audio content in style!
  * Author: The CSSIgniter Team
  * Author URI: https://www.cssigniter.com
- * Version: 1.3.0
+ * Version: 1.4.0
  * Text Domain: audioigniter
  * Domain Path: languages
  *
@@ -37,7 +37,7 @@ class AudioIgniter {
 	 * @var string
 	 * @since 1.0.0
 	 */
-	public static $version = '1.3.0';
+	public static $version = '1.4.0';
 
 	/**
 	 * Instance of this class.
@@ -615,8 +615,8 @@ class AudioIgniter {
 	/**
 	 * Echoes the Settings metabox markup.
 	 *
-	 * @version TODO
-	 * @since 1.0.0
+	 * @version 1.4.0
+	 * @since   1.0.0
 	 *
 	 * @param WP_Post $object
 	 * @param array $box
@@ -924,8 +924,8 @@ class AudioIgniter {
 	/**
 	 * Returns the available player types and their data.
 	 *
-	 * @version TODO
-	 * @since   TODO
+	 * @version 1.4.0
+	 * @since   1.4.0
 	 *
 	 * @return array
 	 */
@@ -986,7 +986,7 @@ class AudioIgniter {
 		update_post_meta( $post_id, '_audioigniter_max_width', $this->sanitizer->intval_or_empty( $_POST['_audioigniter_max_width'] ) );
 
 		/**
-		 * @since TODO
+		 * @since 1.4.0
 		 */
 		do_action( 'audioigniter_save_post', $post_id );
 	}
@@ -1022,8 +1022,8 @@ class AudioIgniter {
 	/**
 	 * Checks whether passed post object or ID is an AudioIgniter playlist.
 	 *
-	 * @version TODO
-	 * @since   TODO
+	 * @version 1.4.0
+	 * @since   1.4.0
 	 *
 	 * @param int|WP_Post $post Post ID or post object.
 	 *
@@ -1042,8 +1042,8 @@ class AudioIgniter {
 	/**
 	 * Returns a data attributes array for the given playlist.
 	 *
-	 * @version TODO
-	 * @since   TODO
+	 * @version 1.4.0
+	 * @since   1.4.0
 	 *
 	 * @param int $post_id Post ID.
 	 *
@@ -1081,7 +1081,7 @@ class AudioIgniter {
 	/**
 	 * Returns the output of the [ai_playlist] shortcode.
 	 *
-	 * @version TODO
+	 * @version 1.4.0
 	 * @since   1.0.0
 	 *
 	 * @param array       $atts    The shortcode attributes.

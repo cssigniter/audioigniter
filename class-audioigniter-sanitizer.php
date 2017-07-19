@@ -14,8 +14,8 @@ class AudioIgniter_Sanitizer {
 	/**
 	 * Sanitizes the player type.
 	 *
-	 * @version TODO
-	 * @since TODO
+	 * @version 1.4.0
+	 * @since   1.4.0
 	 *
 	 * @uses AudioIgniter->get_player_types()
 	 *
