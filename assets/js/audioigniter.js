@@ -425,10 +425,38 @@ jQuery(function ($) {
 				});
 		}
 
+		function filterUIBasedOnPlayerType($el) {
+			var type = $el.val();
+
+			// Reset styles
+			var $shortcodeMetaBox = $('#ai-meta-box-shortcode');
+			var $messageBox = $('.ai-player-type-message');
+			var info = $el.data('info');
+
+			$shortcodeMetaBox.show();
+
+			if (info) {
+				$messageBox.text(info).show();
+			} else {
+				$messageBox.text('').hide();
+			}
+
+			// Player specific controls
+			switch(type) {
+				case 'global-footer':
+					$shortcodeMetaBox.hide();
+					break;
+				default:
+					return;
+			}
+		}
+
 		function filterSettings() {
 			var $formFields;
 			var $type = $typeSelect.find(':selected');
 			var unsupportedSettings = getUnsupportedSettings($type);
+
+			filterUIBasedOnPlayerType($type);
 
 			if (unsupportedSettings.length === 0) {
 				$formFields = $settingsWrap.find('.ai-form-field');

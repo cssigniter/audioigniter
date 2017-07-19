@@ -10,6 +10,9 @@ $white: #ffffff !default;
 $blue: #0073aa !default;
 $red: #ff0000 !default;
 $green: #14b552 !default;
+$info-box-bg-color: #fffce6 !default;
+$info-box-border-color: #eeeac9 !default;
+$info-box-text-color: #948832 !default;
 $base-pad: 15px !default;
 $transition-time: .18s;
 
@@ -432,6 +435,19 @@ $transition-time: .18s;
 	.dashicons {
 		color: $blue;
 	}
+}
+
+.ai-info-box {
+	background: $info-box-bg-color;
+	color: $info-box-text-color;
+	font-size: 12px;
+	border: solid 1px $info-box-border-color;
+	padding: 15px;
+	margin: 0 0 15px 0;
+}
+
+.ai-player-type-message {
+	display: none;
 }
 
 //

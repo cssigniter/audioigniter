@@ -110,6 +110,10 @@
 
 .ai-add-field-batch .dashicons, .ai-add-field .dashicons { color: #0073aa; }
 
+.ai-info-box { background: #fffce6; color: #948832; font-size: 12px; border: solid 1px #eeeac9; padding: 15px; margin: 0 0 15px 0; }
+
+.ai-player-type-message { display: none; }
+
 .ai-drop-placeholder { background-color: #f1f1f1; border: 2px dashed #cccccc; opacity: 0.5; margin-bottom: 15px; }
 
 .ai-collapsed .ai-field-container { display: none; }

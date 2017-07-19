@@ -641,6 +641,7 @@ class AudioIgniter {
 		?>
 		<div class="ai-module ai-module-settings">
 			<div class="ai-form-field">
+				<div class="ai-player-type-message ai-info-box"></div>
 				<label for="_audioigniter_player_type">
 					<?php esc_html_e( 'Player Type', 'audioigniter' ); ?>
 				</label>
@@ -654,6 +655,7 @@ class AudioIgniter {
 						<option
 							value="<?php echo esc_attr( $player_key ); ?>"
 							data-no-support="<?php echo esc_attr( implode( ', ', $player_type['no-support'] ) ); ?>"
+							data-info="<?php echo ! empty( $player_type['info'] ) ? esc_attr( $player_type['info'] ) : ''; ?>"
 							<?php selected( $type, $player_key ); ?>
 						>
 							<?php echo wp_kses( $player_type['label'], 'strip' ); ?>
