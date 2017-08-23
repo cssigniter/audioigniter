@@ -1,8 +1,8 @@
 === AudioIgniter ===
 Contributors: cssigniterteam, anastis, silencerius, tsiger
-Tags: audio, sound, player, audio player, music player, soundcloud, mp3 player, music, radio stream, radio player, sound player, playlist
+Tags: audio, sound, player, audio player, music player, mp3 player, music, radio stream, radio player, sound player, playlist
 Requires at least: 4.7
-Tested up to: 4.8
+Tested up to: 4.8.1
 Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -42,7 +42,7 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugin
 * Widget & Shortcode available
 * Rearrange tracks functionality
 * Internal taxonomy for archiving purposes
-* SoundCloud integration
+* Fixed position player
 
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/audioigniter` directory, or install the plugin through the WordPress plugins screen directly.
