@@ -3,7 +3,7 @@ Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, mp3 player, music, radio stream, radio player, sound player, playlist
 Requires at least: 4.7
 Tested up to: 4.8.1
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,9 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugin
 3. Advanced player customization
 
 == Changelog ==
+= 1.4.1 =
+* Developer enhancements.
+
 = 1.4.0 =
 * Code changes to accommodate a new player type, Global Footer Player, available in AudioIgniter Pro.
 * Introduced AudioIgniter::is_playlist() for easier playlist ID validation.
