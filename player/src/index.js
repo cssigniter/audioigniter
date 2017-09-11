@@ -25,7 +25,7 @@ App.propTypes = {
 	type: PropTypes.string
 };
 
-Array.prototype.slice.call(nodes).forEach(node => {
+function renderApp(node) {
 	const type = node.getAttribute('data-player-type');
 
 	const props = {
@@ -51,4 +51,9 @@ Array.prototype.slice.call(nodes).forEach(node => {
 		<App type={type} {...props} />,
 		node
 	);
-});
+}
+
+Array.prototype.slice.call(nodes).forEach(node => { renderApp(node); });
+
+// eslint-disable-next-line no-underscore-dangle
+window.__CI_AUDIOIGNITER_MANUAL_INIT__ = node => { renderApp(node); };
