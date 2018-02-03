@@ -50,6 +50,7 @@ export default class SoundCloud {
 	 * @returns {Promise.<*>}
 	 */
 	fetchSoundCloudStreams(tracks) {
+		console.log(tracks);
 		const scTracks = tracks
 			.filter(track => SoundCloud.isSoundCloudUrl(track.audio))
 			.map(track => this.resolve(track.audio));

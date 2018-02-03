@@ -95,6 +95,10 @@ class Player extends React.Component {
 							<Button
 								onClick={togglePlay}
 								className={`ai-audio-control ${playStatus === Sound.status.PLAYING ? 'ai-audio-playing' : ''}`}
+								ariaLabel={playStatus === Sound.status.PLAYING
+									? `Pause ${currentTrack.title}`
+									: `Start playing ${currentTrack.title}`}
+								ariaPressed={playStatus === Sound.status.PLAYING}
 							>
 								{playStatus === Sound.status.PLAYING ? <PauseIcon /> : <PlayIcon />}
 							</Button>
@@ -129,6 +133,7 @@ class Player extends React.Component {
 								<Button
 									className="ai-btn ai-tracklist-prev"
 									onClick={prevTrack}
+									ariaLabel="Previous track"
 								>
 									<PreviousIcon />
 								</Button>
@@ -138,6 +143,7 @@ class Player extends React.Component {
 								<Button
 									className="ai-btn ai-tracklist-next"
 									onClick={nextTrack}
+									ariaLabel="Next track"
 								>
 									<NextIcon />
 								</Button>
@@ -152,6 +158,7 @@ class Player extends React.Component {
 							<Button
 								className={`ai-btn ai-btn-repeat ${cycleTracks && 'ai-btn-active'}`}
 								onClick={toggleTrackCycling}
+								ariaLabel="Toggle track listing repeat"
 							>
 								<RefreshIcon />
 							</Button>
@@ -159,6 +166,8 @@ class Player extends React.Component {
 							<Button
 								className="ai-btn ai-tracklist-toggle"
 								onClick={this.toggleTracklist}
+								ariaLabel="Toggle track listing visibility"
+								ariaExpanded={isTrackListOpen}
 							>
 								<PlaylistIcon />
 							</Button>

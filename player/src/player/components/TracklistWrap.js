@@ -53,7 +53,10 @@ export default class TracklistWrap extends React.Component {
 		const { isOpen, limitTracklistHeight, tracklistHeight } = this.props;
 
 		return (
-			<div style={{ display: isOpen ? 'block' : 'none' }}>
+			<div
+				id="tracklisting"
+				style={{ display: isOpen ? 'block' : 'none' }}
+			>
 				{limitTracklistHeight ?
 					<Scrollbars
 						className="ai-scroll-wrap"

@@ -28,6 +28,7 @@ export default class VolumeControl extends React.Component {
 				<Button
 					className="ai-btn"
 					onClick={() => setVolume(volume <= 0 ? volume : volume - 10)}
+					ariaLabel="Volume down"
 				>
 					<VolumeDownIcon />
 				</Button>
@@ -35,6 +36,7 @@ export default class VolumeControl extends React.Component {
 				<Button
 					className="ai-btn"
 					onClick={() => setVolume(volume >= 100 ? volume : volume + 10)}
+					ariaLabel="Volume up"
 				>
 					<VolumeUpIcon />
 				</Button>

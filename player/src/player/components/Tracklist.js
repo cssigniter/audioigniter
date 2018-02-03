@@ -7,7 +7,7 @@ const Tracklist = ({ ...props }) => {
 	const { tracks } = props;
 
 	return (
-		<ul className={props.className}>
+		<ul className={props.className} aria-expanded="true">
 			{tracks && tracks.map((track, index) => {
 				const trackNo = props.reverseTrackOrder
 					? tracks.length - index
