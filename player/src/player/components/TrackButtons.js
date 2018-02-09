@@ -20,7 +20,7 @@ const TrackButtons = ({
 					rel={buyButtonsTarget ? 'noopener noreferrer' : undefined}
 					target={buyButtonsTarget ? '_blank' : '_self'}
 					role="button"
-					aria-label="Purchase this track"
+					aria-label={ai_aria.buy_track}
 				>
 					<CartIcon />
 				</a>
@@ -32,7 +32,7 @@ const TrackButtons = ({
 					download={downloadUrl}
 					className="ai-track-btn"
 					role="button"
-					aria-label="Download this track"
+					aria-label={ai_aria.download_track}
 				>
 					<DownloadIcon />
 				</a>

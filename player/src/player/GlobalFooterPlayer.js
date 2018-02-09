@@ -92,8 +92,8 @@ class GlobalFooterPlayer extends React.Component {
 								onClick={togglePlay}
 								className={`ai-audio-control ${playStatus === Sound.status.PLAYING ? 'ai-audio-playing' : ''}`}
 								ariaLabel={playStatus === Sound.status.PLAYING
-									? `Pause ${currentTrack.title}`
-									: `Start playing ${currentTrack.title}`}
+									? `${ai_aria.pause_title}`
+									: `${ai_aria.play_title}`}
 								ariaPressed={playStatus === Sound.status.PLAYING}
 							>
 								{playStatus === Sound.status.PLAYING ? <PauseIcon /> : <PlayIcon />}
@@ -104,7 +104,7 @@ class GlobalFooterPlayer extends React.Component {
 									<Button
 										className="ai-btn ai-tracklist-prev"
 										onClick={prevTrack}
-										ariaLabel="Previous track"
+										ariaLabel={ai_aria.previous}
 									>
 										<PreviousIcon />
 									</Button>
@@ -114,7 +114,7 @@ class GlobalFooterPlayer extends React.Component {
 									<Button
 										className="ai-btn ai-tracklist-next"
 										onClick={nextTrack}
-										ariaLabel="Next track"
+										ariaLabel={ai_aria.next}
 									>
 										<NextIcon />
 									</Button>
@@ -129,7 +129,7 @@ class GlobalFooterPlayer extends React.Component {
 								<Button
 									className={`ai-btn ai-btn-repeat ${cycleTracks && 'ai-btn-active'}`}
 									onClick={toggleTrackCycling}
-									ariaLabel="Toggle track listing repeat"
+									ariaLabel={ai_aria.toggle_list_repeat}
 								>
 									<RefreshIcon />
 								</Button>
@@ -154,7 +154,7 @@ class GlobalFooterPlayer extends React.Component {
 								<Button
 									className="ai-btn ai-tracklist-toggle"
 									onClick={this.toggleTracklist}
-									ariaLabel="Toggle track listing visibility"
+									ariaLabel={ai_aria.toggle_list_visible}
 								>
 									<PlaylistIcon />
 								</Button>

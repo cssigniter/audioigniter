@@ -42,7 +42,7 @@ const Track = ({
 				<button
 					className="ai-track-btn ai-track-inline-play-btn"
 					onClick={() => onTrackClick(index)}
-					aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
+					aria-label={isPlaying ? `${ai_aria.pause_title}` : `${ai_aria.play_title}`}
 					aria-pressed={isPlaying}
 				>
 					{isPlaying ? <PauseIcon /> : <PlayIcon />}

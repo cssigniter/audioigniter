@@ -198,6 +198,21 @@ class AudioIgniter {
 		wp_register_script( 'audioigniter', $this->plugin_url() . 'player/build/app.js', array(), self::$version, true );
 		wp_register_script( 'audioigniter-admin', $this->plugin_url() . 'assets/js/audioigniter.js', array(), self::$version, true );
 
+		wp_localize_script( 'audioigniter', 'ai_aria', array(
+			/* translators: %s is the track's title. */
+			'play_title'          => esc_html__( 'Play %s', 'audioigniter' ),
+			/* translators: %s is the track's title. */
+			'pause_title'         => esc_html__( 'Pause %s', 'audioigniter' ),
+			'previous'            => esc_html__( 'Previous track', 'audioigniter' ),
+			'next'                => esc_html__( 'Next track', 'audioigniter' ),
+			'toggle_list_repeat'  => esc_html__( 'Toggle track listing repeat', 'audioigniter' ),
+			'toggle_list_visible' => esc_html__( 'Toggle track listing visibility', 'audioigniter' ),
+			'buy_track'           => esc_html__( 'Buy this track', 'audioigniter' ),
+			'download_track'      => esc_html__( 'Download this track', 'audioigniter' ),
+			'volume_up'           => esc_html__( 'Volume Up', 'audioigniter' ),
+			'volume_down'         => esc_html__( 'Volume Down', 'audioigniter' ),
+		) );
+
 		wp_localize_script( 'audioigniter-admin', 'ai_scripts', array(
 			'messages' => array(
 				'confirm_clear_tracks'     => esc_html__( 'Do you really want to remove all tracks? (This will not delete your audio files).', 'audioigniter' ),
