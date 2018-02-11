@@ -7,7 +7,9 @@ import Player from './player/Player';
 import SimplePlayer from './player/SimplePlayer';
 import GlobalFooterPlayer from './player/GlobalFooterPlayer';
 
-// Set up strings here
+// Set up translatable strings here
+// for development purposes only. The production build
+// gets them from WordPress's injection
 if (process.env.NODE_ENV !== 'production') {
 	window.aiStrings = {
 		play_title: 'Play %s',
