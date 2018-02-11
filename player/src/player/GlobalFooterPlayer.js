@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
+import { sprintf } from 'sprintf-js';
+
 import soundProvider from './soundProvider';
 import Cover from './components/Cover';
 import Button from './components/Button';
@@ -92,8 +94,9 @@ class GlobalFooterPlayer extends React.Component {
 								onClick={togglePlay}
 								className={`ai-audio-control ${playStatus === Sound.status.PLAYING ? 'ai-audio-playing' : ''}`}
 								ariaLabel={playStatus === Sound.status.PLAYING
-									? `${ai_aria.pause_title}`
-									: `${ai_aria.play_title}`}
+									? sprintf(aiStrings.pause_title, currentTrack.title)
+									: sprintf(aiStrings.play_title, currentTrack.title)
+								}
 								ariaPressed={playStatus === Sound.status.PLAYING}
 							>
 								{playStatus === Sound.status.PLAYING ? <PauseIcon /> : <PlayIcon />}
@@ -104,7 +107,7 @@ class GlobalFooterPlayer extends React.Component {
 									<Button
 										className="ai-btn ai-tracklist-prev"
 										onClick={prevTrack}
-										ariaLabel={ai_aria.previous}
+										ariaLabel={aiStrings.previous}
 									>
 										<PreviousIcon />
 									</Button>
@@ -114,7 +117,7 @@ class GlobalFooterPlayer extends React.Component {
 									<Button
 										className="ai-btn ai-tracklist-next"
 										onClick={nextTrack}
-										ariaLabel={ai_aria.next}
+										ariaLabel={aiStrings.next}
 									>
 										<NextIcon />
 									</Button>
@@ -129,7 +132,7 @@ class GlobalFooterPlayer extends React.Component {
 								<Button
 									className={`ai-btn ai-btn-repeat ${cycleTracks && 'ai-btn-active'}`}
 									onClick={toggleTrackCycling}
-									ariaLabel={ai_aria.toggle_list_repeat}
+									ariaLabel={aiStrings.toggle_list_repeat}
 								>
 									<RefreshIcon />
 								</Button>
@@ -154,7 +157,7 @@ class GlobalFooterPlayer extends React.Component {
 								<Button
 									className="ai-btn ai-tracklist-toggle"
 									onClick={this.toggleTracklist}
-									ariaLabel={ai_aria.toggle_list_visible}
+									ariaLabel={aiStrings.toggle_list_visible}
 								>
 									<PlaylistIcon />
 								</Button>

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
+import { sprintf } from 'sprintf-js';
+
 import TrackTitle from './TrackTitle';
 import Cover from './Cover';
 import TrackButtons from './TrackButtons';
@@ -42,7 +44,10 @@ const Track = ({
 				<button
 					className="ai-track-btn ai-track-inline-play-btn"
 					onClick={() => onTrackClick(index)}
-					aria-label={isPlaying ? `${ai_aria.pause_title}` : `${ai_aria.play_title}`}
+					aria-label={isPlaying
+						? sprintf(aiStrings.pause_title, track.title)
+						: sprintf(aiStrings.play_title, track.title)
+					}
 					aria-pressed={isPlaying}
 				>
 					{isPlaying ? <PauseIcon /> : <PlayIcon />}

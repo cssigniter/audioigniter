@@ -7,6 +7,22 @@ import Player from './player/Player';
 import SimplePlayer from './player/SimplePlayer';
 import GlobalFooterPlayer from './player/GlobalFooterPlayer';
 
+// Set up strings here
+if (process.env.NODE_ENV !== 'production') {
+	window.aiStrings = {
+		play_title: 'Play %s',
+		pause_title: 'Pause %s',
+		previous: 'Previous track',
+		next: 'Next track',
+		toggle_list_repeat: 'Toggle track listing repeat',
+		toggle_list_visible: 'Toggle track listing visibility',
+		buy_track: 'Buy this track',
+		download_track: 'Download this track',
+		volume_up: 'Volume Up',
+		volume_down: 'Volume Down'
+	};
+}
+
 const nodes = document.getElementsByClassName('audioigniter-root');
 
 const App = ({ type, ...props }) => {

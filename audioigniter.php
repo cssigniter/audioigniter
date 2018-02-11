@@ -198,7 +198,7 @@ class AudioIgniter {
 		wp_register_script( 'audioigniter', $this->plugin_url() . 'player/build/app.js', array(), self::$version, true );
 		wp_register_script( 'audioigniter-admin', $this->plugin_url() . 'assets/js/audioigniter.js', array(), self::$version, true );
 
-		wp_localize_script( 'audioigniter', 'ai_aria', array(
+		wp_localize_script( 'audioigniter', 'aiStrings', array(
 			/* translators: %s is the track's title. */
 			'play_title'          => esc_html__( 'Play %s', 'audioigniter' ),
 			/* translators: %s is the track's title. */
