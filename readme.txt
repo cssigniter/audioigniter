@@ -1,9 +1,9 @@
 === AudioIgniter ===
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, mp3 player, music, radio stream, radio player, sound player, playlist
-Requires at least: 4.7
-Tested up to: 4.8.1
-Stable tag: 1.4.0
+Requires at least: 4.8
+Tested up to: 4.9.4
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,9 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugin
 3. Advanced player customization
 
 == Changelog ==
+= 1.4.2 =
+* Accessibility enhancements.
+
 = 1.4.1 =
 * Developer enhancements.
 
