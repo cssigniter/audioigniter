@@ -8,6 +8,7 @@ const TrackButtons = ({
   downloadUrl,
   onTrackLoop,
   isLooping,
+  displayBuyButtons,
 }) => {
   if (buyUrl == null && downloadUrl == null && !onTrackLoop) {
     return null;
@@ -15,7 +16,7 @@ const TrackButtons = ({
 
   return (
     <div className="ai-track-control-buttons">
-      {buyUrl && (
+      {buyUrl && displayBuyButtons && (
         <a
           href={buyUrl}
           className="ai-track-btn"
@@ -28,7 +29,7 @@ const TrackButtons = ({
         </a>
       )}
 
-      {downloadUrl && (
+      {downloadUrl && displayBuyButtons && (
         <a
           href={downloadUrl}
           download={downloadUrl}
@@ -71,6 +72,7 @@ TrackButtons.propTypes = {
   downloadUrl: PropTypes.string,
   onTrackLoop: PropTypes.func,
   isLooping: PropTypes.bool,
+  displayBuyButtons: PropTypes.bool,
 };
 
 export default TrackButtons;

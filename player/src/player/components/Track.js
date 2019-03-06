@@ -70,15 +70,14 @@ const Track = ({
         />
       </div>
 
-      {displayBuyButtons && (
-        <TrackButtons
-          buyButtonsTarget={buyButtonsTarget}
-          buyUrl={track.buyUrl}
-          downloadUrl={track.downloadUrl}
-          onTrackLoop={onTrackLoop && (() => onTrackLoop(index))}
-          isLooping={isLooping}
-        />
-      )}
+      <TrackButtons
+        buyButtonsTarget={buyButtonsTarget}
+        buyUrl={track.buyUrl}
+        downloadUrl={track.downloadUrl}
+        onTrackLoop={onTrackLoop && (() => onTrackLoop(index))}
+        isLooping={isLooping}
+        displayBuyButtons={displayBuyButtons}
+      />
 
       {hasProgressBar && (
         <ProgressBar

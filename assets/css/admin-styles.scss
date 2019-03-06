@@ -14,7 +14,8 @@ $info-box-bg-color: #fffce6 !default;
 $info-box-border-color: #eeeac9 !default;
 $info-box-text-color: #948832 !default;
 $base-pad: 15px !default;
-$transition-time: .18s;
+$transition-time: .18s !default;
+$border-color: $lighter-grey !default;
 
 .sr-only {
 	@include sr-only;
@@ -294,6 +295,20 @@ $transition-time: .18s;
 			line-height: 1.7em;
 		}
 	}
+}
+
+.ai-form-field-group {
+  padding: $base-pad;
+  border: 1px solid $border-color;
+  margin-bottom: $base-pad;
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  &-title {
+    margin-top: 0;
+  }
 }
 
 .ai-form-field {
