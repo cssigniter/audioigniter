@@ -494,6 +494,8 @@ $screen-xs-max: 320px !default;
 
 	.ai-track-control-buttons {
 		margin-left: auto;
+		display: flex;
+		align-items: center;
 	}
 
 	.ai-track-btn {
@@ -756,6 +758,16 @@ $screen-xs-max: 320px !default;
   padding-left: 5px;
   padding-right: 5px;
   line-height: 1;
+  color: $black;
+
+  &:hover,
+  &:active,
+	&:focus {
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: $black;
+  }
 }
 
 .ai-modal-content {

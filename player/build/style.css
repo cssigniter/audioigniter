@@ -629,6 +629,14 @@
 
 .ai-wrap .ai-track-control-buttons {
   margin-left: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .ai-wrap .ai-track-btn {
@@ -952,10 +960,18 @@
   padding-left: 5px;
   padding-right: 5px;
   line-height: 1;
+  color: #000;
 }
 
 .ai-modal-dismiss::before, .ai-modal-dismiss::after {
   display: none;
+}
+
+.ai-modal-dismiss:hover, .ai-modal-dismiss:active, .ai-modal-dismiss:focus {
+  background: none;
+  box-shadow: none;
+  border: 0;
+  color: #000;
 }
 
 .ai-modal-content {
