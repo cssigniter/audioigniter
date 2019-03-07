@@ -212,7 +212,7 @@ class AudioIgniter {
 			'download_track'      => esc_html__( 'Download this track', 'audioigniter' ),
 			'volume_up'           => esc_html__( 'Volume Up', 'audioigniter' ),
 			'volume_down'         => esc_html__( 'Volume Down', 'audioigniter' ),
-      'open_track_lyrics'   => esc_html__( 'Open track lyrics', 'audioigniter' ),
+			'open_track_lyrics'   => esc_html__( 'Open track lyrics', 'audioigniter' ),
 		) );
 
 		wp_localize_script( 'audioigniter-admin', 'ai_scripts', array(
@@ -415,7 +415,7 @@ class AudioIgniter {
 
 				<div class="ai-col-right">
 					<?php
-						$url  = 'https://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=dashboard&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link';
+						$url = 'https://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=dashboard&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link';
 						/* translators: %s is a URL. */
 						$copy = sprintf( __( 'Thank you for creating with <a href="%s" target="_blank">AudioIgniter</a>', 'audioigniter' ),
 							esc_url( $url )
@@ -601,8 +601,8 @@ class AudioIgniter {
 							class="ai-track-lyrics"
 							name="ai_playlist_tracks[<?php echo esc_attr( $uid ); ?>][lyrics]"
 							placeholder="<?php esc_attr_e( 'Lyrics', 'audioigniter' ); ?>"
-              rows="5"
-            ><?php echo esc_html( $lyrics ); ?></textarea>
+							rows="5"
+						><?php echo esc_html( $lyrics ); ?></textarea>
 					</div>
 
 					<button type="button" class="button ai-remove-field">
@@ -1038,8 +1038,8 @@ class AudioIgniter {
 					'show_active_cover',
 					'limit_tracklisting_height',
 					'tracklisting_height',
-          'allow_track_listing_loop',
-          'allow_track_listing_toggle'
+					'allow_track_listing_loop',
+					'allow_track_listing_toggle',
 				),
 				'info'       => '',
 			),
@@ -1085,13 +1085,13 @@ class AudioIgniter {
 
 	public static function get_default_track_values() {
 		return apply_filters( 'audioigniter_default_track_values', array(
-      'cover_id'     => '',
-      'title'        => '',
-      'artist'       => '',
-      'track_url'    => '',
-      'buy_link'     => '',
-      'download_url' => '',
-      'lyrics'       => '',
+			'cover_id'     => '',
+			'title'        => '',
+			'artist'       => '',
+			'track_url'    => '',
+			'buy_link'     => '',
+			'download_url' => '',
+			'lyrics'       => '',
 		) );
 	}
 
@@ -1149,27 +1149,27 @@ class AudioIgniter {
 			return array();
 		}
 
-    $attrs = array(
-      'data-player-type'              => $this->get_post_meta( $post_id, '_audioigniter_player_type', 'full' ),
-      'data-tracks-url'               => add_query_arg( array( 'audioigniter_playlist_id' => $post_id ), home_url( '/' ) ),
-      'data-display-track-no'         => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_numbers', 1 ) ),
-      'data-reverse-track-order'      => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_numbers_reverse', 0 ) ),
-      'data-display-tracklist-covers' => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_covers', 1 ) ),
-      'data-display-active-cover'     => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_active_cover', 1 ) ),
-      'data-display-artist-names'     => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_artist', 1 ) ),
-      'data-display-buy-buttons'      => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_buy_links', 1 ) ),
-      'data-buy-buttons-target'       => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_buy_links_new_target', 1 ) ),
-      'data-cycle-tracks'             => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_cycle_tracks', 0 ) ),
-      'data-display-credits'          => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_credit', 1 ) ),
-      'data-display-tracklist'        => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_track_listing', 1 ) ),
-      'data-allow-tracklist-toggle'   => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_allow_track_listing_toggle', 1 ) ),
-      'data-allow-tracklist-loop'     => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_allow_track_listing_loop', 1 ) ),
-      'data-allow-track-loop'         => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_allow_track_loop', 0 ) ),
-      'data-limit-tracklist-height'   => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_limit_tracklisting_height', 1 ) ),
-      'data-volume'                   => intval( $this->get_post_meta( $post_id, '_audioigniter_volume', 100 ) ),
-      'data-tracklist-height'         => intval( $this->get_post_meta( $post_id, '_audioigniter_tracklisting_height', 185 ) ),
-      'data-max-width'                => $this->get_post_meta( $post_id, '_audioigniter_max_width' ),
-    );
+		$attrs = array(
+			'data-player-type'              => $this->get_post_meta( $post_id, '_audioigniter_player_type', 'full' ),
+			'data-tracks-url'               => add_query_arg( array( 'audioigniter_playlist_id' => $post_id ), home_url( '/' ) ),
+			'data-display-track-no'         => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_numbers', 1 ) ),
+			'data-reverse-track-order'      => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_numbers_reverse', 0 ) ),
+			'data-display-tracklist-covers' => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_covers', 1 ) ),
+			'data-display-active-cover'     => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_active_cover', 1 ) ),
+			'data-display-artist-names'     => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_artist', 1 ) ),
+			'data-display-buy-buttons'      => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_buy_links', 1 ) ),
+			'data-buy-buttons-target'       => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_buy_links_new_target', 1 ) ),
+			'data-cycle-tracks'             => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_cycle_tracks', 0 ) ),
+			'data-display-credits'          => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_credit', 1 ) ),
+			'data-display-tracklist'        => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_track_listing', 1 ) ),
+			'data-allow-tracklist-toggle'   => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_allow_track_listing_toggle', 1 ) ),
+			'data-allow-tracklist-loop'     => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_allow_track_listing_loop', 1 ) ),
+			'data-allow-track-loop'         => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_allow_track_loop', 0 ) ),
+			'data-limit-tracklist-height'   => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_limit_tracklisting_height', 1 ) ),
+			'data-volume'                   => intval( $this->get_post_meta( $post_id, '_audioigniter_volume', 100 ) ),
+			'data-tracklist-height'         => intval( $this->get_post_meta( $post_id, '_audioigniter_tracklisting_height', 185 ) ),
+			'data-max-width'                => $this->get_post_meta( $post_id, '_audioigniter_max_width' ),
+		);
 
 		return $attrs;
 	}
@@ -1257,12 +1257,12 @@ class AudioIgniter {
 			$track          = wp_parse_args( $track, self::get_default_track_values() );
 			$track_response = array();
 
-      $track_response['title']       = $track['title'];
-      $track_response['subtitle']    = $track['artist'];
-      $track_response['audio']       = $track['track_url'];
-      $track_response['buyUrl']      = $track['buy_link'];
-      $track_response['downloadUrl'] = $track['download_url'];
-      $track_response['lyrics']      = $track['lyrics'];
+			$track_response['title']       = $track['title'];
+			$track_response['subtitle']    = $track['artist'];
+			$track_response['audio']       = $track['track_url'];
+			$track_response['buyUrl']      = $track['buy_link'];
+			$track_response['downloadUrl'] = $track['download_url'];
+			$track_response['lyrics']      = $track['lyrics'];
 
 			$cover_url = wp_get_attachment_image_src( intval( $track['cover_id'] ), 'audioigniter_cover' );
 			if ( ! empty( $cover_url[0] ) ) {
