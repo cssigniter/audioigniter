@@ -30,14 +30,14 @@
       return Object.prototype.hasOwnProperty.call(e, t);
     }),
     (t.p = ''),
-    t((t.s = 25));
+    t((t.s = 26));
 })([
   function(e, t, n) {
     'use strict';
-    e.exports = n(26);
+    e.exports = n(27);
   },
   function(e, t, n) {
-    e.exports = n(30)();
+    e.exports = n(35)();
   },
   function(e, t, n) {
     'use strict';
@@ -104,13 +104,13 @@
       })(),
       c = n(0),
       f = r(c),
-      d = n(37),
+      d = n(38),
       p = r(d),
       h = [],
       m = !1,
       y = void 0;
     if ('undefined' != typeof window) {
-      var v = n(39);
+      var v = n(40);
       (y = v.soundManager),
         y.onready(function() {
           h.slice().forEach(function(e) {
@@ -782,6 +782,120 @@
         );
       })(u.default.Component));
   },
+  function(e, t, n) {
+    'use strict';
+    function r(e) {
+      return e && e.__esModule ? e : { default: e };
+    }
+    function o(e, t) {
+      var n = {};
+      for (var r in e)
+        t.indexOf(r) >= 0 ||
+          (Object.prototype.hasOwnProperty.call(e, r) && (n[r] = e[r]));
+      return n;
+    }
+    Object.defineProperty(t, '__esModule', { value: !0 }),
+      (t.AppContext = void 0);
+    var a =
+        Object.assign ||
+        function(e) {
+          for (var t = 1; t < arguments.length; t++) {
+            var n = arguments[t];
+            for (var r in n)
+              Object.prototype.hasOwnProperty.call(n, r) && (e[r] = n[r]);
+          }
+          return e;
+        },
+      i = (function() {
+        function e(e, t) {
+          var n = [],
+            r = !0,
+            o = !1,
+            a = void 0;
+          try {
+            for (
+              var i, l = e[Symbol.iterator]();
+              !(r = (i = l.next()).done) &&
+              (n.push(i.value), !t || n.length !== t);
+              r = !0
+            );
+          } catch (e) {
+            (o = !0), (a = e);
+          } finally {
+            try {
+              !r && l.return && l.return();
+            } finally {
+              if (o) throw a;
+            }
+          }
+          return n;
+        }
+        return function(t, n) {
+          if (Array.isArray(t)) return t;
+          if (Symbol.iterator in Object(t)) return e(t, n);
+          throw new TypeError(
+            'Invalid attempt to destructure non-iterable instance',
+          );
+        };
+      })(),
+      l = n(0),
+      u = r(l),
+      s = n(1),
+      c = r(s),
+      f = n(37),
+      d = r(f),
+      p = n(65),
+      h = r(p),
+      m = n(66),
+      y = r(m),
+      v = n(67),
+      g = r(v),
+      b = (t.AppContext = (0, l.createContext)()),
+      k = function(e) {
+        var t = e.type,
+          n = o(e, ['type']),
+          r = (0, l.useState)({ open: !1, track: null }),
+          s = i(r, 2),
+          c = s[0],
+          f = s[1],
+          p = function(e, t) {
+            return f(function(n) {
+              return a({}, n, { track: t, open: e });
+            });
+          },
+          m = c.track,
+          v = c.open,
+          k = (function() {
+            return 'simple' === t
+              ? h.default
+              : 'global-footer' === t
+              ? y.default
+              : d.default;
+          })();
+        return u.default.createElement(
+          l.Fragment,
+          null,
+          u.default.createElement(
+            b.Provider,
+            { value: { toggleLyricsModal: p } },
+            u.default.createElement(k, n),
+          ),
+          m &&
+            m.lyrics &&
+            u.default.createElement(
+              g.default,
+              {
+                isOpen: v,
+                closeModal: function() {
+                  return p(!1);
+                },
+              },
+              m && m.lyrics,
+            ),
+        );
+      };
+    (k.propTypes = { type: c.default.string }), (t.default = k);
+  },
   function(e, t) {
     var n;
     n = (function() {
@@ -1158,19 +1272,6 @@
   },
   function(e, t, n) {
     'use strict';
-    Object.defineProperty(t, '__esModule', { value: !0 }),
-      (t.canUseDOM = void 0);
-    var r = n(72),
-      o = (function(e) {
-        return e && e.__esModule ? e : { default: e };
-      })(r),
-      a = o.default,
-      i = a.canUseDOM ? window.HTMLElement : {};
-    t.canUseDOM = a.canUseDOM;
-    t.default = i;
-  },
-  function(e, t, n) {
-    'use strict';
     function r(e) {
       return e && e.__esModule ? e : { default: e };
     }
@@ -1283,7 +1384,7 @@
       p = r(d),
       h = n(2),
       m = r(h),
-      y = n(75),
+      y = n(64),
       v = r(y),
       g = function(e, t) {
         var n = (function(n) {
@@ -1582,6 +1683,19 @@
   },
   function(e, t, n) {
     'use strict';
+    Object.defineProperty(t, '__esModule', { value: !0 }),
+      (t.canUseDOM = void 0);
+    var r = n(76),
+      o = (function(e) {
+        return e && e.__esModule ? e : { default: e };
+      })(r),
+      a = o.default,
+      i = a.canUseDOM ? window.HTMLElement : {};
+    t.canUseDOM = a.canUseDOM;
+    t.default = i;
+  },
+  function(e, t, n) {
+    'use strict';
     function r(e) {
       if (null === e || void 0 === e)
         throw new TypeError(
@@ -1645,7 +1759,7 @@
           __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(r);
         } catch (e) {}
     }
-    r(), (e.exports = n(27));
+    r(), (e.exports = n(28));
   },
   function(e, t) {
     function n() {
@@ -1809,8 +1923,8 @@
       s = r(u),
       c = n(1),
       f = r(c),
-      d = n(41),
-      p = n(18),
+      d = n(42),
+      p = n(19),
       h = r(p),
       m = (function(e) {
         function t() {
@@ -1952,10 +2066,10 @@
           : o(arguments[0], arguments[1])
         : r(arguments[0], arguments[1], arguments[2]);
     }
-    var l = n(45),
-      u = n(46),
+    var l = n(46),
+      u = n(47),
       s = { float: 'cssFloat' },
-      c = n(49);
+      c = n(50);
     (e.exports = i),
       (e.exports.set = i),
       (e.exports.get = function(e, t) {
@@ -1985,7 +2099,7 @@
       u = r(l),
       s = n(2),
       c = r(s),
-      f = n(60),
+      f = n(61),
       d = r(f),
       p = function(e) {
         var t = o(e, []),
@@ -2045,104 +2159,6 @@
       repeatingTrackIndex: u.default.number,
     }),
       (t.default = p);
-  },
-  function(e, t, n) {
-    e.exports = n(66)();
-  },
-  function(e, t, n) {
-    'use strict';
-    function r(e) {
-      var t = e.offsetWidth <= 0 && e.offsetHeight <= 0;
-      if (t && !e.innerHTML) return !0;
-      var n = window.getComputedStyle(e);
-      return t
-        ? 'visible' !== n.getPropertyValue('overflow')
-        : 'none' == n.getPropertyValue('display');
-    }
-    function o(e) {
-      for (var t = e; t && t !== document.body; ) {
-        if (r(t)) return !1;
-        t = t.parentNode;
-      }
-      return !0;
-    }
-    function a(e, t) {
-      var n = e.nodeName.toLowerCase();
-      return (
-        ((u.test(n) && !e.disabled) || ('a' === n ? e.href || t : t)) && o(e)
-      );
-    }
-    function i(e) {
-      var t = e.getAttribute('tabindex');
-      null === t && (t = void 0);
-      var n = isNaN(t);
-      return (n || t >= 0) && a(e, !n);
-    }
-    function l(e) {
-      return [].slice.call(e.querySelectorAll('*'), 0).filter(i);
-    }
-    Object.defineProperty(t, '__esModule', { value: !0 }), (t.default = l);
-    var u = /input|select|textarea|button|object/;
-    e.exports = t.default;
-  },
-  function(e, t, n) {
-    'use strict';
-    function r(e, t) {
-      if (!e || !e.length)
-        throw new Error(
-          'react-modal: No elements were found for selector ' + t + '.',
-        );
-    }
-    function o(e) {
-      var t = e;
-      if ('string' == typeof t && d.canUseDOM) {
-        var n = document.querySelectorAll(t);
-        r(n, t), (t = 'length' in n ? n[0] : n);
-      }
-      return (p = t || p);
-    }
-    function a(e) {
-      return (
-        !(!e && !p) ||
-        ((0, f.default)(
-          !1,
-          [
-            'react-modal: App element is not defined.',
-            'Please use `Modal.setAppElement(el)` or set `appElement={el}`.',
-            "This is needed so screen readers don't see main content",
-            'when modal is opened. It is not recommended, but you can opt-out',
-            'by setting `ariaHideApp={false}`.',
-          ].join(' '),
-        ),
-        !1)
-      );
-    }
-    function i(e) {
-      a(e) && (e || p).setAttribute('aria-hidden', 'true');
-    }
-    function l(e) {
-      a(e) && (e || p).removeAttribute('aria-hidden');
-    }
-    function u() {
-      p = null;
-    }
-    function s() {
-      p = null;
-    }
-    Object.defineProperty(t, '__esModule', { value: !0 }),
-      (t.assertNodeList = r),
-      (t.setElement = o),
-      (t.validateElement = a),
-      (t.hide = i),
-      (t.show = l),
-      (t.documentNotReadyOrSSRTesting = u),
-      (t.resetForTesting = s);
-    var c = n(71),
-      f = (function(e) {
-        return e && e.__esModule ? e : { default: e };
-      })(c),
-      d = n(10),
-      p = null;
   },
   function(e, t, n) {
     'use strict';
@@ -2401,20 +2417,111 @@
         setVolume: d.default.func.isRequired,
       });
   },
+  function(e, t, n) {
+    e.exports = n(70)();
+  },
+  function(e, t, n) {
+    'use strict';
+    function r(e) {
+      var t = e.offsetWidth <= 0 && e.offsetHeight <= 0;
+      if (t && !e.innerHTML) return !0;
+      var n = window.getComputedStyle(e);
+      return t
+        ? 'visible' !== n.getPropertyValue('overflow')
+        : 'none' == n.getPropertyValue('display');
+    }
+    function o(e) {
+      for (var t = e; t && t !== document.body; ) {
+        if (r(t)) return !1;
+        t = t.parentNode;
+      }
+      return !0;
+    }
+    function a(e, t) {
+      var n = e.nodeName.toLowerCase();
+      return (
+        ((u.test(n) && !e.disabled) || ('a' === n ? e.href || t : t)) && o(e)
+      );
+    }
+    function i(e) {
+      var t = e.getAttribute('tabindex');
+      null === t && (t = void 0);
+      var n = isNaN(t);
+      return (n || t >= 0) && a(e, !n);
+    }
+    function l(e) {
+      return [].slice.call(e.querySelectorAll('*'), 0).filter(i);
+    }
+    Object.defineProperty(t, '__esModule', { value: !0 }), (t.default = l);
+    var u = /input|select|textarea|button|object/;
+    e.exports = t.default;
+  },
+  function(e, t, n) {
+    'use strict';
+    function r(e, t) {
+      if (!e || !e.length)
+        throw new Error(
+          'react-modal: No elements were found for selector ' + t + '.',
+        );
+    }
+    function o(e) {
+      var t = e;
+      if ('string' == typeof t && d.canUseDOM) {
+        var n = document.querySelectorAll(t);
+        r(n, t), (t = 'length' in n ? n[0] : n);
+      }
+      return (p = t || p);
+    }
+    function a(e) {
+      return (
+        !(!e && !p) ||
+        ((0, f.default)(
+          !1,
+          [
+            'react-modal: App element is not defined.',
+            'Please use `Modal.setAppElement(el)` or set `appElement={el}`.',
+            "This is needed so screen readers don't see main content",
+            'when modal is opened. It is not recommended, but you can opt-out',
+            'by setting `ariaHideApp={false}`.',
+          ].join(' '),
+        ),
+        !1)
+      );
+    }
+    function i(e) {
+      a(e) && (e || p).setAttribute('aria-hidden', 'true');
+    }
+    function l(e) {
+      a(e) && (e || p).removeAttribute('aria-hidden');
+    }
+    function u() {
+      p = null;
+    }
+    function s() {
+      p = null;
+    }
+    Object.defineProperty(t, '__esModule', { value: !0 }),
+      (t.assertNodeList = r),
+      (t.setElement = o),
+      (t.validateElement = a),
+      (t.hide = i),
+      (t.show = l),
+      (t.documentNotReadyOrSSRTesting = u),
+      (t.resetForTesting = s);
+    var c = n(75),
+      f = (function(e) {
+        return e && e.__esModule ? e : { default: e };
+      })(c),
+      d = n(13),
+      p = null;
+  },
   ,
   function(e, t, n) {
     'use strict';
     function r(e) {
       return e && e.__esModule ? e : { default: e };
     }
-    function o(e, t) {
-      var n = {};
-      for (var r in e)
-        t.indexOf(r) >= 0 ||
-          (Object.prototype.hasOwnProperty.call(e, r) && (n[r] = e[r]));
-      return n;
-    }
-    function a(e) {
+    function o(e) {
       var t = e.getAttribute('data-player-type'),
         n = {
           tracksUrl: e.getAttribute('data-tracks-url'),
@@ -2460,9 +2567,9 @@
           maxWidth: e.getAttribute('data-max-width'),
           soundcloudClientId: e.getAttribute('data-soundcloud-client-id'),
         };
-      (0, s.render)(u.default.createElement(b, i({ type: t }, n)), e);
+      (0, u.render)(l.default.createElement(c.default, a({ type: t }, n)), e);
     }
-    var i =
+    var a =
         Object.assign ||
         function(e) {
           for (var t = 1; t < arguments.length; t++) {
@@ -2472,34 +2579,18 @@
           }
           return e;
         },
-      l = n(0),
-      u = r(l),
-      s = n(14),
-      c = n(1),
-      f = r(c);
-    n(32), n(35);
-    var d = n(36),
-      p = r(d),
-      h = n(76),
-      m = r(h),
-      y = n(77),
-      v = r(y),
-      g = document.getElementsByClassName('audioigniter-root'),
-      b = function(e) {
-        var t = e.type,
-          n = o(e, ['type']);
-        return 'simple' === t
-          ? u.default.createElement(m.default, n)
-          : 'global-footer' === t
-          ? u.default.createElement(v.default, n)
-          : u.default.createElement(p.default, n);
-      };
-    (b.propTypes = { type: f.default.string }),
-      Array.prototype.slice.call(g).forEach(function(e) {
-        a(e);
-      }),
+      i = n(0),
+      l = r(i),
+      u = n(15);
+    n(31), n(34);
+    var s = n(4),
+      c = r(s),
+      f = document.getElementsByClassName('audioigniter-root');
+    Array.prototype.slice.call(f).forEach(function(e) {
+      o(e);
+    }),
       (window.__CI_AUDIOIGNITER_MANUAL_INIT__ = function(e) {
-        a(e);
+        o(e);
       });
   },
   function(e, t, n) {
@@ -2712,20 +2803,20 @@
       var e = j.current;
       return null === e && o('307'), e;
     }
-    var _ = n(13),
+    var _ = n(14),
       T = 'function' == typeof Symbol && Symbol.for,
       w = T ? Symbol.for('react.element') : 60103,
       S = T ? Symbol.for('react.portal') : 60106,
       O = T ? Symbol.for('react.fragment') : 60107,
       E = T ? Symbol.for('react.strict_mode') : 60108,
       x = T ? Symbol.for('react.profiler') : 60114,
-      P = T ? Symbol.for('react.provider') : 60109,
-      C = T ? Symbol.for('react.context') : 60110,
+      C = T ? Symbol.for('react.provider') : 60109,
+      P = T ? Symbol.for('react.context') : 60110,
       M = T ? Symbol.for('react.concurrent_mode') : 60111,
       N = T ? Symbol.for('react.forward_ref') : 60112,
       L = T ? Symbol.for('react.suspense') : 60113,
-      D = T ? Symbol.for('react.memo') : 60115,
-      I = T ? Symbol.for('react.lazy') : 60116,
+      I = T ? Symbol.for('react.memo') : 60115,
+      D = T ? Symbol.for('react.lazy') : 60116,
       A = 'function' == typeof Symbol && Symbol.iterator,
       R = {
         isMounted: function() {
@@ -2795,7 +2886,7 @@
           return (
             void 0 === t && (t = null),
             (e = {
-              $$typeof: C,
+              $$typeof: P,
               _calculateChangedBits: t,
               _currentValue: e,
               _currentValue2: e,
@@ -2803,7 +2894,7 @@
               Provider: null,
               Consumer: null,
             }),
-            (e.Provider = { $$typeof: P, _context: e }),
+            (e.Provider = { $$typeof: C, _context: e }),
             (e.Consumer = e)
           );
         },
@@ -2811,10 +2902,10 @@
           return { $$typeof: N, render: e };
         },
         lazy: function(e) {
-          return { $$typeof: I, _ctor: e, _status: -1, _result: null };
+          return { $$typeof: D, _ctor: e, _status: -1, _result: null };
         },
         memo: function(e, t) {
-          return { $$typeof: D, type: e, compare: void 0 === t ? null : t };
+          return { $$typeof: I, type: e, compare: void 0 === t ? null : t };
         },
         useCallback: function(e, t) {
           return k().useCallback(e, t);
@@ -3078,7 +3169,7 @@
       o('33');
     }
     function b(e) {
-      return e[Po] || null;
+      return e[Co] || null;
     }
     function k(e) {
       do {
@@ -3129,7 +3220,7 @@
       for (t in n) if (n.hasOwnProperty(t) && t in Lo) return (No[e] = n[t]);
       return e;
     }
-    function P() {
+    function C() {
       if (Uo) return Uo;
       var e,
         t,
@@ -3142,7 +3233,7 @@
       for (t = 1; t <= i && n[r - t] === o[a - t]; t++);
       return (Uo = o.slice(e, 1 < t ? 1 - t : void 0));
     }
-    function C() {
+    function P() {
       return !0;
     }
     function M() {
@@ -3164,7 +3255,7 @@
         (this.isDefaultPrevented = (null != n.defaultPrevented
         ? n.defaultPrevented
         : !1 === n.returnValue)
-          ? C
+          ? P
           : M),
         (this.isPropagationStopped = M),
         this
@@ -3177,13 +3268,13 @@
       }
       return new this(e, t, n, r);
     }
-    function D(e) {
+    function I(e) {
       e instanceof this || o('279'),
         e.destructor(),
         10 > this.eventPool.length && this.eventPool.push(e);
     }
-    function I(e) {
-      (e.eventPool = []), (e.getPooled = L), (e.release = D);
+    function D(e) {
+      (e.eventPool = []), (e.getPooled = L), (e.release = I);
     }
     function A(e, t) {
       switch (e) {
@@ -3219,7 +3310,7 @@
     function H(e, t) {
       if (Xo)
         return 'compositionend' === e || (!Wo && A(e, t))
-          ? ((e = P()), (Uo = jo = Ho = null), (Xo = !1), e)
+          ? ((e = C()), (Uo = jo = Ho = null), (Xo = !1), e)
           : null;
       switch (e) {
         case 'paste':
@@ -3284,7 +3375,7 @@
       );
     }
     function Q(e) {
-      if (!Co) return !1;
+      if (!Po) return !1;
       e = 'on' + e;
       var t = e in document;
       return (
@@ -3603,19 +3694,19 @@
       if ('change' === e) return t;
     }
     function be() {
-      xa && (xa.detachEvent('onpropertychange', ke), (Pa = xa = null));
+      xa && (xa.detachEvent('onpropertychange', ke), (Ca = xa = null));
     }
     function ke(e) {
-      'value' === e.propertyName && ve(Pa) && ((e = me(Pa, e, $(e))), q(ye, e));
+      'value' === e.propertyName && ve(Ca) && ((e = me(Ca, e, $(e))), q(ye, e));
     }
     function _e(e, t, n) {
       'focus' === e
-        ? (be(), (xa = t), (Pa = n), xa.attachEvent('onpropertychange', ke))
+        ? (be(), (xa = t), (Ca = n), xa.attachEvent('onpropertychange', ke))
         : 'blur' === e && be();
     }
     function Te(e) {
       if ('selectionchange' === e || 'keyup' === e || 'keydown' === e)
-        return ve(Pa);
+        return ve(Ca);
     }
     function we(e, t) {
       if ('click' === e) return ve(t);
@@ -3635,7 +3726,7 @@
     function xe(e, t) {
       return (e === t && (0 !== e || 1 / e == 1 / t)) || (e !== e && t !== t);
     }
-    function Pe(e, t) {
+    function Ce(e, t) {
       if (xe(e, t)) return !0;
       if (
         'object' != typeof e ||
@@ -3651,7 +3742,7 @@
         if (!za.call(t, n[r]) || !xe(e[n[r]], t[n[r]])) return !1;
       return !0;
     }
-    function Ce(e) {
+    function Pe(e) {
       var t = e;
       if (e.alternate) for (; t.return; ) t = t.return;
       else {
@@ -3662,11 +3753,11 @@
       return 3 === t.tag ? 2 : 3;
     }
     function Me(e) {
-      2 !== Ce(e) && o('188');
+      2 !== Pe(e) && o('188');
     }
     function Ne(e) {
       var t = e.alternate;
-      if (!t) return (t = Ce(e)), 3 === t && o('188'), 1 === t ? null : e;
+      if (!t) return (t = Pe(e)), 3 === t && o('188'), 1 === t ? null : e;
       for (var n = e, r = t; ; ) {
         var a = n.return,
           i = a ? a.alternate : null;
@@ -3728,7 +3819,7 @@
       }
       return null;
     }
-    function De(e) {
+    function Ie(e) {
       var t = e.keyCode;
       return (
         'charCode' in e
@@ -3738,7 +3829,7 @@
         32 <= e || 13 === e ? e : 0
       );
     }
-    function Ie(e, t) {
+    function De(e, t) {
       var n = e[0];
       e = e[1];
       var r = 'on' + (e[0].toUpperCase() + e.slice(1));
@@ -3792,7 +3883,7 @@
         var n = $(t);
         if (
           ((n = y(n)),
-          null === n || 'number' != typeof n.tag || 2 === Ce(n) || (n = null),
+          null === n || 'number' != typeof n.tag || 2 === Pe(n) || (n = null),
           ri.length)
         ) {
           var r = ri.pop();
@@ -4028,7 +4119,7 @@
                 focusNode: n.focusNode,
                 focusOffset: n.focusOffset,
               })),
-          di && Pe(di, n)
+          di && Ce(di, n)
             ? null
             : ((di = n),
               (e = N.getPooled(si.select, fi, e, t)),
@@ -4234,7 +4325,7 @@
       );
     }
     function ht(e, t, n, r, o) {
-      (e[Po] = o),
+      (e[Co] = o),
         'input' === n && 'radio' === o.type && null != o.name && fe(e, o),
         st(n, r),
         (r = st(n, o));
@@ -4279,14 +4370,14 @@
       return e;
     }
     function vt(e) {
-      0 > Pi || ((e.current = xi[Pi]), (xi[Pi] = null), Pi--);
+      0 > Ci || ((e.current = xi[Ci]), (xi[Ci] = null), Ci--);
     }
     function gt(e, t) {
-      Pi++, (xi[Pi] = e.current), (e.current = t);
+      Ci++, (xi[Ci] = e.current), (e.current = t);
     }
     function bt(e, t) {
       var n = e.type.contextTypes;
-      if (!n) return Ci;
+      if (!n) return Pi;
       var r = e.stateNode;
       if (r && r.__reactInternalMemoizedUnmaskedChildContext === t)
         return r.__reactInternalMemoizedMaskedChildContext;
@@ -4311,7 +4402,7 @@
       vt(Ni, e), vt(Mi, e);
     }
     function wt(e, t, n) {
-      Mi.current !== Ci && o('168'), gt(Mi, t, e), gt(Ni, n, e);
+      Mi.current !== Pi && o('168'), gt(Mi, t, e), gt(Ni, n, e);
     }
     function St(e, t, n) {
       var r = e.stateNode;
@@ -4324,7 +4415,7 @@
     function Ot(e) {
       var t = e.stateNode;
       return (
-        (t = (t && t.__reactInternalMemoizedMergedChildContext) || Ci),
+        (t = (t && t.__reactInternalMemoizedMergedChildContext) || Pi),
         (Li = Mi.current),
         gt(Mi, t, e),
         gt(Ni, Ni.current, e),
@@ -4350,22 +4441,22 @@
         } catch (e) {}
       };
     }
-    function Pt(e) {
+    function Ct(e) {
       if ('undefined' == typeof __REACT_DEVTOOLS_GLOBAL_HOOK__) return !1;
       var t = __REACT_DEVTOOLS_GLOBAL_HOOK__;
       if (t.isDisabled || !t.supportsFiber) return !0;
       try {
         var n = t.inject(e);
-        (Di = xt(function(e) {
+        (Ii = xt(function(e) {
           return t.onCommitFiberRoot(n, e);
         })),
-          (Ii = xt(function(e) {
+          (Di = xt(function(e) {
             return t.onCommitFiberUnmount(n, e);
           }));
       } catch (e) {}
       return !0;
     }
-    function Ct(e, t, n, r) {
+    function Pt(e, t, n, r) {
       (this.tag = e),
         (this.key = n),
         (this.sibling = this.child = this.return = this.stateNode = this.type = this.elementType = null),
@@ -4380,7 +4471,7 @@
         (this.alternate = null);
     }
     function Mt(e, t, n, r) {
-      return new Ct(e, t, n, r);
+      return new Pt(e, t, n, r);
     }
     function Nt(e) {
       return !(!(e = e.prototype) || !e.isReactComponent);
@@ -4393,7 +4484,7 @@
       }
       return 2;
     }
-    function Dt(e, t) {
+    function It(e, t) {
       var n = e.alternate;
       return (
         null === n
@@ -4421,7 +4512,7 @@
         n
       );
     }
-    function It(e, t, n, r, a, i) {
+    function Dt(e, t, n, r, a, i) {
       var l = 2;
       if (((r = e), 'function' == typeof e)) Nt(e) && (l = 1);
       else if ('string' == typeof e) l = 5;
@@ -4632,19 +4723,19 @@
           ? e.shouldComponentUpdate(r, a, i)
           : !t.prototype ||
             !t.prototype.isPureReactComponent ||
-            (!Pe(n, r) || !Pe(o, a))
+            (!Ce(n, r) || !Ce(o, a))
       );
     }
     function Qt(e, t, n) {
       var r = !1,
-        o = Ci,
+        o = Pi,
         a = t.contextType;
       return (
         'object' == typeof a && null !== a
           ? (a = zn(a))
           : ((o = kt(t) ? Li : Mi.current),
             (r = t.contextTypes),
-            (a = (r = null !== r && void 0 !== r) ? bt(e, o) : Ci)),
+            (a = (r = null !== r && void 0 !== r) ? bt(e, o) : Pi)),
         (t = new t(n, a)),
         (e.memoizedState =
           null !== t.state && void 0 !== t.state ? t.state : null),
@@ -4750,7 +4841,7 @@
         return e;
       }
       function a(e, t, n) {
-        return (e = Dt(e, t, n)), (e.index = 0), (e.sibling = null), e;
+        return (e = It(e, t, n)), (e.index = 0), (e.sibling = null), e;
       }
       function i(t, n, r) {
         return (
@@ -4773,7 +4864,7 @@
       function s(e, t, n, r) {
         return null !== t && t.elementType === n.type
           ? ((r = a(t, n.props, r)), (r.ref = Xt(e, t, n)), (r.return = e), r)
-          : ((r = It(n.type, n.key, n.props, null, e.mode, r)),
+          : ((r = Dt(n.type, n.key, n.props, null, e.mode, r)),
             (r.ref = Xt(e, t, n)),
             (r.return = e),
             r);
@@ -4798,7 +4889,7 @@
           switch (t.$$typeof) {
             case la:
               return (
-                (n = It(t.type, t.key, t.props, null, e.mode, n)),
+                (n = Dt(t.type, t.key, t.props, null, e.mode, n)),
                 (n.ref = Xt(e, null, t)),
                 (n.return = e),
                 n
@@ -4972,7 +5063,7 @@
                   ? ((r = At(i.props.children, e.mode, u, i.key)),
                     (r.return = e),
                     (e = r))
-                  : ((u = It(i.type, i.key, i.props, null, e.mode, u)),
+                  : ((u = Dt(i.type, i.key, i.props, null, e.mode, u)),
                     (u.ref = Xt(e, r, i)),
                     (u.return = e),
                     (e = u));
@@ -5291,7 +5382,7 @@
               c = r(s, n);
             if (((i.eagerReducer = r), (i.eagerState = c), xe(c, s))) return;
           } catch (e) {}
-        Pr(e, a);
+        Cr(e, a);
       }
     }
     function kn(e, t) {
@@ -5381,7 +5472,7 @@
             Rn(e, t, o))
       );
     }
-    function Pn(e, t, n, r, o, a) {
+    function Cn(e, t, n, r, o, a) {
       if (null === e) {
         var i = n.type;
         return 'function' != typeof i ||
@@ -5389,29 +5480,29 @@
           void 0 !== i.defaultProps ||
           null !== n.compare ||
           void 0 !== n.defaultProps
-          ? ((e = It(n.type, null, r, null, t.mode, a)),
+          ? ((e = Dt(n.type, null, r, null, t.mode, a)),
             (e.ref = t.ref),
             (e.return = t),
             (t.child = e))
-          : ((t.tag = 15), (t.type = i), Cn(e, t, i, r, o, a));
+          : ((t.tag = 15), (t.type = i), Pn(e, t, i, r, o, a));
       }
       return (
         (i = e.child),
         o < a &&
         ((o = i.memoizedProps),
         (n = n.compare),
-        (n = null !== n ? n : Pe)(o, r) && e.ref === t.ref)
+        (n = null !== n ? n : Ce)(o, r) && e.ref === t.ref)
           ? Rn(e, t, a)
           : ((t.effectTag |= 1),
-            (e = Dt(i, r, a)),
+            (e = It(i, r, a)),
             (e.ref = t.ref),
             (e.return = t),
             (t.child = e))
       );
     }
-    function Cn(e, t, n, r, o, a) {
+    function Pn(e, t, n, r, o, a) {
       return null !== e &&
-        Pe(e.memoizedProps, r) &&
+        Ce(e.memoizedProps, r) &&
         e.ref === t.ref &&
         ((bl = !1), o < a)
         ? Rn(e, t, a)
@@ -5464,15 +5555,15 @@
           ('function' != typeof i.UNSAFE_componentWillReceiveProps &&
             'function' != typeof i.componentWillReceiveProps) ||
           ((l !== r || u !== s) && Gt(t, i, r, s)),
-          (Pl = !1);
+          (Cl = !1);
         var d = t.memoizedState;
         u = i.state = d;
         var p = t.updateQueue;
         null !== p && (Kn(t, p, r, i, o), (u = t.memoizedState)),
-          l !== r || d !== u || Ni.current || Pl
+          l !== r || d !== u || Ni.current || Cl
             ? ('function' == typeof c &&
                 (Yt(t, n, c, r), (u = t.memoizedState)),
-              (l = Pl || $t(t, n, l, r, d, u, s))
+              (l = Cl || $t(t, n, l, r, d, u, s))
                 ? (f ||
                     ('function' != typeof i.UNSAFE_componentWillMount &&
                       'function' != typeof i.componentWillMount) ||
@@ -5508,15 +5599,15 @@
             ('function' != typeof i.UNSAFE_componentWillReceiveProps &&
               'function' != typeof i.componentWillReceiveProps) ||
             ((l !== r || u !== s) && Gt(t, i, r, s)),
-          (Pl = !1),
+          (Cl = !1),
           (u = t.memoizedState),
           (d = i.state = u),
           (p = t.updateQueue),
           null !== p && (Kn(t, p, r, i, o), (d = t.memoizedState)),
-          l !== r || u !== d || Ni.current || Pl
+          l !== r || u !== d || Ni.current || Cl
             ? ('function' == typeof c &&
                 (Yt(t, n, c, r), (d = t.memoizedState)),
-              (c = Pl || $t(t, n, l, r, u, d, s))
+              (c = Cl || $t(t, n, l, r, u, d, s))
                 ? (f ||
                     ('function' != typeof i.UNSAFE_componentWillUpdate &&
                       'function' != typeof i.componentWillUpdate) ||
@@ -5547,9 +5638,9 @@
                 (l === e.memoizedProps && u === e.memoizedState) ||
                 (t.effectTag |= 256),
               (r = !1));
-      return Dn(e, t, n, r, a, o);
+      return In(e, t, n, r, a, o);
     }
-    function Dn(e, t, n, r, o, a) {
+    function In(e, t, n, r, o, a) {
       Mn(e, t);
       var i = 0 != (64 & t.effectTag);
       if (!r && !i) return o && Et(t, n, !1), Rn(e, t, a);
@@ -5568,7 +5659,7 @@
         t.child
       );
     }
-    function In(e) {
+    function Dn(e) {
       var t = e.stateNode;
       t.pendingContext
         ? wt(e, t.pendingContext, t.pendingContext !== t.context)
@@ -5603,12 +5694,12 @@
             (l = r.sibling),
             i
               ? ((n = o.fallback),
-                (o = Dt(r, r.pendingProps, 0)),
+                (o = It(r, r.pendingProps, 0)),
                 0 == (1 & t.mode) &&
                   (i = null !== t.memoizedState ? t.child.child : t.child) !==
                     r.child &&
                   (o.child = i),
-                (r = o.sibling = Dt(l, n, l.expirationTime)),
+                (r = o.sibling = It(l, n, l.expirationTime)),
                 (n = o),
                 (o.childExpirationTime = 0),
                 (n.return = r.return = t))
@@ -5639,14 +5730,14 @@
       if ((null !== e && t.child !== e.child && o('153'), null !== t.child)) {
         for (
           e = t.child,
-            n = Dt(e, e.pendingProps, e.expirationTime),
+            n = It(e, e.pendingProps, e.expirationTime),
             t.child = n,
             n.return = t;
           null !== e.sibling;
 
         )
           (e = e.sibling),
-            (n = n.sibling = Dt(e, e.pendingProps, e.expirationTime)),
+            (n = n.sibling = It(e, e.pendingProps, e.expirationTime)),
             (n.return = t);
         n.sibling = null;
       }
@@ -5659,7 +5750,7 @@
         else if (r < n) {
           switch (((bl = !1), t.tag)) {
             case 3:
-              In(t), On();
+              Dn(t), On();
               break;
             case 5:
               rn(t);
@@ -5710,7 +5801,7 @@
               (t.stateNode = a),
               (a._reactInternalFiber = t),
               Kt(t, r, e, n),
-              (t = Dn(null, t, r, !0, i, n));
+              (t = In(null, t, r, !0, i, n));
           } else (t.tag = 0), En(null, t, a, n), (t = t.child);
           return t;
         case 16:
@@ -5736,7 +5827,7 @@
               l = xn(null, t, e, i, n);
               break;
             case 14:
-              l = Pn(null, t, e, Wt(e.type, i), r, n);
+              l = Cn(null, t, e, Wt(e.type, i), r, n);
               break;
             default:
               o('306', e, '');
@@ -5758,7 +5849,7 @@
           );
         case 3:
           return (
-            In(t),
+            Dn(t),
             (r = t.updateQueue),
             null === r && o('282'),
             (a = t.memoizedState),
@@ -5912,10 +6003,10 @@
             (a = t.type),
             (i = Wt(a, t.pendingProps)),
             (i = Wt(a.type, i)),
-            Pn(e, t, a, i, r, n)
+            Cn(e, t, a, i, r, n)
           );
         case 15:
-          return Cn(e, t, t.type, t.pendingProps, r, n);
+          return Pn(e, t, t.type, t.pendingProps, r, n);
         case 17:
           return (
             (r = t.type),
@@ -5928,7 +6019,7 @@
             Un(t, n),
             Qt(t, r, a, n),
             Kt(t, r, a, n),
-            Dn(null, t, r, !0, e, n)
+            In(null, t, r, !0, e, n)
           );
       }
       o('156');
@@ -6053,12 +6144,12 @@
             break;
           return lo({}, r, o);
         case El:
-          Pl = !0;
+          Cl = !0;
       }
       return r;
     }
     function Kn(e, t, n, r, o) {
-      (Pl = !1), (t = Qn(e, t));
+      (Cl = !1), (t = Qn(e, t));
       for (
         var a = t.baseState, i = null, l = 0, u = t.firstUpdate, s = a;
         null !== u;
@@ -6196,7 +6287,7 @@
       }
     }
     function ar(e) {
-      switch (('function' == typeof Ii && Ii(e), e.tag)) {
+      switch (('function' == typeof Di && Di(e), e.tag)) {
         case 0:
         case 11:
         case 14:
@@ -6419,7 +6510,7 @@
           ) {
             t.updateQueue = null;
             var l = t.stateNode;
-            null === l && (l = t.stateNode = new Dl()),
+            null === l && (l = t.stateNode = new Il()),
               n.forEach(function(e) {
                 var n = Er.bind(null, t, e);
                 l.has(e) || (l.add(e), e.then(n, n));
@@ -6763,12 +6854,12 @@
           (Ql = l);
       }
       (Hl = ql = !1),
-        'function' == typeof Di && Di(t.stateNode),
+        'function' == typeof Ii && Ii(t.stateNode),
         (n = t.expirationTime),
         (t = t.childExpirationTime),
         (t = t > n ? t : n),
         0 === t && (Gl = null),
-        Ir(e, t);
+        Dr(e, t);
     }
     function kr(e) {
       for (;;) {
@@ -6814,7 +6905,7 @@
                     var c = l.type,
                       f = l.memoizedProps,
                       d = u;
-                    switch (((a[xo] = l), (a[Po] = f), (i = void 0), (u = c))) {
+                    switch (((a[xo] = l), (a[Co] = f), (i = void 0), (u = c))) {
                       case 'iframe':
                       case 'object':
                         Re('load', a);
@@ -6891,8 +6982,8 @@
                         : (c = c.createElementNS(s, a)),
                       (a = c),
                       (a[xo] = f),
-                      (a[Po] = l),
-                      Cl(a, t, !1, !1),
+                      (a[Co] = l),
+                      Pl(a, t, !1, !1),
                       (d = a),
                       (c = i),
                       (f = l);
@@ -7111,7 +7202,7 @@
         (pr(),
         (Ul = e),
         (zl = r),
-        (jl = Dt(Ul.current, null, zl)),
+        (jl = It(Ul.current, null, zl)),
         (e.pendingCommitExpirationTime = 0));
       for (var a = !1; ; ) {
         try {
@@ -7182,7 +7273,7 @@
                       (c = u), (s = l);
                       var y = c.pingCache;
                       null === y
-                        ? ((y = c.pingCache = new Il()),
+                        ? ((y = c.pingCache = new Dl()),
                           (m = new Set()),
                           y.set(d, m))
                         : void 0 === (m = y.get(d)) &&
@@ -7293,7 +7384,7 @@
                 (e = Zn(t, e)),
                 (e = fr(n, e, 1073741823)),
                 Yn(n, e),
-                void Pr(n, 1073741823)
+                void Cr(n, 1073741823)
               );
             break;
           case 3:
@@ -7301,7 +7392,7 @@
               (e = Zn(t, e)),
               (e = cr(n, e, 1073741823)),
               Yn(n, e),
-              void Pr(n, 1073741823)
+              void Cr(n, 1073741823)
             );
         }
         n = n.return;
@@ -7310,7 +7401,7 @@
         ((n = Zn(t, e)),
         (n = cr(e, n, 1073741823)),
         Yn(e, n),
-        Pr(e, 1073741823));
+        Cr(e, 1073741823));
     }
     function Sr(e, t) {
       var n = uo.unstable_getCurrentPriorityLevel(),
@@ -7392,14 +7483,14 @@
         }
       return o;
     }
-    function Pr(e, t) {
+    function Cr(e, t) {
       null !== (e = xr(e, t)) &&
         (!Hl && 0 !== zl && t > zl && pr(),
         jt(e, t),
         (Hl && !ql && Ul === e) || Rr(e, e.expirationTime),
         pu > du && ((pu = 0), o('185')));
     }
-    function Cr(e, t, n, r, o) {
+    function Pr(e, t, n, r, o) {
       return uo.unstable_runWithPriority(
         uo.unstable_ImmediatePriority,
         function() {
@@ -7424,17 +7515,17 @@
     function Lr(e, t, n, r, o) {
       (e.expirationTime = r),
         0 !== o || Hr()
-          ? 0 < o && (e.timeoutHandle = wi(Dr.bind(null, e, t, n), o))
+          ? 0 < o && (e.timeoutHandle = wi(Ir.bind(null, e, t, n), o))
           : ((e.pendingCommitExpirationTime = n), (e.finishedWork = t));
     }
-    function Dr(e, t, n) {
+    function Ir(e, t, n) {
       (e.pendingCommitExpirationTime = n),
         (e.finishedWork = t),
         Mr(),
         (fu = cu),
         zr(e, n);
     }
-    function Ir(e, t) {
+    function Dr(e, t) {
       (e.expirationTime = t), (e.finishedWork = null);
     }
     function Ar() {
@@ -7620,7 +7711,7 @@
       e: if (n) {
         n = n._reactInternalFiber;
         t: {
-          (2 === Ce(n) && 1 === n.tag) || o('170');
+          (2 === Pe(n) && 1 === n.tag) || o('170');
           var l = n;
           do {
             switch (l.tag) {
@@ -7645,7 +7736,7 @@
           }
         }
         n = l;
-      } else n = Ci;
+      } else n = Pi;
       return (
         null === t.context ? (t.context = n) : (t.pendingContext = n),
         (t = a),
@@ -7655,7 +7746,7 @@
         null !== t && (a.callback = t),
         gr(),
         Yn(i, a),
-        Pr(i, r),
+        Cr(i, r),
         r
       );
     }
@@ -7787,8 +7878,8 @@
       );
     }
     var io = n(0),
-      lo = n(13),
-      uo = n(28);
+      lo = n(14),
+      uo = n(29);
     io || o('227');
     var so = !1,
       co = null,
@@ -7829,8 +7920,8 @@
         .toString(36)
         .slice(2),
       xo = '__reactInternalInstance$' + Eo,
-      Po = '__reactEventHandlers$' + Eo,
-      Co = !(
+      Co = '__reactEventHandlers$' + Eo,
+      Po = !(
         'undefined' == typeof window ||
         !window.document ||
         !window.document.createElement
@@ -7843,15 +7934,15 @@
       },
       No = {},
       Lo = {};
-    Co &&
+    Po &&
       ((Lo = document.createElement('div').style),
       'AnimationEvent' in window ||
         (delete Mo.animationend.animation,
         delete Mo.animationiteration.animation,
         delete Mo.animationstart.animation),
       'TransitionEvent' in window || delete Mo.transitionend.transition);
-    var Do = x('animationend'),
-      Io = x('animationiteration'),
+    var Io = x('animationend'),
+      Do = x('animationiteration'),
       Ao = x('animationstart'),
       Ro = x('transitionend'),
       Fo = 'abort canplay canplaythrough durationchange emptied encrypted ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange seeked seeking stalled suspend timeupdate volumechange waiting'.split(
@@ -7868,7 +7959,7 @@
           (e.preventDefault
             ? e.preventDefault()
             : 'unknown' != typeof e.returnValue && (e.returnValue = !1),
-          (this.isDefaultPrevented = C));
+          (this.isDefaultPrevented = P));
       },
       stopPropagation: function() {
         var e = this.nativeEvent;
@@ -7876,10 +7967,10 @@
           (e.stopPropagation
             ? e.stopPropagation()
             : 'unknown' != typeof e.cancelBubble && (e.cancelBubble = !0),
-          (this.isPropagationStopped = C));
+          (this.isPropagationStopped = P));
       },
       persist: function() {
-        this.isPersistent = C;
+        this.isPersistent = P;
       },
       isPersistent: M,
       destructor: function() {
@@ -7920,19 +8011,19 @@
           (n.prototype.constructor = n),
           (n.Interface = lo({}, r.Interface, e)),
           (n.extend = r.extend),
-          I(n),
+          D(n),
           n
         );
       }),
-      I(N);
+      D(N);
     var zo = N.extend({ data: null }),
       Bo = N.extend({ data: null }),
       Vo = [9, 13, 27, 32],
-      Wo = Co && 'CompositionEvent' in window,
+      Wo = Po && 'CompositionEvent' in window,
       qo = null;
-    Co && 'documentMode' in document && (qo = document.documentMode);
-    var Yo = Co && 'TextEvent' in window && !qo,
-      $o = Co && (!Wo || (qo && 8 < qo && 11 >= qo)),
+    Po && 'documentMode' in document && (qo = document.documentMode);
+    var Yo = Po && 'TextEvent' in window && !qo,
+      $o = Po && (!Wo || (qo && 8 < qo && 11 >= qo)),
       Qo = String.fromCharCode(32),
       Go = {
         beforeInput: {
@@ -8003,7 +8094,7 @@
               ? ($o &&
                   'ko' !== n.locale &&
                   (Xo || o !== Go.compositionStart
-                    ? o === Go.compositionEnd && Xo && (a = P())
+                    ? o === Go.compositionEnd && Xo && (a = C())
                     : ((Ho = r),
                       (jo = 'value' in Ho ? Ho.value : Ho.textContent),
                       (Xo = !0))),
@@ -8141,14 +8232,14 @@
         },
       },
       xa = null,
-      Pa = null,
-      Ca = !1;
-    Co &&
-      (Ca =
+      Ca = null,
+      Pa = !1;
+    Po &&
+      (Pa =
         Q('input') && (!document.documentMode || 9 < document.documentMode));
     var Ma = {
         eventTypes: Ea,
-        _isInputEventSupported: Ca,
+        _isInputEventSupported: Pa,
         extractEvents: function(e, t, n, r) {
           var o = t ? g(t) : window,
             a = void 0,
@@ -8158,7 +8249,7 @@
             ('select' === l || ('input' === l && 'file' === o.type)
               ? (a = ge)
               : Y(o)
-              ? Ca
+              ? Pa
                 ? (a = Se)
                 : ((a = Te), (i = _e))
               : (l = o.nodeName) &&
@@ -8183,8 +8274,8 @@
         Meta: 'metaKey',
         Shift: 'shiftKey',
       },
-      Da = 0,
       Ia = 0,
+      Da = 0,
       Aa = !1,
       Ra = !1,
       Fa = Na.extend({
@@ -8209,17 +8300,17 @@
         },
         movementX: function(e) {
           if ('movementX' in e) return e.movementX;
-          var t = Da;
+          var t = Ia;
           return (
-            (Da = e.screenX),
+            (Ia = e.screenX),
             Aa ? ('mousemove' === e.type ? e.screenX - t : 0) : ((Aa = !0), 0)
           );
         },
         movementY: function(e) {
           if ('movementY' in e) return e.movementY;
-          var t = Ia;
+          var t = Da;
           return (
-            (Ia = e.screenY),
+            (Da = e.screenY),
             Ra ? ('mousemove' === e.type ? e.screenY - t : 0) : ((Ra = !0), 0)
           );
         },
@@ -8403,7 +8494,7 @@
             if ('Unidentified' !== t) return t;
           }
           return 'keypress' === e.type
-            ? ((e = De(e)), 13 === e ? 'Enter' : String.fromCharCode(e))
+            ? ((e = Ie(e)), 13 === e ? 'Enter' : String.fromCharCode(e))
             : 'keydown' === e.type || 'keyup' === e.type
             ? Ya[e.keyCode] || 'Unidentified'
             : '';
@@ -8417,14 +8508,14 @@
         locale: null,
         getModifierState: Ee,
         charCode: function(e) {
-          return 'keypress' === e.type ? De(e) : 0;
+          return 'keypress' === e.type ? Ie(e) : 0;
         },
         keyCode: function(e) {
           return 'keydown' === e.type || 'keyup' === e.type ? e.keyCode : 0;
         },
         which: function(e) {
           return 'keypress' === e.type
-            ? De(e)
+            ? Ie(e)
             : 'keydown' === e.type || 'keyup' === e.type
             ? e.keyCode
             : 0;
@@ -8468,8 +8559,8 @@
       }),
       Ja = [
         ['abort', 'abort'],
-        [Do, 'animationEnd'],
-        [Io, 'animationIteration'],
+        [Io, 'animationEnd'],
+        [Do, 'animationIteration'],
         [Ao, 'animationStart'],
         ['canplay', 'canPlay'],
         ['canplaythrough', 'canPlayThrough'],
@@ -8546,10 +8637,10 @@
       ['touchstart', 'touchStart'],
       ['volumechange', 'volumeChange'],
     ].forEach(function(e) {
-      Ie(e, !0);
+      De(e, !0);
     }),
       Ja.forEach(function(e) {
-        Ie(e, !1);
+        De(e, !1);
       });
     var ti = {
         eventTypes: Za,
@@ -8561,7 +8652,7 @@
           if (!o) return null;
           switch (e) {
             case 'keypress':
-              if (0 === De(n)) return null;
+              if (0 === Ie(n)) return null;
             case 'keydown':
             case 'keyup':
               e = $a;
@@ -8598,8 +8689,8 @@
             case 'touchstart':
               e = Ga;
               break;
-            case Do:
             case Io:
+            case Do:
             case Ao:
               e = Ba;
               break;
@@ -8639,7 +8730,7 @@
       ai = {},
       ii = 0,
       li = '_reactListenersID' + ('' + Math.random()).slice(2),
-      ui = Co && 'documentMode' in document && 11 >= document.documentMode,
+      ui = Po && 'documentMode' in document && 11 >= document.documentMode,
       si = {
         select: {
           phasedRegistrationNames: {
@@ -8825,17 +8916,17 @@
       Ei = uo.unstable_cancelCallback;
     new Set();
     var xi = [],
-      Pi = -1,
-      Ci = {},
-      Mi = { current: Ci },
+      Ci = -1,
+      Pi = {},
+      Mi = { current: Pi },
       Ni = { current: !1 },
-      Li = Ci,
-      Di = null,
+      Li = Pi,
       Ii = null,
+      Di = null,
       Ai = new io.Component().refs,
       Ri = {
         isMounted: function(e) {
-          return !!(e = e._reactInternalFiber) && 2 === Ce(e);
+          return !!(e = e._reactInternalFiber) && 2 === Pe(e);
         },
         enqueueSetState: function(e, t, n) {
           e = e._reactInternalFiber;
@@ -8846,7 +8937,7 @@
             void 0 !== n && null !== n && (o.callback = n),
             gr(),
             Yn(e, o),
-            Pr(e, r);
+            Cr(e, r);
         },
         enqueueReplaceState: function(e, t, n) {
           e = e._reactInternalFiber;
@@ -8858,7 +8949,7 @@
             void 0 !== n && null !== n && (o.callback = n),
             gr(),
             Yn(e, o),
-            Pr(e, r);
+            Cr(e, r);
         },
         enqueueForceUpdate: function(e, t) {
           e = e._reactInternalFiber;
@@ -8869,7 +8960,7 @@
             void 0 !== t && null !== t && (r.callback = t),
             gr(),
             Yn(e, r),
-            Pr(e, n);
+            Cr(e, n);
         },
       },
       Fi = Array.isArray,
@@ -9030,12 +9121,12 @@
       Ol = 1,
       El = 2,
       xl = 3,
-      Pl = !1,
-      Cl = void 0,
+      Cl = !1,
+      Pl = void 0,
       Ml = void 0,
       Nl = void 0,
       Ll = void 0;
-    (Cl = function(e, t) {
+    (Pl = function(e, t) {
       for (var n = t.child; null !== n; ) {
         if (5 === n.tag || 6 === n.tag) e.appendChild(n.stateNode);
         else if (4 !== n.tag && null !== n.child) {
@@ -9132,8 +9223,8 @@
       (Ll = function(e, t, n, r) {
         n !== r && er(t);
       });
-    var Dl = 'function' == typeof WeakSet ? WeakSet : Set,
-      Il = 'function' == typeof WeakMap ? WeakMap : Map,
+    var Il = 'function' == typeof WeakSet ? WeakSet : Set,
+      Dl = 'function' == typeof WeakMap ? WeakMap : Map,
       Al = oa.ReactCurrentDispatcher,
       Rl = oa.ReactCurrentOwner,
       Fl = 1073741822,
@@ -9357,7 +9448,7 @@
         var n = iu;
         iu = !0;
         try {
-          return Cr(e, t);
+          return Pr(e, t);
         } finally {
           (iu = n), Ur(1073741823, !1);
         }
@@ -9367,7 +9458,7 @@
         var t = iu;
         iu = !0;
         try {
-          Cr(e);
+          Pr(e);
         } finally {
           (iu = t) || eu || Ur(1073741823, !1);
         }
@@ -9392,7 +9483,7 @@
     };
     !(function(e) {
       var t = e.findFiberByHostInstance;
-      Pt(
+      Ct(
         lo({}, e, {
           overrideProps: null,
           currentDispatcherRef: oa.ReactCurrentDispatcher,
@@ -9416,7 +9507,7 @@
   },
   function(e, t, n) {
     'use strict';
-    e.exports = n(29);
+    e.exports = n(30);
   },
   function(e, t, n) {
     'use strict';
@@ -9564,7 +9655,7 @@
         'function' != typeof MessageChannel
       ) {
         var x = null,
-          P = function(e) {
+          C = function(e) {
             if (null !== x)
               try {
                 x(e);
@@ -9573,7 +9664,7 @@
               }
           };
         (T = function(e) {
-          null !== x ? setTimeout(T, 0, e) : ((x = e), setTimeout(P, 0, !1));
+          null !== x ? setTimeout(T, 0, e) : ((x = e), setTimeout(C, 0, !1));
         }),
           (w = function() {
             x = null;
@@ -9582,56 +9673,56 @@
             return !1;
           });
       } else {
-        var C = null,
+        var P = null,
           M = !1,
           N = -1,
           L = !1,
-          D = !1,
-          I = 0,
+          I = !1,
+          D = 0,
           A = 33,
           R = 33;
         S = function() {
-          return I <= t.unstable_now();
+          return D <= t.unstable_now();
         };
         var F = new MessageChannel(),
           H = F.port2;
         F.port1.onmessage = function() {
           M = !1;
-          var e = C,
+          var e = P,
             n = N;
-          (C = null), (N = -1);
+          (P = null), (N = -1);
           var r = t.unstable_now(),
             o = !1;
-          if (0 >= I - r) {
+          if (0 >= D - r) {
             if (!(-1 !== n && n <= r))
-              return L || ((L = !0), i(j)), (C = e), void (N = n);
+              return L || ((L = !0), i(j)), (P = e), void (N = n);
             o = !0;
           }
           if (null !== e) {
-            D = !0;
+            I = !0;
             try {
               e(o);
             } finally {
-              D = !1;
+              I = !1;
             }
           }
         };
         var j = function(e) {
-          if (null !== C) {
+          if (null !== P) {
             i(j);
-            var t = e - I + R;
+            var t = e - D + R;
             t < R && A < R ? (8 > t && (t = 8), (R = t < A ? A : t)) : (A = t),
-              (I = e + R),
+              (D = e + R),
               M || ((M = !0), H.postMessage(void 0));
           } else L = !1;
         };
         (T = function(e, t) {
-          (C = e),
+          (P = e),
             (N = t),
-            D || 0 > t ? H.postMessage(void 0) : L || ((L = !0), i(j));
+            I || 0 > t ? H.postMessage(void 0) : L || ((L = !0), i(j));
         }),
           (w = function() {
-            (C = null), (M = !1), (N = -1);
+            (P = null), (M = !1), (N = -1);
           });
       }
       (t.unstable_ImmediatePriority = 1),
@@ -9770,59 +9861,11 @@
         (t.unstable_getFirstCallbackNode = function() {
           return s;
         });
-    }.call(t, n(4)));
+    }.call(t, n(5)));
   },
   function(e, t, n) {
     'use strict';
-    function r() {}
-    function o() {}
-    var a = n(31);
-    (o.resetWarningCache = r),
-      (e.exports = function() {
-        function e(e, t, n, r, o, i) {
-          if (i !== a) {
-            var l = new Error(
-              'Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types',
-            );
-            throw ((l.name = 'Invariant Violation'), l);
-          }
-        }
-        function t() {
-          return e;
-        }
-        e.isRequired = e;
-        var n = {
-          array: e,
-          bool: e,
-          func: e,
-          number: e,
-          object: e,
-          string: e,
-          symbol: e,
-          any: e,
-          arrayOf: t,
-          element: e,
-          elementType: e,
-          instanceOf: t,
-          node: e,
-          objectOf: t,
-          oneOf: t,
-          oneOfType: t,
-          shape: t,
-          exact: t,
-          checkPropTypes: o,
-          resetWarningCache: r,
-        };
-        return (n.PropTypes = n), n;
-      });
-  },
-  function(e, t, n) {
-    'use strict';
-    e.exports = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-  },
-  function(e, t, n) {
-    'use strict';
-    e.exports = n(33).polyfill();
+    e.exports = n(32).polyfill();
   },
   function(e, t, n) {
     (function(t, r) {
@@ -9873,7 +9916,7 @@
               ? (function() {
                   var e = n[a - 1];
                   Y(function() {
-                    return P(a, o, e, r._result);
+                    return C(a, o, e, r._result);
                   });
                 })()
               : S(r, o, e, t),
@@ -9988,7 +10031,7 @@
               i < t.length;
               i += 3
             )
-              (r = t[i]), (o = t[i + n]), r ? P(n, r, o, a) : o(a);
+              (r = t[i]), (o = t[i + n]), r ? C(n, r, o, a) : o(a);
             e._subscribers.length = 0;
           }
         }
@@ -10002,7 +10045,7 @@
             return (ae.error = e), ae;
           }
         }
-        function P(e, t, n, r) {
+        function C(e, t, n, r) {
           var a = o(n),
             i = void 0,
             l = void 0,
@@ -10025,7 +10068,7 @@
               ? T(t, i)
               : e === re && w(t, i));
         }
-        function C(e, t) {
+        function P(e, t) {
           try {
             t(
               function(t) {
@@ -10061,12 +10104,12 @@
                   : ((this.length = this.length || 0),
                     this._enumerate(t),
                     0 === this._remaining && T(this.promise, this._result)))
-              : w(this.promise, D());
+              : w(this.promise, I());
         }
-        function D() {
+        function I() {
           return new Error('Array Methods must be provided an Array');
         }
-        function I(e) {
+        function D(e) {
           return new L(this, e).promise;
         }
         function A(e) {
@@ -10103,7 +10146,7 @@
             (this._subscribers = []),
             d !== e &&
               ('function' != typeof e && F(),
-              this instanceof j ? C(this, e) : H());
+              this instanceof j ? P(this, e) : H());
         }
         function U() {
           var e = void 0;
@@ -10184,7 +10227,7 @@
           : void 0 === $
           ? (function() {
               try {
-                var e = n(34);
+                var e = n(33);
                 return (W = e.runOnLoop || e.runOnContext), l();
               } catch (e) {
                 return u();
@@ -10245,7 +10288,7 @@
               },
             );
           }),
-          (j.all = I),
+          (j.all = D),
           (j.race = A),
           (j.resolve = f),
           (j.reject = R),
@@ -10264,7 +10307,7 @@
           j
         );
       });
-    }.call(t, n(15), n(4)));
+    }.call(t, n(16), n(5)));
   },
   function(e, t) {},
   function(e, t) {
@@ -10554,6 +10597,54 @@
   },
   function(e, t, n) {
     'use strict';
+    function r() {}
+    function o() {}
+    var a = n(36);
+    (o.resetWarningCache = r),
+      (e.exports = function() {
+        function e(e, t, n, r, o, i) {
+          if (i !== a) {
+            var l = new Error(
+              'Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types',
+            );
+            throw ((l.name = 'Invariant Violation'), l);
+          }
+        }
+        function t() {
+          return e;
+        }
+        e.isRequired = e;
+        var n = {
+          array: e,
+          bool: e,
+          func: e,
+          number: e,
+          object: e,
+          string: e,
+          symbol: e,
+          any: e,
+          arrayOf: t,
+          element: e,
+          elementType: e,
+          instanceOf: t,
+          node: e,
+          objectOf: t,
+          oneOf: t,
+          oneOfType: t,
+          shape: t,
+          exact: t,
+          checkPropTypes: o,
+          resetWarningCache: r,
+        };
+        return (n.PropTypes = n), n;
+      });
+  },
+  function(e, t, n) {
+    'use strict';
+    e.exports = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+  },
+  function(e, t, n) {
+    'use strict';
     function r(e) {
       return e && e.__esModule ? e : { default: e };
     }
@@ -10607,23 +10698,24 @@
       f = r(c),
       d = n(2),
       p = r(d),
-      h = n(7),
-      m = n(16),
+      h = n(8),
+      m = n(17),
       y = r(m),
-      v = n(9),
+      v = n(10),
       g = r(v),
-      b = n(22),
+      b = n(20),
       k = r(b),
-      _ = n(23),
+      _ = n(21),
       T = r(_),
       w = n(11),
       S = r(w),
-      O = n(8),
+      O = n(9),
       E = r(O),
       x = n(3),
-      P = n(12),
-      C = r(P),
-      M = (function(e) {
+      C = n(12),
+      P = r(C),
+      M = n(4),
+      N = (function(e) {
         function t(e) {
           o(this, t);
           var n = a(
@@ -10679,22 +10771,22 @@
                   _ = n.setVolume,
                   w = n.toggleTracklistCycling,
                   O = n.cycleTracks,
-                  P = n.allowTracklistToggle,
-                  C = n.allowTracklistLoop,
-                  M = n.allowTrackLoop,
-                  N = n.setTrackCycling,
-                  L = n.reverseTrackOrder,
+                  C = n.allowTracklistToggle,
+                  P = n.allowTracklistLoop,
+                  N = n.allowTrackLoop,
+                  L = n.setTrackCycling,
+                  I = n.reverseTrackOrder,
                   D = n.displayTrackNo,
-                  I = n.displayTracklistCovers,
-                  A = n.displayActiveCover,
-                  R = n.displayCredits,
-                  F = n.limitTracklistHeight,
-                  H = n.tracklistHeight,
-                  j = n.displayBuyButtons,
-                  U = n.buyButtonsTarget,
-                  z = n.displayArtistNames,
-                  B = n.maxWidth,
-                  V = n.repeatingTrackIndex;
+                  A = n.displayTracklistCovers,
+                  R = n.displayActiveCover,
+                  F = n.displayCredits,
+                  H = n.limitTracklistHeight,
+                  j = n.tracklistHeight,
+                  U = n.displayBuyButtons,
+                  z = n.buyButtonsTarget,
+                  B = n.displayArtistNames,
+                  V = n.maxWidth,
+                  W = n.repeatingTrackIndex;
                 return s.default.createElement(
                   'div',
                   {
@@ -10705,12 +10797,12 @@
                       'ai-wrap ai-type-full ' +
                       (r.length ? '' : 'ai-is-loading') +
                       (this.isNarrowContext() ? 'ai-narrow' : ''),
-                    style: { maxWidth: B },
+                    style: { maxWidth: V },
                   },
                   s.default.createElement(
                     'div',
                     { className: 'ai-control-wrap' },
-                    A &&
+                    R &&
                       s.default.createElement(E.default, {
                         className: 'ai-thumb ai-control-wrap-thumb',
                         src: c.cover,
@@ -10750,7 +10842,7 @@
                             s.default.createElement('span', null, c.title),
                           ),
                           (0 === r.length || c.subtitle) &&
-                            z &&
+                            B &&
                             s.default.createElement(
                               'p',
                               { className: 'ai-track-subtitle' },
@@ -10781,6 +10873,7 @@
                               className: 'ai-btn ai-tracklist-prev',
                               onClick: v,
                               ariaLabel: aiStrings.previous,
+                              title: aiStrings.previous,
                             },
                             s.default.createElement(x.PreviousIcon, null),
                           ),
@@ -10791,6 +10884,7 @@
                               className: 'ai-btn ai-tracklist-next',
                               onClick: m,
                               ariaLabel: aiStrings.next,
+                              title: aiStrings.next,
                             },
                             s.default.createElement(x.NextIcon, null),
                           ),
@@ -10798,7 +10892,7 @@
                           volume: i,
                           setVolume: _,
                         }),
-                        C &&
+                        P &&
                           s.default.createElement(
                             S.default,
                             {
@@ -10810,7 +10904,29 @@
                             },
                             s.default.createElement(x.RefreshIcon, null),
                           ),
-                        P &&
+                        c &&
+                          c.lyrics &&
+                          !t &&
+                          s.default.createElement(
+                            M.AppContext.Consumer,
+                            null,
+                            function(e) {
+                              var t = e.toggleLyricsModal;
+                              return s.default.createElement(
+                                S.default,
+                                {
+                                  className: 'ai-btn ai-lyrics',
+                                  onClick: function() {
+                                    return t(!0, c);
+                                  },
+                                  ariaLabel: aiStrings.open_track_lyrics,
+                                  title: aiStrings.open_track_lyrics,
+                                },
+                                s.default.createElement(x.LyricsIcon, null),
+                              );
+                            },
+                          ),
+                        C &&
                           s.default.createElement(
                             S.default,
                             {
@@ -10837,19 +10953,19 @@
                       activeTrackIndex: a,
                       isOpen: t,
                       displayTrackNo: D,
-                      displayCovers: I,
-                      displayBuyButtons: j,
-                      buyButtonsTarget: U,
-                      displayArtistNames: z,
-                      reverseTrackOrder: L,
-                      limitTracklistHeight: F,
-                      tracklistHeight: H,
+                      displayCovers: A,
+                      displayBuyButtons: U,
+                      buyButtonsTarget: z,
+                      displayArtistNames: B,
+                      reverseTrackOrder: I,
+                      limitTracklistHeight: H,
+                      tracklistHeight: j,
                       onTrackClick: f,
-                      onTrackLoop: M ? N : void 0,
-                      repeatingTrackIndex: V,
+                      onTrackLoop: N ? L : void 0,
+                      repeatingTrackIndex: W,
                     }),
                   ),
-                  R &&
+                  F &&
                     s.default.createElement(
                       'div',
                       { className: 'ai-footer' },
@@ -10877,7 +10993,7 @@
           t
         );
       })(s.default.Component);
-    (M.propTypes = {
+    (N.propTypes = {
       tracks: f.default.arrayOf(f.default.object),
       playStatus: f.default.oneOf([
         p.default.status.PLAYING,
@@ -10915,7 +11031,7 @@
       maxWidth: f.default.string,
       repeatingTrackIndex: f.default.number,
     }),
-      (t.default = (0, C.default)(M, {
+      (t.default = (0, P.default)(N, {
         onFinishedPlaying: function(e) {
           var t = e.repeatingTrackIndex,
             n = e.cycleTracks,
@@ -10932,12 +11048,12 @@
       }));
   },
   function(e, t, n) {
-    e.exports = n(38)();
+    e.exports = n(39)();
   },
   function(e, t, n) {
     'use strict';
-    var r = n(5),
-      o = n(6);
+    var r = n(6),
+      o = n(7);
     e.exports = function() {
       function e() {
         o(
@@ -11149,13 +11265,13 @@
             O,
             E,
             x,
-            P,
             C,
+            P,
             M,
             N,
             L,
-            D,
             I,
+            D,
             A,
             R,
             F,
@@ -11203,19 +11319,19 @@
             Oe = !1,
             Ee = !1,
             xe = 0,
-            Pe = null,
-            Ce = [],
+            Ce = null,
+            Pe = [],
             Me = null,
             Ne = Array.prototype.slice,
             Le = !1,
-            De = 0,
-            Ie = he.match(/(ipad|iphone|ipod)/i),
+            Ie = 0,
+            De = he.match(/(ipad|iphone|ipod)/i),
             Ae = he.match(/android/i),
             Re = he.match(/msie|trident/i),
             Fe = he.match(/webkit/i),
             He = he.match(/safari/i) && !he.match(/chrome/i),
             je = he.match(/opera/i),
-            Ue = he.match(/(mobile|pre\/|xoom)/i) || Ie || Ae,
+            Ue = he.match(/(mobile|pre\/|xoom)/i) || De || Ae,
             ze =
               !me.match(/usehtml5audio/i) &&
               !me.match(/sm2-ignorebadua/i) &&
@@ -11291,22 +11407,22 @@
                   (Ue
                     ? (fe.setupOptions.ignoreMobileRestrictions &&
                         !fe.setupOptions.forceUseGlobalHTML5Audio) ||
-                      (Ce.push(S.globalHTML5), (Le = !0))
+                      (Pe.push(S.globalHTML5), (Le = !0))
                     : fe.setupOptions.forceUseGlobalHTML5Audio &&
-                      (Ce.push(S.globalHTML5), (Le = !0))),
+                      (Pe.push(S.globalHTML5), (Le = !0))),
                 !ce &&
                   Ue &&
                   (fe.setupOptions.ignoreMobileRestrictions
-                    ? Ce.push(S.ignoreMobile)
+                    ? Pe.push(S.ignoreMobile)
                     : ((fe.setupOptions.useHTML5Audio = !0),
                       (fe.setupOptions.preferFlash = !1),
-                      Ie
+                      De
                         ? (fe.ignoreFlash = !0)
                         : ((Ae && !he.match(/android\s2\.3/i)) || !Ae) &&
                           (Le = !0))),
                 e &&
-                  (t && P && e.url !== a && fe.beginDelayedInit(),
-                  P ||
+                  (t && C && e.url !== a && fe.beginDelayedInit(),
+                  C ||
                     e.url === a ||
                     'complete' !== ye.readyState ||
                     setTimeout(E, 1)),
@@ -11337,7 +11453,7 @@
                 (t !== a && (e = { id: e, url: t }),
                 (r = p(e)),
                 (r.url = $(r.url)),
-                r.id === a && (r.id = fe.setupOptions.idPrefix + De++),
+                r.id === a && (r.id = fe.setupOptions.idPrefix + Ie++),
                 V(r.id, !0))
               )
                 return fe.sounds[r.id];
@@ -11499,8 +11615,8 @@
               var t;
               if ((e === a && (e = !1), _e)) return !1;
               for (_e = !0, t = fe.soundIDs.length - 1; t >= 0; t--)
-                I(fe.sounds[fe.soundIDs[t]]);
-              return I(fe), d(e), re.remove(o, 'load', g), !0;
+                D(fe.sounds[fe.soundIDs[t]]);
+              return D(fe), d(e), re.remove(o, 'load', g), !0;
             }),
             (this.canPlayMIME = function(e) {
               var t;
@@ -11569,10 +11685,10 @@
                 } catch (e) {}
               if (
                 ((Se = we = Me = pe = null),
-                (fe.enabled = P = ke = Oe = Ee = ge = be = _e = Le = fe.swfLoaded = !1),
+                (fe.enabled = C = ke = Oe = Ee = ge = be = _e = Le = fe.swfLoaded = !1),
                 (fe.soundIDs = []),
                 (fe.sounds = {}),
-                (De = 0),
+                (Ie = 0),
                 (ce = !1),
                 e)
               )
@@ -12419,7 +12535,7 @@
                     h._iO.ondataerror.apply(h);
                 });
             }),
-            (C = function() {
+            (P = function() {
               return ye.body || ye.getElementsByTagName('div')[0];
             }),
             (l = function(e) {
@@ -12740,7 +12856,7 @@
             (u = function() {
               return !1;
             }),
-            (I = function(e) {
+            (D = function(e) {
               var t;
               for (t in e)
                 e.hasOwnProperty(t) && 'function' == typeof e[t] && (e[t] = u);
@@ -12810,7 +12926,7 @@
             (L = function(e, t) {
               pe && pe._setPolling(e, t);
             }),
-            (D = function() {}),
+            (I = function() {}),
             (V = this.getSoundById),
             (j = function() {
               var e = [];
@@ -12922,7 +13038,7 @@
                 t,
                 n = fe.audioFormats;
               if (
-                (Ie && !!he.match(/os (1|2|3_0|3_1)\s/i)
+                (De && !!he.match(/os (1|2|3_0|3_1)\s/i)
                   ? ((fe.hasHTML5 = !1),
                     (fe.html5Only = !0),
                     fe.oMC && (fe.oMC.style.display = 'none'))
@@ -12971,9 +13087,9 @@
                 ((e._hasTimer = !0),
                 !Ue &&
                   fe.html5PollingInterval &&
-                  (null === Pe &&
+                  (null === Ce &&
                     0 === xe &&
-                    (Pe = setInterval(Y, fe.html5PollingInterval)),
+                    (Ce = setInterval(Y, fe.html5PollingInterval)),
                   xe++));
             }),
             (q = function(e) {
@@ -12982,8 +13098,8 @@
             }),
             (Y = function() {
               var e;
-              if (null !== Pe && !xe)
-                return clearInterval(Pe), void (Pe = null);
+              if (null !== Ce && !xe)
+                return clearInterval(Ce), void (Ce = null);
               for (e = fe.soundIDs.length - 1; e >= 0; e--)
                 fe.sounds[fe.soundIDs[e]].isHTML5 &&
                   fe.sounds[fe.soundIDs[e]]._hasTimer &&
@@ -13038,7 +13154,7 @@
                 p,
                 h = t || fe.url,
                 m = fe.altURL || h,
-                y = C(),
+                y = P(),
                 v = j(),
                 g = null,
                 b = ye.getElementsByTagName('html')[0];
@@ -13055,7 +13171,7 @@
                 null !== fe.wmode &&
                   (he.match(/msie 8/i) || (!Re && !fe.useHighPerformance)) &&
                   navigator.platform.match(/win32|win64/i) &&
-                  (Ce.push(S.spcWmode), (fe.wmode = null)),
+                  (Pe.push(S.spcWmode), (fe.wmode = null)),
                 (r = {
                   name: e,
                   id: e,
@@ -13097,7 +13213,7 @@
                 o = ye.createElement('embed');
                 for (i in r) r.hasOwnProperty(i) && o.setAttribute(i, r[i]);
               }
-              if ((D(), (v = j()), (y = C())))
+              if ((I(), (v = j()), (y = P())))
                 if (
                   ((fe.oMC = l(fe.movieID) || ye.createElement('div')),
                   fe.oMC.id)
@@ -13288,17 +13404,17 @@
             }),
             (E = function() {
               return (
-                !P &&
-                ((P = !0),
+                !C &&
+                ((C = !0),
                 s(),
-                D(),
+                I(),
                 !ae &&
                   fe.hasHTML5 &&
                   fe.setup({ useHTML5Audio: !0, preferFlash: !1 }),
                 ne(),
                 !ae &&
                   Me &&
-                  (Ce.push(S.needFlash), fe.setup({ flashLoadTimeout: 1 })),
+                  (Pe.push(S.needFlash), fe.setup({ flashLoadTimeout: 1 })),
                 ye.removeEventListener &&
                   ye.removeEventListener('DOMContentLoaded', E, !1),
                 O(),
@@ -13347,7 +13463,7 @@
           (o.SoundManager = i),
           (o.soundManager = l);
       })(window);
-    }.call(t, n(40)(e)));
+    }.call(t, n(41)(e)));
   },
   function(e, t) {
     e.exports = function(e) {
@@ -13377,7 +13493,7 @@
     'use strict';
     Object.defineProperty(t, '__esModule', { value: !0 }),
       (t.Scrollbars = void 0);
-    var r = n(42),
+    var r = n(43),
       o = (function(e) {
         return e && e.__esModule ? e : { default: e };
       })(r);
@@ -13449,26 +13565,26 @@
           return n && e(t.prototype, n), r && e(t, r), t;
         };
       })(),
-      c = n(43),
+      c = n(44),
       f = r(c),
-      d = n(17),
+      d = n(18),
       p = r(d),
       h = n(0),
-      m = n(50),
+      m = n(51),
       y = r(m),
-      v = n(53),
+      v = n(54),
       g = r(v),
-      b = n(54),
+      b = n(55),
       k = r(b),
-      _ = n(55),
+      _ = n(56),
       T = r(_),
-      w = n(56),
+      w = n(57),
       S = r(w),
-      O = n(57),
+      O = n(58),
       E = r(O),
-      x = n(58),
-      P = n(59),
-      C = (function(e) {
+      x = n(59),
+      C = n(60),
+      P = (function(e) {
         function t(e) {
           var n;
           a(this, t);
@@ -14177,13 +14293,13 @@
                     p && !w && x.viewStyleUniversalInitial,
                   ),
                   E = { transition: 'opacity ' + d + 'ms', opacity: 0 },
-                  P = u(
+                  C = u(
                     {},
                     x.trackHorizontalStyleDefault,
                     f && E,
                     (!t || (p && !w)) && { display: 'none' },
                   ),
-                  C = u(
+                  P = u(
                     {},
                     x.trackVerticalStyleDefault,
                     f && E,
@@ -14209,7 +14325,7 @@
                       _,
                     ),
                     (0, h.cloneElement)(
-                      a({ style: P }),
+                      a({ style: C }),
                       {
                         key: 'trackHorizontal',
                         ref: function(t) {
@@ -14226,7 +14342,7 @@
                       ),
                     ),
                     (0, h.cloneElement)(
-                      i({ style: C }),
+                      i({ style: P }),
                       {
                         key: 'trackVertical',
                         ref: function(t) {
@@ -14250,8 +14366,8 @@
           t
         );
       })(h.Component);
-    (t.default = C),
-      (C.propTypes = {
+    (t.default = P),
+      (P.propTypes = {
         onScroll: y.default.func,
         onScrollFrame: y.default.func,
         onScrollStart: y.default.func,
@@ -14282,12 +14398,12 @@
         style: y.default.object,
         children: y.default.node,
       }),
-      (C.defaultProps = {
-        renderView: P.renderViewDefault,
-        renderTrackHorizontal: P.renderTrackHorizontalDefault,
-        renderTrackVertical: P.renderTrackVerticalDefault,
-        renderThumbHorizontal: P.renderThumbHorizontalDefault,
-        renderThumbVertical: P.renderThumbVerticalDefault,
+      (P.defaultProps = {
+        renderView: C.renderViewDefault,
+        renderTrackHorizontal: C.renderTrackHorizontalDefault,
+        renderTrackVertical: C.renderTrackVerticalDefault,
+        renderThumbHorizontal: C.renderThumbHorizontalDefault,
+        renderThumbVertical: C.renderThumbVerticalDefault,
         tagName: 'div',
         thumbMinSize: 30,
         hideTracksWhenNotNeeded: !1,
@@ -14303,7 +14419,7 @@
   function(e, t, n) {
     (function(t) {
       for (
-        var r = n(44),
+        var r = n(45),
           o = 'undefined' == typeof window ? t : window,
           a = ['moz', 'webkit'],
           i = 'AnimationFrame',
@@ -14354,7 +14470,7 @@
         (e.exports.polyfill = function() {
           (o.requestAnimationFrame = l), (o.cancelAnimationFrame = u);
         });
-    }.call(t, n(4)));
+    }.call(t, n(5)));
   },
   function(e, t, n) {
     (function(t) {
@@ -14386,7 +14502,7 @@
             }),
             (o = new Date().getTime()));
       }.call(this));
-    }.call(t, n(15)));
+    }.call(t, n(16)));
   },
   function(e, t) {
     var n = null,
@@ -14412,7 +14528,7 @@
         return t.toUpperCase();
       });
     }
-    var o = n(47);
+    var o = n(48);
     e.exports = r;
   },
   function(e, t, n) {
@@ -14423,7 +14539,7 @@
         })
         .trim();
     }
-    var o = n(48);
+    var o = n(49);
     e.exports = r;
   },
   function(e, t) {
@@ -14496,13 +14612,13 @@
     };
   },
   function(e, t, n) {
-    e.exports = n(51)();
+    e.exports = n(52)();
   },
   function(e, t, n) {
     'use strict';
-    var r = n(5),
-      o = n(6),
-      a = n(52);
+    var r = n(6),
+      o = n(7),
+      a = n(53);
     e.exports = function() {
       function e(e, t, n, r, i, l) {
         l !== a &&
@@ -14568,7 +14684,7 @@
       return i || 0;
     }
     Object.defineProperty(t, '__esModule', { value: !0 }), (t.default = r);
-    var o = n(17),
+    var o = n(18),
       a = (function(e) {
         return e && e.__esModule ? e : { default: e };
       })(o),
@@ -14720,192 +14836,146 @@
       return e && e.__esModule ? e : { default: e };
     }
     Object.defineProperty(t, '__esModule', { value: !0 });
-    var o = (function() {
-        function e(e, t) {
-          var n = [],
-            r = !0,
-            o = !1,
-            a = void 0;
-          try {
-            for (
-              var i, l = e[Symbol.iterator]();
-              !(r = (i = l.next()).done) &&
-              (n.push(i.value), !t || n.length !== t);
-              r = !0
-            );
-          } catch (e) {
-            (o = !0), (a = e);
-          } finally {
-            try {
-              !r && l.return && l.return();
-            } finally {
-              if (o) throw a;
-            }
-          }
-          return n;
-        }
-        return function(t, n) {
-          if (Array.isArray(t)) return t;
-          if (Symbol.iterator in Object(t)) return e(t, n);
-          throw new TypeError(
-            'Invalid attempt to destructure non-iterable instance',
-          );
-        };
-      })(),
-      a = n(0),
-      i = r(a),
-      l = n(1),
-      u = r(l),
-      s = n(2),
-      c = r(s),
-      f = n(7),
-      d = n(61),
-      p = r(d),
-      h = n(8),
-      m = r(h),
-      y = n(62),
-      v = r(y),
-      g = n(9),
-      b = r(g),
-      k = n(3),
-      _ = n(63),
-      T = r(_),
-      w = function(e) {
+    var o = n(0),
+      a = r(o),
+      i = n(1),
+      l = r(i),
+      u = n(2),
+      s = r(u),
+      c = n(8),
+      f = n(62),
+      d = r(f),
+      p = n(9),
+      h = r(p),
+      m = n(63),
+      y = r(m),
+      v = n(10),
+      g = r(v),
+      b = n(3),
+      k = n(4),
+      _ = function(e) {
         var t = e.track,
           n = e.index,
           r = e.trackNo,
-          l = e.isActive,
-          u = e.playStatus,
-          s = e.duration,
-          d = e.position,
-          h = e.setPosition,
-          y = e.isStandalone,
-          g = e.buyButtonsTarget,
+          i = e.isActive,
+          l = e.playStatus,
+          u = e.duration,
+          f = e.position,
+          p = e.setPosition,
+          m = e.isStandalone,
+          v = e.buyButtonsTarget,
           _ = e.displayArtistNames,
-          w = e.displayCovers,
-          S = e.displayBuyButtons,
-          O = e.onTrackClick,
-          E = e.onTrackLoop,
-          x = e.className,
-          P = e.isLooping,
-          C = (0, a.useState)(!1),
-          M = o(C, 2),
-          N = M[0],
-          L = M[1],
-          D = l && u === c.default.status.PLAYING,
-          I = void 0 !== d && void 0 !== s && l && y;
-        return i.default.createElement(
+          T = e.displayCovers,
+          w = e.displayBuyButtons,
+          S = e.onTrackClick,
+          O = e.onTrackLoop,
+          E = e.className,
+          x = e.isLooping,
+          C = (0, o.useContext)(k.AppContext),
+          P = C.toggleLyricsModal,
+          M = i && l === s.default.status.PLAYING,
+          N = void 0 !== f && void 0 !== u && i && m;
+        return a.default.createElement(
           'li',
-          { className: x + (l ? ' ai-track-active' : '') },
-          w &&
-            i.default.createElement(m.default, {
+          { className: E + (i ? ' ai-track-active' : '') },
+          T &&
+            a.default.createElement(h.default, {
               className: 'ai-track-thumb',
               src: t.cover,
               alt: t.title,
               onClick: function() {
-                return O(n);
+                return S(n);
               },
             }),
-          y &&
-            i.default.createElement(
+          m &&
+            a.default.createElement(
               'button',
               {
                 className: 'ai-track-btn ai-track-inline-play-btn',
                 onClick: function() {
-                  return O(n);
+                  return S(n);
                 },
-                'aria-label': D
-                  ? (0, f.sprintf)(aiStrings.pause_title, t.title)
-                  : (0, f.sprintf)(aiStrings.play_title, t.title),
-                'aria-pressed': D,
+                'aria-label': M
+                  ? (0, c.sprintf)(aiStrings.pause_title, t.title)
+                  : (0, c.sprintf)(aiStrings.play_title, t.title),
+                'aria-pressed': M,
               },
-              D
-                ? i.default.createElement(k.PauseIcon, null)
-                : i.default.createElement(k.PlayIcon, null),
+              M
+                ? a.default.createElement(b.PauseIcon, null)
+                : a.default.createElement(b.PlayIcon, null),
             ),
-          i.default.createElement(
+          a.default.createElement(
             'div',
             {
               className: 'ai-track-control',
               onClick: function() {
-                return O(n);
+                return S(n);
               },
             },
-            i.default.createElement(p.default, {
+            a.default.createElement(d.default, {
               className: 'ai-track-name',
               track: t,
               trackNo: r,
               displayArtistNames: _,
             }),
           ),
-          i.default.createElement(v.default, {
-            buyButtonsTarget: g,
+          a.default.createElement(y.default, {
+            buyButtonsTarget: v,
             buyUrl: t.buyUrl,
             downloadUrl: t.downloadUrl,
             onTrackLoop:
-              E &&
+              O &&
               function() {
-                return E(n);
+                return O(n);
               },
-            isLooping: P,
-            displayBuyButtons: S,
+            isLooping: x,
+            displayBuyButtons: w,
             onOpenTrackLyrics:
               t.lyrics &&
               function() {
-                return L(!0);
+                return P(!0, t);
               },
           }),
-          I &&
-            i.default.createElement(b.default, {
-              setPosition: h,
-              duration: s,
-              position: d,
+          N &&
+            a.default.createElement(g.default, {
+              setPosition: p,
+              duration: u,
+              position: f,
             }),
-          t.lyrics &&
-            i.default.createElement(
-              T.default,
-              {
-                isOpen: N,
-                closeModal: function() {
-                  return L(!1);
-                },
-              },
-              t.lyrics,
-            ),
         );
       };
-    (w.propTypes = {
-      track: u.default.shape({
-        audio: u.default.string,
-        buyUrl: u.default.string,
-        cover: u.default.string,
-        title: u.default.string,
-        subtitle: u.default.string,
-        lyrics: u.default.string,
-        downloadUrl: u.default.string,
+    (_.propTypes = {
+      track: l.default.shape({
+        audio: l.default.string,
+        buyUrl: l.default.string,
+        cover: l.default.string,
+        title: l.default.string,
+        subtitle: l.default.string,
+        lyrics: l.default.string,
+        downloadUrl: l.default.string,
       }),
-      index: u.default.number.isRequired,
-      trackNo: u.default.number,
-      isActive: u.default.bool,
-      position: u.default.number,
-      duration: u.default.number,
-      setPosition: u.default.func,
-      playStatus: u.default.oneOf([
-        c.default.status.PLAYING,
-        c.default.status.PAUSED,
-        c.default.status.STOPPED,
+      index: l.default.number.isRequired,
+      trackNo: l.default.number,
+      isActive: l.default.bool,
+      position: l.default.number,
+      duration: l.default.number,
+      setPosition: l.default.func,
+      playStatus: l.default.oneOf([
+        s.default.status.PLAYING,
+        s.default.status.PAUSED,
+        s.default.status.STOPPED,
       ]),
-      onTrackClick: u.default.func.isRequired,
-      onTrackLoop: u.default.func,
-      className: u.default.string.isRequired,
-      isStandalone: u.default.bool,
-      buyButtonsTarget: u.default.bool,
-      displayArtistNames: u.default.bool,
-      displayCovers: u.default.bool,
-      displayBuyButtons: u.default.bool,
-      isLooping: u.default.bool,
+      onTrackClick: l.default.func.isRequired,
+      onTrackLoop: l.default.func,
+      className: l.default.string.isRequired,
+      isStandalone: l.default.bool,
+      buyButtonsTarget: l.default.bool,
+      displayArtistNames: l.default.bool,
+      displayCovers: l.default.bool,
+      displayBuyButtons: l.default.bool,
+      isLooping: l.default.bool,
     }),
-      (t.default = w);
+      (t.default = _);
   },
   function(e, t, n) {
     'use strict';
@@ -15041,6 +15111,106 @@
   },
   function(e, t, n) {
     'use strict';
+    function r(e, t) {
+      if (!(e instanceof t))
+        throw new TypeError('Cannot call a class as a function');
+    }
+    Object.defineProperty(t, '__esModule', { value: !0 });
+    var o = (function() {
+        function e(e, t) {
+          for (var n = 0; n < t.length; n++) {
+            var r = t[n];
+            (r.enumerable = r.enumerable || !1),
+              (r.configurable = !0),
+              'value' in r && (r.writable = !0),
+              Object.defineProperty(e, r.key, r);
+          }
+        }
+        return function(t, n, r) {
+          return n && e(t.prototype, n), r && e(t, r), t;
+        };
+      })(),
+      a = (function() {
+        function e(t) {
+          if ((r(this, e), !t))
+            throw new Error('SoundCloud client ID is required');
+          (this.clientId = t), (this.baseUrl = 'https://api.soundcloud.com');
+        }
+        return (
+          o(
+            e,
+            [
+              {
+                key: 'resolve',
+                value: function(e) {
+                  var t = encodeURIComponent('_status_code_map[302]=200');
+                  return fetch(
+                    this.baseUrl +
+                      '/resolve?url=' +
+                      e +
+                      '&client_id=' +
+                      this.clientId +
+                      '&' +
+                      t,
+                  )
+                    .then(function(e) {
+                      return e.json();
+                    })
+                    .then(function(e) {
+                      return fetch(e.location);
+                    })
+                    .then(function(e) {
+                      return e.json();
+                    });
+                },
+              },
+              {
+                key: 'fetchSoundCloudStreams',
+                value: function(t) {
+                  var n = this,
+                    r = t
+                      .filter(function(t) {
+                        return e.isSoundCloudUrl(t.audio);
+                      })
+                      .map(function(e) {
+                        return n.resolve(e.audio);
+                      });
+                  return Promise.all(r);
+                },
+              },
+              {
+                key: 'mapStreamsToTracks',
+                value: function(t, n) {
+                  var r = this,
+                    o = 0;
+                  return t.map(function(t) {
+                    return (
+                      e.isSoundCloudUrl(t.audio) &&
+                        ((t.audio =
+                          n[o].stream_url + '?client_id=' + r.clientId),
+                        o++),
+                      t
+                    );
+                  });
+                },
+              },
+            ],
+            [
+              {
+                key: 'isSoundCloudUrl',
+                value: function(e) {
+                  return e.indexOf('soundcloud.com') > -1;
+                },
+              },
+            ],
+          ),
+          e
+        );
+      })();
+    t.default = a;
+  },
+  function(e, t, n) {
+    'use strict';
     function r(e) {
       return e && e.__esModule ? e : { default: e };
     }
@@ -15049,7 +15219,484 @@
       a = r(o),
       i = n(1),
       l = r(i),
-      u = n(64),
+      u = n(2),
+      s = r(u),
+      c = n(12),
+      f = r(c),
+      d = n(19),
+      p = r(d),
+      h = function(e) {
+        var t = e.playStatus,
+          n =
+            t === s.default.status.PLAYING || t === s.default.status.PAUSED
+              ? e.activeIndex
+              : void 0;
+        return a.default.createElement(
+          'div',
+          {
+            className: 'ai-wrap ai-type-simple',
+            style: { maxWidth: e.maxWidth },
+          },
+          a.default.createElement(
+            'div',
+            { className: 'ai-tracklist ai-tracklist-open' },
+            a.default.createElement(p.default, {
+              tracks: e.tracks,
+              playStatus: e.playStatus,
+              activeTrackIndex: n,
+              onTrackClick: e.togglePlay,
+              setPosition: e.setPosition,
+              duration: e.duration,
+              position: e.position,
+              className: 'ai-tracklist',
+              trackClassName: 'ai-track',
+              reverseTrackOrder: e.reverseTrackOrder,
+              displayTrackNo: e.displayTrackNo,
+              displayBuyButtons: e.displayBuyButtons,
+              buyButtonsTarget: e.buyButtonsTarget,
+              displayArtistNames: e.displayArtistNames,
+              standaloneTracks: !0,
+              onTrackLoop: e.allowTrackLoop ? e.setTrackCycling : void 0,
+              repeatingTrackIndex: e.repeatingTrackIndex,
+            }),
+          ),
+          e.displayCredits &&
+            a.default.createElement(
+              'div',
+              { className: 'ai-footer' },
+              a.default.createElement(
+                'p',
+                null,
+                'Powered by',
+                ' ',
+                a.default.createElement(
+                  'a',
+                  {
+                    href:
+                      'https://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=player&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link',
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                  },
+                  'AudioIgniter',
+                ),
+              ),
+            ),
+        );
+      };
+    (h.propTypes = {
+      tracks: l.default.arrayOf(l.default.object),
+      playStatus: l.default.oneOf([
+        s.default.status.PLAYING,
+        s.default.status.PAUSED,
+        s.default.status.STOPPED,
+      ]),
+      activeIndex: l.default.number,
+      position: l.default.number,
+      duration: l.default.number,
+      setPosition: l.default.func.isRequired,
+      togglePlay: l.default.func.isRequired,
+      setTrackCycling: l.default.func.isRequired,
+      allowTrackLoop: l.default.bool,
+      maxWidth: l.default.string,
+      reverseTrackOrder: l.default.bool,
+      displayTrackNo: l.default.bool,
+      buyButtonsTarget: l.default.bool,
+      displayArtistNames: l.default.bool,
+      displayBuyButtons: l.default.bool,
+      displayCredits: l.default.bool,
+      repeatingTrackIndex: l.default.number,
+    }),
+      (t.default = (0, f.default)(h, {
+        onFinishedPlaying: function(e) {
+          var t = e.repeatingTrackIndex,
+            n = e.cycleTracks,
+            r = e.nextTrack,
+            o = e.activeIndex,
+            a = e.tracks,
+            i = e.playTrack;
+          return null != t
+            ? void i(t)
+            : n
+            ? void r()
+            : void (o !== a.length - 1 && r());
+        },
+      }));
+  },
+  function(e, t, n) {
+    'use strict';
+    function r(e) {
+      return e && e.__esModule ? e : { default: e };
+    }
+    function o(e, t) {
+      if (!(e instanceof t))
+        throw new TypeError('Cannot call a class as a function');
+    }
+    function a(e, t) {
+      if (!e)
+        throw new ReferenceError(
+          "this hasn't been initialised - super() hasn't been called",
+        );
+      return !t || ('object' != typeof t && 'function' != typeof t) ? e : t;
+    }
+    function i(e, t) {
+      if ('function' != typeof t && null !== t)
+        throw new TypeError(
+          'Super expression must either be null or a function, not ' + typeof t,
+        );
+      (e.prototype = Object.create(t && t.prototype, {
+        constructor: {
+          value: e,
+          enumerable: !1,
+          writable: !0,
+          configurable: !0,
+        },
+      })),
+        t &&
+          (Object.setPrototypeOf
+            ? Object.setPrototypeOf(e, t)
+            : (e.__proto__ = t));
+    }
+    Object.defineProperty(t, '__esModule', { value: !0 });
+    var l = (function() {
+        function e(e, t) {
+          for (var n = 0; n < t.length; n++) {
+            var r = t[n];
+            (r.enumerable = r.enumerable || !1),
+              (r.configurable = !0),
+              'value' in r && (r.writable = !0),
+              Object.defineProperty(e, r.key, r);
+          }
+        }
+        return function(t, n, r) {
+          return n && e(t.prototype, n), r && e(t, r), t;
+        };
+      })(),
+      u = n(0),
+      s = r(u),
+      c = n(1),
+      f = r(c),
+      d = n(2),
+      p = r(d),
+      h = n(8),
+      m = n(12),
+      y = r(m),
+      v = n(9),
+      g = r(v),
+      b = n(11),
+      k = r(b),
+      _ = n(10),
+      T = r(_),
+      w = n(20),
+      S = r(w),
+      O = n(21),
+      E = r(O),
+      x = n(17),
+      C = r(x),
+      P = n(3),
+      M = n(4),
+      N = (function(e) {
+        function t(e) {
+          o(this, t);
+          var n = a(
+            this,
+            (t.__proto__ || Object.getPrototypeOf(t)).call(this, e),
+          );
+          return (
+            (n.state = { isTrackListOpen: n.props.displayTracklist }),
+            (n.toggleTracklist = n.toggleTracklist.bind(n)),
+            n
+          );
+        }
+        return (
+          i(t, e),
+          l(t, [
+            {
+              key: 'toggleTracklist',
+              value: function() {
+                this.setState(function(e) {
+                  return { isTrackListOpen: !e.isTrackListOpen };
+                });
+              },
+            },
+            {
+              key: 'render',
+              value: function() {
+                var e = this,
+                  t = this.state.isTrackListOpen,
+                  n = this.props,
+                  r = n.tracks,
+                  o = n.playStatus,
+                  a = n.activeIndex,
+                  i = n.volume,
+                  l = n.position,
+                  u = n.duration,
+                  c = n.currentTrack,
+                  f = n.playTrack,
+                  d = n.togglePlay,
+                  m = n.nextTrack,
+                  y = n.prevTrack,
+                  v = n.setPosition,
+                  b = n.setVolume,
+                  _ = n.toggleTracklistCycling,
+                  w = n.cycleTracks,
+                  O = n.setTrackCycling,
+                  x = n.allowTracklistToggle,
+                  N = n.allowTracklistLoop,
+                  L = n.allowTrackLoop,
+                  I = n.reverseTrackOrder,
+                  D = n.displayTrackNo,
+                  A = n.displayTracklistCovers,
+                  R = n.displayActiveCover,
+                  F = n.limitTracklistHeight,
+                  H = n.tracklistHeight,
+                  j = n.displayBuyButtons,
+                  U = n.buyButtonsTarget,
+                  z = n.displayArtistNames,
+                  B = n.repeatingTrackIndex;
+                return s.default.createElement(
+                  'div',
+                  {
+                    ref: function(t) {
+                      return (e.root = t);
+                    },
+                    className:
+                      'ai-wrap ai-type-global-footer ' +
+                      (r.length ? '' : 'ai-is-loading'),
+                  },
+                  s.default.createElement(
+                    'div',
+                    { className: 'ai-control-wrap' },
+                    R &&
+                      s.default.createElement(g.default, {
+                        className: 'ai-thumb ai-control-wrap-thumb',
+                        src: c.cover,
+                        alt: c.title,
+                      }),
+                    s.default.createElement(
+                      'div',
+                      { className: 'ai-control-wrap-controls' },
+                      s.default.createElement(T.default, {
+                        setPosition: v,
+                        duration: u,
+                        position: l,
+                      }),
+                      s.default.createElement(
+                        'div',
+                        { className: 'ai-audio-controls-main' },
+                        s.default.createElement(
+                          k.default,
+                          {
+                            onClick: d,
+                            className:
+                              'ai-audio-control ' +
+                              (o === p.default.status.PLAYING
+                                ? 'ai-audio-playing'
+                                : ''),
+                            ariaLabel:
+                              o === p.default.status.PLAYING
+                                ? (0, h.sprintf)(aiStrings.pause_title, c.title)
+                                : (0, h.sprintf)(aiStrings.play_title, c.title),
+                            ariaPressed: o === p.default.status.PLAYING,
+                          },
+                          o === p.default.status.PLAYING
+                            ? s.default.createElement(P.PauseIcon, null)
+                            : s.default.createElement(P.PlayIcon, null),
+                        ),
+                        s.default.createElement(
+                          'div',
+                          { className: 'ai-audio-controls-meta' },
+                          r.length > 1 &&
+                            s.default.createElement(
+                              k.default,
+                              {
+                                className: 'ai-btn ai-tracklist-prev',
+                                onClick: y,
+                                ariaLabel: aiStrings.previous,
+                              },
+                              s.default.createElement(P.PreviousIcon, null),
+                            ),
+                          r.length > 1 &&
+                            s.default.createElement(
+                              k.default,
+                              {
+                                className: 'ai-btn ai-tracklist-next',
+                                onClick: m,
+                                ariaLabel: aiStrings.next,
+                              },
+                              s.default.createElement(P.NextIcon, null),
+                            ),
+                          s.default.createElement(E.default, {
+                            volume: i,
+                            setVolume: b,
+                          }),
+                          N &&
+                            s.default.createElement(
+                              k.default,
+                              {
+                                className:
+                                  'ai-btn ai-btn-repeat ' +
+                                  (w && 'ai-btn-active'),
+                                onClick: _,
+                                ariaLabel: aiStrings.toggle_list_repeat,
+                              },
+                              s.default.createElement(P.RefreshIcon, null),
+                            ),
+                          c &&
+                            c.lyrics &&
+                            !t &&
+                            s.default.createElement(
+                              M.AppContext.Consumer,
+                              null,
+                              function(e) {
+                                var t = e.toggleLyricsModal;
+                                return s.default.createElement(
+                                  k.default,
+                                  {
+                                    className: 'ai-btn ai-lyrics',
+                                    onClick: function() {
+                                      return t(!0, c);
+                                    },
+                                    ariaLabel: aiStrings.open_track_lyrics,
+                                    title: aiStrings.open_track_lyrics,
+                                  },
+                                  s.default.createElement(P.LyricsIcon, null),
+                                );
+                              },
+                            ),
+                        ),
+                        s.default.createElement(
+                          'div',
+                          { className: 'ai-track-info' },
+                          s.default.createElement(
+                            'p',
+                            { className: 'ai-track-title' },
+                            s.default.createElement('span', null, c.title),
+                          ),
+                          (0 === r.length || c.subtitle) &&
+                            z &&
+                            s.default.createElement(
+                              'p',
+                              { className: 'ai-track-subtitle' },
+                              s.default.createElement('span', null, c.subtitle),
+                            ),
+                        ),
+                        s.default.createElement(
+                          'div',
+                          { className: 'ai-audio-controls-meta-right' },
+                          s.default.createElement(S.default, {
+                            duration: u,
+                            position: l,
+                          }),
+                          x &&
+                            s.default.createElement(
+                              k.default,
+                              {
+                                className: 'ai-btn ai-tracklist-toggle',
+                                onClick: this.toggleTracklist,
+                                ariaLabel: aiStrings.toggle_list_visible,
+                              },
+                              s.default.createElement(P.PlaylistIcon, null),
+                            ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  s.default.createElement(
+                    'div',
+                    {
+                      className:
+                        'ai-tracklist-wrap ' + (t ? 'ai-tracklist-open' : ''),
+                      style: { display: t ? 'block' : 'none' },
+                    },
+                    s.default.createElement(C.default, {
+                      className: 'ai-tracklist',
+                      trackClassName: 'ai-track',
+                      tracks: r,
+                      activeTrackIndex: a,
+                      isOpen: t,
+                      displayTrackNo: D,
+                      displayCovers: A,
+                      displayBuyButtons: j,
+                      buyButtonsTarget: U,
+                      displayArtistNames: z,
+                      reverseTrackOrder: I,
+                      limitTracklistHeight: F,
+                      tracklistHeight: H,
+                      onTrackClick: f,
+                      onTrackLoop: L ? O : void 0,
+                      repeatingTrackIndex: B,
+                    }),
+                  ),
+                );
+              },
+            },
+          ]),
+          t
+        );
+      })(s.default.Component);
+    (N.propTypes = {
+      tracks: f.default.arrayOf(f.default.object),
+      playStatus: f.default.oneOf([
+        p.default.status.PLAYING,
+        p.default.status.PAUSED,
+        p.default.status.STOPPED,
+      ]),
+      activeIndex: f.default.number,
+      volume: f.default.number,
+      position: f.default.number,
+      duration: f.default.number,
+      currentTrack: f.default.object.isRequired,
+      playTrack: f.default.func.isRequired,
+      togglePlay: f.default.func.isRequired,
+      nextTrack: f.default.func.isRequired,
+      prevTrack: f.default.func.isRequired,
+      setPosition: f.default.func.isRequired,
+      setVolume: f.default.func.isRequired,
+      toggleTracklistCycling: f.default.func.isRequired,
+      cycleTracks: f.default.bool.isRequired,
+      displayTracklist: f.default.bool,
+      allowTracklistToggle: f.default.bool,
+      allowTracklistLoop: f.default.bool,
+      reverseTrackOrder: f.default.bool,
+      displayTrackNo: f.default.bool,
+      displayActiveCover: f.default.bool,
+      displayTracklistCovers: f.default.bool,
+      limitTracklistHeight: f.default.bool,
+      tracklistHeight: f.default.number,
+      displayBuyButtons: f.default.bool,
+      buyButtonsTarget: f.default.bool,
+      displayArtistNames: f.default.bool,
+      setTrackCycling: f.default.func.isRequired,
+      repeatingTrackIndex: f.default.number,
+      allowTrackLoop: f.default.bool,
+    }),
+      (t.default = (0, y.default)(N, {
+        onFinishedPlaying: function(e) {
+          var t = e.repeatingTrackIndex,
+            n = e.cycleTracks,
+            r = e.nextTrack,
+            o = e.activeIndex,
+            a = e.tracks,
+            i = e.playTrack;
+          return null != t
+            ? void i(t)
+            : n
+            ? void r()
+            : void (o !== a.length - 1 && r());
+        },
+      }));
+  },
+  function(e, t, n) {
+    'use strict';
+    function r(e) {
+      return e && e.__esModule ? e : { default: e };
+    }
+    Object.defineProperty(t, '__esModule', { value: !0 });
+    var o = n(0),
+      a = r(o),
+      i = n(1),
+      l = r(i),
+      u = n(68),
       s = r(u);
     s.default.setAppElement('.audioigniter-root');
     var c = function(e) {
@@ -15091,7 +15738,7 @@
   function(e, t, n) {
     'use strict';
     Object.defineProperty(t, '__esModule', { value: !0 });
-    var r = n(65),
+    var r = n(69),
       o = (function(e) {
         return e && e.__esModule ? e : { default: e };
       })(r);
@@ -15162,13 +15809,13 @@
       })(),
       c = n(0),
       f = r(c),
-      d = n(14),
+      d = n(15),
       p = r(d),
-      h = n(19),
+      h = n(22),
       m = r(h),
-      y = n(68),
+      y = n(72),
       v = r(y),
-      g = n(21),
+      g = n(24),
       b = (function(e) {
         if (e && e.__esModule) return e;
         var t = {};
@@ -15177,9 +15824,9 @@
             Object.prototype.hasOwnProperty.call(e, n) && (t[n] = e[n]);
         return (t.default = e), t;
       })(g),
-      k = n(10),
+      k = n(13),
       _ = r(k),
-      T = n(74),
+      T = n(78),
       w = (t.portalClassName = 'ReactModalPortal'),
       S = (t.bodyOpenClassName = 'ReactModal__Body--open'),
       O = void 0 !== p.default.createPortal,
@@ -15405,9 +16052,9 @@
   },
   function(e, t, n) {
     'use strict';
-    var r = n(5),
-      o = n(6),
-      a = n(67);
+    var r = n(6),
+      o = n(7),
+      a = n(71);
     e.exports = function() {
       function e(e, t, n, r, i, l) {
         l !== a &&
@@ -15527,23 +16174,23 @@
       })(),
       f = n(0),
       d = o(f),
-      p = n(19),
+      p = n(22),
       h = o(p),
-      m = n(69),
+      m = n(73),
       y = r(m),
-      v = n(70),
+      v = n(74),
       g = o(v),
-      b = n(21),
+      b = n(24),
       k = r(b),
-      _ = n(73),
+      _ = n(77),
       T = r(_),
-      w = n(10),
+      w = n(13),
       S = o(w),
       O = { overlay: 'ReactModal__Overlay', content: 'ReactModal__Content' },
       E = 9,
       x = 27,
-      P = 0,
-      C = (function(e) {
+      C = 0,
+      P = (function(e) {
         function t(e) {
           a(this, t);
           var n = i(
@@ -15565,7 +16212,7 @@
                 a = e.bodyOpenClassName;
               a && T.remove(document.body, a),
                 o && T.remove(document.getElementsByTagName('html')[0], o),
-                r && P > 0 && 0 === (P -= 1) && k.show(t),
+                r && C > 0 && 0 === (C -= 1) && k.show(t),
                 n.props.shouldFocusAfterRender &&
                   (n.props.shouldReturnFocusAfterClose
                     ? (y.returnFocus(), y.teardownScopedFocus())
@@ -15717,7 +16364,7 @@
                   o = e.bodyOpenClassName;
                 o && T.add(document.body, o),
                   r && T.add(document.getElementsByTagName('html')[0], r),
-                  n && ((P += 1), k.hide(t));
+                  n && ((C += 1), k.hide(t));
               },
             },
             {
@@ -15774,11 +16421,11 @@
           t
         );
       })(f.Component);
-    (C.defaultProps = {
+    (P.defaultProps = {
       style: { overlay: {}, content: {} },
       defaultStyles: {},
     }),
-      (C.propTypes = {
+      (P.propTypes = {
         isOpen: h.default.bool.isRequired,
         defaultStyles: h.default.shape({
           content: h.default.object,
@@ -15814,7 +16461,7 @@
         contentRef: h.default.func,
         testId: h.default.string,
       }),
-      (t.default = C),
+      (t.default = P),
       (e.exports = t.default);
   },
   function(e, t, n) {
@@ -15868,7 +16515,7 @@
       (t.popWithoutFocus = l),
       (t.setupScopedFocus = u),
       (t.teardownScopedFocus = s);
-    var c = n(20),
+    var c = n(23),
       f = (function(e) {
         return e && e.__esModule ? e : { default: e };
       })(c),
@@ -15908,7 +16555,7 @@
       }
     }
     Object.defineProperty(t, '__esModule', { value: !0 }), (t.default = r);
-    var o = n(20),
+    var o = n(23),
       a = (function(e) {
         return e && e.__esModule ? e : { default: e };
       })(o);
@@ -16075,559 +16722,5 @@
       (r.__suppressDeprecationWarning = !0),
       (o.__suppressDeprecationWarning = !0),
       (a.__suppressDeprecationWarning = !0);
-  },
-  function(e, t, n) {
-    'use strict';
-    function r(e, t) {
-      if (!(e instanceof t))
-        throw new TypeError('Cannot call a class as a function');
-    }
-    Object.defineProperty(t, '__esModule', { value: !0 });
-    var o = (function() {
-        function e(e, t) {
-          for (var n = 0; n < t.length; n++) {
-            var r = t[n];
-            (r.enumerable = r.enumerable || !1),
-              (r.configurable = !0),
-              'value' in r && (r.writable = !0),
-              Object.defineProperty(e, r.key, r);
-          }
-        }
-        return function(t, n, r) {
-          return n && e(t.prototype, n), r && e(t, r), t;
-        };
-      })(),
-      a = (function() {
-        function e(t) {
-          if ((r(this, e), !t))
-            throw new Error('SoundCloud client ID is required');
-          (this.clientId = t), (this.baseUrl = 'https://api.soundcloud.com');
-        }
-        return (
-          o(
-            e,
-            [
-              {
-                key: 'resolve',
-                value: function(e) {
-                  var t = encodeURIComponent('_status_code_map[302]=200');
-                  return fetch(
-                    this.baseUrl +
-                      '/resolve?url=' +
-                      e +
-                      '&client_id=' +
-                      this.clientId +
-                      '&' +
-                      t,
-                  )
-                    .then(function(e) {
-                      return e.json();
-                    })
-                    .then(function(e) {
-                      return fetch(e.location);
-                    })
-                    .then(function(e) {
-                      return e.json();
-                    });
-                },
-              },
-              {
-                key: 'fetchSoundCloudStreams',
-                value: function(t) {
-                  var n = this,
-                    r = t
-                      .filter(function(t) {
-                        return e.isSoundCloudUrl(t.audio);
-                      })
-                      .map(function(e) {
-                        return n.resolve(e.audio);
-                      });
-                  return Promise.all(r);
-                },
-              },
-              {
-                key: 'mapStreamsToTracks',
-                value: function(t, n) {
-                  var r = this,
-                    o = 0;
-                  return t.map(function(t) {
-                    return (
-                      e.isSoundCloudUrl(t.audio) &&
-                        ((t.audio =
-                          n[o].stream_url + '?client_id=' + r.clientId),
-                        o++),
-                      t
-                    );
-                  });
-                },
-              },
-            ],
-            [
-              {
-                key: 'isSoundCloudUrl',
-                value: function(e) {
-                  return e.indexOf('soundcloud.com') > -1;
-                },
-              },
-            ],
-          ),
-          e
-        );
-      })();
-    t.default = a;
-  },
-  function(e, t, n) {
-    'use strict';
-    function r(e) {
-      return e && e.__esModule ? e : { default: e };
-    }
-    Object.defineProperty(t, '__esModule', { value: !0 });
-    var o = n(0),
-      a = r(o),
-      i = n(1),
-      l = r(i),
-      u = n(2),
-      s = r(u),
-      c = n(12),
-      f = r(c),
-      d = n(18),
-      p = r(d),
-      h = function(e) {
-        var t = e.playStatus,
-          n =
-            t === s.default.status.PLAYING || t === s.default.status.PAUSED
-              ? e.activeIndex
-              : void 0;
-        return a.default.createElement(
-          'div',
-          {
-            className: 'ai-wrap ai-type-simple',
-            style: { maxWidth: e.maxWidth },
-          },
-          a.default.createElement(
-            'div',
-            { className: 'ai-tracklist ai-tracklist-open' },
-            a.default.createElement(p.default, {
-              tracks: e.tracks,
-              playStatus: e.playStatus,
-              activeTrackIndex: n,
-              onTrackClick: e.togglePlay,
-              setPosition: e.setPosition,
-              duration: e.duration,
-              position: e.position,
-              className: 'ai-tracklist',
-              trackClassName: 'ai-track',
-              reverseTrackOrder: e.reverseTrackOrder,
-              displayTrackNo: e.displayTrackNo,
-              displayBuyButtons: e.displayBuyButtons,
-              buyButtonsTarget: e.buyButtonsTarget,
-              displayArtistNames: e.displayArtistNames,
-              standaloneTracks: !0,
-              onTrackLoop: e.allowTrackLoop ? e.setTrackCycling : void 0,
-              repeatingTrackIndex: e.repeatingTrackIndex,
-            }),
-          ),
-          e.displayCredits &&
-            a.default.createElement(
-              'div',
-              { className: 'ai-footer' },
-              a.default.createElement(
-                'p',
-                null,
-                'Powered by',
-                ' ',
-                a.default.createElement(
-                  'a',
-                  {
-                    href:
-                      'https://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=player&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link',
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
-                  },
-                  'AudioIgniter',
-                ),
-              ),
-            ),
-        );
-      };
-    (h.propTypes = {
-      tracks: l.default.arrayOf(l.default.object),
-      playStatus: l.default.oneOf([
-        s.default.status.PLAYING,
-        s.default.status.PAUSED,
-        s.default.status.STOPPED,
-      ]),
-      activeIndex: l.default.number,
-      position: l.default.number,
-      duration: l.default.number,
-      setPosition: l.default.func.isRequired,
-      togglePlay: l.default.func.isRequired,
-      setTrackCycling: l.default.func.isRequired,
-      allowTrackLoop: l.default.bool,
-      maxWidth: l.default.string,
-      reverseTrackOrder: l.default.bool,
-      displayTrackNo: l.default.bool,
-      buyButtonsTarget: l.default.bool,
-      displayArtistNames: l.default.bool,
-      displayBuyButtons: l.default.bool,
-      displayCredits: l.default.bool,
-      repeatingTrackIndex: l.default.number,
-    }),
-      (t.default = (0, f.default)(h, {
-        onFinishedPlaying: function(e) {
-          var t = e.repeatingTrackIndex,
-            n = e.cycleTracks,
-            r = e.nextTrack,
-            o = e.activeIndex,
-            a = e.tracks,
-            i = e.playTrack;
-          return null != t
-            ? void i(t)
-            : n
-            ? void r()
-            : void (o !== a.length - 1 && r());
-        },
-      }));
-  },
-  function(e, t, n) {
-    'use strict';
-    function r(e) {
-      return e && e.__esModule ? e : { default: e };
-    }
-    function o(e, t) {
-      if (!(e instanceof t))
-        throw new TypeError('Cannot call a class as a function');
-    }
-    function a(e, t) {
-      if (!e)
-        throw new ReferenceError(
-          "this hasn't been initialised - super() hasn't been called",
-        );
-      return !t || ('object' != typeof t && 'function' != typeof t) ? e : t;
-    }
-    function i(e, t) {
-      if ('function' != typeof t && null !== t)
-        throw new TypeError(
-          'Super expression must either be null or a function, not ' + typeof t,
-        );
-      (e.prototype = Object.create(t && t.prototype, {
-        constructor: {
-          value: e,
-          enumerable: !1,
-          writable: !0,
-          configurable: !0,
-        },
-      })),
-        t &&
-          (Object.setPrototypeOf
-            ? Object.setPrototypeOf(e, t)
-            : (e.__proto__ = t));
-    }
-    Object.defineProperty(t, '__esModule', { value: !0 });
-    var l = (function() {
-        function e(e, t) {
-          for (var n = 0; n < t.length; n++) {
-            var r = t[n];
-            (r.enumerable = r.enumerable || !1),
-              (r.configurable = !0),
-              'value' in r && (r.writable = !0),
-              Object.defineProperty(e, r.key, r);
-          }
-        }
-        return function(t, n, r) {
-          return n && e(t.prototype, n), r && e(t, r), t;
-        };
-      })(),
-      u = n(0),
-      s = r(u),
-      c = n(1),
-      f = r(c),
-      d = n(2),
-      p = r(d),
-      h = n(7),
-      m = n(12),
-      y = r(m),
-      v = n(8),
-      g = r(v),
-      b = n(11),
-      k = r(b),
-      _ = n(9),
-      T = r(_),
-      w = n(22),
-      S = r(w),
-      O = n(23),
-      E = r(O),
-      x = n(16),
-      P = r(x),
-      C = n(3),
-      M = (function(e) {
-        function t(e) {
-          o(this, t);
-          var n = a(
-            this,
-            (t.__proto__ || Object.getPrototypeOf(t)).call(this, e),
-          );
-          return (
-            (n.state = { isTrackListOpen: n.props.displayTracklist }),
-            (n.toggleTracklist = n.toggleTracklist.bind(n)),
-            n
-          );
-        }
-        return (
-          i(t, e),
-          l(t, [
-            {
-              key: 'toggleTracklist',
-              value: function() {
-                this.setState(function(e) {
-                  return { isTrackListOpen: !e.isTrackListOpen };
-                });
-              },
-            },
-            {
-              key: 'render',
-              value: function() {
-                var e = this,
-                  t = this.state.isTrackListOpen,
-                  n = this.props,
-                  r = n.tracks,
-                  o = n.playStatus,
-                  a = n.activeIndex,
-                  i = n.volume,
-                  l = n.position,
-                  u = n.duration,
-                  c = n.currentTrack,
-                  f = n.playTrack,
-                  d = n.togglePlay,
-                  m = n.nextTrack,
-                  y = n.prevTrack,
-                  v = n.setPosition,
-                  b = n.setVolume,
-                  _ = n.toggleTracklistCycling,
-                  w = n.cycleTracks,
-                  O = n.setTrackCycling,
-                  x = n.allowTracklistToggle,
-                  M = n.allowTracklistLoop,
-                  N = n.allowTrackLoop,
-                  L = n.reverseTrackOrder,
-                  D = n.displayTrackNo,
-                  I = n.displayTracklistCovers,
-                  A = n.displayActiveCover,
-                  R = n.limitTracklistHeight,
-                  F = n.tracklistHeight,
-                  H = n.displayBuyButtons,
-                  j = n.buyButtonsTarget,
-                  U = n.displayArtistNames,
-                  z = n.repeatingTrackIndex;
-                return s.default.createElement(
-                  'div',
-                  {
-                    ref: function(t) {
-                      return (e.root = t);
-                    },
-                    className:
-                      'ai-wrap ai-type-global-footer ' +
-                      (r.length ? '' : 'ai-is-loading'),
-                  },
-                  s.default.createElement(
-                    'div',
-                    { className: 'ai-control-wrap' },
-                    A &&
-                      s.default.createElement(g.default, {
-                        className: 'ai-thumb ai-control-wrap-thumb',
-                        src: c.cover,
-                        alt: c.title,
-                      }),
-                    s.default.createElement(
-                      'div',
-                      { className: 'ai-control-wrap-controls' },
-                      s.default.createElement(T.default, {
-                        setPosition: v,
-                        duration: u,
-                        position: l,
-                      }),
-                      s.default.createElement(
-                        'div',
-                        { className: 'ai-audio-controls-main' },
-                        s.default.createElement(
-                          k.default,
-                          {
-                            onClick: d,
-                            className:
-                              'ai-audio-control ' +
-                              (o === p.default.status.PLAYING
-                                ? 'ai-audio-playing'
-                                : ''),
-                            ariaLabel:
-                              o === p.default.status.PLAYING
-                                ? (0, h.sprintf)(aiStrings.pause_title, c.title)
-                                : (0, h.sprintf)(aiStrings.play_title, c.title),
-                            ariaPressed: o === p.default.status.PLAYING,
-                          },
-                          o === p.default.status.PLAYING
-                            ? s.default.createElement(C.PauseIcon, null)
-                            : s.default.createElement(C.PlayIcon, null),
-                        ),
-                        s.default.createElement(
-                          'div',
-                          { className: 'ai-audio-controls-meta' },
-                          r.length > 1 &&
-                            s.default.createElement(
-                              k.default,
-                              {
-                                className: 'ai-btn ai-tracklist-prev',
-                                onClick: y,
-                                ariaLabel: aiStrings.previous,
-                              },
-                              s.default.createElement(C.PreviousIcon, null),
-                            ),
-                          r.length > 1 &&
-                            s.default.createElement(
-                              k.default,
-                              {
-                                className: 'ai-btn ai-tracklist-next',
-                                onClick: m,
-                                ariaLabel: aiStrings.next,
-                              },
-                              s.default.createElement(C.NextIcon, null),
-                            ),
-                          s.default.createElement(E.default, {
-                            volume: i,
-                            setVolume: b,
-                          }),
-                          M &&
-                            s.default.createElement(
-                              k.default,
-                              {
-                                className:
-                                  'ai-btn ai-btn-repeat ' +
-                                  (w && 'ai-btn-active'),
-                                onClick: _,
-                                ariaLabel: aiStrings.toggle_list_repeat,
-                              },
-                              s.default.createElement(C.RefreshIcon, null),
-                            ),
-                        ),
-                        s.default.createElement(
-                          'div',
-                          { className: 'ai-track-info' },
-                          s.default.createElement(
-                            'p',
-                            { className: 'ai-track-title' },
-                            s.default.createElement('span', null, c.title),
-                          ),
-                          (0 === r.length || c.subtitle) &&
-                            U &&
-                            s.default.createElement(
-                              'p',
-                              { className: 'ai-track-subtitle' },
-                              s.default.createElement('span', null, c.subtitle),
-                            ),
-                        ),
-                        s.default.createElement(
-                          'div',
-                          { className: 'ai-audio-controls-meta-right' },
-                          s.default.createElement(S.default, {
-                            duration: u,
-                            position: l,
-                          }),
-                          x &&
-                            s.default.createElement(
-                              k.default,
-                              {
-                                className: 'ai-btn ai-tracklist-toggle',
-                                onClick: this.toggleTracklist,
-                                ariaLabel: aiStrings.toggle_list_visible,
-                              },
-                              s.default.createElement(C.PlaylistIcon, null),
-                            ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  s.default.createElement(
-                    'div',
-                    {
-                      className:
-                        'ai-tracklist-wrap ' + (t ? 'ai-tracklist-open' : ''),
-                      style: { display: t ? 'block' : 'none' },
-                    },
-                    s.default.createElement(P.default, {
-                      className: 'ai-tracklist',
-                      trackClassName: 'ai-track',
-                      tracks: r,
-                      activeTrackIndex: a,
-                      isOpen: t,
-                      displayTrackNo: D,
-                      displayCovers: I,
-                      displayBuyButtons: H,
-                      buyButtonsTarget: j,
-                      displayArtistNames: U,
-                      reverseTrackOrder: L,
-                      limitTracklistHeight: R,
-                      tracklistHeight: F,
-                      onTrackClick: f,
-                      onTrackLoop: N ? O : void 0,
-                      repeatingTrackIndex: z,
-                    }),
-                  ),
-                );
-              },
-            },
-          ]),
-          t
-        );
-      })(s.default.Component);
-    (M.propTypes = {
-      tracks: f.default.arrayOf(f.default.object),
-      playStatus: f.default.oneOf([
-        p.default.status.PLAYING,
-        p.default.status.PAUSED,
-        p.default.status.STOPPED,
-      ]),
-      activeIndex: f.default.number,
-      volume: f.default.number,
-      position: f.default.number,
-      duration: f.default.number,
-      currentTrack: f.default.object.isRequired,
-      playTrack: f.default.func.isRequired,
-      togglePlay: f.default.func.isRequired,
-      nextTrack: f.default.func.isRequired,
-      prevTrack: f.default.func.isRequired,
-      setPosition: f.default.func.isRequired,
-      setVolume: f.default.func.isRequired,
-      toggleTracklistCycling: f.default.func.isRequired,
-      cycleTracks: f.default.bool.isRequired,
-      displayTracklist: f.default.bool,
-      allowTracklistToggle: f.default.bool,
-      allowTracklistLoop: f.default.bool,
-      reverseTrackOrder: f.default.bool,
-      displayTrackNo: f.default.bool,
-      displayActiveCover: f.default.bool,
-      displayTracklistCovers: f.default.bool,
-      limitTracklistHeight: f.default.bool,
-      tracklistHeight: f.default.number,
-      displayBuyButtons: f.default.bool,
-      buyButtonsTarget: f.default.bool,
-      displayArtistNames: f.default.bool,
-      setTrackCycling: f.default.func.isRequired,
-      repeatingTrackIndex: f.default.number,
-      allowTrackLoop: f.default.bool,
-    }),
-      (t.default = (0, y.default)(M, {
-        onFinishedPlaying: function(e) {
-          var t = e.repeatingTrackIndex,
-            n = e.cycleTracks,
-            r = e.nextTrack,
-            o = e.activeIndex,
-            a = e.tracks,
-            i = e.playTrack;
-          return null != t
-            ? void i(t)
-            : n
-            ? void r()
-            : void (o !== a.length - 1 && r());
-        },
-      }));
   },
 ]);

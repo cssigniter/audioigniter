@@ -30,5 +30,5 @@
       return Object.prototype.hasOwnProperty.call(n, r);
     }),
     (r.p = ''),
-    r((r.s = 24));
-})({ 24: function(n, r) {} });
+    r((r.s = 25));
+})({ 25: function(n, r) {} });

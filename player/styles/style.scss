@@ -704,6 +704,10 @@ $screen-xs-max: 320px !default;
 //
 // Modal
 //
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
 .ai-modal-overlay {
   position: fixed;
   top: 0;

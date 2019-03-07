@@ -17,7 +17,9 @@ import {
   PreviousIcon,
   PlaylistIcon,
   RefreshIcon,
+  LyricsIcon,
 } from './components/Icons';
+import { AppContext } from '../App';
 
 class GlobalFooterPlayer extends React.Component {
   constructor(props) {
@@ -152,6 +154,21 @@ class GlobalFooterPlayer extends React.Component {
                   >
                     <RefreshIcon />
                   </Button>
+                )}
+
+                {currentTrack && currentTrack.lyrics && !isTrackListOpen && (
+                  <AppContext.Consumer>
+                    {({ toggleLyricsModal }) => (
+                      <Button
+                        className="ai-btn ai-lyrics"
+                        onClick={() => toggleLyricsModal(true, currentTrack)}
+                        ariaLabel={aiStrings.open_track_lyrics}
+                        title={aiStrings.open_track_lyrics}
+                      >
+                        <LyricsIcon />
+                      </Button>
+                    )}
+                  </AppContext.Consumer>
                 )}
               </div>
 

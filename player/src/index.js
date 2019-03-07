@@ -1,11 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import PropTypes from 'prop-types';
 import 'es6-promise/auto';
 import 'whatwg-fetch';
-import Player from './player/Player';
-import SimplePlayer from './player/SimplePlayer';
-import GlobalFooterPlayer from './player/GlobalFooterPlayer';
+
+import App from './App';
 
 // Set up translatable strings here
 // for development purposes only. The production build
@@ -28,22 +26,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const nodes = document.getElementsByClassName('audioigniter-root');
-
-const App = ({ type, ...props }) => {
-  if (type === 'simple') {
-    return <SimplePlayer {...props} />;
-  }
-
-  if (type === 'global-footer') {
-    return <GlobalFooterPlayer {...props} />;
-  }
-
-  return <Player {...props} />;
-};
-
-App.propTypes = {
-  type: PropTypes.string,
-};
 
 function renderApp(node) {
   const type = node.getAttribute('data-player-type');

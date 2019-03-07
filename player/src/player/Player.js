@@ -16,8 +16,10 @@ import {
   PreviousIcon,
   PlaylistIcon,
   RefreshIcon,
+  LyricsIcon,
 } from './components/Icons';
 import soundProvider from './soundProvider';
+import { AppContext } from '../App';
 
 class Player extends React.Component {
   constructor(props) {
@@ -147,6 +149,7 @@ class Player extends React.Component {
                   className="ai-btn ai-tracklist-prev"
                   onClick={prevTrack}
                   ariaLabel={aiStrings.previous}
+                  title={aiStrings.previous}
                 >
                   <PreviousIcon />
                 </Button>
@@ -157,6 +160,7 @@ class Player extends React.Component {
                   className="ai-btn ai-tracklist-next"
                   onClick={nextTrack}
                   ariaLabel={aiStrings.next}
+                  title={aiStrings.next}
                 >
                   <NextIcon />
                 </Button>
@@ -177,6 +181,21 @@ class Player extends React.Component {
                 >
                   <RefreshIcon />
                 </Button>
+              )}
+
+              {currentTrack && currentTrack.lyrics && !isTrackListOpen && (
+                <AppContext.Consumer>
+                  {({ toggleLyricsModal }) => (
+                    <Button
+                      className="ai-btn ai-lyrics"
+                      onClick={() => toggleLyricsModal(true, currentTrack)}
+                      ariaLabel={aiStrings.open_track_lyrics}
+                      title={aiStrings.open_track_lyrics}
+                    >
+                      <LyricsIcon />
+                    </Button>
+                  )}
+                </AppContext.Consumer>
               )}
 
               {allowTracklistToggle && (

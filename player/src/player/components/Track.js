@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
 import { sprintf } from 'sprintf-js';
@@ -8,7 +8,7 @@ import Cover from './Cover';
 import TrackButtons from './TrackButtons';
 import ProgressBar from './ProgressBar';
 import { PlayIcon, PauseIcon } from './Icons';
-import TrackLyricsModal from './TrackLyricsModal';
+import { AppContext } from '../../App';
 
 const Track = ({
   track,
@@ -29,7 +29,7 @@ const Track = ({
   className,
   isLooping,
 }) => {
-  const [lyricsModalOpen, toggleLyricsModal] = useState(false);
+  const { toggleLyricsModal } = useContext(AppContext);
   const isPlaying = isActive && playStatus === Sound.status.PLAYING;
   const hasProgressBar =
     typeof position !== 'undefined' &&
@@ -79,7 +79,9 @@ const Track = ({
         onTrackLoop={onTrackLoop && (() => onTrackLoop(index))}
         isLooping={isLooping}
         displayBuyButtons={displayBuyButtons}
-        onOpenTrackLyrics={track.lyrics && (() => toggleLyricsModal(true))}
+        onOpenTrackLyrics={
+          track.lyrics && (() => toggleLyricsModal(true, track))
+        }
       />
 
       {hasProgressBar && (
@@ -88,15 +90,6 @@ const Track = ({
           duration={duration}
           position={position}
         />
-      )}
-
-      {track.lyrics && (
-        <TrackLyricsModal
-          isOpen={lyricsModalOpen}
-          closeModal={() => toggleLyricsModal(false)}
-        >
-          {track.lyrics}
-        </TrackLyricsModal>
       )}
     </li>
   );

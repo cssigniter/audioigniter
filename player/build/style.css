@@ -871,6 +871,10 @@
   margin: 0;
 }
 
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
 .ai-modal-overlay {
   position: fixed;
   top: 0;
