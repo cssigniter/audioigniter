@@ -86,7 +86,6 @@ class AudioIgniter_Sanitizer {
 		$sanitized_track['track_url']    = esc_url_raw( $track['track_url'] );
 		$sanitized_track['buy_link']     = esc_url_raw( $track['buy_link'] );
 		$sanitized_track['download_url'] = esc_url_raw( $track['download_url'] );
-		$sanitized_track['lyrics']       = sanitize_textarea_field( $track['lyrics'] );
 
 		$sanitized_track = array_map( 'trim', $sanitized_track );
 

@@ -1068,7 +1068,6 @@ class AudioIgniter {
 			'track_url'    => '',
 			'buy_link'     => '',
 			'download_url' => '',
-			'lyrics'       => '',
 		) );
 	}
 
@@ -1238,7 +1237,6 @@ class AudioIgniter {
 			$track_response['audio']       = $track['track_url'];
 			$track_response['buyUrl']      = $track['buy_link'];
 			$track_response['downloadUrl'] = $track['download_url'];
-			$track_response['lyrics']      = $track['lyrics'];
 
 			$cover_url = wp_get_attachment_image_src( intval( $track['cover_id'] ), 'audioigniter_cover' );
 			if ( ! empty( $cover_url[0] ) ) {
