@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
 import { sprintf } from 'sprintf-js';
@@ -8,6 +8,7 @@ import Cover from './Cover';
 import TrackButtons from './TrackButtons';
 import ProgressBar from './ProgressBar';
 import { PlayIcon, PauseIcon } from './Icons';
+import TrackLyricsModal from './TrackLyricsModal';
 
 const Track = ({
   track,
@@ -28,6 +29,7 @@ const Track = ({
   className,
   isLooping,
 }) => {
+  const [lyricsModalOpen, toggleLyricsModal] = useState(false);
   const isPlaying = isActive && playStatus === Sound.status.PLAYING;
   const hasProgressBar =
     typeof position !== 'undefined' &&
@@ -77,6 +79,7 @@ const Track = ({
         onTrackLoop={onTrackLoop && (() => onTrackLoop(index))}
         isLooping={isLooping}
         displayBuyButtons={displayBuyButtons}
+        onOpenTrackLyrics={track.lyrics && (() => toggleLyricsModal(true))}
       />
 
       {hasProgressBar && (
@@ -86,12 +89,29 @@ const Track = ({
           position={position}
         />
       )}
+
+      {track.lyrics && (
+        <TrackLyricsModal
+          isOpen={lyricsModalOpen}
+          closeModal={() => toggleLyricsModal(false)}
+        >
+          {track.lyrics}
+        </TrackLyricsModal>
+      )}
     </li>
   );
 };
 
 Track.propTypes = {
-  track: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  track: PropTypes.shape({
+    audio: PropTypes.string,
+    buyUrl: PropTypes.string,
+    cover: PropTypes.string,
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    lyrics: PropTypes.string,
+    downloadUrl: PropTypes.string,
+  }),
   index: PropTypes.number.isRequired,
   trackNo: PropTypes.number,
   isActive: PropTypes.bool,

@@ -154,3 +154,17 @@ export class DownloadIcon extends React.Component {
     );
   }
 }
+
+export class LyricsIcon extends React.Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  render() {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M0 4.5C0 3.673.673 3 1.5 3h21c.827 0 1.5.673 1.5 1.5S23.327 6 22.5 6h-21C.673 6 0 5.327 0 4.5zM1.5 11h15c.827 0 1.5-.673 1.5-1.5S17.327 8 16.5 8h-15C.673 8 0 8.673 0 9.5S.673 11 1.5 11zm15 7h-15c-.827 0-1.5.673-1.5 1.5S.673 21 1.5 21h15c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5zm6-5h-21c-.827 0-1.5.673-1.5 1.5S.673 16 1.5 16h21c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5z" />
+      </svg>
+    );
+  }
+}

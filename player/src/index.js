@@ -23,6 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
     download_track: 'Download this track',
     volume_up: 'Volume Up',
     volume_down: 'Volume Down',
+    open_track_lyrics: 'Open track lyrics',
   };
 }
 

@@ -212,6 +212,7 @@ class AudioIgniter {
 			'download_track'      => esc_html__( 'Download this track', 'audioigniter' ),
 			'volume_up'           => esc_html__( 'Volume Up', 'audioigniter' ),
 			'volume_down'         => esc_html__( 'Volume Down', 'audioigniter' ),
+      'open_track_lyrics'   => esc_html__( 'Open track lyrics', 'audioigniter' ),
 		) );
 
 		wp_localize_script( 'audioigniter-admin', 'ai_scripts', array(
@@ -438,6 +439,7 @@ class AudioIgniter {
 		$track_url    = $track['track_url'];
 		$buy_link     = $track['buy_link'];
 		$download_url = $track['download_url'];
+		$lyrics       = $track['lyrics'];
 
 		$cover_url = wp_get_attachment_image_src( intval( $cover_id ), 'thumbnail' );
 		if ( ! empty( $cover_url[0] ) ) {
@@ -586,6 +588,21 @@ class AudioIgniter {
 							placeholder="<?php esc_attr_e( 'Download URL', 'audioigniter' ); ?>"
 							value="<?php echo esc_url( $download_url ); ?>"
 						/>
+					</div>
+
+					<div class="ai-form-field">
+						<label
+							for="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-lyrics"
+							class="screen-reader-text">
+							<?php esc_html_e( 'Lyrics', 'audioigniter' ); ?>
+						</label>
+						<textarea
+							id="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-lyrics"
+							class="ai-track-lyrics"
+							name="ai_playlist_tracks[<?php echo esc_attr( $uid ); ?>][lyrics]"
+							placeholder="<?php esc_attr_e( 'Lyrics', 'audioigniter' ); ?>"
+              rows="5"
+            ><?php echo esc_html( $lyrics ); ?></textarea>
 					</div>
 
 					<button type="button" class="button ai-remove-field">
@@ -896,7 +913,7 @@ class AudioIgniter {
       </div>
 
       <div class="ai-form-field-group">
-        <h3 class="ai-form-field-group-title">Track &amp; track listing repeat</h3>
+        <h3 class="ai-form-field-group-title">Track &amp; Track listing repeat</h3>
 
         <div class="ai-form-field">
           <input
@@ -1068,12 +1085,13 @@ class AudioIgniter {
 
 	public static function get_default_track_values() {
 		return apply_filters( 'audioigniter_default_track_values', array(
-			'cover_id'     => '',
-			'title'        => '',
-			'artist'       => '',
-			'track_url'    => '',
-			'buy_link'     => '',
-			'download_url' => '',
+      'cover_id'     => '',
+      'title'        => '',
+      'artist'       => '',
+      'track_url'    => '',
+      'buy_link'     => '',
+      'download_url' => '',
+      'lyrics'       => '',
 		) );
 	}
 
@@ -1239,11 +1257,12 @@ class AudioIgniter {
 			$track          = wp_parse_args( $track, self::get_default_track_values() );
 			$track_response = array();
 
-			$track_response['title']       = $track['title'];
-			$track_response['subtitle']    = $track['artist'];
-			$track_response['audio']       = $track['track_url'];
-			$track_response['buyUrl']      = $track['buy_link'];
-			$track_response['downloadUrl'] = $track['download_url'];
+      $track_response['title']       = $track['title'];
+      $track_response['subtitle']    = $track['artist'];
+      $track_response['audio']       = $track['track_url'];
+      $track_response['buyUrl']      = $track['buy_link'];
+      $track_response['downloadUrl'] = $track['download_url'];
+      $track_response['lyrics']      = $track['lyrics'];
 
 			$cover_url = wp_get_attachment_image_src( intval( $track['cover_id'] ), 'audioigniter_cover' );
 			if ( ! empty( $cover_url[0] ) ) {

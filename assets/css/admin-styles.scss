@@ -327,7 +327,8 @@ $border-color: $lighter-grey !default;
 	input[type="password"],
 	input[type="number"],
 	input[type="tel"],
-	input[type="date"] {
+	input[type="date"],
+  textarea {
 		width: 100%;
 	}
 

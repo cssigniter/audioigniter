@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CartIcon, DownloadIcon, RefreshIcon } from './Icons';
+import { CartIcon, DownloadIcon, LyricsIcon, RefreshIcon } from './Icons';
 
 const TrackButtons = ({
   buyButtonsTarget,
@@ -9,8 +9,14 @@ const TrackButtons = ({
   onTrackLoop,
   isLooping,
   displayBuyButtons,
+  onOpenTrackLyrics,
 }) => {
-  if (buyUrl == null && downloadUrl == null && !onTrackLoop) {
+  if (
+    buyUrl == null &&
+    downloadUrl == null &&
+    !onTrackLoop &&
+    !onOpenTrackLyrics
+  ) {
     return null;
   }
 
@@ -24,6 +30,7 @@ const TrackButtons = ({
           target={buyButtonsTarget ? '_blank' : '_self'}
           role="button"
           aria-label={aiStrings.buy_track}
+          title={aiStrings.buy_track}
         >
           <CartIcon />
         </a>
@@ -36,8 +43,26 @@ const TrackButtons = ({
           className="ai-track-btn"
           role="button"
           aria-label={aiStrings.download_track}
+          title={aiStrings.download_track}
         >
           <DownloadIcon />
+        </a>
+      )}
+
+      {onOpenTrackLyrics && (
+        // eslint-disable-next-line
+        <a
+          href="#"
+          className="ai-track-btn"
+          role="button"
+          aria-label={aiStrings.open_track_lyrics}
+          title={aiStrings.open_track_lyrics}
+          onClick={event => {
+            event.preventDefault();
+            onOpenTrackLyrics();
+          }}
+        >
+          <LyricsIcon />
         </a>
       )}
 
@@ -48,6 +73,7 @@ const TrackButtons = ({
           className="ai-track-btn"
           role="button"
           aria-label={aiStrings.toggle_track_repeat}
+          title={aiStrings.toggle_track_repeat}
           onClick={event => {
             event.preventDefault();
             onTrackLoop();
@@ -73,6 +99,7 @@ TrackButtons.propTypes = {
   onTrackLoop: PropTypes.func,
   isLooping: PropTypes.bool,
   displayBuyButtons: PropTypes.bool,
+  onOpenTrackLyrics: PropTypes.func,
 };
 
 export default TrackButtons;

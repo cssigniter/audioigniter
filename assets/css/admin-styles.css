@@ -338,7 +338,8 @@
 .ai-form-field input[type="password"],
 .ai-form-field input[type="number"],
 .ai-form-field input[type="tel"],
-.ai-form-field input[type="date"] {
+.ai-form-field input[type="date"],
+.ai-form-field textarea {
   width: 100%;
 }
 
