@@ -198,7 +198,7 @@ class AudioIgniter {
 		wp_register_script( 'audioigniter', $this->plugin_url() . 'player/build/app.js', array(), self::$version, true );
 		wp_register_script( 'audioigniter-admin', $this->plugin_url() . 'assets/js/audioigniter.js', array(), self::$version, true );
 
-		wp_localize_script( 'audioigniter', 'aiStrings', array(
+		wp_localize_script( 'audioigniter', 'aiStrings', apply_filters( 'audioigniter_aiStrings', array(
 			/* translators: %s is the track's title. */
 			'play_title'          => esc_html__( 'Play %s', 'audioigniter' ),
 			/* translators: %s is the track's title. */
@@ -213,7 +213,7 @@ class AudioIgniter {
 			'volume_up'           => esc_html__( 'Volume Up', 'audioigniter' ),
 			'volume_down'         => esc_html__( 'Volume Down', 'audioigniter' ),
 			'open_track_lyrics'   => esc_html__( 'Open track lyrics', 'audioigniter' ),
-		) );
+		) ) );
 
 		wp_localize_script( 'audioigniter-admin', 'ai_scripts', array(
 			'messages' => array(
@@ -439,7 +439,6 @@ class AudioIgniter {
 		$track_url    = $track['track_url'];
 		$buy_link     = $track['buy_link'];
 		$download_url = $track['download_url'];
-		$lyrics       = $track['lyrics'];
 
 		$cover_url = wp_get_attachment_image_src( intval( $cover_id ), 'thumbnail' );
 		if ( ! empty( $cover_url[0] ) ) {
@@ -547,6 +546,8 @@ class AudioIgniter {
 							value="<?php echo esc_url( $buy_link ); ?>"
 						/>
 					</div>
+
+					<?php do_action( 'audioigniter_metabox_tracks_repeatable_track_fields_column_1', $track, $uid ); ?>
 				</div>
 
 				<div class="ai-field-split">
@@ -590,20 +591,7 @@ class AudioIgniter {
 						/>
 					</div>
 
-					<div class="ai-form-field">
-						<label
-							for="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-lyrics"
-							class="screen-reader-text">
-							<?php esc_html_e( 'Lyrics', 'audioigniter' ); ?>
-						</label>
-						<textarea
-							id="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-lyrics"
-							class="ai-track-lyrics"
-							name="ai_playlist_tracks[<?php echo esc_attr( $uid ); ?>][lyrics]"
-							placeholder="<?php esc_attr_e( 'Lyrics', 'audioigniter' ); ?>"
-							rows="5"
-						><?php echo esc_html( $lyrics ); ?></textarea>
-					</div>
+					<?php do_action( 'audioigniter_metabox_tracks_repeatable_track_fields_column_2', $track, $uid ); ?>
 
 					<button type="button" class="button ai-remove-field">
 						<span class="dashicons dashicons-dismiss"></span>
@@ -667,7 +655,6 @@ class AudioIgniter {
 		$track_listing              = $this->get_post_meta( $object->ID, '_audioigniter_show_track_listing', 1 );
 		$track_listing_allow_toggle = $this->get_post_meta( $object->ID, '_audioigniter_allow_track_listing_toggle', 1 );
 		$track_listing_allow_loop   = $this->get_post_meta( $object->ID, '_audioigniter_allow_track_listing_loop', 1 );
-		$track_allow_loop           = $this->get_post_meta( $object->ID, '_audioigniter_allow_track_loop', 0 );
 		$credit                     = $this->get_post_meta( $object->ID, '_audioigniter_show_credit', 0 );
 		$limit_tracklisting_height  = $this->get_post_meta( $object->ID, '_audioigniter_limit_tracklisting_height', 1 );
 		$tracklisting_height        = $this->get_post_meta( $object->ID, '_audioigniter_tracklisting_height', 185 );
@@ -821,6 +808,8 @@ class AudioIgniter {
 						<?php esc_html_e( 'Set a number of pixels, or leave empty to automatically cover 100% of the available area (recommended).', 'audioigniter' ); ?>
 					</p>
 				</div>
+
+				<?php do_action( 'audioigniter_metabox_settings_group_player_track_listing_fields', $object, $box ); ?>
 			</div>
 
 			<div class="ai-form-field-group">
@@ -839,7 +828,6 @@ class AudioIgniter {
 						<?php esc_html_e( 'Show track numbers in tracklist', 'audioigniter' ); ?>
 					</label>
 				</div>
-
 
 				<div class="ai-form-field">
 					<input
@@ -910,6 +898,8 @@ class AudioIgniter {
 						<?php esc_html_e( 'Open buy links in new window', 'audioigniter' ); ?>
 					</label>
 				</div>
+
+				<?php do_action( 'audioigniter_metabox_settings_group_tracks_fields', $object, $box ); ?>
 			</div>
 
 			<div class="ai-form-field-group">
@@ -943,19 +933,7 @@ class AudioIgniter {
 					</label>
 				</div>
 
-				<div class="ai-form-field">
-					<input
-						type="checkbox"
-						class="ai-checkbox"
-						id="_audioigniter_allow_track_loop"
-						name="_audioigniter_allow_track_loop"
-						value="1" <?php checked( $track_allow_loop, true ); ?>
-					/>
-
-					<label for="_audioigniter_allow_track_loop">
-						<?php esc_html_e( 'Allow individual track repeat', 'audioigniter' ); ?>
-					</label>
-				</div>
+				<?php do_action( 'audioigniter_metabox_settings_group_player_track_track_listing_repeat_fields', $object, $box ); ?>
 			</div>
 
 			<div class="ai-form-field">
@@ -1069,7 +1047,6 @@ class AudioIgniter {
 		update_post_meta( $post_id, '_audioigniter_show_track_listing', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_track_listing'] ) );
 		update_post_meta( $post_id, '_audioigniter_allow_track_listing_toggle', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_allow_track_listing_toggle'] ) );
 		update_post_meta( $post_id, '_audioigniter_allow_track_listing_loop', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_allow_track_listing_loop'] ) );
-		update_post_meta( $post_id, '_audioigniter_allow_track_loop', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_allow_track_loop'] ) );
 		update_post_meta( $post_id, '_audioigniter_player_type', $this->sanitizer->player_type( $_POST['_audioigniter_player_type'] ) );
 		update_post_meta( $post_id, '_audioigniter_show_credit', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_show_credit'] ) );
 		update_post_meta( $post_id, '_audioigniter_limit_tracklisting_height', $this->sanitizer->checkbox_ref( $_POST['_audioigniter_limit_tracklisting_height'] ) );
@@ -1164,14 +1141,13 @@ class AudioIgniter {
 			'data-display-tracklist'        => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_show_track_listing', 1 ) ),
 			'data-allow-tracklist-toggle'   => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_allow_track_listing_toggle', 1 ) ),
 			'data-allow-tracklist-loop'     => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_allow_track_listing_loop', 1 ) ),
-			'data-allow-track-loop'         => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_allow_track_loop', 0 ) ),
 			'data-limit-tracklist-height'   => $this->convert_bool_string( $this->get_post_meta( $post_id, '_audioigniter_limit_tracklisting_height', 1 ) ),
 			'data-volume'                   => intval( $this->get_post_meta( $post_id, '_audioigniter_volume', 100 ) ),
 			'data-tracklist-height'         => intval( $this->get_post_meta( $post_id, '_audioigniter_tracklisting_height', 185 ) ),
 			'data-max-width'                => $this->get_post_meta( $post_id, '_audioigniter_max_width' ),
 		);
 
-		return $attrs;
+		return apply_filters( 'audioigniter_get_playlist_data_attributes_array', $attrs, $post_id );
 	}
 
 	/**
