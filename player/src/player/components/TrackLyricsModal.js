@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
-Modal.setAppElement('.audioigniter-root');
+if (document.querySelector('.audioigniter-root')) {
+  Modal.setAppElement('.audioigniter-root');
+}
 
 const TrackLyricsModal = ({ isOpen, closeModal, children }) => {
   return (

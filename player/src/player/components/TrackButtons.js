@@ -70,7 +70,7 @@ const TrackButtons = ({
         // eslint-disable-next-line
         <a
           href="#"
-          className="ai-track-btn"
+          className="ai-track-btn ai-track-btn-repeat"
           role="button"
           aria-label={aiStrings.toggle_track_repeat}
           title={aiStrings.toggle_track_repeat}
