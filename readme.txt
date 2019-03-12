@@ -1,9 +1,9 @@
 === AudioIgniter ===
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, mp3 player, music, radio stream, radio player, sound player, playlist
-Requires at least: 4.8
-Tested up to: 4.9.4
-Stable tag: 1.4.1
+Requires at least: 4.9
+Tested up to: 5.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,16 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugin
 3. Advanced player customization
 
 == Changelog ==
+= 1.5.0 =
+* Added new filters: 'aiStrings', 'audioigniter_get_playlist_data_attributes_array'.
+* Added new actions: 'audioigniter_metabox_tracks_repeatable_track_fields_column_1', 'audioigniter_metabox_tracks_repeatable_track_fields_column_2', 'audioigniter_metabox_settings_group_player_track_listing_fields', 'audioigniter_metabox_settings_group_tracks_fields', 'audioigniter_metabox_settings_group_player_track_track_listing_repeat_fields'.
+* Upgraded React / ReactDOM and dependencies to latest versions.
+* Fixed issue with viewing buy/download buttons vs track repeat button.
+* Fixed some untranslatable strings.
+* Added base support for per-track Lyrics (requires Pro version).
+* Added base support for single track looping (requires Pro version).
+* Rearranged track listing settings layout.
+
 = 1.4.2 =
 * Accessibility enhancements.
 
