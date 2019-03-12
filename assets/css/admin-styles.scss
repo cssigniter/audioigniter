@@ -340,6 +340,25 @@ $border-color: $lighter-grey !default;
 	}
 }
 
+.ai-module-settings {
+	.ai-form-field {
+		input[type="text"],
+		input[type="url"],
+		input[type="search"],
+		input[type="email"],
+		input[type="password"],
+		input[type="number"],
+		input[type="tel"],
+		input[type="date"],
+	  textarea,
+		select {
+			width: 200px;
+			max-width: 100%;
+			display: block;
+		}
+	}
+}
+
 .ai-form-field-addon {
 	position: relative;
 

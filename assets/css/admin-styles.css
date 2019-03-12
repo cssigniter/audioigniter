@@ -350,6 +350,21 @@
   top: 1px;
 }
 
+.ai-module-settings .ai-form-field input[type="text"],
+.ai-module-settings .ai-form-field input[type="url"],
+.ai-module-settings .ai-form-field input[type="search"],
+.ai-module-settings .ai-form-field input[type="email"],
+.ai-module-settings .ai-form-field input[type="password"],
+.ai-module-settings .ai-form-field input[type="number"],
+.ai-module-settings .ai-form-field input[type="tel"],
+.ai-module-settings .ai-form-field input[type="date"],
+.ai-module-settings .ai-form-field textarea,
+.ai-module-settings .ai-form-field select {
+  width: 200px;
+  max-width: 100%;
+  display: block;
+}
+
 .ai-form-field-addon {
   position: relative;
 }
