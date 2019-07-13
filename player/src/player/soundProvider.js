@@ -151,13 +151,15 @@ const soundProvider = (Player, events) => {
         event.preventDefault();
       }
 
-      const { playStatus, repeatingTrackIndex } = this.state;
+      const { repeatingTrackIndex } = this.state;
 
-      this.setState(() => ({ activeIndex: index, position: 0 }));
+      window.soundManager.pauseAll();
 
-      if (playStatus !== Sound.status.PLAYING) {
-        this.setState(() => ({ playStatus: Sound.status.PLAYING }));
-      }
+      this.setState(() => ({
+        activeIndex: index,
+        position: 0,
+        playStatus: Sound.status.PLAYING,
+      }));
 
       // Reset repating track index if the track is not the active one.
       if (index !== repeatingTrackIndex && repeatingTrackIndex != null) {
@@ -182,19 +184,25 @@ const soundProvider = (Player, events) => {
         event.preventDefault();
       }
 
-      const { playStatus, activeIndex } = this.state;
+      const { activeIndex } = this.state;
 
       if (typeof index === 'number' && index !== activeIndex) {
         this.playTrack(index);
         return;
       }
 
-      const status =
-        playStatus === Sound.status.PLAYING
-          ? Sound.status.PAUSED
-          : Sound.status.PLAYING;
+      this.setState(({ playStatus }) => {
+        if (playStatus !== Sound.status.PLAYING) {
+          window.soundManager.pauseAll();
+        }
 
-      this.setState(() => ({ playStatus: status }));
+        return {
+          playStatus:
+            playStatus === Sound.status.PLAYING
+              ? Sound.status.PAUSED
+              : Sound.status.PLAYING,
+        };
+      });
     }
 
     nextTrack() {
@@ -240,9 +248,9 @@ const soundProvider = (Player, events) => {
               playStatus={playStatus}
               position={position}
               volume={volume}
-              // eslint-disable-next-line no-shadow
               onPlaying={this.onPlaying}
               onFinishedPlaying={this.onFinishedPlaying}
+              onPause={() => this.pauseTrack()}
             />
           )}
         </div>
