@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
+
 import SoundCloud from '../utils/soundcloud';
+import multiSoundDisabled from '../utils/multi-sound-disabled';
 
 const soundProvider = (Player, events) => {
   class EnhancedPlayer extends React.Component {
@@ -19,6 +21,7 @@ const soundProvider = (Player, events) => {
         volume: volume == null ? 100 : volume,
         cycleTracks,
         repeatingTrackIndex: null,
+        isMultiSoundDisabled: multiSoundDisabled(),
       };
 
       this.playTrack = this.playTrack.bind(this);
@@ -151,9 +154,11 @@ const soundProvider = (Player, events) => {
         event.preventDefault();
       }
 
-      const { repeatingTrackIndex } = this.state;
+      const { repeatingTrackIndex, isMultiSoundDisabled } = this.state;
 
-      window.soundManager.pauseAll();
+      if (isMultiSoundDisabled) {
+        window.soundManager.pauseAll();
+      }
 
       this.setState(() => ({
         activeIndex: index,
@@ -191,8 +196,8 @@ const soundProvider = (Player, events) => {
         return;
       }
 
-      this.setState(({ playStatus }) => {
-        if (playStatus !== Sound.status.PLAYING) {
+      this.setState(({ playStatus, isMultiSoundDisabled }) => {
+        if (playStatus !== Sound.status.PLAYING && isMultiSoundDisabled) {
           window.soundManager.pauseAll();
         }
 
