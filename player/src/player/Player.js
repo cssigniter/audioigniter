@@ -242,7 +242,7 @@ class Player extends React.Component {
             <p>
               Powered by{' '}
               <a
-                href="https://www.cssigniter.com/ignite/plugins/audioigniter?utm_source=player&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link"
+                href="https://www.cssigniter.com/plugins/audioigniter?utm_source=player&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >

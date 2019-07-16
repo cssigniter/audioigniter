@@ -2,8 +2,8 @@
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, mp3 player, music, radio stream, radio player, sound player, playlist
 Requires at least: 4.9
-Tested up to: 5.1
-Stable tag: 1.4.2
+Tested up to: 5.2.2
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,7 +36,7 @@ Selling digital music? You can combine AudioIgniter with WooCommerce to easily s
 * Maximum player width
 * Heavily tested on the 150 most popular free themes on WordPress.org
 
-But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugins/audioigniter-pro) is also available! Here's what you get if you decide to upgrade:
+But wait, there's more. A [Pro version](https://www.cssigniter.com/plugins/audioigniter-pro) is also available! Here's what you get if you decide to upgrade:
 
 * Bulk upload functionality
 * Total color customization control
@@ -58,6 +58,9 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/ignite/plugin
 3. Advanced player customization
 
 == Changelog ==
+= 1.5.1 =
+* Minor performance improvements.
+
 = 1.5.0 =
 * Added new filters: 'aiStrings', 'audioigniter_get_playlist_data_attributes_array'.
 * Added new actions: 'audioigniter_metabox_tracks_repeatable_track_fields_column_1', 'audioigniter_metabox_tracks_repeatable_track_fields_column_2', 'audioigniter_metabox_settings_group_player_track_listing_fields', 'audioigniter_metabox_settings_group_tracks_fields', 'audioigniter_metabox_settings_group_player_track_track_listing_repeat_fields'.
