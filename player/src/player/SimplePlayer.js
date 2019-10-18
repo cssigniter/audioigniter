@@ -11,6 +11,8 @@ const SimplePlayer = props => {
       ? props.activeIndex
       : undefined;
 
+  console.log(props);
+
   return (
     <div
       className="ai-wrap ai-type-simple"
@@ -25,6 +27,7 @@ const SimplePlayer = props => {
           setPosition={props.setPosition}
           duration={props.duration}
           position={props.position}
+          playbackRate={props.playbackRate}
           className="ai-tracklist"
           trackClassName="ai-track"
           reverseTrackOrder={props.reverseTrackOrder}
@@ -35,6 +38,8 @@ const SimplePlayer = props => {
           standaloneTracks
           onTrackLoop={props.allowTrackLoop ? props.setTrackCycling : undefined}
           repeatingTrackIndex={props.repeatingTrackIndex}
+          setPlaybackRate={props.setPlaybackRate}
+          allowPlaybackRate={props.allowPlaybackRate}
         />
       </div>
 
@@ -79,6 +84,9 @@ SimplePlayer.propTypes = {
   displayBuyButtons: PropTypes.bool,
   displayCredits: PropTypes.bool,
   repeatingTrackIndex: PropTypes.number,
+  playbackRate: PropTypes.number,
+  setPlaybackRate: PropTypes.func,
+  allowPlaybackRate: PropTypes.bool,
 };
 
 export default soundProvider(SimplePlayer, {

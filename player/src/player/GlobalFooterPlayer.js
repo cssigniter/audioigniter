@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
 import { sprintf } from 'sprintf-js';
@@ -48,6 +48,7 @@ class GlobalFooterPlayer extends React.Component {
       volume,
       position,
       duration,
+      playbackRate,
 
       currentTrack,
       playTrack,
@@ -59,7 +60,9 @@ class GlobalFooterPlayer extends React.Component {
       toggleTracklistCycling,
       cycleTracks,
       setTrackCycling,
+      setPlaybackRate,
 
+      allowPlaybackRate,
       allowTracklistToggle,
       allowTracklistLoop,
       allowTrackLoop,
@@ -73,6 +76,8 @@ class GlobalFooterPlayer extends React.Component {
       buyButtonsTarget,
       displayArtistNames,
       repeatingTrackIndex,
+      skipAmount,
+      skipPosition,
     } = this.props;
 
     return (
@@ -139,6 +144,25 @@ class GlobalFooterPlayer extends React.Component {
                   </Button>
                 )}
 
+                {skipAmount > 0 && (
+                  <Fragment>
+                    <Button
+                      className="ai-btn ai-btn-repeat"
+                      onClick={() => skipPosition(-1)}
+                      ariaLabel={aiStrings.skip_backward}
+                    >
+                      &lt;
+                    </Button>
+                    <Button
+                      className="ai-btn ai-btn-repeat"
+                      onClick={() => skipPosition(1)}
+                      ariaLabel={aiStrings.skip_forward}
+                    >
+                      &gt;
+                    </Button>
+                  </Fragment>
+                )}
+
                 <VolumeControl
                   volume={volume}
                   // eslint-disable-next-line no-shadow
@@ -153,6 +177,16 @@ class GlobalFooterPlayer extends React.Component {
                     ariaLabel={aiStrings.toggle_list_repeat}
                   >
                     <RefreshIcon />
+                  </Button>
+                )}
+
+                {allowPlaybackRate && (
+                  <Button
+                    className="ai-btn ai-btn-playback-rate"
+                    onClick={setPlaybackRate}
+                    ariaLabel={aiStrings.set_playback_rate}
+                  >
+                    <Fragment>&times;{playbackRate}</Fragment>
                   </Button>
                 )}
 
@@ -266,6 +300,10 @@ GlobalFooterPlayer.propTypes = {
   setTrackCycling: PropTypes.func.isRequired,
   repeatingTrackIndex: PropTypes.number,
   allowTrackLoop: PropTypes.bool,
+  playbackRate: PropTypes.number,
+  setPlaybackRate: PropTypes.func,
+  skipAmount: PropTypes.number,
+  skipPosition: PropTypes.func.isRequired,
 };
 
 export default soundProvider(GlobalFooterPlayer, {

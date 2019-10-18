@@ -25,7 +25,7 @@ const Button = ({
 Button.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
-  children: PropTypes.element,
+  children: PropTypes.node,
   ariaLabel: PropTypes.string,
   ariaPressed: PropTypes.bool,
   ariaExpanded: PropTypes.bool,

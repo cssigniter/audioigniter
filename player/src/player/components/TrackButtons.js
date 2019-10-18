@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { CartIcon, DownloadIcon, LyricsIcon, RefreshIcon } from './Icons';
 
@@ -10,6 +10,10 @@ const TrackButtons = ({
   isLooping,
   displayBuyButtons,
   onOpenTrackLyrics,
+  setPlaybackRate,
+  playbackRate,
+  allowPlaybackRate,
+  isPlaying,
 }) => {
   if (
     buyUrl == null &&
@@ -66,6 +70,22 @@ const TrackButtons = ({
         </a>
       )}
 
+      {allowPlaybackRate && isPlaying && (
+        <a
+          href="#"
+          className="ai-track-btn ai-btn-playback-rate"
+          role="button"
+          aria-label={aiStrings.set_playback_rate}
+          title={aiStrings.set_playback_rate}
+          onClick={event => {
+            event.preventDefault();
+            setPlaybackRate();
+          }}
+        >
+          <Fragment>&times;{playbackRate}</Fragment>
+        </a>
+      )}
+
       {onTrackLoop && (
         // eslint-disable-next-line
         <a
@@ -100,6 +120,10 @@ TrackButtons.propTypes = {
   isLooping: PropTypes.bool,
   displayBuyButtons: PropTypes.bool,
   onOpenTrackLyrics: PropTypes.func,
+  playbackRate: PropTypes.number,
+  setPlaybackRate: PropTypes.func,
+  allowPlaybackRate: PropTypes.bool,
+  isPlaying: PropTypes.bool,
 };
 
 export default TrackButtons;

@@ -28,6 +28,9 @@ const Track = ({
   onTrackLoop,
   className,
   isLooping,
+  playbackRate,
+  setPlaybackRate,
+  allowPlaybackRate,
 }) => {
   const { toggleLyricsModal } = useContext(AppContext);
   const isPlaying = isActive && playStatus === Sound.status.PLAYING;
@@ -82,6 +85,10 @@ const Track = ({
         onOpenTrackLyrics={
           track.lyrics && (() => toggleLyricsModal(true, track))
         }
+        playbackRate={playbackRate}
+        setPlaybackRate={setPlaybackRate}
+        allowPlaybackRate={allowPlaybackRate}
+        isPlaying={isPlaying}
       />
 
       {hasProgressBar && (
@@ -125,6 +132,9 @@ Track.propTypes = {
   displayCovers: PropTypes.bool,
   displayBuyButtons: PropTypes.bool,
   isLooping: PropTypes.bool,
+  playbackRate: PropTypes.number,
+  setPlaybackRate: PropTypes.func,
+  allowPlaybackRate: PropTypes.bool,
 };
 
 export default Track;

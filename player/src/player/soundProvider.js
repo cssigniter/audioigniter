@@ -5,6 +5,8 @@ import Sound from 'react-sound';
 import SoundCloud from '../utils/soundcloud';
 import multiSoundDisabled from '../utils/multi-sound-disabled';
 
+const PLAYBACK_RATES = [0.5, 0.75, 1, 1.25, 1.5, 2];
+
 const soundProvider = (Player, events) => {
   class EnhancedPlayer extends React.Component {
     constructor(props) {
@@ -18,6 +20,7 @@ const soundProvider = (Player, events) => {
         playStatus: Sound.status.STOPPED,
         position: 0,
         duration: 0,
+        playbackRate: 1,
         volume: volume == null ? 100 : volume,
         cycleTracks,
         repeatingTrackIndex: null,
@@ -31,6 +34,8 @@ const soundProvider = (Player, events) => {
       this.prevTrack = this.prevTrack.bind(this);
       this.setPosition = this.setPosition.bind(this);
       this.setVolume = this.setVolume.bind(this);
+      this.skipPosition = this.skipPosition.bind(this);
+      this.setPlaybackRate = this.setPlaybackRate.bind(this);
       this.toggleTracklistCycling = this.toggleTracklistCycling.bind(this);
       this.setTrackCycling = this.setTrackCycling.bind(this);
       this.reverseTracks = this.reverseTracks.bind(this);
@@ -109,6 +114,8 @@ const soundProvider = (Player, events) => {
         nextTrack: this.nextTrack,
         prevTrack: this.prevTrack,
         setPosition: this.setPosition,
+        skipPosition: this.skipPosition,
+        setPlaybackRate: this.setPlaybackRate,
         setVolume: this.setVolume,
         toggleTracklistCycling: this.toggleTracklistCycling,
         setTrackCycling: this.setTrackCycling,
@@ -124,6 +131,14 @@ const soundProvider = (Player, events) => {
 
     setPosition(position) {
       this.setState(() => ({ position }));
+    }
+
+    skipPosition(direction = 1) {
+      const { position } = this.state;
+      const { skipAmount } = this.props;
+      const amount = parseInt(skipAmount, 10) * 1000;
+
+      this.setPosition(position + amount * direction);
     }
 
     setTrackCycling(index, event) {
@@ -148,6 +163,20 @@ const soundProvider = (Player, events) => {
         },
       );
     }
+
+    setPlaybackRate = () => {
+      this.setState(({ playbackRate }) => {
+        const currentIndex = PLAYBACK_RATES.findIndex(
+          rate => rate === playbackRate,
+        );
+        const nextIndex =
+          (PLAYBACK_RATES.length + (currentIndex + 1)) % PLAYBACK_RATES.length;
+
+        return {
+          playbackRate: PLAYBACK_RATES[nextIndex],
+        };
+      });
+    };
 
     playTrack(index, event) {
       if (event) {
@@ -239,8 +268,7 @@ const soundProvider = (Player, events) => {
     }
 
     render() {
-      const { tracks, playStatus, position, volume } = this.state;
-
+      const { tracks, playStatus, position, volume, playbackRate } = this.state;
       const finalProps = this.getFinalProps();
 
       return (
@@ -256,6 +284,7 @@ const soundProvider = (Player, events) => {
               onPlaying={this.onPlaying}
               onFinishedPlaying={this.onFinishedPlaying}
               onPause={() => this.pauseTrack()}
+              playbackRate={playbackRate}
             />
           )}
         </div>

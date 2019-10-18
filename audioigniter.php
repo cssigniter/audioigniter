@@ -213,6 +213,9 @@ class AudioIgniter {
 			'volume_up'           => esc_html__( 'Volume Up', 'audioigniter' ),
 			'volume_down'         => esc_html__( 'Volume Down', 'audioigniter' ),
 			'open_track_lyrics'   => esc_html__( 'Open track lyrics', 'audioigniter' ),
+			'set_playback_rate'   => esc_html__( 'Set playback rate', 'audioigniter' ),
+			'skip_forward'        => esc_html__( 'Skip forward', 'audioigniter' ),
+			'skip_backward'       => esc_html__( 'Skip backward', 'audioigniter' ),
 		) ) );
 
 		wp_localize_script( 'audioigniter-admin', 'ai_scripts', array(
@@ -1018,6 +1021,7 @@ class AudioIgniter {
 					'tracklisting_height',
 					'allow_track_listing_loop',
 					'allow_track_listing_toggle',
+					'skip_amount',
 				),
 				'info'       => '',
 			),

@@ -22,6 +22,9 @@ if (process.env.NODE_ENV !== 'production') {
     volume_up: 'Volume Up',
     volume_down: 'Volume Down',
     open_track_lyrics: 'Open track lyrics',
+    set_playback_rate: 'Set playback rate',
+    skip_forward: 'Skip forward',
+    skip_backward: 'Skip backward',
   };
 }
 
@@ -42,6 +45,9 @@ function renderApp(node) {
     displayTracklist: JSON.parse(node.getAttribute('data-display-tracklist')),
     allowTracklistToggle: JSON.parse(
       node.getAttribute('data-allow-tracklist-toggle'),
+    ),
+    allowPlaybackRate: JSON.parse(
+      node.getAttribute('data-allow-playback-rate'),
     ),
     allowTracklistLoop: JSON.parse(
       node.getAttribute('data-allow-tracklist-loop'),
@@ -66,6 +72,7 @@ function renderApp(node) {
     ),
     maxWidth: node.getAttribute('data-max-width'),
     soundcloudClientId: node.getAttribute('data-soundcloud-client-id'),
+    skipAmount: parseInt(node.getAttribute('data-skip-amount'), 10),
   };
 
   render(<App type={type} {...props} />, node);

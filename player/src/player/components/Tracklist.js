@@ -35,6 +35,9 @@ const Tracklist = ({ ...props }) => {
               className={props.trackClassName}
               isStandalone={props.standaloneTracks}
               isLooping={isLooping}
+              playbackRate={props.playbackRate}
+              setPlaybackRate={props.setPlaybackRate}
+              allowPlaybackRate={props.allowPlaybackRate}
             />
           );
         })}
@@ -64,7 +67,9 @@ Tracklist.propTypes = {
   buyButtonsTarget: PropTypes.bool,
   displayCovers: PropTypes.bool,
   displayArtistNames: PropTypes.bool,
-  repeatingTrackIndex: PropTypes.number,
+  playbackRate: PropTypes.number,
+  setPlaybackRate: PropTypes.func,
+  allowPlaybackRate: PropTypes.bool,
 };
 
 export default Tracklist;
