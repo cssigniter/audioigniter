@@ -3,7 +3,7 @@ Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, mp3 player, music, radio stream, radio player, sound player, playlist
 Requires at least: 4.9
 Tested up to: 5.2.4
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,10 +41,14 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/plugins/audio
 * Bulk upload functionality
 * Total color customization control
 * Visual Composer support
+* Elementor support
+* Beaver Builder support
 * Widget & Shortcode available
 * Rearrange tracks functionality
 * Internal taxonomy for archiving purposes
 * Fixed position player
+* Playback Rate
+* Track skipping
 
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/audioigniter` directory, or install the plugin through the WordPress plugins screen directly.
