@@ -2,7 +2,7 @@
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, mp3 player, music, radio stream, radio player, sound player, playlist
 Requires at least: 4.9
-Tested up to: 5.2.2
+Tested up to: 5.2.4
 Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,10 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/plugins/audio
 3. Advanced player customization
 
 == Changelog ==
+= 1.6.0 =
+* Change the layout of volume controls to be a bit more spacey.
+* Hidden volume controls in mobile devices (improves player appearance in mobile).
+
 = 1.5.1 =
 * Minor performance improvements.
 
