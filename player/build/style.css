@@ -29,6 +29,8 @@
   line-height: normal;
   margin-bottom: 20px;
   letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .ai-wrap::after, .ai-wrap::before {
@@ -491,6 +493,9 @@
   -webkit-transition: color 0.18s ease;
   transition: color 0.18s ease;
   box-shadow: none;
+  text-decoration: none;
+  font-style: normal;
+  text-transform: none;
 }
 
 .ai-wrap .ai-btn svg {
@@ -537,7 +542,7 @@
 
 .ai-wrap .ai-btn-skip-position,
 .ai-wrap .ai-btn-playback-rate {
-  font-family: sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
   font-weight: bold;
   letter-spacing: -.05em;

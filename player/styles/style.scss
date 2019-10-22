@@ -34,6 +34,8 @@ $screen-xs-max: 320px !default;
 	line-height: normal;
 	margin-bottom: $spacing;
 	letter-spacing: 0;
+  -webkit-font-smoothing: antialiased; // 4
+  -moz-osx-font-smoothing: grayscale; // 4
 
 	&::after,
 	&::before {
@@ -357,6 +359,9 @@ $screen-xs-max: 320px !default;
 		color: $text-color;
 		transition: color $transition-time ease;
 		box-shadow: none;
+    text-decoration: none;
+    font-style: normal;
+    text-transform: none;
 
 		svg {
 			position: relative;
@@ -404,7 +409,7 @@ $screen-xs-max: 320px !default;
 
   .ai-btn-skip-position,
   .ai-btn-playback-rate {
-    font-family: sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 11px;
     font-weight: bold;
     letter-spacing: -.05em;
