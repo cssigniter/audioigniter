@@ -144,25 +144,6 @@ class GlobalFooterPlayer extends React.Component {
                   </Button>
                 )}
 
-                {skipAmount > 0 && (
-                  <Fragment>
-                    <Button
-                      className="ai-btn ai-btn-repeat"
-                      onClick={() => skipPosition(-1)}
-                      ariaLabel={aiStrings.skip_backward}
-                    >
-                      &lt;
-                    </Button>
-                    <Button
-                      className="ai-btn ai-btn-repeat"
-                      onClick={() => skipPosition(1)}
-                      ariaLabel={aiStrings.skip_forward}
-                    >
-                      &gt;
-                    </Button>
-                  </Fragment>
-                )}
-
                 <VolumeControl
                   volume={volume}
                   // eslint-disable-next-line no-shadow
@@ -188,6 +169,25 @@ class GlobalFooterPlayer extends React.Component {
                   >
                     <Fragment>&times;{playbackRate}</Fragment>
                   </Button>
+                )}
+
+                {skipAmount > 0 && (
+                  <Fragment>
+                    <Button
+                      className="ai-btn ai-btn-skip-position"
+                      onClick={() => skipPosition(-1)}
+                      ariaLabel={aiStrings.skip_backward}
+                    >
+                      -{skipAmount}s
+                    </Button>
+                    <Button
+                      className="ai-btn ai-btn-skip-position"
+                      onClick={() => skipPosition(1)}
+                      ariaLabel={aiStrings.skip_forward}
+                    >
+                      +{skipAmount}s
+                    </Button>
+                  </Fragment>
                 )}
 
                 {currentTrack && currentTrack.lyrics && !isTrackListOpen && (

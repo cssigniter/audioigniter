@@ -25,21 +25,22 @@ export default class VolumeControl extends React.Component {
       <div className="ai-audio-volume-control">
         <div className="ai-audio-volume-bars">{this.renderVolumeBars()}</div>
 
-        <Button
-          className="ai-btn"
-          onClick={() => setVolume(volume <= 0 ? volume : volume - 10)}
-          aria-label={aiStrings.volume_down}
-        >
-          <VolumeDownIcon />
-        </Button>
-
-        <Button
-          className="ai-btn"
-          onClick={() => setVolume(volume >= 100 ? volume : volume + 10)}
-          aria-label={aiStrings.volume_up}
-        >
-          <VolumeUpIcon />
-        </Button>
+        <div className="ai-audio-volume-control-btns">
+          <Button
+            className="ai-btn"
+            onClick={() => setVolume(volume >= 100 ? volume : volume + 10)}
+            aria-label={aiStrings.volume_up}
+          >
+            <VolumeUpIcon />
+          </Button>
+          <Button
+            className="ai-btn"
+            onClick={() => setVolume(volume <= 0 ? volume : volume - 10)}
+            aria-label={aiStrings.volume_down}
+          >
+            <VolumeDownIcon />
+          </Button>
+        </div>
       </div>
     );
   }

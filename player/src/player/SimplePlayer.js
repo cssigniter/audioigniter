@@ -11,8 +11,6 @@ const SimplePlayer = props => {
       ? props.activeIndex
       : undefined;
 
-  console.log(props);
-
   return (
     <div
       className="ai-wrap ai-type-simple"

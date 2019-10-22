@@ -132,7 +132,7 @@ $screen-xs-max: 320px !default;
 		display: flex;
 		align-items: center;
 		width: 100%;
-		margin-bottom: $spacing - 3px;
+		margin-bottom: $spacing - 4px;
 	}
 
 	.ai-audio-control {
@@ -211,7 +211,7 @@ $screen-xs-max: 320px !default;
 	.ai-audio-controls-progress {
 		display: flex;
 		align-items: center;
-		margin-bottom: $spacing;
+		margin-bottom: $spacing - 5px;
 	}
 
 	.ai-track-progress-bar {
@@ -265,15 +265,15 @@ $screen-xs-max: 320px !default;
 	// Volume Controls
 	//
 	.ai-audio-volume-control {
-		@include clearfix;
-		display: inline-block;
+    display: flex;
+    align-items: center;
 	}
 
 	.ai-audio-volume-bars {
 		@include clearfix;
 		float: left;
-		margin-right: 5px;
-		height: 30px;
+		margin-right: 3px;
+		height: 34px;
 	}
 
 	.ai-volume-bar {
@@ -309,6 +309,29 @@ $screen-xs-max: 320px !default;
 		}
 	}
 
+  .ai-audio-volume-control-btns {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .ai-btn {
+      height: 50%;
+      font-size: 10px;
+
+      &:first-child {
+        margin-bottom: 1px;
+      }
+
+      &:last-child {
+        margin-top: 1px;
+      }
+
+      svg {
+        height: 6px;
+      }
+    }
+  }
+
 	//
 	// Audio Controls
 	//
@@ -320,13 +343,13 @@ $screen-xs-max: 320px !default;
 		transition: opacity $transition-time*2 ease;
 
 		.ai-btn {
-			margin-right: 5px;
+			margin-right: 4px;
 		}
 	}
 
 	.ai-btn {
-		width: 30px;
-		height: 30px;
+		width: 32px;
+		height: 34px;
 		font-size: 14px;
 		padding: 0;
 		background-image: none;
@@ -379,6 +402,7 @@ $screen-xs-max: 320px !default;
 		}
 	}
 
+  .ai-btn-skip-position,
   .ai-btn-playback-rate {
     font-family: sans-serif;
     font-size: 11px;
@@ -827,7 +851,8 @@ $screen-xs-max: 320px !default;
 			.ai-track-time,
 			.ai-thumb,
 			.ai-btn-repeat,
-			.ai-audio-volume-control {
+			.ai-audio-volume-control,
+      .ai-btn-skip-position {
 				display: none;
 			}
 
@@ -848,15 +873,23 @@ $screen-xs-max: 320px !default;
 				margin-left: $spacing / 2;
 			}
 		}
+
+    .ai-audio-volume-control {
+      .ai-btn {
+        display: none;
+      }
+    }
 	}
 }
 
 @media (max-width: $screen-sm-max) {
 	.ai-wrap {
 		@include sm-max;
-	}
 
-	.ai-wrap {
+    .ai-audio-volume-control {
+      display: none;
+    }
+
 		.ai-scroll-wrap {
 			.ai-tracklist {
 				margin-right: 0;
