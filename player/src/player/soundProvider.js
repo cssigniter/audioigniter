@@ -49,7 +49,13 @@ const soundProvider = (Player, events) => {
       const tracksPromised = fetch(tracksUrl).then(res => res.json());
 
       if (!soundcloudClientId) {
-        tracksPromised.then(tracks => this.setState({ tracks }));
+        tracksPromised.then(tracks =>
+          this.setState({ tracks }, () => {
+            if (reverseTrackOrder) {
+              this.reverseTracks();
+            }
+          }),
+        );
         return;
       }
 
