@@ -79,6 +79,7 @@ const Track = ({
         buyButtonsTarget={buyButtonsTarget}
         buyUrl={track.buyUrl}
         downloadUrl={track.downloadUrl}
+        downloadFilename={track.downloadFilename}
         onTrackLoop={onTrackLoop && (() => onTrackLoop(index))}
         isLooping={isLooping}
         displayBuyButtons={displayBuyButtons}

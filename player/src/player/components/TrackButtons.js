@@ -6,6 +6,7 @@ const TrackButtons = ({
   buyButtonsTarget,
   buyUrl,
   downloadUrl,
+  downloadFilename,
   onTrackLoop,
   isLooping,
   displayBuyButtons,
@@ -40,10 +41,10 @@ const TrackButtons = ({
         </a>
       )}
 
-      {downloadUrl && displayBuyButtons && (
+      {downloadUrl && downloadFilename && displayBuyButtons && (
         <a
           href={downloadUrl}
-          download={downloadUrl}
+          download={downloadFilename}
           className="ai-track-btn"
           role="button"
           aria-label={aiStrings.download_track}
@@ -116,6 +117,7 @@ TrackButtons.propTypes = {
   buyButtonsTarget: PropTypes.bool,
   buyUrl: PropTypes.string,
   downloadUrl: PropTypes.string,
+  downloadFilename: PropTypes.string,
   onTrackLoop: PropTypes.func,
   isLooping: PropTypes.bool,
   displayBuyButtons: PropTypes.bool,
