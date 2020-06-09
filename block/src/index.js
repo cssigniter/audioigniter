@@ -2,11 +2,12 @@ import { __ } from 'wp.i18n';
 import { registerBlockType } from 'wp.blocks';
 
 import AudioIgniterPlayerEdit from './edit';
+import PlayerBlockIcon from './block-icon';
 
 registerBlockType('audioigniter/player', {
   title: __('AudioIgniter Player'),
   description: __('Display your AudioIgniter player'),
-  icon: 'A', // TODO
+  icon: PlayerBlockIcon,
   category: 'audioigniter',
   keywords: [__('playlist'), __('audioigniter'), __('player')],
   attributes: {
