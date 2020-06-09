@@ -124,6 +124,8 @@ class AudioIgniter {
 		include_once( 'class-audioigniter-sanitizer.php' );
 		$this->sanitizer = new AudioIgniter_Sanitizer();
 
+		include_once( 'block/src/block.php' );
+
 		// Initialization needed in every request.
 		$this->init();
 
@@ -167,6 +169,9 @@ class AudioIgniter {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save_post' ) );
 
+		add_filter( 'block_categories', array( $this, 'block_categories' ), 10, 2 );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ) );
+
 		do_action( 'audioigniter_admin_init' );
 	}
 
@@ -197,6 +202,21 @@ class AudioIgniter {
 
 		wp_register_script( 'audioigniter', $this->plugin_url() . 'player/build/app.js', array(), self::$version, true );
 		wp_register_script( 'audioigniter-admin', $this->plugin_url() . 'assets/js/audioigniter.js', array(), self::$version, true );
+
+		wp_register_script( 'audioigniter-block-editor', $this->plugin_url() . 'block/build/block.js', array(
+			'wp-components',
+			'wp-blocks',
+			'wp-element',
+			'wp-editor',
+			'wp-block-editor',
+			'wp-data',
+			'wp-date',
+			'wp-i18n',
+			'wp-compose',
+			'wp-keycodes',
+			'wp-html-entities',
+			'wp-server-side-render',
+		), self::$version, true );
 
 		wp_localize_script( 'audioigniter', 'aiStrings', apply_filters( 'audioigniter_aiStrings', array(
 			/* translators: %s is the track's title. */
@@ -253,6 +273,31 @@ class AudioIgniter {
 	}
 
 	/**
+	 * Enqueues editor scripts and styles.
+	 *
+	 * @since 1.7.0
+	 */
+	public function enqueue_editor_assets( $hook ) {
+		wp_enqueue_script( 'audioigniter-block-editor' );
+		wp_enqueue_style( 'audioigniter' );
+		wp_enqueue_script( 'audioigniter' );
+	}
+
+	/**
+	 * Register AudioIgniter's block category
+	 *
+	 * @since 1.7.0
+	 */
+	public function block_categories( $categories, $post ) {
+		return array_merge( $categories, array(
+			array(
+				'slug'  => 'audioigniter',
+				'title' => __( 'AudioIgniter', 'audioigniter' ),
+			),
+		) );
+	}
+
+	/**
 	 * Post types registration.
 	 *
 	 * @since 1.0.0
@@ -283,6 +328,7 @@ class AudioIgniter {
 			'has_archive'     => false,
 			'supports'        => array( 'title' ),
 			'menu_icon'       => 'dashicons-controls-volumeon',
+			'show_in_rest'    => true,
 		);
 
 		register_post_type( $this->post_type, $args );
