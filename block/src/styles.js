@@ -9,7 +9,10 @@ const AudioIgniterPlaylistStyles = ({ attributes }) => {
     accentColor,
     textOnAccentColor,
     controlColor,
+    backgroundImage,
   } = attributes;
+
+  const { url, repeat, size, position, attachment } = backgroundImage;
 
   return (
     <Style id={`audioigniter-block-${uniqueId}`}>
@@ -22,6 +25,12 @@ const AudioIgniterPlaylistStyles = ({ attributes }) => {
         rule=".ai-wrap .ai-track-btn { border-left-color: %s; }"
         value={backgroundColor}
       />
+
+      <Rule rule=".ai-wrap { background-image: url(%s); }" value={url} />
+      <Rule rule=".ai-wrap { background-repeat: %s; }" value={repeat} />
+      <Rule rule=".ai-wrap { background-size: %s; }" value={size} />
+      <Rule rule=".ai-wrap { background-position: %s; }" value={position} />
+      <Rule rule=".ai-wrap { background-attachment: %s; }" value={attachment} />
 
       <Rule
         rule=".ai-wrap,

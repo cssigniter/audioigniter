@@ -8,6 +8,7 @@ import ServerSideRender from 'wp.serverSideRender';
 import useUniqueId from './hooks/useUniqueId';
 import LoadingResponsePlaceholder from './components/LoadingResponsePlaceholder';
 import AudioIgniterPlaylistStyles from './styles';
+import BackgroundControl from './components/BackgroundControl';
 
 const AudioIgniterPlayerEdit = ({
   attributes,
@@ -101,7 +102,14 @@ const AudioIgniterPlayerEdit = ({
               label: __('Controls Color'),
             },
           ]}
-        />
+        >
+          <BackgroundControl
+            attributes={attributes}
+            setAttributes={setAttributes}
+            attributeKey="backgroundImage"
+            label={__('Background Image')}
+          />
+        </PanelColorSettings>
       </InspectorControls>
     </Fragment>
   );

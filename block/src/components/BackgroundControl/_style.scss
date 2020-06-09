@@ -1,0 +1,69 @@
+.ci-control-background {
+  margin-bottom: 24px;
+
+  .ci-split-field {
+    .components-base-control {
+      margin-bottom: 6px;
+    }
+
+    &:last-child {
+      .components-base-control {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.ci-split-field {
+  display: flex;
+  margin: 0 -5px;
+
+  .components-base-control {
+    width: 50%;
+    padding: 0 5px;
+  }
+}
+
+.ci-control-background-label {
+  font-weight: bold;
+}
+
+.ci-control-background-image-wrap {
+  margin-bottom: 24px;
+}
+
+.ci-control-background-image-placeholder {
+  border: 1px dotted $border-color;
+  padding: 0;
+  position: relative;
+  height: 140px;
+  width: 100%;
+  margin-bottom: 5px;
+  display: block;
+  overflow: hidden;
+
+  &:hover {
+    border-color: $blue;
+  }
+
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    padding: 5px;
+  }
+}
+
+.ci-control-background-image-actions {
+  border: 1px dotted $border-color;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    margin: 0 3px;
+  }
+}

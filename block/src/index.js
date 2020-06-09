@@ -3,6 +3,9 @@ import { registerBlockType } from 'wp.blocks';
 
 import AudioIgniterPlayerEdit from './edit';
 import PlayerBlockIcon from './block-icon';
+import { getDefaultBackgroundImageValue } from './components/BackgroundControl/helpers';
+
+import './styles/editor.scss';
 
 registerBlockType('audioigniter/player', {
   title: __('AudioIgniter Player'),
@@ -19,6 +22,10 @@ registerBlockType('audioigniter/player', {
     },
     backgroundColor: {
       type: 'string',
+    },
+    backgroundImage: {
+      type: 'object',
+      default: getDefaultBackgroundImageValue(),
     },
     textColor: {
       type: 'string',

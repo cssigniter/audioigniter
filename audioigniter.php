@@ -218,6 +218,8 @@ class AudioIgniter {
 			'wp-server-side-render',
 		), self::$version, true );
 
+		wp_register_style( 'audioigniter-block-editor', $this->plugin_url() . 'block/build/block.css', array( 'wp-edit-blocks' ), self::$version );
+
 		wp_localize_script( 'audioigniter', 'aiStrings', apply_filters( 'audioigniter_aiStrings', array(
 			/* translators: %s is the track's title. */
 			'play_title'          => esc_html__( 'Play %s', 'audioigniter' ),
@@ -279,8 +281,9 @@ class AudioIgniter {
 	 */
 	public function enqueue_editor_assets( $hook ) {
 		wp_enqueue_script( 'audioigniter-block-editor' );
-		wp_enqueue_style( 'audioigniter' );
+		wp_enqueue_style( 'audioigniter-block-editor' );
 		wp_enqueue_script( 'audioigniter' );
+		wp_enqueue_style( 'audioigniter' );
 	}
 
 	/**

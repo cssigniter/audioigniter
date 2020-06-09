@@ -1,0 +1,39 @@
+//
+// Global variables
+//
+
+// Breakpoints / Responsive
+//
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+// Colors
+//
+$blue: #0085ba !default;
+$black: #000 !default;
+$white: #fff !default;
+$border-color: #e2e4e7 !default;
+$grey-light: #f8f8f8 !default;
+
+// Spacings
+//
+$base-block-vertical-spacing: 30px !default;
+
+// WP Native Blocks
+//
+$border-width: 1px !default;
+$grid-size-large: 16px !default;
+$block-padding: 14px !default;
+$block-spacing: 4px !default;
+$default-block-margin: 28px !default;
+
+// WP Native inputs
+//
+
+$input-border-color: #7e8993 !default;
+$input-border-radius: 3px !default;

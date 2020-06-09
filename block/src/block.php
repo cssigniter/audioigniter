@@ -11,6 +11,9 @@
 				'backgroundColor' => array(
 					'type' => 'string',
 				),
+				'backgroundImage' => array(
+					'type' => 'object',
+				),
 				'textColor' => array(
 					'type' => 'string',
 				),
@@ -33,6 +36,7 @@
 
 		$unique_id            = $attributes['uniqueId'];
 		$background_color     = $attributes['backgroundColor'];
+		$background_image     = $attributes['backgroundImage'];
 		$text_color           = $attributes['textColor'];
 		$accent_color         = $attributes['accentColor'];
 		$text_on_accent_color = $attributes['textOnAccentColor'];
@@ -46,6 +50,31 @@
 			<?php echo $id; ?> .ai-wrap { background-color: <?php echo $background_color; ?>; }
 			<?php echo $id; ?> .ai-wrap .ai-volume-bar { border-right-color: <?php echo $background_color; ?> }
 			<?php echo $id; ?> .ai-wrap .ai-track-btn { border-left-color: <?php echo $background_color; ?> }
+			<?php
+		}
+
+		if ( $background_image && $background_image['url'] ) {
+			$background_image_url = $background_image['url'];
+			$background_image_repeat = $background_image['repeat'];
+			$background_image_size = $background_image['size'];
+			$background_image_position = $background_image['position'];
+			$background_image_attachment = $background_image['attachment'];
+			?>
+			<?php echo $id; ?> .ai-wrap {
+				background-image: url('<?php echo esc_url_raw( $background_image_url ); ?>');
+				<?php if ( $background_image_repeat ): ?>
+					background-repeat: <?php echo $background_image_repeat; ?>;
+				<?php endif; ?>
+				<?php if ( $background_image_position ): ?>
+					background-position: <?php echo $background_image_position; ?>;
+				<?php endif; ?>
+				<?php if ( $background_image_size ): ?>
+					background-size: <?php echo $background_image_size; ?>;
+				<?php endif; ?>
+				<?php if ( $background_image_attachment ): ?>
+					background-attachment: <?php echo $background_image_attachment; ?>;
+				<?php endif; ?>
+			}
 			<?php
 		}
 
