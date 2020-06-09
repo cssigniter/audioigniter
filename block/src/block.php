@@ -1,29 +1,30 @@
 <?php
+	add_action( 'init', 'audioigniter_player_block_init' );
 	function audioigniter_player_block_init () {
 		register_block_type('audioigniter/player', array(
 			'attributes' => array(
-				'uniqueId' => array(
+				'uniqueId'          => array(
 					'type' => 'string',
 				),
-				'playerId' => array(
+				'playerId'          => array(
 					'type' => 'string',
 				),
-				'backgroundColor' => array(
+				'backgroundColor'   => array(
 					'type' => 'string',
 				),
-				'backgroundImage' => array(
+				'backgroundImage'   => array(
 					'type' => 'object',
 				),
-				'textColor' => array(
+				'textColor'         => array(
 					'type' => 'string',
 				),
-				'accentColor' => array(
+				'accentColor'       => array(
 					'type' => 'string',
 				),
 				'textOnAccentColor' => array(
 					'type' => 'string',
 				),
-				'controlColor' => array(
+				'controlColor'      => array(
 					'type' => 'string',
 				),
 			),
@@ -31,8 +32,23 @@
 		) );
 	}
 
-	function generate_styles( $attributes ) {
+	function audioigniter_player_block_defaults() {
+		return array(
+			'uniqueId'          => false,
+			'playerId'          => false,
+			'backgroundColor'   => false,
+			'backgroundImage'   => false,
+			'textColor'         => false,
+			'accentColor'       => false,
+			'textOnAccentColor' => false,
+			'controlColor'      => false,
+		);
+	}
+
+	function audioigniter_player_block_generate_styles( $attributes ) {
 		ob_start();
+
+		$attributes = wp_parse_args( $attributes, audioigniter_player_block_defaults() );
 
 		$unique_id            = $attributes['uniqueId'];
 		$background_color     = $attributes['backgroundColor'];
@@ -44,34 +60,33 @@
 
 		$id = '#audioigniter-block-' . $unique_id;
 
-		// TODO clean this mess? Cleaner / prettier way to output $id and styles ?
 		if ( $background_color ) {
-			?>
-			<?php echo $id; ?> .ai-wrap { background-color: <?php echo $background_color; ?>; }
-			<?php echo $id; ?> .ai-wrap .ai-volume-bar { border-right-color: <?php echo $background_color; ?> }
-			<?php echo $id; ?> .ai-wrap .ai-track-btn { border-left-color: <?php echo $background_color; ?> }
-			<?php
+			echo wp_kses_post( sprintf( '
+				%1$s .ai-wrap { background-color: %2$s; }
+				%1$s .ai-wrap .ai-volume-bar { border-right-color: %2$s; }
+				%1$s .ai-wrap .ai-track-btn { border-left-color: %2$s; }
+			', esc_html( $id ), sanitize_hex_color( $background_color ) ) );
 		}
 
 		if ( $background_image && $background_image['url'] ) {
-			$background_image_url = $background_image['url'];
-			$background_image_repeat = $background_image['repeat'];
-			$background_image_size = $background_image['size'];
-			$background_image_position = $background_image['position'];
+			$background_image_url        = $background_image['url'];
+			$background_image_repeat     = $background_image['repeat'];
+			$background_image_size       = $background_image['size'];
+			$background_image_position   = $background_image['position'];
 			$background_image_attachment = $background_image['attachment'];
 			?>
 			<?php echo $id; ?> .ai-wrap {
 				background-image: url('<?php echo esc_url_raw( $background_image_url ); ?>');
-				<?php if ( $background_image_repeat ): ?>
+				<?php if ( $background_image_repeat ) : ?>
 					background-repeat: <?php echo $background_image_repeat; ?>;
 				<?php endif; ?>
-				<?php if ( $background_image_position ): ?>
+				<?php if ( $background_image_position ) : ?>
 					background-position: <?php echo $background_image_position; ?>;
 				<?php endif; ?>
-				<?php if ( $background_image_size ): ?>
+				<?php if ( $background_image_size ) : ?>
 					background-size: <?php echo $background_image_size; ?>;
 				<?php endif; ?>
-				<?php if ( $background_image_attachment ): ?>
+				<?php if ( $background_image_attachment ) : ?>
 					background-attachment: <?php echo $background_image_attachment; ?>;
 				<?php endif; ?>
 			}
@@ -79,98 +94,98 @@
 		}
 
 		if ( $text_color ) {
-			?>
-			<?php echo $id; ?> .ai-wrap,
-			<?php echo $id; ?> .ai-wrap .ai-btn,
-			<?php echo $id; ?> .ai-wrap .ai-track-btn {
-				color: <?php echo $text_color; ?>;
+			echo wp_kses_post( sprintf( '
+				%1$s .ai-wrap,
+				%1$s .ai-wrap .ai-btn,
+				%1$s .ai-wrap .ai-track-btn {
+					color: %2$s;
 			}
 
-			<?php echo $id; ?> .ai-wrap .ai-btn svg,
-			<?php echo $id; ?> .ai-wrap .ai-track-no-thumb svg,
-			<?php echo $id; ?> .ai-wrap .ai-track-btn svg {
-				fill: <?php echo $text_color; ?>
+				%1$s .ai-wrap .ai-btn svg,
+				%1$s .ai-wrap .ai-track-no-thumb svg,
+				%1$s .ai-wrap .ai-track-btn svg {
+					fill: %2$s;
 			}
-			<?php
+			', esc_html( $id ), sanitize_hex_color( $text_color ) ) );
 		}
 
 		if ( $accent_color ) {
-			?>
-			<?php echo $id; ?> .ai-wrap .ai-audio-control,
-			<?php echo $id; ?> .ai-wrap .ai-audio-control:hover,
-			<?php echo $id; ?> .ai-wrap .ai-audio-control:focus,
-			<?php echo $id; ?> .ai-wrap .ai-track-progress,
-			<?php echo $id; ?> .ai-wrap .ai-volume-bar.ai-volume-bar-active::before,
-			<?php echo $id; ?> .ai-wrap .ai-track:hover,
-			<?php echo $id; ?> .ai-wrap .ai-track.ai-track-active,
-			<?php echo $id; ?> .ai-wrap .ai-btn.ai-btn-active {
-				background-color: <?php echo $accent_color; ?>;
+			echo wp_kses_post( sprintf( '
+				%1$s .ai-wrap .ai-audio-control,
+				%1$s .ai-wrap .ai-audio-control:hover,
+				%1$s .ai-wrap .ai-audio-control:focus,
+				%1$s .ai-wrap .ai-track-progress,
+				%1$s .ai-wrap .ai-volume-bar.ai-volume-bar-active::before,
+				%1$s .ai-wrap .ai-track:hover,
+				%1$s .ai-wrap .ai-track.ai-track-active,
+				%1$s .ai-wrap .ai-btn.ai-btn-active {
+					background-color: %2$s;
 			}
 
-			<?php echo $id; ?> .ai-wrap .ai-scroll-wrap > div:last-child div {
-				background-color: <?php echo $accent_color; ?> !important;
+				%1$s .ai-wrap .ai-scroll-wrap > div:last-child div {
+					background-color: %2$s !important;
 			}
 
-			<?php echo $id; ?> .ai-wrap .ai-btn:hover,
-			<?php echo $id; ?> .ai-wrap .ai-btn:focus,
-			<?php echo $id; ?> .ai-wrap .ai-footer a,
-			<?php echo $id; ?> .ai-wrap .ai-footer a:hover {
-				color: <?php echo $accent_color; ?>;
+				%1$s .ai-wrap .ai-btn:hover,
+				%1$s .ai-wrap .ai-btn:focus,
+				%1$s .ai-wrap .ai-footer a,
+				%1$s .ai-wrap .ai-footer a:hover {
+					color: %2$s;
 			}
 
-			<?php echo $id; ?> .ai-wrap .ai-btn:hover path,
-			<?php echo $id; ?> .ai-wrap .ai-btn:focus path  {
-				fill: <?php echo $accent_color; ?>;
+				%1$s .ai-wrap .ai-btn:hover path,
+				%1$s .ai-wrap .ai-btn:focus path  {
+					fill: %2$s;
 			}
-			<?php
+			', esc_html( $id ), sanitize_hex_color( $accent_color ) ) );
 		}
 
 		if ( $text_on_accent_color ) {
-			?>
-			<?php echo $id; ?> .ai-wrap .ai-audio-control,
-			<?php echo $id; ?> .ai-wrap .ai-track:hover,
-			<?php echo $id; ?> .ai-wrap .ai-track.ai-track-active,
-			<?php echo $id; ?> .ai-wrap .ai-track.ai-track-active .ai-track-btn,
-			<?php echo $id; ?> .ai-wrap .ai-track:hover .ai-track-btn,
-			<?php echo $id; ?> .ai-wrap .ai-btn.ai-btn-active {
-				color: <?php echo $text_on_accent_color; ?>;
+			echo wp_kses_post( sprintf( '
+				%1$s .ai-wrap .ai-audio-control,
+				%1$s .ai-wrap .ai-track:hover,
+				%1$s .ai-wrap .ai-track.ai-track-active,
+				%1$s .ai-wrap .ai-track.ai-track-active .ai-track-btn,
+				%1$s .ai-wrap .ai-track:hover .ai-track-btn,
+				%1$s .ai-wrap .ai-btn.ai-btn-active {
+					color: %2$s;
 			}
 
-			<?php echo $id; ?> .ai-wrap .ai-audio-control path,
-			<?php echo $id; ?> .ai-wrap .ai-track.ai-track-active .ai-track-btn path,
-			<?php echo $id; ?> .ai-wrap .ai-track:hover .ai-track-btn path,
-			<?php echo $id; ?> .ai-wrap .ai-btn.ai-btn-active path {
-				fill: <?php echo $text_on_accent_color; ?>;
+				%1$s .ai-wrap .ai-audio-control path,
+				%1$s .ai-wrap .ai-track.ai-track-active .ai-track-btn path,
+				%1$s .ai-wrap .ai-track:hover .ai-track-btn path,
+				%1$s .ai-wrap .ai-btn.ai-btn-active path {
+					fill: %2$s;
 			}
-			<?php
+			', esc_html( $id ), sanitize_hex_color( $text_on_accent_color ) ) );
 		}
 
 		if ( $control_color ) {
-			?>
-			<?php echo $id; ?> .ai-wrap .ai-track-progress-bar,
-			<?php echo $id; ?> .ai-wrap .ai-volume-bar,
-			<?php echo $id; ?> .ai-wrap .ai-btn,
-			<?php echo $id; ?> .ai-wrap .ai-btn:hover,
-			<?php echo $id; ?> .ai-wrap .ai-btn:focus,
-			<?php echo $id; ?> .ai-wrap .ai-track,
-			<?php echo $id; ?> .ai-wrap .ai-track-no-thumb {
-				background-color: <?php echo $control_color; ?>;
+			echo wp_kses_post( sprintf( '
+				%1$s .ai-wrap .ai-track-progress-bar,
+				%1$s .ai-wrap .ai-volume-bar,
+				%1$s .ai-wrap .ai-btn,
+				%1$s .ai-wrap .ai-btn:hover,
+				%1$s .ai-wrap .ai-btn:focus,
+				%1$s .ai-wrap .ai-track,
+				%1$s .ai-wrap .ai-track-no-thumb {
+					background-color: %2$s;
 			}
 
-			<?php echo $id; ?> .ai-wrap .ai-scroll-wrap > div:last-child {
-				background-color: <?php echo $control_color; ?>;
+				%1$s .ai-wrap .ai-scroll-wrap > div:last-child {
+					background-color: %2$s;
+				}
+
+				%1$s .ai-wrap .ai-footer {
+					border-top-color: %2$s;
 			}
 
-			<?php echo $id; ?> .ai-wrap .ai-footer {
-				border-top-color: <?php echo $control_color; ?>;
+				%1$s .ai-wrap.ai-is-loading .ai-control-wrap-thumb::after,
+				%1$s .ai-wrap.ai-is-loading .ai-track-title::after,
+				%1$s .ai-wrap.ai-is-loading .ai-track-subtitle::after {
+					background: %2$s;
 			}
-
-			<?php echo $id; ?> .ai-wrap.ai-is-loading .ai-control-wrap-thumb::after,
-			<?php echo $id; ?> .ai-wrap.ai-is-loading .ai-track-title::after,
-			<?php echo $id; ?> .ai-wrap.ai-is-loading .ai-track-subtitle::after {
-				background: <?php echo $control_color; ?>;
-			}
-			<?php
+			', esc_html( $id ), sanitize_hex_color( $control_color ) ) );
 		}
 
 		$css = ob_get_clean();
@@ -179,9 +194,10 @@
 	}
 
 	function audioigniter_player_block_render_callback ( $attributes ) {
-		$unique_id        = $attributes['uniqueId'];
-		$player_id        = $attributes['playerId'];
-		$background_color = $attributes['backgroundColor'];
+		$attributes = wp_parse_args( $attributes, audioigniter_player_block_defaults() );
+
+		$unique_id = $attributes['uniqueId'];
+		$player_id = $attributes['playerId'];
 
 		if ( empty( $player_id ) ) {
 			return esc_html__( 'Select a playlist from the block settings.', 'audioigniter' );
@@ -189,23 +205,23 @@
 
 		ob_start();
 
-		if ( $background_color ) {
+		$css = audioigniter_player_block_generate_styles( $attributes );
+		if ( trim( $css ) ) {
 			?>
 			<style>
-			<?php echo generate_styles( $attributes ); ?>
+				<?php echo wp_kses_post( $css ); ?>
 			</style>
-
-			<div id="<?php echo 'audioigniter-block-' . $unique_id ?>">
 			<?php
 		}
 
-		echo do_shortcode( '[ai_playlist id="' . $player_id . '"]' );
-
-		echo '</div>';
+		?>
+		<div id="<?php echo esc_attr( 'audioigniter-block-' . $unique_id ); ?>">
+			<?php echo do_shortcode( sprintf( '[ai_playlist id="%s"]', esc_attr( $player_id ) ) ); ?>
+		</div>
+		<?php
 
 		$response = ob_get_clean();
 
 		return $response;
 	}
 
-	add_action( 'init', 'audioigniter_player_block_init' );
