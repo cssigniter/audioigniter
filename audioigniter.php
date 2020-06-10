@@ -283,7 +283,6 @@ class AudioIgniter {
 			'has_archive'     => false,
 			'supports'        => array( 'title' ),
 			'menu_icon'       => 'dashicons-controls-volumeon',
-			'show_in_rest'    => true,
 		);
 
 		register_post_type( $this->post_type, $args );
