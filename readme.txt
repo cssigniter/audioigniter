@@ -40,6 +40,7 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/plugins/audio
 
 * Bulk upload functionality
 * Total color customization control
+* Block Editor (Gutenberg) support
 * Visual Composer support
 * Elementor support
 * Beaver Builder support
