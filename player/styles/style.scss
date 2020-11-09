@@ -82,6 +82,10 @@ $screen-xs-max: 320px !default;
 		text-transform: none;
 	}
 
+  svg {
+    display: inline-block;
+  }
+
 	.ai-btn,
 	.ai-audio-control {
 		@include btn-reset;

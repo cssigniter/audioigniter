@@ -76,6 +76,10 @@
   text-transform: none;
 }
 
+.ai-wrap svg {
+  display: inline-block;
+}
+
 .ai-wrap .ai-btn,
 .ai-wrap .ai-audio-control {
   display: inline-block;
