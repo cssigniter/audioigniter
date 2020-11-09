@@ -2,8 +2,8 @@
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, mp3 player, music, radio stream, radio player, sound player, playlist
 Requires at least: 5.0
-Tested up to: 5.4.1
-Stable tag: 1.6.1
+Tested up to: 5.5.3
+Stable tag: 1.6.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,6 +63,9 @@ But wait, there's more. A [Pro version](https://www.cssigniter.com/plugins/audio
 3. Advanced player customization
 
 == Changelog ==
+
+= 1.6.3 =
+* Fixed SVG appearance in TwentyTwenty theme.
 
 = 1.6.2 =
 * Fixed an issue where the download buttons would suggest an ugly filename consisting of the URL in a sanitized form.
