@@ -1,4 +1,4 @@
-=== AudioIgniter ===
+=== AudioIgniter Music Player ===
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, sound, player, audio player, music player, mp3 player, music, radio stream, radio player, sound player, playlist
 Requires at least: 5.0
@@ -36,7 +36,7 @@ You can combine [AudioIgniter with WooCommerce to easily sell individual tracks]
 * Show numbers in reverse order
 * Show/Hide track covers in playlist
 * Show/Hide active track’s cover
-* Show/HIde artist name
+* Show/Hide artist name
 * Custom "Buy track" URL field
 * Custom "Download" URL field
 * "Full" or "Simple" player mode (Great for podcasts)
