@@ -10,18 +10,24 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types and serve your audio content in style!
 
 == Description ==
-Looking for a music player? AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types. By using the standard WordPress media upload functionality, you can create new audio playlists in minutes. Oh, you can use AudioIgniter to stream your radio show too!
+Looking for an MP3 music player? AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types. By using the standard WordPress media upload functionality, you can create new audio playlists in minutes. Oh, you can use AudioIgniter to stream your radio show too!
 
 https://www.youtube.com/watch?v=AmRDYlVW_3M
 
 Check out [the demo](https://www.cssigniter.com/preview/audioigniter/) now!
 
-Selling digital music? You can combine AudioIgniter with WooCommerce to easily sell individual tracks, learn how [here](https://www.cssigniter.com/sell-individual-tracks-using-audioigniter-with-woocommerce/).
+** Selling digital music? **
+
+You can combine [AudioIgniter with WooCommerce to easily sell individual tracks] (https://www.cssigniter.com/sell-individual-tracks-using-audioigniter-with-woocommerce/).
 
 **Features:**
 
+* Supports audio and radio streaming
 * Unlimited playlists
 * Unlimited tracks
+* 100% Compatible with Elementor
+* 100% Compatible with Visual Composer
+* 100% Compatible with Gutenberg Block Editor
 * Responsive layout
 * Embed through shortcode
 * Flexible settings per playlist
@@ -30,26 +36,53 @@ Selling digital music? You can combine AudioIgniter with WooCommerce to easily s
 * Show numbers in reverse order
 * Show/Hide track covers in playlist
 * Show/Hide active track’s cover
-* Show artist name
+* Show/HIde artist name
 * Custom "Buy track" URL field
+* Custom "Download" URL field
+* "Full" or "Simple" player mode (Great for podcasts)
 * Limit track listing height
+* Repeat track listing option
 * Maximum player width
+* Automatic ID3 Tag extraction from MP3 files
 * Heavily tested on the 150 most popular free themes on WordPress.org
 
-But wait, there's more. A [Pro version](https://www.cssigniter.com/plugins/audioigniter-pro) is also available! Here's what you get if you decide to upgrade:
+** Supported Services: **
+
+* Acast
+* Amazon S3
+* Anchor
+* Art19
+* AudioBoom
+* Castbox
+* Captivate
+* Icecast
+* Podbean
+* Radiojar
+* Shoutcast
+* Speaker
+* Stitcher
+* Libsyn
+
+** But wait, there's more! **
+
+A [Pro version](https://www.cssigniter.com/plugins/audioigniter) is also available! Here's what you get if you decide to upgrade:
 
 * Bulk upload functionality
-* Total color customization control
-* Block Editor (Gutenberg) support
-* Visual Composer support
-* Elementor support
-* Beaver Builder support
-* Widget & Shortcode available
 * Rearrange tracks functionality
+* Stop Tracks From Other Players (Multiple Players In One Page)
+* Track skipping functionality (You can adjust the number of seconds)
+* Playback rate (1x, 1.5x, 2x)
+* Lyrics per track
+* Individual Track Repeat Mode
+* Fixed position player (Continuous play must be supported by your theme)
 * Internal taxonomy for archiving purposes
-* Fixed position player
-* Playback Rate
-* Track skipping
+* Customize the colors through the Customizer
+* Custom block for the Gutenberg Block Editor (With the ability to change colors per player)
+* Widget & Shortcode available
+
+** PREMIUM SUPPORT **
+You can expect the same level of support for both the free and pro version of our plugin. Average response time: 24 hours.
+
 
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/audioigniter` directory, or install the plugin through the WordPress plugins screen directly.
