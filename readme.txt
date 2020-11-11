@@ -16,7 +16,7 @@ https://www.youtube.com/watch?v=AmRDYlVW_3M
 
 Check out [the demo](https://www.cssigniter.com/preview/audioigniter/) now!
 
-** Selling digital music? **
+**Selling digital music?**
 
 You can combine [AudioIgniter with WooCommerce to easily sell individual tracks] (https://www.cssigniter.com/sell-individual-tracks-using-audioigniter-with-woocommerce/).
 
@@ -46,7 +46,7 @@ You can combine [AudioIgniter with WooCommerce to easily sell individual tracks]
 * Automatic ID3 Tag extraction from MP3 files
 * Heavily tested on the 150 most popular free themes on WordPress.org
 
-** Supported Services: **
+**Supported Services:**
 
 * Acast
 * Amazon S3
@@ -63,7 +63,7 @@ You can combine [AudioIgniter with WooCommerce to easily sell individual tracks]
 * Stitcher
 * Libsyn
 
-** But wait, there's more! **
+**But wait, there's more!**
 
 A [Pro version](https://www.cssigniter.com/plugins/audioigniter) is also available! Here's what you get if you decide to upgrade:
 
@@ -80,7 +80,7 @@ A [Pro version](https://www.cssigniter.com/plugins/audioigniter) is also availab
 * Custom block for the Gutenberg Block Editor (With the ability to change colors per player)
 * Widget & Shortcode available
 
-** PREMIUM SUPPORT **
+**PREMIUM SUPPORT**
 You can expect the same level of support for both the free and pro version of our plugin. Average response time: 24 hours.
 
 
