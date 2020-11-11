@@ -18,7 +18,7 @@ Check out [the demo](https://www.cssigniter.com/preview/audioigniter/) now!
 
 **Selling digital music?**
 
-You can combine [AudioIgniter with WooCommerce to easily sell individual tracks] (https://www.cssigniter.com/sell-individual-tracks-using-audioigniter-with-woocommerce/).
+You can combine [AudioIgniter with WooCommerce to easily sell individual tracks](https://www.cssigniter.com/sell-individual-tracks-using-audioigniter-with-woocommerce/).
 
 **Features:**
 
