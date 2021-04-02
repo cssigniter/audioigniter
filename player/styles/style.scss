@@ -26,16 +26,8 @@ $screen-xs-max: 320px !default;
 	background-color: $bg-color;
 	color: $text-color;
 	max-width: 100%;
-	font-family: sans-serif;
-	font-weight: normal;
 	box-sizing: border-box;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	line-height: normal;
 	margin-bottom: $spacing;
-	letter-spacing: 0;
-  -webkit-font-smoothing: antialiased; // 4
-  -moz-osx-font-smoothing: grayscale; // 4
 
 	&::after,
 	&::before {
@@ -186,7 +178,6 @@ $screen-xs-max: 320px !default;
 
 	.ai-track-title {
 		margin: 0 0 4px;
-		font-size: 16px;
 		line-height: normal;
 		white-space: nowrap;
 		overflow: hidden;
@@ -202,8 +193,8 @@ $screen-xs-max: 320px !default;
 	.ai-track-subtitle {
 		margin: 0;
 		line-height: normal;
-		font-size: 13px;
 		opacity: $text-opacity;
+    font-size: .8125em;
 
 		span {
 			opacity: 1;
@@ -604,7 +595,7 @@ $screen-xs-max: 320px !default;
 		p {
 			opacity: $text-opacity;
 			margin: 0;
-			font-size: 11px;
+			font-size: 12px;
 		}
 	}
 
@@ -782,15 +773,7 @@ $screen-xs-max: 320px !default;
   outline: 0;
   max-height: calc(100vh - 50px);
   overflow-y: auto;
-
- 	font-family: sans-serif;
- 	font-weight: normal;
-  font-size: 15px;
  	box-sizing: border-box;
- 	-webkit-font-smoothing: antialiased;
- 	-moz-osx-font-smoothing: grayscale;
- 	line-height: 1.45;
- 	letter-spacing: 0;
 }
 
 .ai-modal-header {
@@ -821,6 +804,36 @@ $screen-xs-max: 320px !default;
 .ai-modal-content {
   padding: 0 20px 20px;
   white-space: pre-wrap;
+}
+
+//
+// Typography
+//
+.ai-with-typography {
+  font-family: sans-serif;
+  font-weight: normal;
+  line-height: normal;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  .ai-track-subtitle {
+    font-size: 13px;
+  }
+
+  .ai-track-title {
+    font-size: 16px;
+  }
+}
+
+.ai-modal-with-typography {
+  font-family: sans-serif;
+ 	font-weight: normal;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+ 	-moz-osx-font-smoothing: grayscale;
+ 	line-height: 1.45;
+ 	letter-spacing: 0;
 }
 
 //

@@ -73,6 +73,13 @@ function renderApp(node) {
     maxWidth: node.getAttribute('data-max-width'),
     soundcloudClientId: node.getAttribute('data-soundcloud-client-id'),
     skipAmount: parseInt(node.getAttribute('data-skip-amount'), 10),
+    initialTrack: parseInt(node.getAttribute('data-initial-track'), 10),
+    delayBetweenTracks: parseInt(node.getAttribute('data-tracks-delay'), 10),
+    stopOnTrackFinish: JSON.parse(node.getAttribute('data-stop-on-finish')),
+    shuffle: JSON.parse(node.getAttribute('data-shuffle')),
+    countdownTimerByDefault: JSON.parse(
+      node.getAttribute('data-timer-countdown'),
+    ),
   };
 
   render(<App type={type} {...props} />, node);

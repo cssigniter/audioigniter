@@ -46,6 +46,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "classnames": "2.3.0",
     "es6-promise": "^4.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",

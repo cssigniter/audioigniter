@@ -385,7 +385,7 @@ class AudioIgniter {
 		<div class="ai-footer ai-brand-module">
 			<div class="ai-row">
 				<div class="ai-col-left">
-					<ul class="ai-list-inline">
+					<ul class="ai-list-inline ai-footer-links">
 						<?php
 							$links = apply_filters( 'audioigniter_metabox_tracks_footer_links', array(
 								'support'       => array(
@@ -1022,6 +1022,7 @@ class AudioIgniter {
 					'allow_track_listing_loop',
 					'allow_track_listing_toggle',
 					'skip_amount',
+					'initial_track',
 				),
 				'info'       => '',
 			),

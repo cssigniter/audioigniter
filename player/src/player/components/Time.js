@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class Time extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    const { countdown } = this.props;
 
     this.state = {
-      showRemaining: false,
+      showRemaining: countdown || false,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -62,4 +64,5 @@ export default class Time extends React.Component {
 Time.propTypes = {
   position: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
+  countdown: PropTypes.bool.isRequired,
 };

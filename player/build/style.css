@@ -21,16 +21,8 @@
   background-color: #202020;
   color: #ffffff;
   max-width: 100%;
-  font-family: sans-serif;
-  font-weight: normal;
   box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: normal;
   margin-bottom: 20px;
-  letter-spacing: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .ai-wrap::after, .ai-wrap::before {
@@ -251,7 +243,6 @@
 
 .ai-wrap .ai-track-title {
   margin: 0 0 4px;
-  font-size: 16px;
   line-height: normal;
   white-space: nowrap;
   overflow: hidden;
@@ -268,8 +259,8 @@
 .ai-wrap .ai-track-subtitle {
   margin: 0;
   line-height: normal;
-  font-size: 13px;
   opacity: 0.7;
+  font-size: .8125em;
 }
 
 .ai-wrap .ai-track-subtitle span {
@@ -746,7 +737,7 @@
 .ai-wrap .ai-footer p {
   opacity: 0.7;
   margin: 0;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .ai-wrap.ai-is-loading .ai-track-title {
@@ -961,14 +952,7 @@
   outline: 0;
   max-height: calc(100vh - 50px);
   overflow-y: auto;
-  font-family: sans-serif;
-  font-weight: normal;
-  font-size: 15px;
   box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.45;
-  letter-spacing: 0;
 }
 
 .ai-modal-header {
@@ -1029,6 +1013,33 @@
 .ai-modal-content {
   padding: 0 20px 20px;
   white-space: pre-wrap;
+}
+
+.ai-with-typography {
+  font-family: sans-serif;
+  font-weight: normal;
+  line-height: normal;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ai-with-typography .ai-track-subtitle {
+  font-size: 13px;
+}
+
+.ai-with-typography .ai-track-title {
+  font-size: 16px;
+}
+
+.ai-modal-with-typography {
+  font-family: sans-serif;
+  font-weight: normal;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  letter-spacing: 0;
 }
 
 .ai-narrow .ai-control-wrap {

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
 import { sprintf } from 'sprintf-js';
+import classNames from 'classnames';
 
 import soundProvider from './soundProvider';
 import Cover from './components/Cover';
@@ -20,6 +21,7 @@ import {
   LyricsIcon,
 } from './components/Icons';
 import { AppContext } from '../App';
+import typographyDisabled from '../utils/typography-disabled';
 
 class GlobalFooterPlayer extends React.Component {
   constructor(props) {
@@ -78,14 +80,20 @@ class GlobalFooterPlayer extends React.Component {
       repeatingTrackIndex,
       skipAmount,
       skipPosition,
+      countdownTimerByDefault,
     } = this.props;
+
+    const classes = classNames({
+      'ai-wrap': true,
+      'ai-type-global-footer': true,
+      'ai-is-loading': !tracks.length,
+      'ai-with-typography': !typographyDisabled(),
+    });
 
     return (
       <div
         ref={ref => (this.root = ref)} // eslint-disable-line no-return-assign
-        className={`ai-wrap ai-type-global-footer ${
-          tracks.length ? '' : 'ai-is-loading'
-        }`}
+        className={classes}
       >
         <div className="ai-control-wrap">
           {displayActiveCover && (
@@ -219,7 +227,11 @@ class GlobalFooterPlayer extends React.Component {
               </div>
 
               <div className="ai-audio-controls-meta-right">
-                <Time duration={duration} position={position} />
+                <Time
+                  duration={duration}
+                  position={position}
+                  countdown={countdownTimerByDefault}
+                />
 
                 {allowTracklistToggle && (
                   <Button
@@ -304,6 +316,8 @@ GlobalFooterPlayer.propTypes = {
   setPlaybackRate: PropTypes.func,
   skipAmount: PropTypes.number,
   skipPosition: PropTypes.func.isRequired,
+  countdownTimerByDefault: PropTypes.bool,
+  allowPlaybackRate: PropTypes.bool,
 };
 
 export default soundProvider(GlobalFooterPlayer, {
@@ -313,8 +327,8 @@ export default soundProvider(GlobalFooterPlayer, {
       cycleTracks,
       nextTrack,
       activeIndex,
-      tracks,
       playTrack,
+      trackQueue,
     } = props;
 
     if (repeatingTrackIndex != null) {
@@ -327,7 +341,8 @@ export default soundProvider(GlobalFooterPlayer, {
       return;
     }
 
-    if (activeIndex !== tracks.length - 1) {
+    // Check if not the last track
+    if (activeIndex !== trackQueue[trackQueue.length - 1]) {
       nextTrack();
     }
   },

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
 import { sprintf } from 'sprintf-js';
+import classNames from 'classnames';
 
 import TracklistWrap from './components/TracklistWrap';
 import ProgressBar from './components/ProgressBar';
@@ -20,6 +21,7 @@ import {
 } from './components/Icons';
 import soundProvider from './soundProvider';
 import { AppContext } from '../App';
+import typographyDisabled from '../utils/typography-disabled';
 
 class Player extends React.Component {
   constructor(props) {
@@ -85,14 +87,21 @@ class Player extends React.Component {
       repeatingTrackIndex,
       skipAmount,
       skipPosition,
+      countdownTimerByDefault,
     } = this.props;
+
+    const classes = classNames({
+      'ai-wrap': true,
+      'ai-type-full': true,
+      'ai-is-loading': !tracks.length,
+      'ai-narrow': this.isNarrowContext(),
+      'ai-with-typography': !typographyDisabled(),
+    });
 
     return (
       <div
         ref={ref => (this.root = ref)} // eslint-disable-line no-return-assign
-        className={`ai-wrap ai-type-full ${
-          tracks.length ? '' : 'ai-is-loading'
-        }${this.isNarrowContext() ? 'ai-narrow' : ''}`}
+        className={classes}
         style={{ maxWidth }}
       >
         <div className="ai-control-wrap">
@@ -145,7 +154,11 @@ class Player extends React.Component {
                 position={position}
               />
 
-              <Time duration={duration} position={position} />
+              <Time
+                duration={duration}
+                position={position}
+                countdown={countdownTimerByDefault}
+              />
             </div>
 
             <div className="ai-audio-controls-meta">
@@ -331,6 +344,8 @@ Player.propTypes = {
   setPlaybackRate: PropTypes.func,
   skipAmount: PropTypes.number,
   skipPosition: PropTypes.func.isRequired,
+  countdownTimerByDefault: PropTypes.bool,
+  allowPlaybackRate: PropTypes.bool,
 };
 
 export default soundProvider(Player, {
@@ -340,8 +355,8 @@ export default soundProvider(Player, {
       cycleTracks,
       nextTrack,
       activeIndex,
-      tracks,
       playTrack,
+      trackQueue,
     } = props;
 
     if (repeatingTrackIndex != null) {
@@ -354,7 +369,8 @@ export default soundProvider(Player, {
       return;
     }
 
-    if (activeIndex !== tracks.length - 1) {
+    // Check if not the last track
+    if (activeIndex !== trackQueue[trackQueue.length - 1]) {
       nextTrack();
     }
   },

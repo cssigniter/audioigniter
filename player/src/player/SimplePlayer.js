@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
+import classNames from 'classnames';
+
 import soundProvider from './soundProvider';
 import Tracklist from './components/Tracklist';
+import typographyDisabled from '../utils/typography-disabled';
 
 const SimplePlayer = props => {
   const { playStatus } = props;
@@ -11,11 +14,14 @@ const SimplePlayer = props => {
       ? props.activeIndex
       : undefined;
 
+  const classes = classNames({
+    'ai-wrap': true,
+    'ai-type-simple': true,
+    'ai-with-typography': !typographyDisabled(),
+  });
+
   return (
-    <div
-      className="ai-wrap ai-type-simple"
-      style={{ maxWidth: props.maxWidth }}
-    >
+    <div className={classes} style={{ maxWidth: props.maxWidth }}>
       <div className="ai-tracklist ai-tracklist-open">
         <Tracklist
           tracks={props.tracks}
@@ -94,8 +100,8 @@ export default soundProvider(SimplePlayer, {
       cycleTracks,
       nextTrack,
       activeIndex,
-      tracks,
       playTrack,
+      trackQueue,
     } = props;
 
     if (repeatingTrackIndex != null) {
@@ -108,7 +114,8 @@ export default soundProvider(SimplePlayer, {
       return;
     }
 
-    if (activeIndex !== tracks.length - 1) {
+    // Check if not the last track
+    if (activeIndex !== trackQueue[trackQueue.length - 1]) {
       nextTrack();
     }
   },
