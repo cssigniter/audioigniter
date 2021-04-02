@@ -1,4 +1,6 @@
 @charset "UTF-8";
+@keyframes ai-spin { 0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); } }
 @keyframes backgroundPosition { 0% { background-position: -140px 0; }
   100% { background-position: 140px 0; } }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }

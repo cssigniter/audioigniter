@@ -2,7 +2,7 @@
 	{
 		"title": "Sunrise",
 		"subtitle": "Thoribass",
-		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
+		"audio": "http://localhost/ci_dev/audioigniter/files/2021/04/Kavinsky-Nightcall-Maceo-Plex-edit.mp3",
 		"buyUrl": "https://www.cssigniter.com",
 		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
 		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/Thoribass-Sunrise.jpg",
@@ -40,9 +40,9 @@
 		"cover": "https://www.cssigniter.com/preview/audioigniter/files/2016/08/artworks-000103551140-ez6k4x-t500x500.jpg"
 	},
 	{
-		"title": "ABC Lounge radio stream",
+		"title": "Deep House Radio",
 		"subtitle": "",
-		"audio": "https://streaming.radionomy.com/ABC-Lounge",
+		"audio": "https://deephouseradio.radioca.st/stream/1/",
 		"buyUrl": "https://www.cssigniter.com",
 		"cover": "https://www.cssigniter.com/preview/audioigniter/files/2016/08/Rocavaco-Remix-Safety-Guide.jpg"
 	},

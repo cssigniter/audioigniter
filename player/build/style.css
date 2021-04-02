@@ -1,3 +1,25 @@
+@-webkit-keyframes ai-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ai-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
 @-webkit-keyframes backgroundPosition {
   0% {
     background-position: -140px 0;
@@ -188,7 +210,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  display: inline-block;
+  display: block;
   -webkit-box-flex: 0;
   -webkit-flex: none;
   -ms-flex: none;
@@ -200,11 +222,16 @@
   -webkit-transition: opacity 1.5s ease;
   transition: opacity 1.5s ease;
   padding: 0;
+  position: relative;
 }
 
 .ai-wrap .ai-audio-control:hover, .ai-wrap .ai-audio-control:focus {
   border: 0;
   background-color: #f70f5d;
+}
+
+.ai-wrap .ai-audio-control:focus, .ai-wrap .ai-audio-control:active {
+  outline: 0;
 }
 
 .ai-wrap .ai-audio-control.ai-audio-playing svg {
@@ -708,8 +735,16 @@
   opacity: 1 !important;
 }
 
+.ai-wrap .ai-track-inline-play-btn {
+  position: relative;
+}
+
 .ai-wrap .ai-track-inline-play-btn:first-child {
   border-left: 0;
+}
+
+.ai-wrap .ai-track-inline-play-btn.ai-is-loading svg {
+  opacity: 0;
 }
 
 .ai-wrap .ai-footer {
@@ -920,6 +955,76 @@
   padding: 20px;
   background-color: inherit;
   margin: 0;
+}
+
+.ai-control-spinner {
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  font-size: 10px;
+  text-indent: -9999em;
+  border-top: 5px solid rgba(255, 255, 255, 0.2);
+  border-right: 5px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 5px solid rgba(255, 255, 255, 0.2);
+  border-left: 5px solid currentColor;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: ai-spin 1.1s infinite linear;
+  animation: ai-spin 1.1s infinite linear;
+  z-index: 1;
+  opacity: 0;
+  -webkit-transition: opacity .18s ease;
+  transition: opacity .18s ease;
+  -webkit-transition-delay: .2s;
+  transition-delay: .2s;
+}
+
+.ai-audio-loading .ai-control-spinner {
+  opacity: .8;
+}
+
+.ai-control-spinner::after {
+  border-radius: 50%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.ai-track-spinner {
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  text-indent: -9999em;
+  border-top: 3px solid rgba(255, 255, 255, 0.2);
+  border-right: 3px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  border-left: 3px solid currentColor;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: ai-spin 1.1s infinite linear;
+  animation: ai-spin 1.1s infinite linear;
+  z-index: 1;
+  opacity: 0;
+}
+
+.ai-track-loading .ai-track-spinner {
+  opacity: .8;
+}
+
+.ai-track-spinner::after {
+  border-radius: 50%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .ReactModal__Body--open {

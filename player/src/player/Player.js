@@ -88,6 +88,7 @@ class Player extends React.Component {
       skipAmount,
       skipPosition,
       countdownTimerByDefault,
+      buffering,
     } = this.props;
 
     const classes = classNames({
@@ -96,6 +97,12 @@ class Player extends React.Component {
       'ai-is-loading': !tracks.length,
       'ai-narrow': this.isNarrowContext(),
       'ai-with-typography': !typographyDisabled(),
+    });
+
+    const audioControlClasses = classNames({
+      'ai-audio-control': true,
+      'ai-audio-playing': playStatus === Sound.status.PLAYING,
+      'ai-audio-loading': buffering,
     });
 
     return (
@@ -117,9 +124,7 @@ class Player extends React.Component {
             <div className="ai-audio-controls-main">
               <Button
                 onClick={togglePlay}
-                className={`ai-audio-control ${
-                  playStatus === Sound.status.PLAYING ? 'ai-audio-playing' : ''
-                }`}
+                className={audioControlClasses}
                 ariaLabel={
                   playStatus === Sound.status.PLAYING
                     ? sprintf(aiStrings.pause_title, currentTrack.title)
@@ -132,6 +137,8 @@ class Player extends React.Component {
                 ) : (
                   <PlayIcon />
                 )}
+
+                <span className="ai-control-spinner" />
               </Button>
 
               <div className="ai-track-info">
@@ -346,6 +353,7 @@ Player.propTypes = {
   skipPosition: PropTypes.func.isRequired,
   countdownTimerByDefault: PropTypes.bool,
   allowPlaybackRate: PropTypes.bool,
+  buffering: PropTypes.bool,
 };
 
 export default soundProvider(Player, {

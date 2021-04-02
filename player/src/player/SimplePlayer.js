@@ -44,6 +44,7 @@ const SimplePlayer = props => {
           repeatingTrackIndex={props.repeatingTrackIndex}
           setPlaybackRate={props.setPlaybackRate}
           allowPlaybackRate={props.allowPlaybackRate}
+          buffering={props.buffering}
         />
       </div>
 
@@ -91,6 +92,7 @@ SimplePlayer.propTypes = {
   playbackRate: PropTypes.number,
   setPlaybackRate: PropTypes.func,
   allowPlaybackRate: PropTypes.bool,
+  buffering: PropTypes.bool,
 };
 
 export default soundProvider(SimplePlayer, {

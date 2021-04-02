@@ -38,6 +38,7 @@ const Tracklist = ({ ...props }) => {
               playbackRate={props.playbackRate}
               setPlaybackRate={props.setPlaybackRate}
               allowPlaybackRate={props.allowPlaybackRate}
+              buffering={props.buffering}
             />
           );
         })}
@@ -70,6 +71,7 @@ Tracklist.propTypes = {
   playbackRate: PropTypes.number,
   setPlaybackRate: PropTypes.func,
   allowPlaybackRate: PropTypes.bool,
+  buffering: PropTypes.bool,
 };
 
 export default Tracklist;

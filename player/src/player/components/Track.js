@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
 import { sprintf } from 'sprintf-js';
+import classNames from 'classnames';
 
 import TrackTitle from './TrackTitle';
 import Cover from './Cover';
@@ -31,6 +32,7 @@ const Track = ({
   playbackRate,
   setPlaybackRate,
   allowPlaybackRate,
+  buffering,
 }) => {
   const { toggleLyricsModal } = useContext(AppContext);
   const isPlaying = isActive && playStatus === Sound.status.PLAYING;
@@ -39,9 +41,14 @@ const Track = ({
     typeof duration !== 'undefined' &&
     isActive &&
     isStandalone;
+  const classes = classNames({
+    [className]: !!className,
+    'ai-track-active': isActive,
+    'ai-track-loading': isActive && buffering,
+  });
 
   return (
-    <li className={className + (isActive ? ' ai-track-active' : '')}>
+    <li className={classes}>
       {displayCovers && (
         <Cover
           className="ai-track-thumb"
@@ -53,7 +60,10 @@ const Track = ({
 
       {isStandalone && (
         <button
-          className="ai-track-btn ai-track-inline-play-btn"
+          className={classNames({
+            'ai-track-btn ai-track-inline-play-btn': true,
+            'ai-is-loading': isActive && buffering,
+          })}
           onClick={() => onTrackClick(index)}
           aria-label={
             isPlaying
@@ -63,6 +73,7 @@ const Track = ({
           aria-pressed={isPlaying}
         >
           {isPlaying ? <PauseIcon /> : <PlayIcon />}
+          <spin className="ai-track-spinner" />
         </button>
       )}
 
@@ -136,6 +147,7 @@ Track.propTypes = {
   playbackRate: PropTypes.number,
   setPlaybackRate: PropTypes.func,
   allowPlaybackRate: PropTypes.bool,
+  buffering: PropTypes.bool,
 };
 
 export default Track;

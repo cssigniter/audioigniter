@@ -9,13 +9,23 @@
 	}
 }
 
+@keyframes ai-spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 @mixin spinner($color: #fff, $opacity: .35, $size: 40px) {
 	border: 6px solid rgba($color, $opacity);
 	border-top-color: rgba($color, $opacity*2.5);
 	border-radius: 100%;
 	height: $size;
 	width: $size;
-	animation: rot .8s infinite linear;
+	animation: ai-spin .8s infinite linear;
 }
 
 @mixin btn-reset {

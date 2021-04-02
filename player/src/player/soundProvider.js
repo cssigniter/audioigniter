@@ -32,6 +32,7 @@ const soundProvider = (Player, events) => {
         cycleTracks,
         repeatingTrackIndex: null,
         isMultiSoundDisabled: multiSoundDisabled(),
+        buffering: false,
       };
 
       this.playTrack = this.playTrack.bind(this);
@@ -348,6 +349,9 @@ const soundProvider = (Player, events) => {
               onFinishedPlaying={this.onFinishedPlaying}
               onPause={() => this.pauseTrack()}
               playbackRate={playbackRate}
+              onBufferChange={buffering => {
+                this.setState({ buffering });
+              }}
             />
           )}
         </div>
