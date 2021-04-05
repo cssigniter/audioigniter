@@ -5,7 +5,7 @@
  * Description: AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types and serve your audio content in style!
  * Author: The CSSIgniter Team
  * Author URI: https://www.cssigniter.com
- * Version: 1.6.3
+ * Version: 1.6.3.1
  * Text Domain: audioigniter
  * Domain Path: languages
  *
@@ -36,8 +36,9 @@ class AudioIgniter {
 	 *
 	 * @var string
 	 * @since 1.0.0
+	 * @since 1.7.0 Changed from static to non-static.
 	 */
-	public static $version = '1.6.3';
+	public $version = null;
 
 	/**
 	 * Instance of this class.
@@ -116,6 +117,15 @@ class AudioIgniter {
 	 * @since 1.0.0
 	 */
 	public function plugin_setup() {
+		if ( is_null( $this->version ) ) {
+			if ( ! function_exists( 'get_plugin_data' ) ) {
+				include_once ABSPATH . 'wp-admin/includes/plugin.php';
+			}
+			$plugin_data = get_plugin_data( __FILE__ );
+
+			$this->version = $plugin_data['Version'];
+		}
+
 		self::$plugin_url  = plugin_dir_url( __FILE__ );
 		self::$plugin_path = plugin_dir_path( __FILE__ );
 
@@ -192,11 +202,11 @@ class AudioIgniter {
 	 * @since 1.0.0
 	 */
 	public function register_scripts() {
-		wp_register_style( 'audioigniter', $this->plugin_url() . 'player/build/style.css', array(), self::$version );
-		wp_register_style( 'audioigniter-admin', $this->plugin_url() . 'assets/css/admin-styles.css', array(), self::$version );
+		wp_register_style( 'audioigniter', $this->plugin_url() . 'player/build/style.css', array(), $this->version );
+		wp_register_style( 'audioigniter-admin', $this->plugin_url() . 'assets/css/admin-styles.css', array(), $this->version );
 
-		wp_register_script( 'audioigniter', $this->plugin_url() . 'player/build/app.js', array(), self::$version, true );
-		wp_register_script( 'audioigniter-admin', $this->plugin_url() . 'assets/js/audioigniter.js', array(), self::$version, true );
+		wp_register_script( 'audioigniter', $this->plugin_url() . 'player/build/app.js', array(), $this->version, true );
+		wp_register_script( 'audioigniter-admin', $this->plugin_url() . 'assets/js/audioigniter.js', array(), $this->version, true );
 
 		wp_localize_script( 'audioigniter', 'aiStrings', apply_filters( 'audioigniter_aiStrings', array(
 			/* translators: %s is the track's title. */
