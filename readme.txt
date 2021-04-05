@@ -74,6 +74,11 @@ A [Pro version](https://www.cssigniter.com/plugins/audioigniter) is also availab
 * Playback rate (1x, 1.5x, 2x)
 * Lyrics per track
 * Individual Track Repeat Mode
+* Non-continuous playback (Stop each track after playing)
+* Optional customizable delay between tracks
+* Shuffle playlist mode
+* Starting track option
+* Default track timer to countdown mode
 * Fixed position player (Continuous play must be supported by your theme)
 * Internal taxonomy for archiving purposes
 * Customize the colors through the Customizer
@@ -96,6 +101,10 @@ You can expect the same level of support for both the free and pro version of ou
 3. Advanced player customization
 
 == Changelog ==
+
+= 1.7.0 =
+* Added a loading spinner while the track is buffering.
+* Developer note - Changed: Static property AudioIgniter::$version is now non-static and should be accessed as such.
 
 = 1.6.3 =
 * Fixed SVG appearance in TwentyTwenty theme.
