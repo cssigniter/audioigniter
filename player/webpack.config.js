@@ -27,6 +27,9 @@ const common = {
       template: `${PATHS.app}/index.ejs`,
     }),
   ],
+  devServer: {
+    contentBase: path.resolve('assets'),
+  },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
@@ -35,7 +38,7 @@ const common = {
       {
         test: /\.jsx?$/,
         use: ['babel-loader?cacheDirectory'],
-        include: PATHS.app,
+        include: [PATHS.app, path.resolve('node_modules/wavesurfer.js/dist/')],
       },
     ],
   },

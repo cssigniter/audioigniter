@@ -73,7 +73,7 @@ const Track = ({
           aria-pressed={isPlaying}
         >
           {isPlaying ? <PauseIcon /> : <PlayIcon />}
-          <spin className="ai-track-spinner" />
+          <span className="ai-track-spinner" />
         </button>
       )}
 

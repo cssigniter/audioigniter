@@ -2,7 +2,7 @@
 	{
 		"title": "Sunrise",
 		"subtitle": "Thoribass",
-		"audio": "http://localhost/ci_dev/audioigniter/files/2021/04/Kavinsky-Nightcall-Maceo-Plex-edit.mp3",
+		"audio": "http://localhost:8080/assets/sunrise.mp3",
 		"buyUrl": "https://www.cssigniter.com",
 		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
 		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/Thoribass-Sunrise.jpg",
@@ -11,7 +11,7 @@
 	{
 		"title": "Seriously long title lorem ipsum dolor sit amet, consectetur adipiscing elit. Non est enim.",
 		"subtitle": "The Fisherman",
-		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/anotherday.mp3",
+		"audio": "http://localhost:8080/assets/kavinsky.mp3",
 		"buyUrl": "https://www.cssigniter.com",
 		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
 		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/The-Fisherman-Another-Day.jpg"

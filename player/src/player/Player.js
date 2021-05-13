@@ -22,6 +22,7 @@ import {
 import soundProvider from './soundProvider';
 import { AppContext } from '../App';
 import typographyDisabled from '../utils/typography-disabled';
+import WaveformProgressBar from './components/WaveformProgressBar';
 
 class Player extends React.Component {
   constructor(props) {
@@ -155,10 +156,20 @@ class Player extends React.Component {
             </div>
 
             <div className="ai-audio-controls-progress">
-              <ProgressBar
-                setPosition={setPosition}
-                duration={duration}
+              {false && (
+                <ProgressBar
+                  setPosition={setPosition}
+                  duration={duration}
+                  position={position}
+                />
+              )}
+
+              <WaveformProgressBar
+                key={currentTrack.audio}
                 position={position}
+                duration={duration}
+                audio={currentTrack.audio}
+                setPosition={setPosition}
               />
 
               <Time
