@@ -1,6 +1,6 @@
 === AudioIgniter Music Player ===
 Contributors: cssigniterteam, anastis, silencerius, tsiger
-Tags: audio, sound, player, audio player, music player, mp3 player, music, radio stream, radio player, sound player, playlist
+Tags: audio, podcast, audio player, html5 player, mp3 player, music player, music, radio stream, radio player, sound player, player, podcast player
 Requires at least: 5.0
 Tested up to: 5.7.1
 Stable tag: 1.7.0
