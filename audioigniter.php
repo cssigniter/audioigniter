@@ -1170,13 +1170,13 @@ class AudioIgniter {
 	 * @version 1.4.0
 	 * @since   1.0.0
 	 *
-	 * @param array       $atts    The shortcode attributes.
-	 * @param string|null $content Content, when used with a shortcode closing tag.
-	 * @param string      $tag     The shortcode name used to reach this function.
+	 * @param array  $atts    The shortcode attributes.
+	 * @param string $content Content, when used with a shortcode closing tag.
+	 * @param string $tag     The shortcode name used to reach this function.
 	 *
 	 * @return string
 	 */
-	public function shortcode_ai_playlist( $atts, $content = null, $tag ) {
+	public function shortcode_ai_playlist( $atts, $content, $tag ) {
 		$atts = shortcode_atts( array(
 			'id' => '',
 		), $atts, $tag );
