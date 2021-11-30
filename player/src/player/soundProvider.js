@@ -6,14 +6,19 @@ import SoundCloud from '../utils/soundcloud';
 import multiSoundDisabled from '../utils/multi-sound-disabled';
 import { getInitialTrackQueueAndIndex } from '../utils/getInitialTrackIndex';
 
-const PLAYBACK_RATES = [0.5, 0.75, 1, 1.25, 1.5, 2];
+const PLAYBACK_RATES = [0.5, 0.75, 1, 1.25, 1.5, 2, 3];
 
 const soundProvider = (Player, events) => {
   class EnhancedPlayer extends React.Component {
     constructor(props) {
       super(props);
 
-      const { volume, cycleTracks } = this.props;
+      const {
+        volume,
+        cycleTracks,
+        defaultShuffle,
+        shuffleEnabled,
+      } = this.props;
 
       this.state = {
         tracks: [],
@@ -33,6 +38,7 @@ const soundProvider = (Player, events) => {
         repeatingTrackIndex: null,
         isMultiSoundDisabled: multiSoundDisabled(),
         buffering: false,
+        shuffle: shuffleEnabled && defaultShuffle,
       };
 
       this.playTrack = this.playTrack.bind(this);
@@ -45,6 +51,7 @@ const soundProvider = (Player, events) => {
       this.skipPosition = this.skipPosition.bind(this);
       this.setPlaybackRate = this.setPlaybackRate.bind(this);
       this.toggleTracklistCycling = this.toggleTracklistCycling.bind(this);
+      this.toggleShuffle = this.toggleShuffle.bind(this);
       this.setTrackCycling = this.setTrackCycling.bind(this);
       this.reverseTracks = this.reverseTracks.bind(this);
       this.getFinalProps = this.getFinalProps.bind(this);
@@ -58,8 +65,8 @@ const soundProvider = (Player, events) => {
         soundcloudClientId,
         reverseTrackOrder,
         initialTrack,
-        shuffle,
       } = this.props;
+      const { shuffle } = this.state;
       const tracksPromised = fetch(tracksUrl).then(res => res.json());
 
       if (!soundcloudClientId) {
@@ -174,6 +181,7 @@ const soundProvider = (Player, events) => {
         setVolume: this.setVolume,
         toggleTracklistCycling: this.toggleTracklistCycling,
         setTrackCycling: this.setTrackCycling,
+        toggleShuffle: this.toggleShuffle,
         currentTrack,
         ...this.props,
         ...this.state,
@@ -223,6 +231,37 @@ const soundProvider = (Player, events) => {
           playbackRate: PLAYBACK_RATES[nextIndex],
         };
       });
+    }
+
+    toggleShuffle() {
+      const { initialTrack, reverseTrackOrder } = this.props;
+      const { tracks } = this.state;
+
+      this.setState(
+        prev => ({
+          shuffle: !prev.shuffle,
+        }),
+        () => {
+          this.setState(() => {
+            const { trackQueue } = getInitialTrackQueueAndIndex({
+              tracks,
+              initialTrack,
+              reverseTrackOrder,
+              shuffle: this.state.shuffle,
+            });
+
+            return {
+              trackQueue,
+            };
+          });
+
+          if (this.state.shuffle) {
+            // Shuffle track queue
+          } else {
+            // Unshuffle track queue
+          }
+        },
+      );
     }
 
     skipPosition(direction = 1) {
@@ -369,7 +408,8 @@ const soundProvider = (Player, events) => {
     stopOnTrackFinish: PropTypes.bool,
     delayBetweenTracks: PropTypes.number,
     initialTrack: PropTypes.number,
-    shuffle: PropTypes.bool,
+    shuffleEnabled: PropTypes.bool,
+    defaultShuffle: PropTypes.bool,
   };
 
   return EnhancedPlayer;

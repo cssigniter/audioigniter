@@ -226,6 +226,7 @@ class AudioIgniter {
 			'set_playback_rate'   => esc_html__( 'Set playback rate', 'audioigniter' ),
 			'skip_forward'        => esc_html__( 'Skip forward', 'audioigniter' ),
 			'skip_backward'       => esc_html__( 'Skip backward', 'audioigniter' ),
+			'shuffle'             => esc_html__( 'Shuffle', 'audioigniter' ),
 		) ) );
 
 		wp_localize_script( 'audioigniter-admin', 'ai_scripts', array(

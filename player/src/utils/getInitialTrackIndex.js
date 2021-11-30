@@ -1,3 +1,6 @@
+import arrayShuffle from './array-shuffle';
+import arrayShift from './array-shift';
+
 /**
  * Fetches the initial track index.
  *
@@ -7,9 +10,6 @@
  * @param {boolean} options.reverseTrackOrder Whether the track order is reversed.
  * @returns {number}
  */
-import arrayShuffle from './array-shuffle';
-import arrayShift from './array-shift';
-
 export const getInitialTrackIndex = ({
   tracks = [],
   initialTrack = 1,

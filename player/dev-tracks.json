@@ -2,16 +2,16 @@
 	{
 		"title": "Sunrise",
 		"subtitle": "Thoribass",
-		"audio": "http://localhost:8080/assets/sunrise.mp3",
+		"audio": "https://www.cssigniter.com/assets/audioigniter/sunrise.mp3",
 		"buyUrl": "https://www.cssigniter.com",
 		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
 		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/Thoribass-Sunrise.jpg",
-    "lyrics": "Here in my mind\nYou know you might find\nSomething that you\n\nYou thought you once knew\nBut now it's all gone\nAnd you know it's no fun\n\nYeah I know it's no fun\nOh I know it's no fun\nI'm free to be whatever I\nWhatever I choose\nAnd I'll sing the blues if I want\nI'm free to be whatever I\nWhatever I choose\nAnd I'll sing the blues if I want\nWhatever you do\nWhatever you say\nYeah I know it's alright"
+        "lyrics": "Here in my mind\nYou know you might find\nSomething that you\n\nYou thought you once knew\nBut now it's all gone\nAnd you know it's no fun\n\nYeah I know it's no fun\nOh I know it's no fun\nI'm free to be whatever I\nWhatever I choose\nAnd I'll sing the blues if I want\nI'm free to be whatever I\nWhatever I choose\nAnd I'll sing the blues if I want\nWhatever you do\nWhatever you say\nYeah I know it's alright"
 	},
 	{
 		"title": "Seriously long title lorem ipsum dolor sit amet, consectetur adipiscing elit. Non est enim.",
 		"subtitle": "The Fisherman",
-		"audio": "http://localhost:8080/assets/kavinsky.mp3",
+		"audio": "https://www.cssigniter.com/assets/audioigniter/sunrise.mp3",
 		"buyUrl": "https://www.cssigniter.com",
 		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
 		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/The-Fisherman-Another-Day.jpg"
@@ -22,7 +22,7 @@
 		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/remix.mp3",
 		"buyUrl": "https://www.cssigniter.com",
 		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/Rocavaco-Remix-Safety-Guide.jpg",
-    "lyrics": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At eius hic illo natus vitae. Assumenda commodi eaque eos est eum excepturi fugiat provident, quidem saepe? Aut doloremque, unde? Delectus, dolorum."
+        "lyrics": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At eius hic illo natus vitae. Assumenda commodi eaque eos est eum excepturi fugiat provident, quidem saepe? Aut doloremque, unde? Delectus, dolorum."
 	},
 	{
 		"title": "Tomorrow",

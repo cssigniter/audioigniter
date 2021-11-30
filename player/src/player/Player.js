@@ -18,11 +18,11 @@ import {
   PlaylistIcon,
   RefreshIcon,
   LyricsIcon,
+  ShuffleIcon,
 } from './components/Icons';
 import soundProvider from './soundProvider';
 import { AppContext } from '../App';
 import typographyDisabled from '../utils/typography-disabled';
-import WaveformProgressBar from './components/WaveformProgressBar';
 
 class Player extends React.Component {
   constructor(props) {
@@ -57,6 +57,8 @@ class Player extends React.Component {
       position,
       duration,
       playbackRate,
+      shuffle,
+      shuffleEnabled,
 
       currentTrack,
       playTrack,
@@ -68,6 +70,7 @@ class Player extends React.Component {
       setPlaybackRate,
       toggleTracklistCycling,
       cycleTracks,
+      toggleShuffle,
 
       allowTracklistToggle,
       allowTracklistLoop,
@@ -156,20 +159,10 @@ class Player extends React.Component {
             </div>
 
             <div className="ai-audio-controls-progress">
-              {false && (
-                <ProgressBar
-                  setPosition={setPosition}
-                  duration={duration}
-                  position={position}
-                />
-              )}
-
-              <WaveformProgressBar
-                key={currentTrack.audio}
-                position={position}
-                duration={duration}
-                audio={currentTrack.audio}
+              <ProgressBar
                 setPosition={setPosition}
+                duration={duration}
+                position={position}
               />
 
               <Time
@@ -216,6 +209,17 @@ class Player extends React.Component {
                   ariaLabel={aiStrings.toggle_list_repeat}
                 >
                   <RefreshIcon />
+                </Button>
+              )}
+
+              {shuffleEnabled && (
+                <Button
+                  className={`ai-btn ai-btn-shuffle ${shuffle &&
+                    'ai-btn-active'}`}
+                  onClick={toggleShuffle}
+                  ariaLabel={aiStrings.shuffle}
+                >
+                  <ShuffleIcon />
                 </Button>
               )}
 
@@ -365,6 +369,9 @@ Player.propTypes = {
   countdownTimerByDefault: PropTypes.bool,
   allowPlaybackRate: PropTypes.bool,
   buffering: PropTypes.bool,
+  shuffleEnabled: PropTypes.bool,
+  shuffle: PropTypes.bool,
+  toggleShuffle: PropTypes.func.isRequired,
 };
 
 export default soundProvider(Player, {

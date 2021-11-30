@@ -38,7 +38,6 @@ const common = {
       {
         test: /\.jsx?$/,
         use: ['babel-loader?cacheDirectory'],
-        include: [PATHS.app, path.resolve('node_modules/wavesurfer.js/dist/')],
       },
     ],
   },

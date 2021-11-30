@@ -25,6 +25,7 @@ if (process.env.NODE_ENV !== 'production') {
     set_playback_rate: 'Set playback rate',
     skip_forward: 'Skip forward',
     skip_backward: 'Skip backward',
+    shuffle: 'Shuffle',
   };
 }
 
@@ -76,7 +77,8 @@ function renderApp(node) {
     initialTrack: parseInt(node.getAttribute('data-initial-track'), 10),
     delayBetweenTracks: parseInt(node.getAttribute('data-tracks-delay'), 10),
     stopOnTrackFinish: JSON.parse(node.getAttribute('data-stop-on-finish')),
-    shuffle: JSON.parse(node.getAttribute('data-shuffle')),
+    defaultShuffle: JSON.parse(node.getAttribute('data-shuffle')),
+    shuffleEnabled: JSON.parse(node.getAttribute('data-shuffle')),
     countdownTimerByDefault: JSON.parse(
       node.getAttribute('data-timer-countdown'),
     ),
