@@ -544,13 +544,8 @@
 }
 
 .ai-wrap .ai-btn:hover {
-  color: #f70f5d;
   background-color: #3e3e3e;
   border: 0;
-}
-
-.ai-wrap .ai-btn:hover svg {
-  fill: #f70f5d;
 }
 
 .ai-wrap .ai-btn.ai-btn-active {
@@ -1019,8 +1014,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: -10px;
-  margin-top: -10px;
+  margin-left: -10px !important;
+  margin-top: -10px !important;
   width: 20px;
   height: 20px;
   font-size: 10px;

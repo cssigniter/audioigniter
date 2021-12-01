@@ -384,13 +384,8 @@ $screen-xs-max: 320px !default;
 		}
 
 		&:hover {
-			color: $primary-color;
 			background-color: $control-color;
 			border: 0;
-
-			svg {
-				fill: $primary-color;
-			}
 		}
 
 		&.ai-btn-active {
@@ -816,8 +811,8 @@ $screen-xs-max: 320px !default;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: -10px;
-  margin-top: -10px;
+  margin-left: -10px !important;
+  margin-top: -10px !important;
   width: 20px;
   height: 20px;
   font-size: 10px;
