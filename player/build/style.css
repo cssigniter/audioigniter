@@ -567,6 +567,12 @@
   top: 2px;
 }
 
+.ai-wrap .ai-btn-shuffle svg {
+  height: 13px;
+  top: 2px;
+  left: -1px;
+}
+
 .ai-wrap .ai-tracklist-toggle {
   margin-left: auto;
   margin-right: 0;
