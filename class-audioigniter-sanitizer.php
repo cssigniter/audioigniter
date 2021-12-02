@@ -198,6 +198,129 @@ class AudioIgniter_Sanitizer {
 		return $return_fail;
 	}
 
+	/**
+	 * Sanitizes a CSS color.
+	 *
+	 * Tries to validate and sanitize values in these formats:
+	 * - rgba()
+	 * - 3 and 6 digit hex values, optionally prefixed with `#`
+	 * - Predefined CSS named colors/keywords, such as 'transparent', 'initial', 'inherit', 'black', 'silver', etc.
+	 *
+	 * @since NewVersion
+	 *
+	 * @param string $color       The color value to sanitize
+	 * @param bool   $return_hash Whether to return hex color prefixed with a `#`
+	 * @param string $return_fail Value to return when $color fails validation.
+	 *
+	 * @return string
+	 */
+	public static function rgba_color( $color, $return_hash = true, $return_fail = '' ) {
+		if ( false === $color || empty( $color ) || 'false' === $color ) {
+			return $return_fail;
+		}
+
+		// Allow keywords and predefined colors
+		if ( in_array( $color, array( 'transparent', 'initial', 'inherit', 'black', 'silver', 'gray', 'grey', 'white', 'maroon', 'red', 'purple', 'fuchsia', 'green', 'lime', 'olive', 'yellow', 'navy', 'blue', 'teal', 'aqua', 'orange', 'aliceblue', 'antiquewhite', 'aquamarine', 'azure', 'beige', 'bisque', 'blanchedalmond', 'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue', 'cornsilk', 'crimson', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgrey', 'darkgreen', 'darkkhaki', 'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray', 'darkslategrey', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue', 'dimgray', 'dimgrey', 'dodgerblue', 'firebrick', 'floralwhite', 'forestgreen', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'greenyellow', 'grey', 'honeydew', 'hotpink', 'indianred', 'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush', 'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan', 'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightgrey', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightslategrey', 'lightsteelblue', 'lightyellow', 'limegreen', 'linen', 'mediumaquamarine', 'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'navajowhite', 'oldlace', 'olivedrab', 'orangered', 'orchid', 'palegoldenrod', 'palegreen', 'paleturquoise', 'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum', 'powderblue', 'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna', 'skyblue', 'slateblue', 'slategray', 'slategrey', 'snow', 'springgreen', 'steelblue', 'tan', 'thistle', 'tomato', 'turquoise', 'violet', 'wheat', 'whitesmoke', 'yellowgreen', 'rebeccapurple' ), true ) ) {
+			return $color;
+		}
+
+		preg_match( '/rgba\(\s*(\d{1,3}\.?\d*\%?)\s*,\s*(\d{1,3}\.?\d*\%?)\s*,\s*(\d{1,3}\.?\d*\%?)\s*,\s*(\d{1}\.?\d*\%?)\s*\)/', $color, $rgba_matches );
+		if ( ! empty( $rgba_matches ) && 5 === count( $rgba_matches ) ) {
+			for ( $i = 1; $i < 4; $i++ ) {
+				if ( strpos( $rgba_matches[ $i ], '%' ) !== false ) {
+					$rgba_matches[ $i ] = self::float_0_100( $rgba_matches[ $i ] );
+				} else {
+					$rgba_matches[ $i ] = self::int_0_255( $rgba_matches[ $i ] );
+				}
+			}
+			$rgba_matches[4] = self::float_0_1( $rgba_matches[ $i ] );
+			return sprintf( 'rgba(%s, %s, %s, %s)', $rgba_matches[1], $rgba_matches[2], $rgba_matches[3], $rgba_matches[4] );
+		}
+
+		// Not a color function either. Let's see if it's a hex color.
+
+		// Include the hash if not there.
+		// The regex below depends on in.
+		if ( substr( $color, 0, 1 ) !== '#' ) {
+			$color = '#' . $color;
+		}
+
+		preg_match( '/(#)([0-9a-fA-F]{6})/', $color, $matches );
+
+		if ( 3 === count( $matches ) ) {
+			if ( $return_hash ) {
+				return $matches[1] . $matches[2];
+			} else {
+				return $matches[2];
+			}
+		}
+
+		return $return_fail;
+	}
+
+	/**
+	 * Sanitizes a percentage value, 0% - 100%
+	 *
+	 * Accepts float values with or without the percentage sign `%`
+	 * Returns a string suffixed with the percentage sign `%`.
+	 *
+	 * @since NewVersion
+	 *
+	 * @param mixed $value
+	 *
+	 * @return string A percentage value, including the percentage sign.
+	 */
+	public static function float_0_100( $value ) {
+		$value = str_replace( '%', '', $value );
+		if ( floatval( $value ) > 100 ) {
+			$value = 100;
+		} elseif ( floatval( $value ) < 0 ) {
+			$value = 0;
+		}
+
+		return floatval( $value ) . '%';
+	}
+
+	/**
+	 * Sanitizes a decimal CSS color value, 0 - 255.
+	 *
+	 * Accepts float values with or without the percentage sign `%`
+	 * Returns a string suffixed with the percentage sign `%`.
+	 *
+	 * @since NewVersion
+	 *
+	 * @param mixed $value
+	 *
+	 * @return int A number between 0-255.
+	 */
+	public static function int_0_255( $value ) {
+		if ( intval( $value ) > 255 ) {
+			$value = 255;
+		} elseif ( intval( $value ) < 0 ) {
+			$value = 0;
+		}
+
+		return intval( $value );
+	}
+
+	/**
+	 * Sanitizes a CSS opacity value, 0 - 1.
+	 *
+	 * @since NewVersion
+	 *
+	 * @param mixed $value
+	 *
+	 * @return float A number between 0-1.
+	 */
+	public static function float_0_1( $value ) {
+		if ( floatval( $value ) > 1 ) {
+			$value = 1;
+		} elseif ( floatval( $value ) < 0 ) {
+			$value = 0;
+		}
+
+		return floatval( $value );
+	}
 
 	/**
 	 * Removes elements whose keys are not valid data-attribute names.
