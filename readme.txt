@@ -102,6 +102,13 @@ You can expect the same level of support for both the free and pro version of ou
 
 == Changelog ==
 
+= 1.7.1 =
+* Added support for x3 playback rate.
+* Added base support for user controlled shuffle button, in playlists that shuffle mode is enabled (Pro feature).
+* Fixed a deprecation warning "Required parameter follows optional parameter" that would appear in PHP 8.
+* Fixed spinner positioning on simple track listing.
+* Introduced method AudioIgniter_Sanitizer::rgba_color()
+
 = 1.7.0 =
 * Added a loading spinner while the track is buffering.
 * Developer note - Changed: Static property AudioIgniter::$version is now non-static and should be accessed as such.
