@@ -206,7 +206,7 @@ class AudioIgniter_Sanitizer {
 	 * - 3 and 6 digit hex values, optionally prefixed with `#`
 	 * - Predefined CSS named colors/keywords, such as 'transparent', 'initial', 'inherit', 'black', 'silver', etc.
 	 *
-	 * @since NewVersion
+	 * @since 1.7.1
 	 *
 	 * @param string $color       The color value to sanitize
 	 * @param bool   $return_hash Whether to return hex color prefixed with a `#`
@@ -264,7 +264,7 @@ class AudioIgniter_Sanitizer {
 	 * Accepts float values with or without the percentage sign `%`
 	 * Returns a string suffixed with the percentage sign `%`.
 	 *
-	 * @since NewVersion
+	 * @since 1.7.1
 	 *
 	 * @param mixed $value
 	 *
@@ -287,7 +287,7 @@ class AudioIgniter_Sanitizer {
 	 * Accepts float values with or without the percentage sign `%`
 	 * Returns a string suffixed with the percentage sign `%`.
 	 *
-	 * @since NewVersion
+	 * @since 1.7.1
 	 *
 	 * @param mixed $value
 	 *
@@ -306,7 +306,7 @@ class AudioIgniter_Sanitizer {
 	/**
 	 * Sanitizes a CSS opacity value, 0 - 1.
 	 *
-	 * @since NewVersion
+	 * @since 1.7.1
 	 *
 	 * @param mixed $value
 	 *
