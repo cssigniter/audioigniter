@@ -5,7 +5,7 @@
  * Description: AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types and serve your audio content in style!
  * Author: The CSSIgniter Team
  * Author URI: https://www.cssigniter.com
- * Version: 1.7.1
+ * Version: 1.7.1.1
  * Text Domain: audioigniter
  * Domain Path: languages
  *
@@ -1179,10 +1179,12 @@ class AudioIgniter {
 	 */
 	public function shortcode_ai_playlist( $atts, $content, $tag ) {
 		$atts = shortcode_atts( array(
-			'id' => '',
+			'id'    => '',
+			'class' => '',
 		), $atts, $tag );
 
 		$id = intval( $atts['id'] );
+		$class_name = $atts['class'];
 
 		if ( ! $this->is_playlist( $id ) ) {
 			return '';
@@ -1204,8 +1206,13 @@ class AudioIgniter {
 			$data .= sprintf( '%s="%s" ', sanitize_key( $attribute ), esc_attr( $value ) );
 		}
 
-		$output = sprintf( '<div id="audioigniter-%s" class="audioigniter-root" %s></div>',
+		$player_classes = array_merge( array(
+			'audioigniter-root',
+		), explode( ' ', $class_name ) );
+
+		$output = sprintf( '<div id="audioigniter-%s" class="%s" %s></div>',
 			esc_attr( $id ),
+			esc_attr( implode( ' ', $player_classes ) ),
 			$data
 		);
 

@@ -25,7 +25,7 @@ exports.extractCSS = paths => ({
             {
               loader: 'css-loader',
               options: {
-                minimize: false,
+                minimize: true,
               },
             },
             {
