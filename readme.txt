@@ -102,6 +102,10 @@ You can expect the same level of support for both the free and pro version of ou
 
 == Changelog ==
 
+= 1.7.2 =
+* Provide minimized and optimized stylesheet.
+* Updated shortcode to support HTML classes via the class="" parameter.
+
 = 1.7.1 =
 * Added support for x3 playback rate.
 * Added base support for user controlled shuffle button, in playlists that shuffle mode is enabled (Pro feature).
