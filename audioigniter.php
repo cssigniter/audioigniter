@@ -1183,7 +1183,7 @@ class AudioIgniter {
 			'class' => '',
 		), $atts, $tag );
 
-		$id = intval( $atts['id'] );
+		$id         = intval( $atts['id'] );
 		$class_name = $atts['class'];
 
 		if ( ! $this->is_playlist( $id ) ) {
