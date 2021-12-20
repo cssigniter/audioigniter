@@ -1251,6 +1251,10 @@ class AudioIgniter {
 		$response = array();
 		$tracks   = $this->get_post_meta( $playlist_id, '_audioigniter_tracks', array() );
 
+		if ( empty( $tracks ) ) {
+			$tracks = array();
+		}
+
 		foreach ( $tracks as $track ) {
 			$track          = wp_parse_args( $track, self::get_default_track_values() );
 			$track_response = array();
