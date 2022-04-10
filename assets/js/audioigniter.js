@@ -14,7 +14,8 @@ jQuery(function($) {
     var el = {
       $trackContainer: $(".ai-fields-container"),
       trackFieldClassName: ".ai-field-repeatable",
-      $addTrackButton: $(".ai-add-field"),
+      $addTrackButtonTop: $(".ai-add-field-top"),
+      $addTrackButtonBottom: $(".ai-add-field-bottom"),
       removeFieldButtonClassName: ".ai-remove-field",
       $removeAllTracksButton: $(".ai-remove-all-fields"),
       $batchUploadButton: $(".ai-add-field-batch"),
@@ -161,7 +162,9 @@ jQuery(function($) {
       var $clone = el.$trackContainer
         .find(el.trackFieldClassName)
         .first()
-        .clone();
+        .clone()
+        .hide()
+        .fadeIn();
       resetField($clone, newHash);
 
       return $clone;
@@ -332,8 +335,13 @@ jQuery(function($) {
       $fieldTitle.text($this.val());
     });
 
-    /* Add Track */
-    el.$addTrackButton.on("click", function() {
+    /* Add Track Top*/
+    el.$addTrackButtonTop.on("click", function() {
+      el.$trackContainer.prepend(getNewTrackField());
+    });
+
+    /* Add Track Bottom*/
+    el.$addTrackButtonBottom.on("click", function () {
       el.$trackContainer.append(getNewTrackField());
     });
 
