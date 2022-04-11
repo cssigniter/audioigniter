@@ -102,6 +102,9 @@ You can expect the same level of support for both the free and pro version of ou
 
 == Changelog ==
 
+= 1.7.3 =
+* Top "Add Track" prepends a track, and bottom "Add Track" appends a track.
+
 = 1.7.2 =
 * Provide minimized and optimized stylesheet.
 * Updated shortcode to support HTML classes via the class="" parameter.
