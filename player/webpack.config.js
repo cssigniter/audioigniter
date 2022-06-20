@@ -28,7 +28,9 @@ const common = {
     }),
   ],
   devServer: {
-    contentBase: path.resolve('assets'),
+    static: {
+      directory: path.resolve('assets'),
+    },
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -37,7 +39,8 @@ const common = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: ['babel-loader?cacheDirectory'],
+        exclude: /node_modules/,
+        loader: 'babel-loader',
       },
     ],
   },
@@ -51,6 +54,7 @@ switch (TARGET) {
     config = merge(
       common,
       {
+        mode: 'production',
         resolve: {
           modules: [path.resolve(__dirname), 'node_modules'],
           extensions: ['.js', '.jsx'],
@@ -66,6 +70,7 @@ switch (TARGET) {
     config = merge(
       common,
       {
+        mode: 'development',
         devtool: 'eval-source-map',
       },
       parts.setupSass(PATHS.style),

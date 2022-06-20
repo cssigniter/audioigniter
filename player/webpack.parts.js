@@ -1,5 +1,6 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 exports.setupSass = paths => ({
@@ -19,48 +20,34 @@ exports.extractCSS = paths => ({
     rules: [
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-              },
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: () => [
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
                   autoprefixer({
-                    browsers: [
-                      'Chrome >= 46',
-                      'Firefox ESR',
-                      'Edge >= 12',
-                      'Explorer >= 9',
-                      'iOS >= 8',
-                      'Safari >= 8',
-                      'Android >= 4',
-                    ],
+                    browsers: ['last 2 versions', '>1%'],
                     cascade: false,
                   }),
                 ],
               },
             },
-            {
-              loader: 'sass-loader',
-              options: {
-                outputStyle: 'expanded',
-              },
-            },
-          ],
-        }),
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
         include: paths,
       },
     ],
   },
   plugins: [
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
   ],
@@ -68,33 +55,25 @@ exports.extractCSS = paths => ({
 
 exports.devServer = options => ({
   devServer: {
-    contentBase: __dirname,
+    static:{
+      directory: __dirname,
+    },
     historyApiFallback: true,
     hot: false,
-    inline: true,
-    stats: 'errors-only',
     host: options.host,
     port: options.port,
-    overlay: {
-      warnings: true,
-      errors: true,
-    },
   },
 });
 
 exports.minify = () => ({
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        drop_console: true,
-        screw_ie8: true,
-      },
-      output: {
-        comments: false,
-      },
-    }),
-  ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: false,
+      }),
+    ],
+  },
 });
 
 exports.setFreeVariable = (key, value) => {

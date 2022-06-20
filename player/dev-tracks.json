@@ -5,7 +5,7 @@
 		"audio": "https://www.cssigniter.com/assets/audioigniter/sunrise.mp3",
 		"buyUrl": "https://www.cssigniter.com",
 		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
-		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/Thoribass-Sunrise.jpg",
+		"cover": "https://www.cssigniter.com/demos/audioigniter/wp-content/uploads/sites/48/2016/08/CyberSDF-Flame-and-Go.jpg",
         "lyrics": "Here in my mind\nYou know you might find\nSomething that you\n\nYou thought you once knew\nBut now it's all gone\nAnd you know it's no fun\n\nYeah I know it's no fun\nOh I know it's no fun\nI'm free to be whatever I\nWhatever I choose\nAnd I'll sing the blues if I want\nI'm free to be whatever I\nWhatever I choose\nAnd I'll sing the blues if I want\nWhatever you do\nWhatever you say\nYeah I know it's alright"
 	},
 	{
@@ -14,14 +14,14 @@
 		"audio": "https://www.cssigniter.com/assets/audioigniter/sunrise.mp3",
 		"buyUrl": "https://www.cssigniter.com",
 		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
-		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/The-Fisherman-Another-Day.jpg"
+		"cover": "https://www.cssigniter.com/demos/audioigniter/wp-content/uploads/sites/48/2016/08/Thoribass-Sunrise.jpg"
 	},
 	{
 		"title": "Remix Safety Guide",
 		"subtitle": "Rocavaco",
 		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/remix.mp3",
 		"buyUrl": "https://www.cssigniter.com",
-		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/Rocavaco-Remix-Safety-Guide.jpg",
+		"cover": "https://www.cssigniter.com/demos/audioigniter/wp-content/uploads/sites/48/2016/08/The-Fisherman-Another-Day.jpg",
         "lyrics": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At eius hic illo natus vitae. Assumenda commodi eaque eos est eum excepturi fugiat provident, quidem saepe? Aut doloremque, unde? Delectus, dolorum."
 	},
 	{
@@ -37,28 +37,28 @@
 		"subtitle": "Syl Johnson (SoundCloud)",
 		"audio": "https://soundcloud.com/enterofficial/maceo-plex-b2b-richie-hawtin-enterweek-11-sake-bar-space-ibiza-september-10th-2015",
 		"buyUrl": "",
-		"cover": "https://www.cssigniter.com/preview/audioigniter/files/2016/08/artworks-000103551140-ez6k4x-t500x500.jpg"
+		"cover": "https://www.cssigniter.com/demos/audioigniter/wp-content/uploads/sites/48/2016/08/Rocavaco-Remix-Safety-Guide.jpg"
 	},
 	{
 		"title": "Deep House Radio",
 		"subtitle": "",
 		"audio": "https://deephouseradio.radioca.st/stream/1/",
 		"buyUrl": "https://www.cssigniter.com",
-		"cover": "https://www.cssigniter.com/preview/audioigniter/files/2016/08/Rocavaco-Remix-Safety-Guide.jpg"
+		"cover": "https://www.cssigniter.com/demos/audioigniter/wp-content/uploads/sites/48/2016/08/MegaEnx-Tomorrow.jpg"
 	},
 	{
 		"title": "Flash of Light",
 		"subtitle": "Kxmode",
 		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/flashlight.mp3",
 		"buyUrl": "https://www.cssigniter.com",
-		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/Kxmode-Flash-of-Light.jpg",
-    "lyrics": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At eius hic illo natus vitae. Assumenda commodi eaque eos est eum excepturi fugiat provident, quidem saepe? Aut doloremque, unde? Delectus, dolorum."
+		"cover": "https://www.cssigniter.com/demos/audioigniter/wp-content/uploads/sites/48/2016/08/BitBurner-We-Get-Mental.jpg",
+        "lyrics": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At eius hic illo natus vitae. Assumenda commodi eaque eos est eum excepturi fugiat provident, quidem saepe? Aut doloremque, unde? Delectus, dolorum."
 	},
 	{
 		"title": "We Get Mental",
 		"subtitle": "BitBurner",
 		"audio": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/mental.mp3",
 		"buyUrl": "",
-		"cover": "https:\/\/www.cssigniter.com\/preview\/audioigniter\/files\/2016\/08\/BitBurner-We-Get-Mental.jpg"
+		"cover": "https://www.cssigniter.com/demos/audioigniter/wp-content/uploads/sites/48/2016/08/Kxmode-Flash-of-Light.jpg"
 	}
 ]

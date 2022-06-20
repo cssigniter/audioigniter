@@ -1,7 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
-import 'es6-promise/auto';
-import 'whatwg-fetch';
+import { createRoot } from 'react-dom/client';
 
 import App from './App';
 
@@ -84,7 +82,8 @@ function renderApp(node) {
     ),
   };
 
-  render(<App type={type} {...props} />, node);
+  const root = createRoot(node);
+  root.render(<App type={type} {...props} />);
 }
 
 Array.prototype.slice.call(nodes).forEach(node => {

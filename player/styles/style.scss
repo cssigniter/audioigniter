@@ -979,16 +979,16 @@ $screen-xs-max: 320px !default;
 			}
 
 			.ai-audio-controls-main {
-				padding-left: $spacing / 2;
-				padding-right: $spacing / 2;
+				padding-left: calc($spacing / 2);
+				padding-right: calc($spacing / 2);
 			}
 
 			.ai-track-info {
-				padding-left: $spacing / 2;
+				padding-left: calc($spacing / 2);
 			}
 
 			.ai-audio-controls-meta {
-				margin-left: $spacing / 2;
+				margin-left: calc($spacing / 2);
 			}
 		}
 
