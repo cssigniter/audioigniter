@@ -1,28 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Time extends React.Component {
-  constructor(props) {
-    super(props);
+const propTypes = {
+  position: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
+  countdown: PropTypes.bool.isRequired,
+};
 
-    const { countdown } = this.props;
-
-    this.state = {
-      showRemaining: countdown || false,
-    };
-
-    this.handleClick = this.handleClick.bind(this);
-  }
+const Time = ({ countdown, position, duration }) => {
+  const [showRemaining, setShowRemaining] = useState(countdown || false);
 
   /**
    * Pretty prints time remaining/elapsed
    *
-   * @param {number} position - Track position in milliseconds
-   * @param {number} duration - Track duration in milliseconds
    * @returns {string} - Time pretty formatted
    */
-  formatTime(position, duration) {
-    const { showRemaining } = this.state;
+  const renderFormattedTime = () => {
     const positionInSeconds = showRemaining
       ? (duration - position) / 1000
       : position / 1000;
@@ -34,7 +27,7 @@ export default class Time extends React.Component {
     min = min >= 10 ? min : `0${min}`;
     sec = sec >= 10 ? sec : `0${sec}`;
 
-    if (!isNaN(sec)) {
+    if (!Number.isNaN(sec)) {
       if (hours) {
         time = `${hours}:${min}:${sec}`;
       } else {
@@ -43,26 +36,19 @@ export default class Time extends React.Component {
     }
 
     return showRemaining ? `-${time}` : time;
-  }
+  };
 
-  handleClick() {
-    const { showRemaining } = this.state;
-    this.setState({ showRemaining: !showRemaining });
-  }
+  const handleClick = () => {
+    setShowRemaining(x => !x);
+  };
 
-  render() {
-    const { position, duration } = this.props;
-
-    return (
-      <span className="ai-track-time" onClick={this.handleClick}>
-        {this.formatTime(position, duration)}
-      </span>
-    );
-  }
-}
-
-Time.propTypes = {
-  position: PropTypes.number.isRequired,
-  duration: PropTypes.number.isRequired,
-  countdown: PropTypes.bool.isRequired,
+  return (
+    <span className="ai-track-time" onClick={handleClick}>
+      {renderFormattedTime()}
+    </span>
+  );
 };
+
+Time.propTypes = propTypes;
+
+export default Time;

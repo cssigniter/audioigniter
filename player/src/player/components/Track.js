@@ -11,6 +11,43 @@ import ProgressBar from './ProgressBar';
 import { PlayIcon, PauseIcon } from './Icons';
 import { AppContext } from '../../App';
 
+const propTypes = {
+  track: PropTypes.shape({
+    audio: PropTypes.string,
+    buyUrl: PropTypes.string,
+    cover: PropTypes.string,
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    lyrics: PropTypes.string,
+    downloadUrl: PropTypes.string,
+    downloadFilename: PropTypes.string,
+  }),
+  index: PropTypes.number.isRequired,
+  trackNo: PropTypes.number,
+  isActive: PropTypes.bool,
+  position: PropTypes.number,
+  duration: PropTypes.number,
+  setPosition: PropTypes.func,
+  playStatus: PropTypes.oneOf([
+    Sound.status.PLAYING,
+    Sound.status.PAUSED,
+    Sound.status.STOPPED,
+  ]),
+  onTrackClick: PropTypes.func.isRequired,
+  onTrackLoop: PropTypes.func,
+  className: PropTypes.string.isRequired,
+  isStandalone: PropTypes.bool,
+  buyButtonsTarget: PropTypes.bool,
+  displayArtistNames: PropTypes.bool,
+  displayCovers: PropTypes.bool,
+  displayBuyButtons: PropTypes.bool,
+  isLooping: PropTypes.bool,
+  playbackRate: PropTypes.number,
+  setPlaybackRate: PropTypes.func,
+  allowPlaybackRate: PropTypes.bool,
+  buffering: PropTypes.bool,
+};
+
 const Track = ({
   track,
   index,
@@ -114,40 +151,6 @@ const Track = ({
   );
 };
 
-Track.propTypes = {
-  track: PropTypes.shape({
-    audio: PropTypes.string,
-    buyUrl: PropTypes.string,
-    cover: PropTypes.string,
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    lyrics: PropTypes.string,
-    downloadUrl: PropTypes.string,
-  }),
-  index: PropTypes.number.isRequired,
-  trackNo: PropTypes.number,
-  isActive: PropTypes.bool,
-  position: PropTypes.number,
-  duration: PropTypes.number,
-  setPosition: PropTypes.func,
-  playStatus: PropTypes.oneOf([
-    Sound.status.PLAYING,
-    Sound.status.PAUSED,
-    Sound.status.STOPPED,
-  ]),
-  onTrackClick: PropTypes.func.isRequired,
-  onTrackLoop: PropTypes.func,
-  className: PropTypes.string.isRequired,
-  isStandalone: PropTypes.bool,
-  buyButtonsTarget: PropTypes.bool,
-  displayArtistNames: PropTypes.bool,
-  displayCovers: PropTypes.bool,
-  displayBuyButtons: PropTypes.bool,
-  isLooping: PropTypes.bool,
-  playbackRate: PropTypes.number,
-  setPlaybackRate: PropTypes.func,
-  allowPlaybackRate: PropTypes.bool,
-  buffering: PropTypes.bool,
-};
+Track.propTypes = propTypes;
 
 export default Track;

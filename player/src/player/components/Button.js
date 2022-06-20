@@ -1,6 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  children: PropTypes.node,
+  ariaLabel: PropTypes.string,
+  ariaPressed: PropTypes.bool,
+  ariaExpanded: PropTypes.bool,
+  ariaControls: PropTypes.string,
+};
+
 const Button = ({
   className,
   onClick,
@@ -22,14 +32,6 @@ const Button = ({
   </button>
 );
 
-Button.propTypes = {
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-  children: PropTypes.node,
-  ariaLabel: PropTypes.string,
-  ariaPressed: PropTypes.bool,
-  ariaExpanded: PropTypes.bool,
-  ariaControls: PropTypes.string,
-};
+Button.propTypes = propTypes;
 
 export default Button;

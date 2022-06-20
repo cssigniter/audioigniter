@@ -1,6 +1,22 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+
 import { CartIcon, DownloadIcon, LyricsIcon, RefreshIcon } from './Icons';
+
+const propTypes = {
+  buyButtonsTarget: PropTypes.bool,
+  buyUrl: PropTypes.string,
+  downloadUrl: PropTypes.string,
+  downloadFilename: PropTypes.string,
+  onTrackLoop: PropTypes.func,
+  isLooping: PropTypes.bool,
+  displayBuyButtons: PropTypes.bool,
+  onOpenTrackLyrics: PropTypes.func,
+  playbackRate: PropTypes.number,
+  setPlaybackRate: PropTypes.func,
+  allowPlaybackRate: PropTypes.bool,
+  isPlaying: PropTypes.bool,
+};
 
 const TrackButtons = ({
   buyButtonsTarget,
@@ -28,6 +44,7 @@ const TrackButtons = ({
   return (
     <div className="ai-track-control-buttons">
       {buyUrl && displayBuyButtons && (
+        // eslint-disable-next-line react/jsx-no-target-blank
         <a
           href={buyUrl}
           className="ai-track-btn"
@@ -83,7 +100,7 @@ const TrackButtons = ({
             setPlaybackRate();
           }}
         >
-          <Fragment>&times;{playbackRate}</Fragment>
+          &times;{playbackRate}
         </a>
       )}
 
@@ -113,19 +130,6 @@ const TrackButtons = ({
   );
 };
 
-TrackButtons.propTypes = {
-  buyButtonsTarget: PropTypes.bool,
-  buyUrl: PropTypes.string,
-  downloadUrl: PropTypes.string,
-  downloadFilename: PropTypes.string,
-  onTrackLoop: PropTypes.func,
-  isLooping: PropTypes.bool,
-  displayBuyButtons: PropTypes.bool,
-  onOpenTrackLyrics: PropTypes.func,
-  playbackRate: PropTypes.number,
-  setPlaybackRate: PropTypes.func,
-  allowPlaybackRate: PropTypes.bool,
-  isPlaying: PropTypes.bool,
-};
+TrackButtons.propTypes = propTypes;
 
 export default TrackButtons;

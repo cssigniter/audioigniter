@@ -1,81 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Scrollbars } from 'react-custom-scrollbars';
+
 import Tracklist from './Tracklist';
 
-export default class TracklistWrap extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    const { activeTrackIndex, limitTracklistHeight } = this.props;
-
-    if (
-      activeTrackIndex !== nextProps.activeTrackIndex &&
-      limitTracklistHeight
-    ) {
-      this.scrollToTrack(nextProps.activeTrackIndex);
-    }
-  }
-
-  scrollToTrack(trackIndex) {
-    const { tracks } = this.props;
-    const trackHeight = this.scrollbarsRef.getScrollHeight() / tracks.length;
-
-    if (!this.isTrackVisible(trackIndex)) {
-      this.scrollbarsRef.scrollTop(trackHeight * trackIndex);
-    }
-  }
-
-  isTrackVisible(trackIndex) {
-    const { tracks } = this.props;
-    const trackHeight = this.scrollbarsRef.getScrollHeight() / tracks.length;
-    const trackPosition = trackHeight * trackIndex;
-    const scrollTop = this.scrollbarsRef.getScrollTop();
-    const scrollBottom = scrollTop + this.scrollbarsRef.getClientHeight();
-
-    return !(trackPosition < scrollTop || trackPosition > scrollBottom);
-  }
-
-  renderTracklist() {
-    return (
-      <Tracklist
-        tracks={this.props.tracks}
-        activeTrackIndex={this.props.activeTrackIndex}
-        onTrackClick={this.props.onTrackClick}
-        className={this.props.className}
-        trackClassName={this.props.trackClassName}
-        reverseTrackOrder={this.props.reverseTrackOrder}
-        displayTrackNo={this.props.displayTrackNo}
-        displayBuyButtons={this.props.displayBuyButtons}
-        buyButtonsTarget={this.props.buyButtonsTarget}
-        displayCovers={this.props.displayCovers}
-        displayArtistNames={this.props.displayArtistNames}
-        onTrackLoop={this.props.onTrackLoop}
-        repeatingTrackIndex={this.props.repeatingTrackIndex}
-      />
-    );
-  }
-
-  render() {
-    const { isOpen, limitTracklistHeight, tracklistHeight } = this.props;
-
-    return (
-      <div id="tracklisting" style={{ display: isOpen ? 'block' : 'none' }}>
-        {limitTracklistHeight ? (
-          <Scrollbars
-            className="ai-scroll-wrap"
-            ref={ref => (this.scrollbarsRef = ref)} // eslint-disable-line no-return-assign
-            style={{ height: tracklistHeight }}
-          >
-            {this.renderTracklist()}
-          </Scrollbars>
-        ) : (
-          this.renderTracklist()
-        )}
-      </div>
-    );
-  }
-}
-
-TracklistWrap.propTypes = {
+const propTypes = {
   tracks: PropTypes.arrayOf(PropTypes.object).isRequired,
   activeTrackIndex: PropTypes.number.isRequired,
   onTrackClick: PropTypes.func.isRequired,
@@ -93,3 +22,87 @@ TracklistWrap.propTypes = {
   onTrackLoop: PropTypes.func,
   repeatingTrackIndex: PropTypes.number,
 };
+
+const TracklistWrap = ({
+  isOpen,
+  limitTracklistHeight,
+  tracklistHeight,
+  tracks,
+  activeTrackIndex,
+  onTrackClick,
+  onTrackLoop,
+  className,
+  reverseTrackOrder,
+  trackClassName,
+  displayTrackNo,
+  displayBuyButtons,
+  buyButtonsTarget,
+  displayCovers,
+  displayArtistNames,
+  repeatingTrackIndex,
+}) => {
+  const scrollbarRef = useRef(null);
+
+  const isTrackVisible = trackIndex => {
+    const trackHeight = scrollbarRef.current.getScrollHeight() / tracks.length;
+    const trackPosition = trackHeight * trackIndex;
+    const scrollTop = scrollbarRef.current.getScrollTop();
+    const scrollBottom = scrollTop + scrollbarRef.current.getClientHeight();
+
+    return !(trackPosition < scrollTop || trackPosition > scrollBottom);
+  };
+
+  const scrollToTrack = trackIndex => {
+    const trackHeight = scrollbarRef.current.getScrollHeight() / tracks.length;
+
+    if (!isTrackVisible(trackIndex)) {
+      scrollbarRef.current.scrollTop(trackHeight * trackIndex);
+    }
+  };
+
+  useEffect(() => {
+    if (limitTracklistHeight) {
+      scrollToTrack(activeTrackIndex);
+    }
+  }, [activeTrackIndex, limitTracklistHeight]);
+
+  const renderTracklist = () => {
+    return (
+      <Tracklist
+        tracks={tracks}
+        activeTrackIndex={activeTrackIndex}
+        onTrackClick={onTrackClick}
+        className={className}
+        trackClassName={trackClassName}
+        reverseTrackOrder={reverseTrackOrder}
+        displayTrackNo={displayTrackNo}
+        displayBuyButtons={displayBuyButtons}
+        buyButtonsTarget={buyButtonsTarget}
+        displayCovers={displayCovers}
+        displayArtistNames={displayArtistNames}
+        onTrackLoop={onTrackLoop}
+        repeatingTrackIndex={repeatingTrackIndex}
+      />
+    );
+  };
+
+  return (
+    <div id="tracklisting" style={{ display: isOpen ? 'block' : 'none' }}>
+      {limitTracklistHeight ? (
+        <Scrollbars
+          className="ai-scroll-wrap"
+          ref={scrollbarRef} // eslint-disable-line no-return-assign
+          style={{ height: tracklistHeight }}
+        >
+          {renderTracklist()}
+        </Scrollbars>
+      ) : (
+        renderTracklist()
+      )}
+    </div>
+  );
+};
+
+TracklistWrap.propTypes = propTypes;
+
+export default TracklistWrap;

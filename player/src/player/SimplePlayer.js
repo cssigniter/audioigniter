@@ -7,6 +7,35 @@ import soundProvider from './soundProvider';
 import Tracklist from './components/Tracklist';
 import typographyDisabled from '../utils/typography-disabled';
 
+const propTypes = {
+  tracks: PropTypes.arrayOf(PropTypes.object),
+  playStatus: PropTypes.oneOf([
+    Sound.status.PLAYING,
+    Sound.status.PAUSED,
+    Sound.status.STOPPED,
+  ]),
+  activeIndex: PropTypes.number,
+  position: PropTypes.number,
+  duration: PropTypes.number,
+  setPosition: PropTypes.func.isRequired,
+  togglePlay: PropTypes.func.isRequired,
+  setTrackCycling: PropTypes.func.isRequired,
+  allowTrackLoop: PropTypes.bool,
+
+  maxWidth: PropTypes.string,
+  reverseTrackOrder: PropTypes.bool,
+  displayTrackNo: PropTypes.bool,
+  buyButtonsTarget: PropTypes.bool,
+  displayArtistNames: PropTypes.bool,
+  displayBuyButtons: PropTypes.bool,
+  displayCredits: PropTypes.bool,
+  repeatingTrackIndex: PropTypes.number,
+  playbackRate: PropTypes.number,
+  setPlaybackRate: PropTypes.func,
+  allowPlaybackRate: PropTypes.bool,
+  buffering: PropTypes.bool,
+};
+
 const SimplePlayer = props => {
   const { playStatus } = props;
   const activeIndex =
@@ -66,34 +95,7 @@ const SimplePlayer = props => {
   );
 };
 
-SimplePlayer.propTypes = {
-  tracks: PropTypes.arrayOf(PropTypes.object),
-  playStatus: PropTypes.oneOf([
-    Sound.status.PLAYING,
-    Sound.status.PAUSED,
-    Sound.status.STOPPED,
-  ]),
-  activeIndex: PropTypes.number,
-  position: PropTypes.number,
-  duration: PropTypes.number,
-  setPosition: PropTypes.func.isRequired,
-  togglePlay: PropTypes.func.isRequired,
-  setTrackCycling: PropTypes.func.isRequired,
-  allowTrackLoop: PropTypes.bool,
-
-  maxWidth: PropTypes.string,
-  reverseTrackOrder: PropTypes.bool,
-  displayTrackNo: PropTypes.bool,
-  buyButtonsTarget: PropTypes.bool,
-  displayArtistNames: PropTypes.bool,
-  displayBuyButtons: PropTypes.bool,
-  displayCredits: PropTypes.bool,
-  repeatingTrackIndex: PropTypes.number,
-  playbackRate: PropTypes.number,
-  setPlaybackRate: PropTypes.func,
-  allowPlaybackRate: PropTypes.bool,
-  buffering: PropTypes.bool,
-};
+SimplePlayer.propTypes = propTypes;
 
 export default soundProvider(SimplePlayer, {
   onFinishedPlaying(props) {

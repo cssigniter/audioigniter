@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { MusicNoteIcon } from './Icons';
+
+const propTypes = {
+  className: PropTypes.string,
+  title: PropTypes.string,
+  src: PropTypes.string,
+  onClick: PropTypes.func,
+};
 
 const Cover = ({ className, title, src, onClick }) => (
   <div
@@ -11,11 +19,6 @@ const Cover = ({ className, title, src, onClick }) => (
   </div>
 );
 
-Cover.propTypes = {
-  className: PropTypes.string,
-  title: PropTypes.string,
-  src: PropTypes.string,
-  onClick: PropTypes.func,
-};
+Cover.propTypes = propTypes;
 
 export default Cover;

@@ -6,6 +6,12 @@ if (document.querySelector('.audioigniter-root')) {
   Modal.setAppElement('.audioigniter-root');
 }
 
+const propTypes = {
+  isOpen: PropTypes.bool,
+  closeModal: PropTypes.func.isRequired,
+  children: PropTypes.any,
+};
+
 const TrackLyricsModal = ({ isOpen, closeModal, children }) => {
   return (
     <Modal
@@ -30,12 +36,6 @@ const TrackLyricsModal = ({ isOpen, closeModal, children }) => {
       </div>
     </Modal>
   );
-};
-
-const propTypes = {
-  isOpen: PropTypes.bool,
-  closeModal: PropTypes.func.isRequired,
-  children: PropTypes.any,
 };
 
 TrackLyricsModal.propTypes = propTypes;

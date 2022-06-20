@@ -1,15 +1,16 @@
 {
   "extends": [
     "airbnb",
-    "plugin:prettier/recommended",
-    "prettier/react"
+    "prettier"
   ],
+  "parser": "@babel/eslint-parser",
   "plugins": [
+    "babel",
     "import"
   ],
-	"globals": {
-		"aiStrings": true
-	},
+  "globals": {
+    "aiStrings": true
+  },
   "env": {
     "browser": true
   },
@@ -17,22 +18,36 @@
     "arrow-body-style": 0,
     "no-confusing-arrow": 0,
     "global-require": 0,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
     "import/prefer-default-export": 0,
+    "import/no-cycle": 0,
     "react/jsx-filename-extension": 0,
     "react/require-default-props": 0,
     "react/forbid-prop-types": 0,
     "react/default-props-match-prop-types": 0,
     "react/prefer-stateless-function": 0,
-    "react/jsx-curly-spacing": [2, {
-      "when": "never",
-      "children": true
-    }],
+    "react/jsx-curly-spacing": [
+      2,
+      {
+        "when": "never",
+        "children": true
+      }
+    ],
     "react/no-array-index-key": 0,
     "jsx-a11y/anchor-is-valid": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "react/destructuring-assignment": 0,
+    "react/function-component-definition": 0,
+    "react/jsx-props-no-spreading": 0,
     "react/button-has-type": 0,
-    "jsx-a11y/label-has-for": 0
+    "react/jsx-fragments": 0,
+    "react/jsx-no-constructed-context-values": 0,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/click-events-have-key-events": 0
   }
 }

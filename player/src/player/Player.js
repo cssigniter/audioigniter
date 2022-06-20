@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Sound from 'react-sound';
 import { sprintf } from 'sprintf-js';
@@ -23,309 +23,9 @@ import {
 import soundProvider from './soundProvider';
 import { AppContext } from '../App';
 import typographyDisabled from '../utils/typography-disabled';
+import useComponentSize from '../utils/useComponentSize';
 
-class Player extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isTrackListOpen: this.props.displayTracklist,
-    };
-
-    this.toggleTracklist = this.toggleTracklist.bind(this);
-    this.isNarrowContext = this.isNarrowContext.bind(this);
-  }
-
-  isNarrowContext() {
-    return this.root && this.root.offsetWidth < 480 && window.innerWidth > 480;
-  }
-
-  toggleTracklist() {
-    this.setState(state => ({
-      isTrackListOpen: !state.isTrackListOpen,
-    }));
-  }
-
-  render() {
-    const { isTrackListOpen } = this.state;
-
-    const {
-      tracks,
-      playStatus,
-      activeIndex,
-      volume,
-      position,
-      duration,
-      playbackRate,
-      shuffle,
-      shuffleEnabled,
-
-      currentTrack,
-      playTrack,
-      togglePlay,
-      nextTrack,
-      prevTrack,
-      setPosition,
-      setVolume,
-      setPlaybackRate,
-      toggleTracklistCycling,
-      cycleTracks,
-      toggleShuffle,
-
-      allowTracklistToggle,
-      allowTracklistLoop,
-      allowPlaybackRate,
-      allowTrackLoop,
-      setTrackCycling,
-      reverseTrackOrder,
-      displayTrackNo,
-      displayTracklistCovers,
-      displayActiveCover,
-      displayCredits,
-      limitTracklistHeight,
-      tracklistHeight,
-      displayBuyButtons,
-      buyButtonsTarget,
-      displayArtistNames,
-      maxWidth,
-      repeatingTrackIndex,
-      skipAmount,
-      skipPosition,
-      countdownTimerByDefault,
-      buffering,
-    } = this.props;
-
-    const classes = classNames({
-      'ai-wrap': true,
-      'ai-type-full': true,
-      'ai-is-loading': !tracks.length,
-      'ai-narrow': this.isNarrowContext(),
-      'ai-with-typography': !typographyDisabled(),
-    });
-
-    const audioControlClasses = classNames({
-      'ai-audio-control': true,
-      'ai-audio-playing': playStatus === Sound.status.PLAYING,
-      'ai-audio-loading': buffering,
-    });
-
-    return (
-      <div
-        ref={ref => (this.root = ref)} // eslint-disable-line no-return-assign
-        className={classes}
-        style={{ maxWidth }}
-      >
-        <div className="ai-control-wrap">
-          {displayActiveCover && (
-            <Cover
-              className="ai-thumb ai-control-wrap-thumb"
-              src={currentTrack.cover}
-              alt={currentTrack.title}
-            />
-          )}
-
-          <div className="ai-control-wrap-controls">
-            <div className="ai-audio-controls-main">
-              <Button
-                onClick={togglePlay}
-                className={audioControlClasses}
-                ariaLabel={
-                  playStatus === Sound.status.PLAYING
-                    ? sprintf(aiStrings.pause_title, currentTrack.title)
-                    : sprintf(aiStrings.play_title, currentTrack.title)
-                }
-                ariaPressed={playStatus === Sound.status.PLAYING}
-              >
-                {playStatus === Sound.status.PLAYING ? (
-                  <PauseIcon />
-                ) : (
-                  <PlayIcon />
-                )}
-
-                <span className="ai-control-spinner" />
-              </Button>
-
-              <div className="ai-track-info">
-                <p className="ai-track-title">
-                  <span>{currentTrack.title}</span>
-                </p>
-                {(tracks.length === 0 || currentTrack.subtitle) &&
-                  displayArtistNames && (
-                    <p className="ai-track-subtitle">
-                      <span>{currentTrack.subtitle}</span>
-                    </p>
-                  )}
-              </div>
-            </div>
-
-            <div className="ai-audio-controls-progress">
-              <ProgressBar
-                setPosition={setPosition}
-                duration={duration}
-                position={position}
-              />
-
-              <Time
-                duration={duration}
-                position={position}
-                countdown={countdownTimerByDefault}
-              />
-            </div>
-
-            <div className="ai-audio-controls-meta">
-              {tracks.length > 1 && (
-                <Button
-                  className="ai-btn ai-tracklist-prev"
-                  onClick={prevTrack}
-                  ariaLabel={aiStrings.previous}
-                  title={aiStrings.previous}
-                >
-                  <PreviousIcon />
-                </Button>
-              )}
-
-              {tracks.length > 1 && (
-                <Button
-                  className="ai-btn ai-tracklist-next"
-                  onClick={nextTrack}
-                  ariaLabel={aiStrings.next}
-                  title={aiStrings.next}
-                >
-                  <NextIcon />
-                </Button>
-              )}
-
-              <VolumeControl
-                volume={volume}
-                // eslint-disable-next-line no-shadow
-                setVolume={setVolume}
-              />
-
-              {allowTracklistLoop && (
-                <Button
-                  className={`ai-btn ai-btn-repeat ${cycleTracks &&
-                    'ai-btn-active'}`}
-                  onClick={toggleTracklistCycling}
-                  ariaLabel={aiStrings.toggle_list_repeat}
-                >
-                  <RefreshIcon />
-                </Button>
-              )}
-
-              {shuffleEnabled && (
-                <Button
-                  className={`ai-btn ai-btn-shuffle ${shuffle &&
-                    'ai-btn-active'}`}
-                  onClick={toggleShuffle}
-                  ariaLabel={aiStrings.shuffle}
-                >
-                  <ShuffleIcon />
-                </Button>
-              )}
-
-              {allowPlaybackRate && (
-                <Button
-                  className="ai-btn ai-btn-playback-rate"
-                  onClick={setPlaybackRate}
-                  ariaLabel={aiStrings.set_playback_rate}
-                >
-                  <Fragment>&times;{playbackRate}</Fragment>
-                </Button>
-              )}
-
-              {skipAmount > 0 && (
-                <Fragment>
-                  <Button
-                    className="ai-btn ai-btn-skip-position"
-                    onClick={() => skipPosition(-1)}
-                    ariaLabel={aiStrings.skip_backward}
-                  >
-                    -{skipAmount}s
-                  </Button>
-                  <Button
-                    className="ai-btn ai-btn-skip-position"
-                    onClick={() => skipPosition(1)}
-                    ariaLabel={aiStrings.skip_forward}
-                  >
-                    +{skipAmount}s
-                  </Button>
-                </Fragment>
-              )}
-
-              {currentTrack && currentTrack.lyrics && !isTrackListOpen && (
-                <AppContext.Consumer>
-                  {({ toggleLyricsModal }) => (
-                    <Button
-                      className="ai-btn ai-lyrics"
-                      onClick={() => toggleLyricsModal(true, currentTrack)}
-                      ariaLabel={aiStrings.open_track_lyrics}
-                      title={aiStrings.open_track_lyrics}
-                    >
-                      <LyricsIcon />
-                    </Button>
-                  )}
-                </AppContext.Consumer>
-              )}
-
-              {allowTracklistToggle && (
-                <Button
-                  className="ai-btn ai-tracklist-toggle"
-                  onClick={this.toggleTracklist}
-                  ariaLabel={aiStrings.toggle_list_visible}
-                  ariaExpanded={isTrackListOpen}
-                >
-                  <PlaylistIcon />
-                </Button>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={`ai-tracklist-wrap ${
-            isTrackListOpen ? 'ai-tracklist-open' : ''
-          }`}
-        >
-          <TracklistWrap
-            className="ai-tracklist"
-            trackClassName="ai-track"
-            tracks={tracks}
-            activeTrackIndex={activeIndex}
-            isOpen={isTrackListOpen}
-            displayTrackNo={displayTrackNo}
-            displayCovers={displayTracklistCovers}
-            displayBuyButtons={displayBuyButtons}
-            buyButtonsTarget={buyButtonsTarget}
-            displayArtistNames={displayArtistNames}
-            reverseTrackOrder={reverseTrackOrder}
-            limitTracklistHeight={limitTracklistHeight}
-            tracklistHeight={tracklistHeight}
-            onTrackClick={playTrack}
-            onTrackLoop={allowTrackLoop ? setTrackCycling : undefined}
-            repeatingTrackIndex={repeatingTrackIndex}
-          />
-        </div>
-
-        {displayCredits && (
-          <div className="ai-footer">
-            <p>
-              Powered by{' '}
-              <a
-                href="https://www.cssigniter.com/plugins/audioigniter?utm_source=player&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                AudioIgniter
-              </a>
-            </p>
-          </div>
-        )}
-      </div>
-    );
-  }
-}
-
-Player.propTypes = {
+const propTypes = {
   tracks: PropTypes.arrayOf(PropTypes.object),
   playStatus: PropTypes.oneOf([
     Sound.status.PLAYING,
@@ -373,6 +73,291 @@ Player.propTypes = {
   shuffle: PropTypes.bool,
   toggleShuffle: PropTypes.func.isRequired,
 };
+
+const Player = ({
+  tracks,
+  playStatus,
+  activeIndex,
+  volume,
+  position,
+  duration,
+  playbackRate,
+  shuffle,
+  shuffleEnabled,
+
+  currentTrack,
+  playTrack,
+  togglePlay,
+  nextTrack,
+  prevTrack,
+  setPosition,
+  setVolume,
+  setPlaybackRate,
+  toggleTracklistCycling,
+  cycleTracks,
+  toggleShuffle,
+
+  allowTracklistToggle,
+  allowTracklistLoop,
+  allowPlaybackRate,
+  allowTrackLoop,
+  setTrackCycling,
+  reverseTrackOrder,
+  displayTrackNo,
+  displayTracklist,
+  displayTracklistCovers,
+  displayActiveCover,
+  displayCredits,
+  limitTracklistHeight,
+  tracklistHeight,
+  displayBuyButtons,
+  buyButtonsTarget,
+  displayArtistNames,
+  maxWidth,
+  repeatingTrackIndex,
+  skipAmount,
+  skipPosition,
+  countdownTimerByDefault,
+  buffering,
+}) => {
+  const ref = useRef(null);
+  const [isTrackListOpen, setTracklistOpen] = useState(displayTracklist);
+  const { width } = useComponentSize(ref);
+
+  const isNarrowContext = () => {
+    return width != null && width < 480 && window.innerWidth > 480;
+  };
+
+  const toggleTracklist = () => {
+    setTracklistOpen(x => !x);
+  };
+
+  const classes = classNames({
+    'ai-wrap': true,
+    'ai-type-full': true,
+    'ai-is-loading': !tracks.length,
+    'ai-narrow': isNarrowContext(),
+    'ai-with-typography': !typographyDisabled(),
+  });
+
+  const audioControlClasses = classNames({
+    'ai-audio-control': true,
+    'ai-audio-playing': playStatus === Sound.status.PLAYING,
+    'ai-audio-loading': buffering,
+  });
+
+  return (
+    <div ref={ref} className={classes} style={{ maxWidth }}>
+      <div className="ai-control-wrap">
+        {displayActiveCover && (
+          <Cover
+            className="ai-thumb ai-control-wrap-thumb"
+            src={currentTrack.cover}
+            alt={currentTrack.title}
+          />
+        )}
+
+        <div className="ai-control-wrap-controls">
+          <div className="ai-audio-controls-main">
+            <Button
+              onClick={togglePlay}
+              className={audioControlClasses}
+              ariaLabel={
+                playStatus === Sound.status.PLAYING
+                  ? sprintf(aiStrings.pause_title, currentTrack.title)
+                  : sprintf(aiStrings.play_title, currentTrack.title)
+              }
+              ariaPressed={playStatus === Sound.status.PLAYING}
+            >
+              {playStatus === Sound.status.PLAYING ? (
+                <PauseIcon />
+              ) : (
+                <PlayIcon />
+              )}
+
+              <span className="ai-control-spinner" />
+            </Button>
+
+            <div className="ai-track-info">
+              <p className="ai-track-title">
+                <span>{currentTrack.title}</span>
+              </p>
+              {(tracks.length === 0 || currentTrack.subtitle) &&
+                displayArtistNames && (
+                  <p className="ai-track-subtitle">
+                    <span>{currentTrack.subtitle}</span>
+                  </p>
+                )}
+            </div>
+          </div>
+
+          <div className="ai-audio-controls-progress">
+            <ProgressBar
+              setPosition={setPosition}
+              duration={duration}
+              position={position}
+            />
+
+            <Time
+              duration={duration}
+              position={position}
+              countdown={countdownTimerByDefault}
+            />
+          </div>
+
+          <div className="ai-audio-controls-meta">
+            {tracks.length > 1 && (
+              <Button
+                className="ai-btn ai-tracklist-prev"
+                onClick={prevTrack}
+                ariaLabel={aiStrings.previous}
+                title={aiStrings.previous}
+              >
+                <PreviousIcon />
+              </Button>
+            )}
+
+            {tracks.length > 1 && (
+              <Button
+                className="ai-btn ai-tracklist-next"
+                onClick={nextTrack}
+                ariaLabel={aiStrings.next}
+                title={aiStrings.next}
+              >
+                <NextIcon />
+              </Button>
+            )}
+
+            <VolumeControl
+              volume={volume}
+              // eslint-disable-next-line no-shadow
+              setVolume={setVolume}
+            />
+
+            {allowTracklistLoop && (
+              <Button
+                className={`ai-btn ai-btn-repeat ${cycleTracks &&
+                  'ai-btn-active'}`}
+                onClick={toggleTracklistCycling}
+                ariaLabel={aiStrings.toggle_list_repeat}
+              >
+                <RefreshIcon />
+              </Button>
+            )}
+
+            {shuffleEnabled && (
+              <Button
+                className={`ai-btn ai-btn-shuffle ${shuffle &&
+                  'ai-btn-active'}`}
+                onClick={toggleShuffle}
+                ariaLabel={aiStrings.shuffle}
+              >
+                <ShuffleIcon />
+              </Button>
+            )}
+
+            {allowPlaybackRate && (
+              <Button
+                className="ai-btn ai-btn-playback-rate"
+                onClick={setPlaybackRate}
+                ariaLabel={aiStrings.set_playback_rate}
+              >
+                <Fragment>&times;{playbackRate}</Fragment>
+              </Button>
+            )}
+
+            {skipAmount > 0 && (
+              <Fragment>
+                <Button
+                  className="ai-btn ai-btn-skip-position"
+                  onClick={() => skipPosition(-1)}
+                  ariaLabel={aiStrings.skip_backward}
+                >
+                  -{skipAmount}s
+                </Button>
+                <Button
+                  className="ai-btn ai-btn-skip-position"
+                  onClick={() => skipPosition(1)}
+                  ariaLabel={aiStrings.skip_forward}
+                >
+                  +{skipAmount}s
+                </Button>
+              </Fragment>
+            )}
+
+            {currentTrack && currentTrack.lyrics && !isTrackListOpen && (
+              <AppContext.Consumer>
+                {({ toggleLyricsModal }) => (
+                  <Button
+                    className="ai-btn ai-lyrics"
+                    onClick={() => toggleLyricsModal(true, currentTrack)}
+                    ariaLabel={aiStrings.open_track_lyrics}
+                    title={aiStrings.open_track_lyrics}
+                  >
+                    <LyricsIcon />
+                  </Button>
+                )}
+              </AppContext.Consumer>
+            )}
+
+            {allowTracklistToggle && (
+              <Button
+                className="ai-btn ai-tracklist-toggle"
+                onClick={toggleTracklist}
+                ariaLabel={aiStrings.toggle_list_visible}
+                ariaExpanded={isTrackListOpen}
+              >
+                <PlaylistIcon />
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`ai-tracklist-wrap ${
+          isTrackListOpen ? 'ai-tracklist-open' : ''
+        }`}
+      >
+        <TracklistWrap
+          className="ai-tracklist"
+          trackClassName="ai-track"
+          tracks={tracks}
+          activeTrackIndex={activeIndex}
+          isOpen={isTrackListOpen}
+          displayTrackNo={displayTrackNo}
+          displayCovers={displayTracklistCovers}
+          displayBuyButtons={displayBuyButtons}
+          buyButtonsTarget={buyButtonsTarget}
+          displayArtistNames={displayArtistNames}
+          reverseTrackOrder={reverseTrackOrder}
+          limitTracklistHeight={limitTracklistHeight}
+          tracklistHeight={tracklistHeight}
+          onTrackClick={playTrack}
+          onTrackLoop={allowTrackLoop ? setTrackCycling : undefined}
+          repeatingTrackIndex={repeatingTrackIndex}
+        />
+      </div>
+
+      {displayCredits && (
+        <div className="ai-footer">
+          <p>
+            Powered by{' '}
+            <a
+              href="https://www.cssigniter.com/plugins/audioigniter?utm_source=player&utm_medium=link&utm_content=audioigniter&utm_campaign=footer-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              AudioIgniter
+            </a>
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+Player.propTypes = propTypes;
 
 export default soundProvider(Player, {
   onFinishedPlaying(props) {

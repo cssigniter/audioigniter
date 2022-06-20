@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  track: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  trackNo: PropTypes.number,
+  style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  className: PropTypes.string,
+  displayArtistNames: PropTypes.bool,
+};
+
 const TrackTitle = ({
   className,
   style,
@@ -25,12 +33,6 @@ const TrackTitle = ({
   );
 };
 
-TrackTitle.propTypes = {
-  track: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  trackNo: PropTypes.number,
-  style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  className: PropTypes.string,
-  displayArtistNames: PropTypes.bool,
-};
+TrackTitle.propTypes = propTypes;
 
 export default TrackTitle;
