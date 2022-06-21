@@ -308,7 +308,7 @@ class AudioIgniter {
 	public function add_meta_boxes() {
 		add_meta_box( 'ai-meta-box-tracks', esc_html__( 'Tracks', 'audioigniter' ), array( $this, 'metabox_tracks' ), $this->post_type, 'normal', 'high' );
 		add_meta_box( 'ai-meta-box-settings', esc_html__( 'Settings', 'audioigniter' ), array( $this, 'metabox_settings' ), $this->post_type, 'normal', 'high' );
-		add_meta_box( 'ai-meta-box-shortcode', esc_html__( 'Shortcode', 'audioigniter' ), array( $this, 'metabox_shortcode' ), $this->post_type, 'normal', 'high' );
+		add_meta_box( 'ai-meta-box-shortcode', esc_html__( 'Shortcode', 'audioigniter' ), array( $this, 'metabox_shortcode' ), $this->post_type, 'normal', 'low' );
 	}
 
 	/**
@@ -349,7 +349,6 @@ class AudioIgniter {
 
 		<?php $this->metabox_tracks_footer(); ?>
 
-		<input type="hidden" name="ai_nonce" id="ai_nonce" value="<?php echo esc_attr( wp_create_nonce( self::plugin_basename() ) ); ?>"/>
 		<?php
 	}
 
