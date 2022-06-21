@@ -102,6 +102,13 @@ You can expect the same level of support for both the free and pro version of ou
 
 == Changelog ==
 
+= 1.8.0 =
+* General performance updates.
+* Upgrade of base libraries.
+* Drop support for Internet Explorer.
+* Removed unneeded nonce.
+* The playlists' shortcode meta box now has a 'low' priority so that it's displayed last.
+
 = 1.7.3 =
 * Top "Add Track" prepends a track, and bottom "Add Track" appends a track.
 
