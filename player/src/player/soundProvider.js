@@ -5,6 +5,7 @@ import Sound from 'react-sound';
 import SoundCloud from '../utils/soundcloud';
 import multiSoundDisabled from '../utils/multi-sound-disabled';
 import { getInitialTrackQueueAndIndex } from '../utils/getInitialTrackIndex';
+import playerStorage from '../utils/playerStorage';
 
 const PLAYBACK_RATES = [0.5, 0.75, 1, 1.25, 1.5, 2, 3];
 
@@ -14,11 +15,14 @@ const soundProvider = (Player, events) => {
       super(props);
 
       const {
+        playerId,
         volume,
         cycleTracks,
         defaultShuffle,
         shuffleEnabled,
       } = this.props;
+
+      const initialData = playerStorage.get(playerId);
 
       this.state = {
         tracks: [],
@@ -30,7 +34,7 @@ const soundProvider = (Player, events) => {
         // [4, 2, 0, ...] will play the 5th track first, 3rd second, then the 1st, etc.
         trackQueue: [],
         playStatus: Sound.status.STOPPED,
-        position: 0,
+        position: initialData?.position ?? 0,
         duration: 0,
         playbackRate: 1,
         volume: volume == null ? 100 : volume,
@@ -61,19 +65,25 @@ const soundProvider = (Player, events) => {
 
     componentDidMount() {
       const {
+        playerId,
         tracksUrl,
         soundcloudClientId,
         reverseTrackOrder,
         initialTrack,
+        rememberLastPosition,
       } = this.props;
       const { shuffle } = this.state;
       const tracksPromised = fetch(tracksUrl).then(res => res.json());
+      const initialData = playerStorage.get(playerId);
 
       if (!soundcloudClientId) {
         tracksPromised.then(tracks => {
           const { trackQueue, activeIndex } = getInitialTrackQueueAndIndex({
             tracks,
-            initialTrack,
+            initialTrack:
+              initialData?.activeIndex && rememberLastPosition
+                ? initialData.activeIndex + 1
+                : initialTrack,
             reverseTrackOrder,
             shuffle,
           });
@@ -139,11 +149,22 @@ const soundProvider = (Player, events) => {
 
     // Events
     onPlaying({ duration, position }) {
+      const { activeIndex } = this.state;
+      const { playerId, rememberLastPosition } = this.props;
+
       this.setState(
         () => ({ duration, position }),
         () => {
           if (events && events.onPlaying) {
             events.onPlaying(this.getFinalProps());
+          }
+
+          // Store last position every 5 seconds
+          if (playerId && rememberLastPosition && position % 5000 < 300) {
+            playerStorage.set(playerId, {
+              position,
+              activeIndex,
+            });
           }
         },
       );
@@ -399,6 +420,7 @@ const soundProvider = (Player, events) => {
   }
 
   EnhancedPlayer.propTypes = {
+    playerId: PropTypes.string,
     volume: PropTypes.number,
     cycleTracks: PropTypes.bool,
     tracksUrl: PropTypes.string,
@@ -410,6 +432,7 @@ const soundProvider = (Player, events) => {
     initialTrack: PropTypes.number,
     shuffleEnabled: PropTypes.bool,
     defaultShuffle: PropTypes.bool,
+    rememberLastPosition: PropTypes.bool,
   };
 
   return EnhancedPlayer;

@@ -33,6 +33,7 @@ function renderApp(node) {
   const type = node.getAttribute('data-player-type');
 
   const props = {
+    playerId: node.getAttribute('id'),
     tracksUrl: node.getAttribute('data-tracks-url'),
     displayTracklistCovers: JSON.parse(
       node.getAttribute('data-display-tracklist-covers'),
@@ -80,6 +81,7 @@ function renderApp(node) {
     countdownTimerByDefault: JSON.parse(
       node.getAttribute('data-timer-countdown'),
     ),
+    rememberLastPosition: JSON.parse(node.getAttribute('data-remember-last')),
   };
 
   const root = createRoot(node);
