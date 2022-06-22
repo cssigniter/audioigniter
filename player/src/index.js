@@ -35,6 +35,7 @@ function renderApp(node) {
   const props = {
     playerId: node.getAttribute('id'),
     tracksUrl: node.getAttribute('data-tracks-url'),
+    track: node.getAttribute('data-track'),
     displayTracklistCovers: JSON.parse(
       node.getAttribute('data-display-tracklist-covers'),
     ),

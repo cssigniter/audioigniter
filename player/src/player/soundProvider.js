@@ -71,10 +71,23 @@ const soundProvider = (Player, events) => {
         reverseTrackOrder,
         initialTrack,
         rememberLastPosition,
+        track,
       } = this.props;
       const { shuffle } = this.state;
       const tracksPromised = fetch(tracksUrl).then(res => res.json());
       const initialData = playerStorage.get(playerId);
+
+      // We have a standalone track (from the shortcode).
+      if (track) {
+        try {
+          this.setState({
+            tracks: [JSON.parse(track)],
+          });
+
+          return;
+          // eslint-disable-next-line no-empty
+        } catch {}
+      }
 
       if (!soundcloudClientId) {
         tracksPromised.then(tracks => {
@@ -424,6 +437,7 @@ const soundProvider = (Player, events) => {
     volume: PropTypes.number,
     cycleTracks: PropTypes.bool,
     tracksUrl: PropTypes.string,
+    track: PropTypes.string,
     soundcloudClientId: PropTypes.string,
     reverseTrackOrder: PropTypes.bool,
     skipAmount: PropTypes.number,
