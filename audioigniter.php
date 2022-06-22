@@ -452,7 +452,7 @@ class AudioIgniter {
 		$track_url               = $track['track_url'];
 		$buy_link                = $track['buy_link'];
 		$download_url            = $track['download_url'];
-		$download_uses_track_url = $track['download_uses_track_url'];
+		$download_uses_track_url = (int) $track['download_uses_track_url'];
 
 		$cover_url = wp_get_attachment_image_src( intval( $cover_id ), 'thumbnail' );
 		if ( ! empty( $cover_url[0] ) ) {
@@ -602,28 +602,12 @@ class AudioIgniter {
 							name="ai_playlist_tracks[<?php echo esc_attr( $uid ); ?>][download_url]"
 							placeholder="<?php esc_attr_e( 'Download URL', 'audioigniter' ); ?>"
 							value="<?php echo esc_url( $download_url ); ?>"
-							<?php if ($download_uses_track_url == 1) :?>
+							<?php if ( $download_uses_track_url ) : ?>
 								disabled
 							<?php endif; ?>
 						/>
 
-						<?php
-							// TODO anastis: How to have this only in PRO?
-						?>
-						<label for="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-download_uses_track_url" class="ai-form-field-checkbox-secondary">
-							<input
-								type="checkbox"
-								class="ai-checkbox ai-track-download-uses-track-url"
-								name="ai_playlist_tracks[<?php echo esc_attr( $uid ); ?>][download_uses_track_url]"
-								id="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-download_uses_track_url"
-								value="1" <?php checked( $download_uses_track_url, true ); ?>
-							/>
-
-							<?php esc_html_e( 'Use the track URL', 'audioigniter' ); ?>
-						</label>
-						<?php
-							// END TODO
-						?>
+						<?php do_action( 'audioigniter_metabox_tracks_repeatable_track_field_after_download_url_button', $track, $uid ); ?>
 					</div>
 
 					<?php do_action( 'audioigniter_metabox_tracks_repeatable_track_fields_column_2', $track, $uid ); ?>
@@ -1285,7 +1269,6 @@ class AudioIgniter {
 			$track_response['subtitle']         = $track['artist'];
 			$track_response['audio']            = $track['track_url'];
 			$track_response['buyUrl']           = $track['buy_link'];
-			// TODO anastis: review this
 			$track_response['downloadUrl']      = $track['download_uses_track_url'] ? $track['track_url'] : $track['download_url'];
 			$track_response['downloadFilename'] = $this->get_filename_from_url( $track['download_url'] );
 
