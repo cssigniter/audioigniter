@@ -446,12 +446,13 @@ class AudioIgniter {
 	protected function metabox_tracks_repeatable_track_field( $track = array() ) {
 		$track = wp_parse_args( $track, self::get_default_track_values() );
 
-		$cover_id     = $track['cover_id'];
-		$title        = $track['title'];
-		$artist       = $track['artist'];
-		$track_url    = $track['track_url'];
-		$buy_link     = $track['buy_link'];
-		$download_url = $track['download_url'];
+		$cover_id                = $track['cover_id'];
+		$title                   = $track['title'];
+		$artist                  = $track['artist'];
+		$track_url               = $track['track_url'];
+		$buy_link                = $track['buy_link'];
+		$download_url            = $track['download_url'];
+		$download_uses_track_url = $track['download_uses_track_url'];
 
 		$cover_url = wp_get_attachment_image_src( intval( $cover_id ), 'thumbnail' );
 		if ( ! empty( $cover_url[0] ) ) {
@@ -601,7 +602,28 @@ class AudioIgniter {
 							name="ai_playlist_tracks[<?php echo esc_attr( $uid ); ?>][download_url]"
 							placeholder="<?php esc_attr_e( 'Download URL', 'audioigniter' ); ?>"
 							value="<?php echo esc_url( $download_url ); ?>"
+							<?php if ($download_uses_track_url == 1) :?>
+								disabled
+							<?php endif; ?>
 						/>
+
+						<?php
+							// TODO anastis: How to have this only in PRO?
+						?>
+						<label for="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-download_uses_track_url" class="ai-form-field-checkbox-secondary">
+							<input
+								type="checkbox"
+								class="ai-checkbox ai-track-download-uses-track-url"
+								name="ai_playlist_tracks[<?php echo esc_attr( $uid ); ?>][download_uses_track_url]"
+								id="ai_playlist_tracks-<?php echo esc_attr( $uid ); ?>-download_uses_track_url"
+								value="1" <?php checked( $download_uses_track_url, true ); ?>
+							/>
+
+							<?php esc_html_e( 'Use the track URL', 'audioigniter' ); ?>
+						</label>
+						<?php
+							// END TODO
+						?>
 					</div>
 
 					<?php do_action( 'audioigniter_metabox_tracks_repeatable_track_fields_column_2', $track, $uid ); ?>
@@ -1077,12 +1099,13 @@ class AudioIgniter {
 
 	public static function get_default_track_values() {
 		return apply_filters( 'audioigniter_default_track_values', array(
-			'cover_id'     => '',
-			'title'        => '',
-			'artist'       => '',
-			'track_url'    => '',
-			'buy_link'     => '',
-			'download_url' => '',
+			'cover_id'                => '',
+			'title'                   => '',
+			'artist'                  => '',
+			'track_url'               => '',
+			'buy_link'                => '',
+			'download_url'            => '',
+			'download_uses_track_url' => 0,
 		) );
 	}
 
@@ -1262,7 +1285,8 @@ class AudioIgniter {
 			$track_response['subtitle']         = $track['artist'];
 			$track_response['audio']            = $track['track_url'];
 			$track_response['buyUrl']           = $track['buy_link'];
-			$track_response['downloadUrl']      = $track['download_url'];
+			// TODO anastis: review this
+			$track_response['downloadUrl']      = $track['download_uses_track_url'] ? $track['track_url'] : $track['download_url'];
 			$track_response['downloadFilename'] = $this->get_filename_from_url( $track['download_url'] );
 
 			if ( ! $track_response['downloadFilename'] ) {

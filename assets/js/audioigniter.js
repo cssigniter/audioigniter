@@ -19,6 +19,7 @@ jQuery(function($) {
       removeFieldButtonClassName: ".ai-remove-field",
       $removeAllTracksButton: $(".ai-remove-all-fields"),
       $batchUploadButton: $(".ai-add-field-batch"),
+      $trackDownloadUsesTrackUrlButton: $(".ai-use-track-url-download"),
       audioUploadButtonClassName: ".ai-upload",
       coverUploadButtonClassName: ".ai-field-upload-cover",
       coverRemoveClassName: ".ai-remove-cover",
@@ -27,6 +28,8 @@ jQuery(function($) {
       trackArtistClassName: ".ai-track-artist",
       trackLyricsClassName: ".ai-track-lyrics",
       trackUrlClassName: ".ai-track-url",
+      trackDownloadUrlClassName: ".ai-track-download-url",
+      trackDownloadUsesTrackUrlClassName: ".ai-track-download-uses-track-url",
       hasCoverClass: "ai-has-cover",
       fieldHeadClassName: ".ai-field-head",
       fieldCollapsedClass: "ai-collapsed",
@@ -341,7 +344,7 @@ jQuery(function($) {
     });
 
     /* Add Track Bottom*/
-    el.$addTrackButtonBottom.on("click", function () {
+    el.$addTrackButtonBottom.on("click", function() {
       el.$trackContainer.append(getNewTrackField());
     });
 

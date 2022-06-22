@@ -87,6 +87,9 @@ class AudioIgniter_Sanitizer {
 		$sanitized_track['buy_link']     = esc_url_raw( $track['buy_link'] );
 		$sanitized_track['download_url'] = esc_url_raw( $track['download_url'] );
 
+		// TODO anastis sanitize this (checkbox value):
+		$sanitized_track['download_uses_track_url'] = $track['download_uses_track_url'];
+
 		$sanitized_track = array_map( 'trim', $sanitized_track );
 
 		$tmp = array_filter( $sanitized_track );
