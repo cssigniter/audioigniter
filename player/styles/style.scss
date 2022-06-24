@@ -598,6 +598,51 @@ $screen-xs-max: 320px !default;
 	}
 
 	//
+	// Player buttons
+	//
+  .ai-player-buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    line-height: normal;
+    grid-gap: calc($spacing / 2);
+    margin-top: $spacing;
+  }
+
+  .ai-player-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 6px;
+    font-size: 13px;
+    color: currentColor;
+    width: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .ai-player-button-icon-only {
+    padding: 0;
+    width: 32px;
+  }
+
+  .ai-player-button-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+
+      path {
+        fill: currentColor;
+      }
+    }
+  }
+
+	//
 	// Footer
 	//
 	.ai-footer {

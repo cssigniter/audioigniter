@@ -24,6 +24,7 @@ import soundProvider from './soundProvider';
 import { AppContext } from '../App';
 import typographyDisabled from '../utils/typography-disabled';
 import useComponentSize from '../utils/useComponentSize';
+import PlayerButtons from './components/PlayerButtons';
 
 const propTypes = {
   tracks: PropTypes.arrayOf(PropTypes.object),
@@ -72,6 +73,13 @@ const propTypes = {
   shuffleEnabled: PropTypes.bool,
   shuffle: PropTypes.bool,
   toggleShuffle: PropTypes.func.isRequired,
+  playerButtons: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      url: PropTypes.string,
+      icon: PropTypes.string,
+    }).isRequired,
+  ),
 };
 
 const Player = ({
@@ -119,6 +127,7 @@ const Player = ({
   skipPosition,
   countdownTimerByDefault,
   buffering,
+  playerButtons,
 }) => {
   const ref = useRef(null);
   const [isTrackListOpen, setTracklistOpen] = useState(displayTracklist);
@@ -338,6 +347,8 @@ const Player = ({
           repeatingTrackIndex={repeatingTrackIndex}
         />
       </div>
+
+      {playerButtons?.length > 0 && <PlayerButtons buttons={playerButtons} />}
 
       {displayCredits && (
         <div className="ai-footer">

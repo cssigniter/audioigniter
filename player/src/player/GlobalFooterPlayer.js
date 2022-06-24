@@ -22,6 +22,7 @@ import {
 } from './components/Icons';
 import { AppContext } from '../App';
 import typographyDisabled from '../utils/typography-disabled';
+import PlayerButtons from './components/PlayerButtons';
 
 const propTypes = {
   tracks: PropTypes.arrayOf(PropTypes.object),
@@ -65,6 +66,13 @@ const propTypes = {
   countdownTimerByDefault: PropTypes.bool,
   allowPlaybackRate: PropTypes.bool,
   buffering: PropTypes.bool,
+  playerButtons: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      url: PropTypes.string,
+      icon: PropTypes.string,
+    }).isRequired,
+  ),
 };
 
 const GlobalFooterPlayer = ({
@@ -107,6 +115,7 @@ const GlobalFooterPlayer = ({
   skipPosition,
   countdownTimerByDefault,
   buffering,
+  playerButtons,
 }) => {
   const [isTrackListOpen, setTracklistOpen] = useState(displayTracklist);
   const toggleTracklist = () => {
@@ -304,6 +313,8 @@ const GlobalFooterPlayer = ({
           onTrackLoop={allowTrackLoop ? setTrackCycling : undefined}
           repeatingTrackIndex={repeatingTrackIndex}
         />
+
+        {playerButtons?.length > 0 && <PlayerButtons buttons={playerButtons} />}
       </div>
     </div>
   );

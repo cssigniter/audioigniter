@@ -83,6 +83,7 @@ function renderApp(node) {
       node.getAttribute('data-timer-countdown'),
     ),
     rememberLastPosition: JSON.parse(node.getAttribute('data-remember-last')),
+    playerButtons: JSON.parse(node.getAttribute('data-player-buttons')),
   };
 
   const root = createRoot(node);

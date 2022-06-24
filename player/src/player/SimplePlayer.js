@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import soundProvider from './soundProvider';
 import Tracklist from './components/Tracklist';
 import typographyDisabled from '../utils/typography-disabled';
+import PlayerButtons from './components/PlayerButtons';
 
 const propTypes = {
   tracks: PropTypes.arrayOf(PropTypes.object),
@@ -34,6 +35,13 @@ const propTypes = {
   setPlaybackRate: PropTypes.func,
   allowPlaybackRate: PropTypes.bool,
   buffering: PropTypes.bool,
+  playerButtons: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      url: PropTypes.string,
+      icon: PropTypes.string,
+    }).isRequired,
+  ),
 };
 
 const SimplePlayer = props => {
@@ -76,6 +84,10 @@ const SimplePlayer = props => {
           buffering={props.buffering}
         />
       </div>
+
+      {props.playerButtons?.length > 0 && (
+        <PlayerButtons buttons={props.playerButtons} />
+      )}
 
       {props.displayCredits && (
         <div className="ai-footer">
