@@ -74,7 +74,6 @@ const soundProvider = (Player, events) => {
         track,
       } = this.props;
       const { shuffle } = this.state;
-      const tracksPromised = fetch(tracksUrl).then(res => res.json());
       const initialData = playerStorage.get(playerId);
 
       // We have a standalone track (from the shortcode).
@@ -88,6 +87,8 @@ const soundProvider = (Player, events) => {
           // eslint-disable-next-line no-empty
         } catch {}
       }
+
+      const tracksPromised = fetch(tracksUrl).then(res => res.json());
 
       if (!soundcloudClientId) {
         tracksPromised.then(tracks => {
