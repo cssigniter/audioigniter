@@ -20,7 +20,12 @@ const PlayerButton = ({ className, button }) => {
   });
 
   return (
-    <a href={button.url} className={classes}>
+    <a
+      href={button.url}
+      className={classes}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {button.icon && (
         <span
           className="ai-player-button-icon"

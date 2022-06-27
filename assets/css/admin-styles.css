@@ -242,6 +242,16 @@
   clear: both;
 }
 
+.ai-field-container-links {
+  display: flex;
+  grid-gap: 20px;
+}
+
+.ai-field-container-links .ai-field-split {
+  width: 50%;
+  float: none;
+}
+
 .ai-field-head {
   padding: 8px 15px 5px;
   line-height: normal;
@@ -347,7 +357,8 @@
 .ai-form-field input[type="number"],
 .ai-form-field input[type="tel"],
 .ai-form-field input[type="date"],
-.ai-form-field textarea {
+.ai-form-field textarea,
+.ai-form-field select {
   width: 100%;
 }
 
@@ -567,6 +578,11 @@
     margin-bottom: 5px;
   }
 
+  .ai-field-container-links {
+    display: block;
+  }
+
+  .ai-field-container-links .ai-field-split,
   .ai-field-split {
     float: none;
     width: 100%;

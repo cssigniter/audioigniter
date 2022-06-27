@@ -241,6 +241,16 @@ $border-color: $lighter-grey !default;
 	background-color: $white;
 }
 
+.ai-field-container-links {
+	display: flex;
+	grid-gap: 20px;
+
+	.ai-field-split {
+		width: 50%;
+		float: none;
+	}
+}
+
 .ai-field-head {
 	@include clearfix;
 	padding: 8px $base-pad 5px;
@@ -347,7 +357,8 @@ $border-color: $lighter-grey !default;
 	input[type="number"],
 	input[type="tel"],
 	input[type="date"],
-  textarea {
+  textarea,
+	select {
 		width: 100%;
 	}
 
@@ -599,6 +610,11 @@ $border-color: $lighter-grey !default;
 		margin-bottom: 5px;
 	}
 
+	.ai-field-container-links {
+		display: block;
+	}
+
+	.ai-field-container-links .ai-field-split,
 	.ai-field-split {
 		float: none;
 		width: 100%;

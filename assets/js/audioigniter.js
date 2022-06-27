@@ -116,7 +116,7 @@ jQuery(function($) {
 
       $field.attr("data-uid", newHash);
       $field
-        .find("input, textarea")
+        .find("input, textarea, select")
         .not(":button")
         .each(function() {
           var $this = $(this);
@@ -157,17 +157,20 @@ jQuery(function($) {
      * and appends it back after resetting it
      *
      * @param {string} [hash] - UUID or random hash
+     * @param {jQuery} [$container] - A jQuery element as the container
      *
      * return {Object} - jQuery object
      */
-    function getNewTrackField(hash) {
+    function getNewTrackField(hash, $container) {
       var newHash = hash || uuid();
-      var $clone = el.$trackContainer
+      var $parent = $container || el.$trackContainer;
+
+      var $clone = $parent
         .find(el.trackFieldClassName)
         .first()
         .clone()
         .hide()
-        .fadeIn();
+        .show();
       resetField($clone, newHash);
 
       return $clone;
@@ -315,12 +318,22 @@ jQuery(function($) {
     });
 
     el.$expandAllButton.on("click", function(e) {
-      expandField(el.$trackContainer.find(el.trackFieldClassName));
+      var $this = $(this);
+      var $container = $this
+        .closest(".ai-container")
+        .find(".ai-fields-container");
+
+      expandField($container.find(el.trackFieldClassName));
       e.preventDefault();
     });
 
     el.$collapseAllButton.on("click", function(e) {
-      collapseField(el.$trackContainer.find(el.trackFieldClassName));
+      var $this = $(this);
+      var $container = $this
+        .closest(".ai-container")
+        .find(".ai-fields-container");
+
+      collapseField($container.find(el.trackFieldClassName));
       e.preventDefault();
     });
 
@@ -338,14 +351,23 @@ jQuery(function($) {
       $fieldTitle.text($this.val());
     });
 
-    /* Add Track Top*/
+    /* Add Field Top */
     el.$addTrackButtonTop.on("click", function() {
-      el.$trackContainer.prepend(getNewTrackField());
+      var $this = $(this);
+      var $container = $this
+        .closest(".ai-container")
+        .find(".ai-fields-container");
+      $container.prepend(getNewTrackField(undefined, $container));
     });
 
-    /* Add Track Bottom*/
+    /* Add Field Bottom */
     el.$addTrackButtonBottom.on("click", function() {
-      el.$trackContainer.append(getNewTrackField());
+      var $this = $(this);
+      var $container = $this
+        .closest(".ai-container")
+        .find(".ai-fields-container");
+
+      $container.append(getNewTrackField(undefined, $container));
     });
 
     /* Remove Track */
@@ -356,7 +378,11 @@ jQuery(function($) {
 
     /* Remove All Tracks */
     el.$removeAllTracksButton.on("click", function() {
-      var $trackFields = el.$trackContainer.find(el.trackFieldClassName);
+      var $this = $(this);
+      var $container = $this
+        .closest(".ai-container")
+        .find(".ai-fields-container");
+      var $trackFields = $container.find(el.trackFieldClassName);
 
       if (window.confirm(ai_scripts.messages.confirm_clear_tracks)) {
         if ($trackFields.length > 1) {
