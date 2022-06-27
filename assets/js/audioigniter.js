@@ -429,9 +429,12 @@ jQuery(function($) {
           title: ai_scripts.messages.media_title_upload_cover,
           type: "image",
           onMediaSelect: function(media) {
+            console.log(media);
             setTrackFieldCover($this.parents(el.trackFieldClassName), {
               id: media.id,
-              url: media.sizes.thumbnail.url,
+              url: media.sizes.thumbnail
+                ? media.sizes.thumbnail.url
+                : media.sizes.full.url,
               alt: media.alt
             });
           }
