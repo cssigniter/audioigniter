@@ -84,6 +84,10 @@ A [Pro version](https://www.cssigniter.com/plugins/audioigniter) is also availab
 * Customize the colors through the Customizer
 * Custom block for the Gutenberg Block Editor (With the ability to change colors per player)
 * Widget & Shortcode available
+* Streaming service button links
+* Sync download URL with audio URL automatically
+* Standalone shortcode for single tracks (without the need to create a playlist)
+* Remember last played track and position
 
 **PREMIUM SUPPORT**
 You can expect the same level of support for both the free and pro version of our plugin. Average response time: 24 hours.
