@@ -331,7 +331,7 @@ class AudioIgniter {
 		<?php $this->metabox_tracks_header(); ?>
 
 		<div class="ai-container">
-			<?php $this->metabox_tracks_field_controls( 'top' ); ?>
+			<?php $this->metabox_tracks_field_controls( 'top', $object->ID ); ?>
 
 			<?php $container_classes = apply_filters( 'audioigniter_metabox_tracks_container_classes', array( 'ai-fields-container' ) ); ?>
 
@@ -347,7 +347,7 @@ class AudioIgniter {
 				?>
 			</div>
 
-			<?php $this->metabox_tracks_field_controls( 'bottom' ); ?>
+			<?php $this->metabox_tracks_field_controls( 'bottom', $object->ID ); ?>
 		</div>
 
 		<?php $this->metabox_tracks_footer(); ?>
@@ -626,7 +626,7 @@ class AudioIgniter {
 		<?php
 	}
 
-	protected function metabox_tracks_field_controls( $location ) {
+	protected function metabox_tracks_field_controls( $location, $post_id ) {
 		?>
 		<div class="ai-field-controls-wrap">
 			<div class="ai-field-controls">
@@ -635,7 +635,7 @@ class AudioIgniter {
 					<?php esc_html_e( 'Add Track', 'audioigniter' ); ?>
 				</button>
 
-				<?php do_action( 'audioigniter_metabox_tracks_field_controls' ); ?>
+				<?php do_action( 'audioigniter_metabox_tracks_field_controls', $location, $post_id ); ?>
 
 				<button type="button" class="button ai-remove-all-fields">
 					<span class="dashicons dashicons-dismiss"></span>
