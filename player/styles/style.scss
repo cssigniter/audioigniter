@@ -636,6 +636,7 @@ $screen-xs-max: 320px !default;
       height: 100%;
       fill: currentColor;
 
+      rect,
       path {
         fill: currentColor;
       }
