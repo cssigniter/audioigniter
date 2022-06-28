@@ -102,6 +102,14 @@ You can expect the same level of support for both the free and pro version of ou
 
 == Changelog ==
 
+= 1.9.0 =
+* Fixed a JavaScript error in the admin when selecting an image without thumbnails.
+* Show the playlist shortcode metabox on the side.
+* Show the playlist shortcode on the admin playlists listing page.
+* Action 'audioigniter_metabox_tracks_field_controls' now passes $location and $post_id parameters.
+* Repeatable fields overhaul.
+* Underlying support for new Pro functionality (Use track as download url, player buttons, single track shortcode).
+
 = 1.8.0 =
 * General performance updates.
 * Upgrade of base libraries.
