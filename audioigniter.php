@@ -131,7 +131,7 @@ class AudioIgniter {
 
 		load_plugin_textdomain( 'audioigniter', false, dirname( self::plugin_basename() ) . '/languages' );
 
-		include_once( 'class-audioigniter-sanitizer.php' );
+		require_once 'class-audioigniter-sanitizer.php';
 		$this->sanitizer = new AudioIgniter_Sanitizer();
 
 		// Initialization needed in every request.
@@ -176,6 +176,9 @@ class AudioIgniter {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save_post' ) );
+
+		add_filter( "manage_{$this->post_type}_posts_columns", array( $this, 'filter_posts_columns' ) );
+		add_action( "manage_{$this->post_type}_posts_custom_column", array( $this, 'add_custom_columns' ), 10, 2 );
 
 		do_action( 'audioigniter_admin_init' );
 	}
@@ -1291,6 +1294,22 @@ class AudioIgniter {
 		}
 
 		wp_send_json( $response );
+	}
+
+	public function filter_posts_columns( $columns ) {
+		$date = $columns['date'];
+		unset( $columns['date'] );
+
+		$columns['shortcode'] = __( 'Shortcode', 'audioigniter' );
+		$columns['date']      = $date;
+
+		return $columns;
+	}
+
+	public function add_custom_columns( $column, $post_id ) {
+		if ( 'shortcode' === $column ) {
+			?><input type="text" class="code" value="<?php echo esc_attr( sprintf( '[ai_playlist id="%s"]', $post_id ) ); ?>"><?php
+		}
 	}
 
 	function get_filename_from_url( $url ) {
