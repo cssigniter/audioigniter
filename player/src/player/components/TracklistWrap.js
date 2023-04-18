@@ -21,6 +21,7 @@ const propTypes = {
   displayArtistNames: PropTypes.bool,
   onTrackLoop: PropTypes.func,
   repeatingTrackIndex: PropTypes.number,
+  playerId: PropTypes.string,
 };
 
 const TracklistWrap = ({
@@ -40,6 +41,7 @@ const TracklistWrap = ({
   displayCovers,
   displayArtistNames,
   repeatingTrackIndex,
+  playerId,
 }) => {
   const scrollbarRef = useRef(null);
 
@@ -82,6 +84,7 @@ const TracklistWrap = ({
         displayArtistNames={displayArtistNames}
         onTrackLoop={onTrackLoop}
         repeatingTrackIndex={repeatingTrackIndex}
+        playerId={playerId}
       />
     );
   };

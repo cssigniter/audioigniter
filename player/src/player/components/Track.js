@@ -46,6 +46,7 @@ const propTypes = {
   setPlaybackRate: PropTypes.func,
   allowPlaybackRate: PropTypes.bool,
   buffering: PropTypes.bool,
+  playerId: PropTypes.string,
 };
 
 const Track = ({
@@ -70,6 +71,7 @@ const Track = ({
   setPlaybackRate,
   allowPlaybackRate,
   buffering,
+  playerId,
 }) => {
   const { toggleLyricsModal } = useContext(AppContext);
   const isPlaying = isActive && playStatus === Sound.status.PLAYING;
@@ -125,6 +127,7 @@ const Track = ({
 
       <TrackButtons
         buyButtonsTarget={buyButtonsTarget}
+        track={track}
         buyUrl={track.buyUrl}
         downloadUrl={track.downloadUrl}
         downloadFilename={track.downloadFilename}
@@ -138,6 +141,7 @@ const Track = ({
         setPlaybackRate={setPlaybackRate}
         allowPlaybackRate={allowPlaybackRate}
         isPlaying={isPlaying}
+        playerId={playerId}
       />
 
       {hasProgressBar && (

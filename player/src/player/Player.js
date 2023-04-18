@@ -80,10 +80,12 @@ const propTypes = {
       icon: PropTypes.string,
     }).isRequired,
   ),
+  playerId: PropTypes.string,
 };
 
 const Player = ({
   tracks,
+  playerId,
   playStatus,
   activeIndex,
   volume,
@@ -345,6 +347,7 @@ const Player = ({
           onTrackClick={playTrack}
           onTrackLoop={allowTrackLoop ? setTrackCycling : undefined}
           repeatingTrackIndex={repeatingTrackIndex}
+          playerId={playerId}
         />
       </div>
 

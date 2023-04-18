@@ -73,6 +73,7 @@ const propTypes = {
       icon: PropTypes.string,
     }).isRequired,
   ),
+  playerId: PropTypes.string,
 };
 
 const GlobalFooterPlayer = ({
@@ -83,6 +84,7 @@ const GlobalFooterPlayer = ({
   position,
   duration,
   playbackRate,
+  playerId,
 
   currentTrack,
   playTrack,
@@ -312,6 +314,7 @@ const GlobalFooterPlayer = ({
           onTrackClick={playTrack}
           onTrackLoop={allowTrackLoop ? setTrackCycling : undefined}
           repeatingTrackIndex={repeatingTrackIndex}
+          playerId={playerId}
         />
 
         {playerButtons?.length > 0 && <PlayerButtons buttons={playerButtons} />}

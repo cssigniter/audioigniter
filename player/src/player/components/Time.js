@@ -16,6 +16,10 @@ const Time = ({ countdown, position, duration }) => {
    * @returns {string} - Time pretty formatted
    */
   const renderFormattedTime = () => {
+    if (!duration) {
+      return '00:00';
+    }
+
     const positionInSeconds = showRemaining
       ? (duration - position) / 1000
       : position / 1000;
@@ -27,7 +31,7 @@ const Time = ({ countdown, position, duration }) => {
     min = min >= 10 ? min : `0${min}`;
     sec = sec >= 10 ? sec : `0${sec}`;
 
-    if (!Number.isNaN(sec)) {
+    if (Number.isInteger(parseInt(sec, 10))) {
       if (hours) {
         time = `${hours}:${min}:${sec}`;
       } else {
@@ -39,6 +43,10 @@ const Time = ({ countdown, position, duration }) => {
   };
 
   const handleClick = () => {
+    if (!duration) {
+      return;
+    }
+
     setShowRemaining(x => !x);
   };
 

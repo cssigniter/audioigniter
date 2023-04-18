@@ -5,7 +5,7 @@
  * Description: AudioIgniter lets you create music playlists and embed them in your WordPress posts, pages or custom post types and serve your audio content in style!
  * Author: The CSSIgniter Team
  * Author URI: https://www.cssigniter.com
- * Version: 1.9.0
+ * Version: 1.9.0.2-stats
  * Text Domain: audioigniter
  * Domain Path: languages
  *
@@ -131,8 +131,13 @@ class AudioIgniter {
 
 		load_plugin_textdomain( 'audioigniter', false, dirname( self::plugin_basename() ) . '/languages' );
 
-		require_once 'class-audioigniter-sanitizer.php';
+		require_once untrailingslashit( $this->plugin_path() ) . '/inc/class-audioigniter-sanitizer.php';
 		$this->sanitizer = new AudioIgniter_Sanitizer();
+
+		if ( ! class_exists( 'AudioIgniter_Pro', false ) ) {
+			require_once untrailingslashit( $this->plugin_path() ) . '/inc/class-audioigniter-admin-page-upsell.php';
+			new AudioIgniter_Admin_Page_Upsell();
+		}
 
 		// Initialization needed in every request.
 		$this->init();
@@ -205,11 +210,8 @@ class AudioIgniter {
 	 * @since 1.0.0
 	 */
 	public function register_scripts() {
-		wp_register_style( 'audioigniter', $this->plugin_url() . 'player/build/style.css', array(), $this->version );
-		wp_register_style( 'audioigniter-admin', $this->plugin_url() . 'assets/css/admin-styles.css', array(), $this->version );
-
-		wp_register_script( 'audioigniter', $this->plugin_url() . 'player/build/app.js', array(), $this->version, true );
-		wp_register_script( 'audioigniter-admin', $this->plugin_url() . 'assets/js/audioigniter.js', array(), $this->version, true );
+		wp_register_style( 'audioigniter', untrailingslashit( $this->plugin_url() ) . '/player/build/style.css', array(), $this->version );
+		wp_register_script( 'audioigniter', untrailingslashit( $this->plugin_url() ) . '/player/build/app.js', array(), $this->version, true );
 
 		wp_localize_script( 'audioigniter', 'aiStrings', apply_filters( 'audioigniter_aiStrings', array(
 			/* translators: %s is the track's title. */
@@ -232,6 +234,14 @@ class AudioIgniter {
 			'shuffle'             => esc_html__( 'Shuffle', 'audioigniter' ),
 		) ) );
 
+		wp_localize_script( 'audioigniter', 'aiStats', array(
+			'enabled' => get_option( 'audioigniter_stats_enabled' ) && class_exists( 'AudioIgniter_Pro' ),
+			'apiUrl'  => get_rest_url( null, 'audioigniter/v1' ),
+		) );
+
+		wp_register_style( 'audioigniter-admin', untrailingslashit( $this->plugin_url() ) . '/assets/css/admin-styles.css', array(), $this->version );
+		wp_register_script( 'audioigniter-admin', untrailingslashit( $this->plugin_url() ) . '/assets/js/audioigniter.js', array(), $this->version, true );
+
 		wp_localize_script( 'audioigniter-admin', 'ai_scripts', array(
 			'messages' => array(
 				'confirm_clear_tracks'     => esc_html__( 'Do you really want to remove all tracks? (This will not delete your audio files).', 'audioigniter' ),
@@ -239,6 +249,8 @@ class AudioIgniter {
 				'media_title_upload_cover' => esc_html__( 'Select a cover image', 'audioigniter' ),
 			),
 		) );
+
+		wp_register_style( 'audioigniter-admin-settings', untrailingslashit( $this->plugin_url() ) . '/assets/css/admin/settings.css', array(), $this->version );
 	}
 
 	/**
@@ -264,6 +276,10 @@ class AudioIgniter {
 			wp_enqueue_style( 'audioigniter-admin' );
 			wp_enqueue_script( 'audioigniter-admin' );
 		}
+
+		if ( 'ai_playlist_page_audioigniter-upsell' === $screen->id ) {
+			wp_enqueue_style( 'audioigniter-admin-settings' );
+		}
 	}
 
 	/**
@@ -275,7 +291,8 @@ class AudioIgniter {
 		$labels = array(
 			'name'               => esc_html_x( 'Playlists', 'post type general name', 'audioigniter' ),
 			'singular_name'      => esc_html_x( 'Playlist', 'post type singular name', 'audioigniter' ),
-			'menu_name'          => esc_html_x( 'Playlists', 'admin menu', 'audioigniter' ),
+			'menu_name'          => esc_html_x( 'AudioIgniter', 'admin menu', 'audioigniter' ),
+			'all_items'          => esc_html_x( 'All Playlists', 'admin menu', 'audioigniter' ),
 			'name_admin_bar'     => esc_html_x( 'Playlist', 'add new on admin bar', 'audioigniter' ),
 			'add_new'            => esc_html__( 'Add New Playlist', 'audioigniter' ),
 			'add_new_item'       => esc_html__( 'Add New Playlist', 'audioigniter' ),
@@ -1273,7 +1290,7 @@ class AudioIgniter {
 			$track_response['audio']            = $track['track_url'];
 			$track_response['buyUrl']           = $track['buy_link'];
 			$track_response['downloadUrl']      = $track['download_uses_track_url'] ? $track['track_url'] : $track['download_url'];
-			$track_response['downloadFilename'] = $this->get_filename_from_url( $track['download_url'] );
+			$track_response['downloadFilename'] = $this->get_filename_from_url( $track_response['downloadUrl'] );
 
 			if ( ! $track_response['downloadFilename'] ) {
 				$track_response['downloadFilename'] = $track_response['downloadUrl'];

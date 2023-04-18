@@ -10,6 +10,7 @@ import PlayerButtons from './components/PlayerButtons';
 
 const propTypes = {
   tracks: PropTypes.arrayOf(PropTypes.object),
+  playerId: PropTypes.string,
   playStatus: PropTypes.oneOf([
     Sound.status.PLAYING,
     Sound.status.PAUSED,
@@ -82,6 +83,7 @@ const SimplePlayer = props => {
           setPlaybackRate={props.setPlaybackRate}
           allowPlaybackRate={props.allowPlaybackRate}
           buffering={props.buffering}
+          playerId={props.playerId}
         />
       </div>
 

@@ -1,0 +1,44 @@
+/* General */
+
+.ai-settings-box {
+  background-color: #ffffff;
+  padding: 25px;
+  border: 1px solid #D8D8D8;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.04);
+}
+
+.ai-settings-box > :last-child {
+  margin-bottom: 0;
+}
+
+/* Header / Nav */
+
+.ai-settings-main-content-nav-header {
+  margin: 15px 0 40px;
+  display: flex;
+  align-items: center;
+}
+
+.ai-settings-main-content-nav {
+  display: flex;
+  grid-gap: 20px;
+}
+
+.ai-settings-main-content-nav-link {
+  color: #646970;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.ai-settings-main-content-nav-link.is-active {
+  font-weight: 700;
+}
+
+.ai-settings-main-content-nav-link.is-active,
+.ai-settings-main-content-nav-link:hover {
+  color: #1D2327;
+}
+
+.ai-settings-main-content-nav-filters {
+  margin-left: auto;
+}

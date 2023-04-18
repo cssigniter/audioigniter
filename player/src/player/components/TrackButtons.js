@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CartIcon, DownloadIcon, LyricsIcon, RefreshIcon } from './Icons';
+import events, { EVENT, normalizePlayerId } from '../services/events';
 
 const propTypes = {
   buyButtonsTarget: PropTypes.bool,
@@ -16,6 +17,10 @@ const propTypes = {
   setPlaybackRate: PropTypes.func,
   allowPlaybackRate: PropTypes.bool,
   isPlaying: PropTypes.bool,
+  track: PropTypes.shape({
+    audio: PropTypes.string.isRequired,
+  }).isRequired,
+  playerId: PropTypes.string,
 };
 
 const TrackButtons = ({
@@ -31,6 +36,8 @@ const TrackButtons = ({
   playbackRate,
   allowPlaybackRate,
   isPlaying,
+  track,
+  playerId,
 }) => {
   if (
     buyUrl == null &&
@@ -64,6 +71,13 @@ const TrackButtons = ({
           download={downloadFilename}
           className="ai-track-btn"
           role="button"
+          onClick={() => {
+            events.eventTrack({
+              event: EVENT.DOWNLOAD,
+              trackUrl: track.audio,
+              playerId: normalizePlayerId(playerId),
+            });
+          }}
           aria-label={aiStrings.download_track}
           title={aiStrings.download_track}
         >

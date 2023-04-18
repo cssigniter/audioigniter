@@ -2,7 +2,7 @@
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, podcast, audio player, html5 player, mp3 player, music player, music, radio stream, radio player, sound player, player, podcast player
 Requires at least: 5.0
-Tested up to: 6.1.1
+Tested up to: 6.0
 Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -96,8 +96,8 @@ You can expect the same level of support for both the free and pro version of ou
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/audioigniter` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the "Plugins" screen in WordPress
-3. In the WordPress admin dashboard you should see a new post type named "Playlists"
-4. Navigate to the new Playlists post type and add your tracks!
+3. In the WordPress admin dashboard you should see a new top level menu named "AudioIgniter"
+4. Navigate to the Add New Playlist menu item and add your tracks!
 
 == Screenshots ==
 1. The AudioIgniter player

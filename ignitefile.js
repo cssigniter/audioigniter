@@ -2,7 +2,7 @@ module.exports = {
   name: 'audioigniter',
   paths: {
     src: {
-      styles: ['./assets/css/*.scss'],
+      styles: ['./assets/css/**/*.scss'],
     },
   },
 };

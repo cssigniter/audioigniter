@@ -6,6 +6,8 @@ import SoundCloud from '../utils/soundcloud';
 import multiSoundDisabled from '../utils/multi-sound-disabled';
 import { getInitialTrackQueueAndIndex } from '../utils/getInitialTrackIndex';
 import playerStorage from '../utils/playerStorage';
+import aiEvents, { EVENT, getEventMeta } from './services/events';
+import throttle from '../utils/throttle';
 
 const PLAYBACK_RATES = [0.5, 0.75, 1, 1.25, 1.5, 2, 3];
 
@@ -61,6 +63,9 @@ const soundProvider = (Player, events) => {
       this.getFinalProps = this.getFinalProps.bind(this);
       this.onPlaying = this.onPlaying.bind(this);
       this.onFinishedPlaying = this.onFinishedPlaying.bind(this);
+      this.aiEventTrackThrottled = throttle(options => {
+        aiEvents.eventTrack(options);
+      }, 60 * 1000);
     }
 
     componentDidMount() {
@@ -166,6 +171,14 @@ const soundProvider = (Player, events) => {
       const { activeIndex } = this.state;
       const { playerId, rememberLastPosition } = this.props;
 
+      if (position > 60000) {
+        // Only start calling this after 1 minute into the track
+        this.aiEventTrackThrottled({
+          event: EVENT.PLAYING,
+          ...getEventMeta(this.state, this.props),
+        });
+      }
+
       this.setState(
         () => ({ duration, position }),
         () => {
@@ -173,8 +186,12 @@ const soundProvider = (Player, events) => {
             events.onPlaying(this.getFinalProps());
           }
 
-          // Store last position every 5 seconds
-          if (playerId && rememberLastPosition && position % 5000 < 300) {
+          if (
+            playerId &&
+            rememberLastPosition &&
+            // Store last position on every 5th second or at the beginning of the track (tiny position num).
+            (position % 5000 < 300 || position < 350)
+          ) {
             playerStorage.set(playerId, {
               position,
               activeIndex,
@@ -187,7 +204,15 @@ const soundProvider = (Player, events) => {
     onFinishedPlaying() {
       const { stopOnTrackFinish, delayBetweenTracks = 0 } = this.props;
       const delayBetweenTracksMs = delayBetweenTracks * 1000;
-      this.setState(() => ({ playStatus: Sound.status.STOPPED }));
+      this.setState(
+        () => ({ playStatus: Sound.status.STOPPED }),
+        () => {
+          aiEvents.eventTrack({
+            event: EVENT.STOP,
+            ...getEventMeta(this.state, this.props),
+          });
+        },
+      );
 
       if (stopOnTrackFinish) {
         return;
@@ -228,7 +253,18 @@ const soundProvider = (Player, events) => {
     }
 
     setPosition(position) {
-      this.setState(() => ({ position }));
+      const currentPosition = this.state.position;
+
+      this.setState(
+        () => ({ position }),
+        () => {
+          aiEvents.eventTrack({
+            event: EVENT.SEEK,
+            ...getEventMeta(this.state, this.props),
+            oldPosition: currentPosition,
+          });
+        },
+      );
     }
 
     setTrackCycling(index, event) {
@@ -312,19 +348,44 @@ const soundProvider = (Player, events) => {
         event.preventDefault();
       }
 
-      const { repeatingTrackIndex, isMultiSoundDisabled } = this.state;
+      const {
+        repeatingTrackIndex,
+        isMultiSoundDisabled,
+        playStatus,
+      } = this.state;
 
       if (isMultiSoundDisabled) {
         window.soundManager.pauseAll();
       }
 
-      this.setState(() => ({
-        activeIndex: index,
-        position: 0,
-        playStatus: Sound.status.PLAYING,
-      }));
+      if (playStatus === Sound.status.PLAYING) {
+        aiEvents.eventTrack({
+          event: EVENT.STOP,
+          ...getEventMeta(this.state, this.props),
+        });
+      }
 
-      // Reset repating track index if the track is not the active one.
+      this.setState(
+        () => ({
+          activeIndex: index,
+          position: 0,
+          playStatus: Sound.status.PLAYING,
+        }),
+        () => {
+          aiEvents.eventTrack({
+            event: EVENT.PLAY,
+            ...getEventMeta(
+              {
+                ...this.state,
+                duration: null,
+              },
+              this.props,
+            ),
+          });
+        },
+      );
+
+      // Reset repeating track index if the track is not the active one.
       if (index !== repeatingTrackIndex && repeatingTrackIndex != null) {
         this.setTrackCycling(null);
       }
@@ -338,7 +399,15 @@ const soundProvider = (Player, events) => {
       const { playStatus } = this.state;
 
       if (playStatus === Sound.status.PLAYING) {
-        this.setState(() => ({ playStatus: Sound.status.PAUSED }));
+        this.setState(
+          () => ({ playStatus: Sound.status.PAUSED }),
+          () => {
+            aiEvents.eventTrack({
+              event: EVENT.PAUSE,
+              ...getEventMeta(this.state, this.props),
+            });
+          },
+        );
       }
     }
 
@@ -354,18 +423,29 @@ const soundProvider = (Player, events) => {
         return;
       }
 
-      this.setState(({ playStatus, isMultiSoundDisabled }) => {
-        if (playStatus !== Sound.status.PLAYING && isMultiSoundDisabled) {
-          window.soundManager.pauseAll();
-        }
+      this.setState(
+        ({ playStatus, isMultiSoundDisabled }) => {
+          if (playStatus !== Sound.status.PLAYING && isMultiSoundDisabled) {
+            window.soundManager.pauseAll();
+          }
 
-        return {
-          playStatus:
-            playStatus === Sound.status.PLAYING
-              ? Sound.status.PAUSED
-              : Sound.status.PLAYING,
-        };
-      });
+          return {
+            playStatus:
+              playStatus === Sound.status.PLAYING
+                ? Sound.status.PAUSED
+                : Sound.status.PLAYING,
+          };
+        },
+        () => {
+          aiEvents.eventTrack({
+            event:
+              this.state.playStatus === Sound.status.PLAYING
+                ? EVENT.PLAY
+                : EVENT.PAUSE,
+            ...getEventMeta(this.state, this.props),
+          });
+        },
+      );
     }
 
     nextTrack() {

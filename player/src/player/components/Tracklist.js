@@ -31,6 +31,7 @@ const propTypes = {
   allowPlaybackRate: PropTypes.bool,
   buffering: PropTypes.bool,
   repeatingTrackIndex: PropTypes.bool,
+  playerId: PropTypes.string,
 };
 
 const Tracklist = ({ ...props }) => {
@@ -69,6 +70,7 @@ const Tracklist = ({ ...props }) => {
               setPlaybackRate={props.setPlaybackRate}
               allowPlaybackRate={props.allowPlaybackRate}
               buffering={props.buffering}
+              playerId={props.playerId}
             />
           );
         })}

@@ -62,7 +62,7 @@
   vertical-align: middle;
   cursor: pointer;
   white-space: nowrap;
-  -webkit-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   border-radius: 2px;
   width: auto;

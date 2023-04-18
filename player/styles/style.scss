@@ -255,18 +255,6 @@ $screen-xs-max: 320px !default;
 		}
 	}
 
-  .ai-waveform-bar {
-    display: block;
-    flex: 1;
-    position: relative;
-    height: 30px;
-    cursor: pointer;
-  }
-
-  .ai-waveform {
-    pointer-events: none;
-  }
-
 	.ai-track-time {
 		flex: none;
 		font-size: 13px;

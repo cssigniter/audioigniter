@@ -5,6 +5,7 @@
 		"audio": "https://www.cssigniter.com/assets/audioigniter/sunrise.mp3",
 		"buyUrl": "https://www.cssigniter.com",
 		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
+        "downloadFilename": "sunrise.mp3",
 		"cover": "https://www.cssigniter.com/demos/audioigniter/wp-content/uploads/sites/48/2016/08/CyberSDF-Flame-and-Go.jpg",
         "lyrics": "Here in my mind\nYou know you might find\nSomething that you\n\nYou thought you once knew\nBut now it's all gone\nAnd you know it's no fun\n\nYeah I know it's no fun\nOh I know it's no fun\nI'm free to be whatever I\nWhatever I choose\nAnd I'll sing the blues if I want\nI'm free to be whatever I\nWhatever I choose\nAnd I'll sing the blues if I want\nWhatever you do\nWhatever you say\nYeah I know it's alright"
 	},
@@ -13,6 +14,7 @@
 		"subtitle": "The Fisherman",
 		"audio": "https://www.cssigniter.com/assets/audioigniter/sunrise.mp3",
 		"buyUrl": "https://www.cssigniter.com",
+        "downloadFilename": "fisherman.mp3",
 		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
 		"cover": "https://www.cssigniter.com/demos/audioigniter/wp-content/uploads/sites/48/2016/08/Thoribass-Sunrise.jpg"
 	},
@@ -31,13 +33,6 @@
 		"buyUrl": "",
 		"downloadUrl": "https:\/\/www.cssigniter.com\/assets\/audioigniter\/sunrise.mp3",
 		"cover": ""
-	},
-	{
-		"title": "Is It Because I'm Black (David August Reconstruction)",
-		"subtitle": "Syl Johnson (SoundCloud)",
-		"audio": "https://soundcloud.com/enterofficial/maceo-plex-b2b-richie-hawtin-enterweek-11-sake-bar-space-ibiza-september-10th-2015",
-		"buyUrl": "",
-		"cover": "https://www.cssigniter.com/demos/audioigniter/wp-content/uploads/sites/48/2016/08/Rocavaco-Remix-Safety-Guide.jpg"
 	},
 	{
 		"title": "Deep House Radio",

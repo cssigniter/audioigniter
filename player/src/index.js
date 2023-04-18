@@ -25,6 +25,10 @@ if (process.env.NODE_ENV !== 'production') {
     skip_backward: 'Skip backward',
     shuffle: 'Shuffle',
   };
+
+  window.aiStats = {
+    apiUrl: '',
+  };
 }
 
 const nodes = document.getElementsByClassName('audioigniter-root');
@@ -77,7 +81,7 @@ function renderApp(node) {
     initialTrack: parseInt(node.getAttribute('data-initial-track'), 10),
     delayBetweenTracks: parseInt(node.getAttribute('data-tracks-delay'), 10),
     stopOnTrackFinish: JSON.parse(node.getAttribute('data-stop-on-finish')),
-    defaultShuffle: JSON.parse(node.getAttribute('data-shuffle')),
+    defaultShuffle: JSON.parse(node.getAttribute('data-shuffle-default')),
     shuffleEnabled: JSON.parse(node.getAttribute('data-shuffle')),
     countdownTimerByDefault: JSON.parse(
       node.getAttribute('data-timer-countdown'),
