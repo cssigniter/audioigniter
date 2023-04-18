@@ -3,7 +3,7 @@ Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, podcast, audio player, html5 player, mp3 player, music player, music, radio stream, radio player, sound player, player, podcast player
 Requires at least: 5.0
 Tested up to: 6.2
-Stable tag: 1.9.0
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,8 @@ A [Pro version](https://www.cssigniter.com/plugins/audioigniter) is also availab
 **PREMIUM SUPPORT**
 You can expect the same level of support for both the free and pro version of our plugin. Average response time: 24 hours.
 
+**JOIN OUR COMMUNITY**
+Join our [Facebook group](https://www.facebook.com/groups/2601788933169108) to discuss new features and stay up to date on our latest releases.
 
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/audioigniter` directory, or install the plugin through the WordPress plugins screen directly.
