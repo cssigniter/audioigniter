@@ -2,13 +2,13 @@
 /**
  * AudioIgniter_Admin_Page_Upsell class.
  *
- * @since NewVersion
+ * @since 2.0.0
  */
 class AudioIgniter_Admin_Page_Upsell {
 	/**
 	 * Settings tabs.
 	 *
-	 * @since NewVersion
+	 * @since 2.0.0
 	 *
 	 * @var array
 	 */
@@ -17,12 +17,12 @@ class AudioIgniter_Admin_Page_Upsell {
 	/**
 	 * Settings page slug.
 	 *
-	 * @since NewVersion
+	 * @since 2.0.0
 	 */
 	protected static $page_slug = 'audioigniter-upsell';
 
 	/**
-	 * @since NewVersion
+	 * @since 2.0.0
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'register' ) );
@@ -38,7 +38,7 @@ class AudioIgniter_Admin_Page_Upsell {
 	/**
 	 * Register the page
 	 *
-	 * @since NewVersion
+	 * @since 2.0.0
 	 *
 	 * @return void
 	 */
@@ -50,7 +50,7 @@ class AudioIgniter_Admin_Page_Upsell {
 	/**
 	 * Renders the onboarding page.
 	 *
-	 * @since NewVersion
+	 * @since 2.0.0
 	 */
 	public function render_page() {
 		$active_tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
@@ -82,7 +82,7 @@ class AudioIgniter_Admin_Page_Upsell {
 	/**
 	 * Creates the navigation tabs.
 	 *
-	 * @since NewVersion
+	 * @since 2.0.0
 	 */
 	public function generate_tabs( $active_tab ) {
 		?>
@@ -106,7 +106,7 @@ class AudioIgniter_Admin_Page_Upsell {
 	}
 
 	/**
-	 * @since NewVersion
+	 * @since 2.0.0
 	 */
 	public function tab_general( $active_tab ) {
 		$stats_enabled = false;
@@ -142,7 +142,7 @@ class AudioIgniter_Admin_Page_Upsell {
 	/**
 	 * Returns the setting page's URL.
 	 *
-	 * @since NewVersion
+	 * @since 2.0.0
 	 *
 	 * @return string
 	 */
@@ -156,7 +156,7 @@ class AudioIgniter_Admin_Page_Upsell {
 	/**
 	 * Returns the URL of a specific tab.
 	 *
-	 * @since NewVersion
+	 * @since 2.0.0
 	 *
 	 * @return string
 	 */

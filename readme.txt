@@ -2,7 +2,7 @@
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, podcast, audio player, html5 player, mp3 player, music player, music, radio stream, radio player, sound player, player, podcast player
 Requires at least: 5.0
-Tested up to: 6.0
+Tested up to: 6.2
 Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -88,6 +88,7 @@ A [Pro version](https://www.cssigniter.com/plugins/audioigniter) is also availab
 * Sync download URL with audio URL automatically
 * Standalone shortcode for single tracks (without the need to create a playlist)
 * Remember last played track and position
+* Per-playlist and per-track analytics
 
 **PREMIUM SUPPORT**
 You can expect the same level of support for both the free and pro version of our plugin. Average response time: 24 hours.
@@ -105,6 +106,14 @@ You can expect the same level of support for both the free and pro version of ou
 3. Advanced player customization
 
 == Changelog ==
+
+= 2.0.0 =
+* Added AudioIgniter top level menu.
+* Fixed an issue where downloaded tracks would get the full URL as a filename, when the "Use the track URL as the download URL" was checked.
+* Fixed an issue with the "Remember last position" the moment a track starts playing.
+* Fixed an issue where the duration as a countdown would show weird format in some cases.
+* Added base support so that the Shuffle button can now be displayed without being enabled/on by default (Pro feature).
+* Added base support for AudioIgniter Analytics (Pro feature).
 
 = 1.9.0 =
 * Fixed a JavaScript error in the admin when selecting an image without thumbnails.
