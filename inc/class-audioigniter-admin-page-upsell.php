@@ -117,7 +117,7 @@ class AudioIgniter_Admin_Page_Upsell {
 				<th scope="row"><label for="audioigniter_stats_enabled"><?php esc_html_e( 'Analytics', 'audioigniter' ); ?></label></th>
 				<td>
 					<label for="audioigniter_stats_enabled">
-						<input disabled type="checkbox" id="audioigniter_stats_enabled" name="audioigniter_stats_enabled" value="1" <?php checked( 1, $stats_enabled ); ?>>
+						<input disabled type="checkbox" id="upsell_stats_enabled" name="upsell_stats_enabled" value="1">
 						<?php esc_html_e( 'Enable analytics', 'audioigniter' ); ?>
 					</label>
 					<p class="description" id="tagline-description">

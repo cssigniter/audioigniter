@@ -134,10 +134,10 @@ class AudioIgniter {
 		require_once untrailingslashit( $this->plugin_path() ) . '/inc/class-audioigniter-sanitizer.php';
 		$this->sanitizer = new AudioIgniter_Sanitizer();
 
-		if ( ! class_exists( 'AudioIgniter_Pro', false ) ) {
-			require_once untrailingslashit( $this->plugin_path() ) . '/inc/class-audioigniter-admin-page-upsell.php';
-			new AudioIgniter_Admin_Page_Upsell();
-		}
+//		if ( ! class_exists( 'AudioIgniter_Pro', false ) ) {
+//			require_once untrailingslashit( $this->plugin_path() ) . '/inc/class-audioigniter-admin-page-upsell.php';
+//			new AudioIgniter_Admin_Page_Upsell();
+//		}
 
 		// Initialization needed in every request.
 		$this->init();
@@ -277,9 +277,9 @@ class AudioIgniter {
 			wp_enqueue_script( 'audioigniter-admin' );
 		}
 
-		if ( 'ai_playlist_page_audioigniter-upsell' === $screen->id ) {
-			wp_enqueue_style( 'audioigniter-admin-settings' );
-		}
+//		if ( 'ai_playlist_page_audioigniter-upsell' === $screen->id ) {
+//			wp_enqueue_style( 'audioigniter-admin-settings' );
+//		}
 	}
 
 	/**
