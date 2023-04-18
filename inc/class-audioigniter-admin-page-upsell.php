@@ -21,6 +21,9 @@ class AudioIgniter_Admin_Page_Upsell {
 	 */
 	protected static $page_slug = 'audioigniter-upsell';
 
+	/**
+	 * @since NewVersion
+	 */
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'register' ) );
 
@@ -102,6 +105,9 @@ class AudioIgniter_Admin_Page_Upsell {
 		<?php
 	}
 
+	/**
+	 * @since NewVersion
+	 */
 	public function tab_general( $active_tab ) {
 		$stats_enabled = false;
 
