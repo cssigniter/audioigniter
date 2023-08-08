@@ -2,4 +2,4 @@
 .svn
 .vscode
 node_modules
-user.ignitefile.js
+ignitefile.user.js
