@@ -1,3 +1,44 @@
+### Make sure to also update .distignore when updating this file ###
+
+# Project-specific
+*.scss                      export-ignore
+player/src                  export-ignore
+player/dev-tracks.json      export-ignore
+README.md                   export-ignore
+
+# VCS
+.git                        export-ignore
+.gitattributes              export-ignore
+.gitignore                  export-ignore
+.github                     export-ignore
+.svn                        export-ignore
+
+# IDE
+.idea                       export-ignore
+.vscode                     export-ignore
+.editorconfig               export-ignore
+
+# Other Tooling
+.babelrc                    export-ignore
+.distignore                 export-ignore
+.eslintignore               export-ignore
+.eslintrc                   export-ignore
+.nvmrc                      export-ignore
+.prettierignore             export-ignore
+.prettierrc                 export-ignore
+.wordpress-org              export-ignore
+ignitefile.js               export-ignore
+node_modules                export-ignore
+package.json                export-ignore
+package-lock.json           export-ignore
+webpack.config.js           export-ignore
+webpack.parts.js            export-ignore
+yarn.lock                   export-ignore
+
+# WP.org
+.wordpress-org              export-ignore
+
+
 # https://github.com/alexkaratarakis/gitattributes/blob/master/Web.gitattributes
 #
 ## GITATTRIBUTES FOR WEB PROJECTS

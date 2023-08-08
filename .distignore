@@ -1,23 +1,39 @@
-/.distignore
-/.git
-/.gitattributes
-/.gitignore
-/.github
-/.prettierignore
-/.svn
-/.wordpress-org
-/ignitefile.js
-/README.md
+### Make sure to also update .gitattributes when updating this file ###
 
-/player/.babelrc
-/player/.editorconfig
-/player/.eslintignore
-/player/.eslintrc
-/player/.nvmrc
-/player/.prettierrc
-/player/dev-tracks.json
-/player/package.json
-/player/src
-/player/webpack.config.js
-/player/webpack.parts.js
-/player/yarn.lock
+# Project-specific
+*.scss
+player/src
+player/dev-tracks.json
+README.md
+
+# VCS
+.git
+.gitattributes
+.gitignore
+.github
+.svn
+
+# IDE
+.idea
+.vscode
+.editorconfig
+
+# Other Tooling
+.babelrc
+.distignore
+.eslintignore
+.eslintrc
+.nvmrc
+.prettierignore
+.prettierrc
+.wordpress-org
+ignitefile.js
+node_modules
+package.json
+package-lock.json
+webpack.config.js
+webpack.parts.js
+yarn.lock
+
+# WP.org
+.wordpress-org
