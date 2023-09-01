@@ -86,6 +86,7 @@ const soundProvider = (Player, events) => {
         try {
           this.setState({
             tracks: [JSON.parse(track)],
+            trackQueue: [0],
           });
 
           return;
