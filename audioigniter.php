@@ -1218,7 +1218,7 @@ class AudioIgniter {
 
 		$post = get_post( $id );
 
-		$params = apply_filters( 'audioigniter_shortcode_data_attributes_array', $this->get_playlist_data_attributes_array( $id ), $id, $post );
+		$params = apply_filters( 'audioigniter_shortcode_data_attributes_array', $this->get_playlist_data_attributes_array( $id ), $id, $post, $atts );
 		$params = array_filter( $params, array( $this->sanitizer, 'array_filter_empty_null' ) );
 		$params = $this->sanitizer->html_data_attributes_array( $params );
 
