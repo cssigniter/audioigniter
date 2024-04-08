@@ -96,6 +96,9 @@ You can expect the same level of support for both the free and pro version of ou
 **JOIN OUR COMMUNITY**
 Join our [Facebook group](https://www.facebook.com/groups/2601788933169108) to discuss new features and stay up to date on our latest releases.
 
+**Contribute**
+Visit the [GitHub repository](https://github.com/cssigniter/audioigniter) for full source code and to report any bugs.
+
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/audioigniter` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the "Plugins" screen in WordPress
