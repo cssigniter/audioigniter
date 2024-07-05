@@ -1306,6 +1306,9 @@ class AudioIgniter {
 			$track_response['cover'] = $cover_url;
 
 			$track_response = apply_filters( 'audioigniter_playlist_endpoint_track', $track_response, $track, $playlist_id, $post );
+			if ( false === $track_response ) {
+				continue;
+			}
 
 			$response[] = $track_response;
 		}
