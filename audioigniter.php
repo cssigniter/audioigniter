@@ -121,7 +121,7 @@ class AudioIgniter {
 			if ( ! function_exists( 'get_plugin_data' ) ) {
 				include_once ABSPATH . 'wp-admin/includes/plugin.php';
 			}
-			$plugin_data = get_plugin_data( __FILE__ );
+			$plugin_data = get_plugin_data( __FILE__, true, false );
 
 			$this->version = $plugin_data['Version'];
 		}
@@ -129,7 +129,9 @@ class AudioIgniter {
 		self::$plugin_url  = plugin_dir_url( __FILE__ );
 		self::$plugin_path = plugin_dir_path( __FILE__ );
 
-		load_plugin_textdomain( 'audioigniter', false, dirname( self::plugin_basename() ) . '/languages' );
+		add_action( 'init', function() {
+			load_plugin_textdomain( 'audioigniter', false, dirname( self::plugin_basename() ) . '/languages' );
+		} );
 
 		require_once untrailingslashit( $this->plugin_path() ) . '/inc/class-audioigniter-sanitizer.php';
 		$this->sanitizer = new AudioIgniter_Sanitizer();
