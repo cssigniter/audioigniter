@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AudioIgniter\n"
-"POT-Creation-Date: 2023-04-18 22:08+0300\n"
+"POT-Creation-Date: 2024-11-19 13:49+0200\n"
 "PO-Revision-Date: 2016-08-29 19:22+0300\n"
 "Last-Translator: Anastis Sourgoutsidis <anastis@cssigniter.com>\n"
 "Language-Team: Anastis Sourgoutsidis <anastis@cssigniter.com>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: audioigniter.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -22,353 +22,353 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #. translators: %s is the track's title.
-#: audioigniter.php:218
+#: audioigniter.php:220
 #, php-format
 msgid "Play %s"
 msgstr ""
 
 #. translators: %s is the track's title.
-#: audioigniter.php:220
+#: audioigniter.php:222
 #, php-format
 msgid "Pause %s"
 msgstr ""
 
-#: audioigniter.php:221
+#: audioigniter.php:223
 msgid "Previous track"
 msgstr ""
 
-#: audioigniter.php:222
+#: audioigniter.php:224
 msgid "Next track"
 msgstr ""
 
-#: audioigniter.php:223
+#: audioigniter.php:225
 msgid "Toggle track listing repeat"
 msgstr ""
 
-#: audioigniter.php:224
+#: audioigniter.php:226
 msgid "Toggle track repeat"
 msgstr ""
 
-#: audioigniter.php:225
+#: audioigniter.php:227
 msgid "Toggle track listing visibility"
 msgstr ""
 
-#: audioigniter.php:226
+#: audioigniter.php:228
 msgid "Buy this track"
 msgstr ""
 
-#: audioigniter.php:227
+#: audioigniter.php:229
 msgid "Download this track"
 msgstr ""
 
-#: audioigniter.php:228
+#: audioigniter.php:230
 msgid "Volume Up"
 msgstr ""
 
-#: audioigniter.php:229
+#: audioigniter.php:231
 msgid "Volume Down"
 msgstr ""
 
-#: audioigniter.php:230
+#: audioigniter.php:232
 msgid "Open track lyrics"
 msgstr ""
 
-#: audioigniter.php:231
+#: audioigniter.php:233
 msgid "Set playback rate"
 msgstr ""
 
-#: audioigniter.php:232
+#: audioigniter.php:234
 msgid "Skip forward"
 msgstr ""
 
-#: audioigniter.php:233
+#: audioigniter.php:235
 msgid "Skip backward"
 msgstr ""
 
-#: audioigniter.php:234
+#: audioigniter.php:236
 msgid "Shuffle"
 msgstr ""
 
-#: audioigniter.php:247
+#: audioigniter.php:249
 msgid ""
 "Do you really want to remove all tracks? (This will not delete your audio "
 "files)."
 msgstr ""
 
-#: audioigniter.php:248
+#: audioigniter.php:250
 msgid "Select or upload audio media"
 msgstr ""
 
-#: audioigniter.php:249
+#: audioigniter.php:251
 msgid "Select a cover image"
 msgstr ""
 
-#: audioigniter.php:292
+#: audioigniter.php:294
 msgctxt "post type general name"
 msgid "Playlists"
 msgstr ""
 
-#: audioigniter.php:293 audioigniter.php:309
+#: audioigniter.php:295 audioigniter.php:311
 msgctxt "post type singular name"
 msgid "Playlist"
 msgstr ""
 
-#: audioigniter.php:294
+#: audioigniter.php:296
 msgctxt "admin menu"
 msgid "AudioIgniter"
 msgstr ""
 
-#: audioigniter.php:295
+#: audioigniter.php:297
 msgctxt "admin menu"
 msgid "All Playlists"
 msgstr ""
 
-#: audioigniter.php:296
+#: audioigniter.php:298
 msgctxt "add new on admin bar"
 msgid "Playlist"
 msgstr ""
 
-#: audioigniter.php:297 audioigniter.php:298
+#: audioigniter.php:299 audioigniter.php:300
 msgid "Add New Playlist"
 msgstr ""
 
-#: audioigniter.php:299
+#: audioigniter.php:301
 msgid "Edit Playlist"
 msgstr ""
 
-#: audioigniter.php:300
+#: audioigniter.php:302
 msgid "New Playlist"
 msgstr ""
 
-#: audioigniter.php:301
+#: audioigniter.php:303
 msgid "View Playlist"
 msgstr ""
 
-#: audioigniter.php:302
+#: audioigniter.php:304
 msgid "Search Playlists"
 msgstr ""
 
-#: audioigniter.php:303
+#: audioigniter.php:305
 msgid "No playlists found"
 msgstr ""
 
-#: audioigniter.php:304
+#: audioigniter.php:306
 msgid "No playlists found in the trash"
 msgstr ""
 
-#: audioigniter.php:329 audioigniter.php:855
+#: audioigniter.php:331 audioigniter.php:857
 msgid "Tracks"
 msgstr ""
 
-#: audioigniter.php:330
+#: audioigniter.php:332
 msgid "Settings"
 msgstr ""
 
-#: audioigniter.php:331 audioigniter.php:1320
+#: audioigniter.php:333 audioigniter.php:1325
 msgid "Shortcode"
 msgstr ""
 
-#: audioigniter.php:389
+#: audioigniter.php:391
 msgid "AudioIgniter Logo"
 msgstr ""
 
-#: audioigniter.php:398
+#: audioigniter.php:400
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: audioigniter.php:422
+#: audioigniter.php:424
 msgid "Support"
 msgstr ""
 
-#: audioigniter.php:426
+#: audioigniter.php:428
 msgid "Documentation"
 msgstr ""
 
-#: audioigniter.php:430
+#: audioigniter.php:432
 msgid "Rate this plugin"
 msgstr ""
 
 #. translators: %s is a URL.
-#: audioigniter.php:453
+#: audioigniter.php:455
 #, php-format
 msgid ""
 "Thank you for creating with <a href=\"%s\" target=\"_blank\">AudioIgniter</a>"
 msgstr ""
 
-#: audioigniter.php:499
+#: audioigniter.php:501
 msgid "Toggle track visibility"
 msgstr ""
 
-#: audioigniter.php:510
+#: audioigniter.php:512
 msgid "Remove Cover Image"
 msgstr ""
 
-#: audioigniter.php:523
+#: audioigniter.php:525
 msgid "Upload Cover"
 msgstr ""
 
-#: audioigniter.php:541 audioigniter.php:548
+#: audioigniter.php:543 audioigniter.php:550
 msgid "Title"
 msgstr ""
 
-#: audioigniter.php:556 audioigniter.php:563
+#: audioigniter.php:558 audioigniter.php:565
 msgid "Artist"
 msgstr ""
 
-#: audioigniter.php:572 audioigniter.php:579
+#: audioigniter.php:574 audioigniter.php:581
 msgid "Buy link"
 msgstr ""
 
-#: audioigniter.php:592 audioigniter.php:601
+#: audioigniter.php:594 audioigniter.php:603
 msgid "Audio file or radio stream"
 msgstr ""
 
-#: audioigniter.php:605
+#: audioigniter.php:607
 msgid "Upload"
 msgstr ""
 
-#: audioigniter.php:616 audioigniter.php:623
+#: audioigniter.php:618 audioigniter.php:625
 msgid "Download URL"
 msgstr ""
 
-#: audioigniter.php:637
+#: audioigniter.php:639
 msgid "Remove Track"
 msgstr ""
 
-#: audioigniter.php:652
+#: audioigniter.php:654
 msgid "Add Track"
 msgstr ""
 
-#: audioigniter.php:659
+#: audioigniter.php:661
 msgid "Clear Playlist"
 msgstr ""
 
-#: audioigniter.php:665
+#: audioigniter.php:667
 msgid "Expand All"
 msgstr ""
 
-#: audioigniter.php:668
+#: audioigniter.php:670
 msgid "Collapse All"
 msgstr ""
 
-#: audioigniter.php:707
+#: audioigniter.php:709
 msgid "Player &amp; Track listing"
 msgstr ""
 
-#: audioigniter.php:712
+#: audioigniter.php:714
 msgid "Player Type"
 msgstr ""
 
-#: audioigniter.php:743
+#: audioigniter.php:745
 msgid "Show track listing by default"
 msgstr ""
 
-#: audioigniter.php:757
+#: audioigniter.php:759
 msgid "Show track listing visibility toggle button"
 msgstr ""
 
-#: audioigniter.php:771
+#: audioigniter.php:773
 msgid "Reverse track order"
 msgstr ""
 
-#: audioigniter.php:777
+#: audioigniter.php:779
 msgid "Starting volume"
 msgstr ""
 
-#: audioigniter.php:788
+#: audioigniter.php:790
 msgid "0-100"
 msgstr ""
 
-#: audioigniter.php:793
+#: audioigniter.php:795
 msgid "Enter a value between 0 and 100 in increments of 10"
 msgstr ""
 
-#: audioigniter.php:807
+#: audioigniter.php:809
 msgid "Limit track listing height"
 msgstr ""
 
-#: audioigniter.php:813 audioigniter.php:823
+#: audioigniter.php:815 audioigniter.php:825
 msgid "Track listing height"
 msgstr ""
 
-#: audioigniter.php:828
+#: audioigniter.php:830
 msgid "Set a number of pixels"
 msgstr ""
 
-#: audioigniter.php:834
+#: audioigniter.php:836
 msgid "Maximum player width"
 msgstr ""
 
-#: audioigniter.php:842
+#: audioigniter.php:844
 msgid "Automatic width"
 msgstr ""
 
-#: audioigniter.php:847
-#, php-format
+#: audioigniter.php:849
+#, no-php-format
 msgid ""
 "Set a number of pixels, or leave empty to automatically cover 100% of the "
 "available area (recommended)."
 msgstr ""
 
-#: audioigniter.php:867
+#: audioigniter.php:869
 msgid "Show track numbers in tracklist"
 msgstr ""
 
-#: audioigniter.php:881
+#: audioigniter.php:883
 msgid "Show track covers in tracklist"
 msgstr ""
 
-#: audioigniter.php:895
+#: audioigniter.php:897
 msgid "Show active track's cover"
 msgstr ""
 
-#: audioigniter.php:909
+#: audioigniter.php:911
 msgid "Show artist names"
 msgstr ""
 
-#: audioigniter.php:923
+#: audioigniter.php:925
 msgid "Show track extra buttons (buy link, download button etc)"
 msgstr ""
 
-#: audioigniter.php:937
+#: audioigniter.php:939
 msgid "Open buy links in new window"
 msgstr ""
 
-#: audioigniter.php:945
+#: audioigniter.php:947
 msgid "Track &amp; Track listing repeat"
 msgstr ""
 
-#: audioigniter.php:957
+#: audioigniter.php:959
 msgid "Repeat track listing enabled by default"
 msgstr ""
 
-#: audioigniter.php:971
+#: audioigniter.php:973
 msgid "Show track listing repeat toggle button"
 msgstr ""
 
-#: audioigniter.php:988
+#: audioigniter.php:990
 msgid "Show \"Powered by AudioIgniter\" link"
 msgstr ""
 
-#: audioigniter.php:992
+#: audioigniter.php:994
 msgid ""
 "We've put a great deal of effort into building this plugin. If you feel like "
 "it, let others know about it by enabling this option."
 msgstr ""
 
-#: audioigniter.php:1012
+#: audioigniter.php:1014
 msgid "Grab the shortcode"
 msgstr ""
 
-#: audioigniter.php:1046
+#: audioigniter.php:1048
 msgid "Full Player"
 msgstr ""
 
-#: audioigniter.php:1051
+#: audioigniter.php:1053
 msgid "Simple Player"
 msgstr ""
 
-#: audioigniter.php:1274
+#: audioigniter.php:1276
 msgid "ID doesn't match a playlist"
 msgstr ""
 

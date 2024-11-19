@@ -1,9 +1,9 @@
 === AudioIgniter Music Player ===
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, podcast, audio player, html5 player, mp3 player, music player, music, radio stream, radio player, sound player, player, podcast player
-Requires at least: 5.0
-Tested up to: 6.6
-Stable tag: 2.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -111,6 +111,11 @@ Visit the [GitHub repository](https://github.com/cssigniter/audioigniter) for fu
 3. Advanced player customization
 
 == Changelog ==
+
+= 2.0.1 =
+Fixed issue where a PHP notice would get thrown (in WP 6.7) regarding translations loading too early.
+Fixed issue where the player would break when repeating a single track via the [ai_track] shortcode (pro).
+Allow short-circuiting individual tracks from appearing in the endpoint, by returning false in the audioigniter_playlist_endpoint_track filter.
 
 = 2.0.0 =
 * Added AudioIgniter top level menu.
