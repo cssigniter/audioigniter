@@ -54,6 +54,9 @@ function renderApp(node) {
     allowPlaybackRate: JSON.parse(
       node.getAttribute('data-allow-playback-rate'),
     ),
+    playbackRates: JSON.parse(
+      node.getAttribute('data-playback-rates'),
+    ),
     allowTracklistLoop: JSON.parse(
       node.getAttribute('data-allow-tracklist-loop'),
     ),

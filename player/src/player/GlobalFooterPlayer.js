@@ -65,6 +65,7 @@ const propTypes = {
   skipPosition: PropTypes.func.isRequired,
   countdownTimerByDefault: PropTypes.bool,
   allowPlaybackRate: PropTypes.bool,
+  playbackRates: PropTypes.arrayOf(PropTypes.number),
   buffering: PropTypes.bool,
   playerButtons: PropTypes.arrayOf(
     PropTypes.shape({
@@ -99,6 +100,7 @@ const GlobalFooterPlayer = ({
   setPlaybackRate,
 
   allowPlaybackRate,
+  playbackRates,
   allowTracklistToggle,
   allowTracklistLoop,
   allowTrackLoop,
@@ -216,7 +218,7 @@ const GlobalFooterPlayer = ({
               {allowPlaybackRate && (
                 <Button
                   className="ai-btn ai-btn-playback-rate"
-                  onClick={setPlaybackRate}
+                  onClick={()=>setPlaybackRate(playbackRates)}
                   ariaLabel={aiStrings.set_playback_rate}
                 >
                   <Fragment>&times;{playbackRate}</Fragment>

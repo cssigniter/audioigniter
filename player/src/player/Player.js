@@ -69,6 +69,7 @@ const propTypes = {
   skipPosition: PropTypes.func.isRequired,
   countdownTimerByDefault: PropTypes.bool,
   allowPlaybackRate: PropTypes.bool,
+  playbackRates: PropTypes.arrayOf(PropTypes.number),
   buffering: PropTypes.bool,
   shuffleEnabled: PropTypes.bool,
   shuffle: PropTypes.bool,
@@ -110,6 +111,7 @@ const Player = ({
   allowTracklistToggle,
   allowTracklistLoop,
   allowPlaybackRate,
+  playbackRates,
   allowTrackLoop,
   setTrackCycling,
   reverseTrackOrder,
@@ -270,7 +272,7 @@ const Player = ({
             {allowPlaybackRate && (
               <Button
                 className="ai-btn ai-btn-playback-rate"
-                onClick={setPlaybackRate}
+                onClick={()=>setPlaybackRate(playbackRates)}
                 ariaLabel={aiStrings.set_playback_rate}
               >
                 <Fragment>&times;{playbackRate}</Fragment>

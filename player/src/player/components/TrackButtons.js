@@ -16,6 +16,7 @@ const propTypes = {
   playbackRate: PropTypes.number,
   setPlaybackRate: PropTypes.func,
   allowPlaybackRate: PropTypes.bool,
+  playbackRates: PropTypes.arrayOf(PropTypes.number),
   isPlaying: PropTypes.bool,
   track: PropTypes.shape({
     audio: PropTypes.string.isRequired,
@@ -35,6 +36,7 @@ const TrackButtons = ({
   setPlaybackRate,
   playbackRate,
   allowPlaybackRate,
+  playbackRates,
   isPlaying,
   track,
   playerId,
@@ -111,7 +113,7 @@ const TrackButtons = ({
           title={aiStrings.set_playback_rate}
           onClick={event => {
             event.preventDefault();
-            setPlaybackRate();
+            setPlaybackRate(playbackRates);
           }}
         >
           &times;{playbackRate}

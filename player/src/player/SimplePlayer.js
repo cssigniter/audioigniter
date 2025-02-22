@@ -35,6 +35,7 @@ const propTypes = {
   playbackRate: PropTypes.number,
   setPlaybackRate: PropTypes.func,
   allowPlaybackRate: PropTypes.bool,
+  playbackRates: PropTypes.arrayOf(PropTypes.number),
   buffering: PropTypes.bool,
   playerButtons: PropTypes.arrayOf(
     PropTypes.shape({
@@ -82,6 +83,7 @@ const SimplePlayer = props => {
           repeatingTrackIndex={props.repeatingTrackIndex}
           setPlaybackRate={props.setPlaybackRate}
           allowPlaybackRate={props.allowPlaybackRate}
+          playbackRates={props.playbackRates}
           buffering={props.buffering}
           playerId={props.playerId}
         />

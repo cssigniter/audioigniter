@@ -18,7 +18,7 @@ yarn start
 Run `yarn build` before releasing an update.
 
 ## Updating readme.txt without releasing a new version
-While it's technically possible, we don't support updating the readme.txt file via Gitgub as it requires a separate long-lived `develop` branch.
+While it's technically possible, we don't support updating the readme.txt file via Github as it requires a separate long-lived `develop` branch.
 Therefore, immediate updates to only the plugin's readme.txt file should be done via Subversion.
 
 ## Releasing new versions to WP.org

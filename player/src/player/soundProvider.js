@@ -291,16 +291,17 @@ const soundProvider = (Player, events) => {
       );
     }
 
-    setPlaybackRate() {
+    setPlaybackRate(playbackRates) {
       this.setState(({ playbackRate }) => {
-        const currentIndex = PLAYBACK_RATES.findIndex(
+        const rates = playbackRates || PLAYBACK_RATES;
+        const currentIndex = rates.findIndex(
           rate => rate === playbackRate,
         );
         const nextIndex =
-          (PLAYBACK_RATES.length + (currentIndex + 1)) % PLAYBACK_RATES.length;
+          (rates.length + (currentIndex + 1)) % rates.length;
 
         return {
-          playbackRate: PLAYBACK_RATES[nextIndex],
+          playbackRate: rates[nextIndex],
         };
       });
     }
