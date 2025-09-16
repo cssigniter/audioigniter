@@ -3,7 +3,7 @@ Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, audio player, html5 player, mp3 player, podcast
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -111,6 +111,11 @@ Visit the [GitHub repository](https://github.com/cssigniter/audioigniter) for fu
 3. Advanced player customization
 
 == Changelog ==
+
+= 2.0.2 =
+Added support for custom list playback rates when using the [ai_track] shortcode (AudioIgniter Pro).
+Fixed missing gettext domain issue.
+Removed call to load_plugin_textdomain().
 
 = 2.0.1 =
 Fixed issue where a PHP notice would get thrown (in WP 6.7) regarding translations loading too early.
