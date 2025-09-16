@@ -129,10 +129,6 @@ class AudioIgniter {
 		self::$plugin_url  = plugin_dir_url( __FILE__ );
 		self::$plugin_path = plugin_dir_path( __FILE__ );
 
-		add_action( 'init', function() {
-			load_plugin_textdomain( 'audioigniter', false, dirname( self::plugin_basename() ) . '/languages' );
-		} );
-
 		require_once untrailingslashit( $this->plugin_path() ) . '/inc/class-audioigniter-sanitizer.php';
 		$this->sanitizer = new AudioIgniter_Sanitizer();
 
@@ -223,7 +219,7 @@ class AudioIgniter {
 			'previous'            => esc_html__( 'Previous track', 'audioigniter' ),
 			'next'                => esc_html__( 'Next track', 'audioigniter' ),
 			'toggle_list_repeat'  => esc_html__( 'Toggle track listing repeat', 'audioigniter' ),
-			'toggle_track_repeat' => esc_html__( 'Toggle track repeat' ),
+			'toggle_track_repeat' => esc_html__( 'Toggle track repeat', 'audioigniter' ),
 			'toggle_list_visible' => esc_html__( 'Toggle track listing visibility', 'audioigniter' ),
 			'buy_track'           => esc_html__( 'Buy this track', 'audioigniter' ),
 			'download_track'      => esc_html__( 'Download this track', 'audioigniter' ),
