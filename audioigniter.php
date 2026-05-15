@@ -6,7 +6,7 @@
  * Author: The CSSIgniter Team
  * Author URI: https://www.cssigniter.com
  * License: GPLv2 or later
- * Version: 2.0.2
+ * Version: 2.0.3
  * Text Domain: audioigniter
  * Domain Path: /languages
  *
@@ -1208,7 +1208,7 @@ class AudioIgniter {
 			'class' => '',
 		), $atts, $tag );
 
-		$id         = intval( $atts['id'] );
+		$id         = (int) $atts['id'];
 		$class_name = $atts['class'];
 
 		if ( ! $this->is_playlist( $id ) ) {
@@ -1216,6 +1216,13 @@ class AudioIgniter {
 		}
 
 		$post = get_post( $id );
+
+		if ( $post->post_status == 'trash' ||
+		     ( ! is_user_logged_in() && 'publish' !== $post->post_status ) ||
+		     ( is_user_logged_in() && ! current_user_can( 'read_post', $id ) ) ) {
+			return '';
+		}
+
 
 		$params = apply_filters( 'audioigniter_shortcode_data_attributes_array', $this->get_playlist_data_attributes_array( $id ), $id, $post, $atts );
 		$params = array_filter( $params, array( $this->sanitizer, 'array_filter_empty_null' ) );
@@ -1266,11 +1273,16 @@ class AudioIgniter {
 			return;
 		}
 
-		$playlist_id = intval( $playlist_id );
+		$playlist_id = (int) $playlist_id;
 		$post        = get_post( $playlist_id );
 
 		if ( empty( $post ) || $post->post_type !== $this->post_type ) {
 			wp_send_json_error( __( "ID doesn't match a playlist", 'audioigniter' ) );
+		}
+		if ( ( ! is_user_logged_in() && 'publish' !== $post->post_status ) ||
+			( is_user_logged_in() && ! current_user_can( 'read_post', $playlist_id ) )
+		) {
+			wp_send_json_error( __( 'Sorry, you are not allowed to access this playlist.', 'audioigniter' ) );
 		}
 
 		$response = array();
