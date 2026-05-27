@@ -2,8 +2,8 @@
 Contributors: cssigniterteam, anastis, silencerius, tsiger
 Tags: audio, audio player, html5 player, mp3 player, podcast
 Requires at least: 6.0
-Tested up to: 6.9
-Stable tag: 2.0.3
+Tested up to: 7.0
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -111,6 +111,9 @@ Visit the [GitHub repository](https://github.com/cssigniter/audioigniter) for fu
 3. Advanced player customization
 
 == Changelog ==
+
+= 2.0.4 =
+* Fixed minor issues with the admin styles.
 
 = 2.0.3 =
 * Fixed issue where playlist information would be returned by the playlist JSON endpoint for playlists that were not yet published (CVE-2026-8679, props nudien udin).

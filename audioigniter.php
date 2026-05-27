@@ -6,7 +6,7 @@
  * Author: The CSSIgniter Team
  * Author URI: https://www.cssigniter.com
  * License: GPLv2 or later
- * Version: 2.0.3
+ * Version: 2.0.4
  * Text Domain: audioigniter
  * Domain Path: /languages
  *
