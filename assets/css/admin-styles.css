@@ -319,10 +319,20 @@
   margin-right: 0;
 }
 
+.ai-container .button,
+.ai-module .button {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  gap: 6px;
+}
+
 .ai-container .button .dashicons,
 .ai-module .button .dashicons {
   font-size: 1.2em;
-  line-height: 1.7em;
+  line-height: 1;
+  height: auto;
+  width: auto;
 }
 
 .ai-form-field-group {
@@ -609,7 +619,7 @@
 @media (max-width: 782px) {
   .ai-container .button .dashicons,
   .ai-module .button .dashicons {
-    line-height: 1.2em;
+    line-height: 1;
   }
 
   .ai-form-field-addon .button {
