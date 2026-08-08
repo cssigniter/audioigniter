@@ -120,8 +120,23 @@ jQuery(function($) {
         .not(":button")
         .each(function() {
           var $this = $(this);
+          var type = ($this.attr("type") || "").toLowerCase();
+
           $this.attr("id", $this.attr("id").replace(fieldHash, newHash));
           $this.attr("name", $this.attr("name").replace(fieldHash, newHash));
+
+          /*
+           * A checkbox's value is its contract with the server, not user input:
+           * blanking it makes a checked box submit an empty string, which reads
+           * as unchecked on save. Reset the checked state instead, to whatever
+           * the markup declares through `data-default-checked` (defaults to
+           * unchecked when the attribute is absent).
+           */
+          if (type === "checkbox" || type === "radio") {
+            $this.prop("checked", $this.attr("data-default-checked") === "1");
+            return;
+          }
+
           $this.val("");
         });
       $field.find("label").each(function() {
