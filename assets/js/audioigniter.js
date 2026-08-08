@@ -144,7 +144,18 @@ jQuery(function($) {
       var isEmpty = true;
       var $inputs = $field.find("input");
       $inputs.each(function() {
-        if ($(this).val()) {
+        var $this = $(this);
+        var type = ($this.attr("type") || "").toLowerCase();
+
+        /*
+         * Checkboxes and radios always carry a value attribute regardless of
+         * their checked state, so they say nothing about the field's contents.
+         */
+        if (type === "checkbox" || type === "radio") {
+          return;
+        }
+
+        if ($this.val()) {
           isEmpty = false;
         }
       });
