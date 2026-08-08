@@ -243,6 +243,8 @@ jQuery(function($) {
       if (media.meta && media.meta.artist && $artistInput.val() === "") {
         $artistInput.val(media.meta.artist);
       }
+
+      $(document).trigger("audioigniter:track-populated", [$field, media]);
     }
 
     /**
