@@ -142,7 +142,7 @@ jQuery(function($) {
      */
     function isTrackFieldEmpty($field) {
       var isEmpty = true;
-      var $inputs = $field.find("input");
+      var $inputs = $field.find("input, textarea, select").not(":button");
       $inputs.each(function() {
         var $this = $(this);
         var type = ($this.attr("type") || "").toLowerCase();
