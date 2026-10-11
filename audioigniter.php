@@ -7,6 +7,8 @@
  * Author URI: https://www.cssigniter.com
  * License: GPLv2 or later
  * Version: 2.0.4
+ * Requires at least: 6.3
+ * Requires PHP: 7.4
  * Text Domain: audioigniter
  * Domain Path: /languages
  *
@@ -239,7 +241,7 @@ class AudioIgniter {
 		) );
 
 		wp_register_style( 'audioigniter-admin', untrailingslashit( $this->plugin_url() ) . '/assets/css/admin-styles.css', array(), $this->version );
-		wp_register_script( 'audioigniter-admin', untrailingslashit( $this->plugin_url() ) . '/assets/js/audioigniter.js', array(), $this->version, true );
+		wp_register_script( 'audioigniter-admin', untrailingslashit( $this->plugin_url() ) . '/assets/js/audioigniter.js', array( 'jquery' ), $this->version, true );
 
 		wp_localize_script( 'audioigniter-admin', 'ai_scripts', array(
 			'messages' => array(
