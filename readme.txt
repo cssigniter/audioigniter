@@ -113,11 +113,6 @@ Visit the [GitHub repository](https://github.com/cssigniter/audioigniter) for fu
 
 == Changelog ==
 
-= NewVersion =
-* AudioIgniter now requires WordPress 6.3 and PHP 7.4, or newer.
-* Tested up to WordPress 7.1.
-* Fixed issue where the playlist editing screen's script didn't declare its jQuery dependency.
-
 = 2.0.5 =
 * Admin script now declares its jQuery dependency.
 * Trigger a "audioigniter:track-populated" event when a track is populated from a media gallery upload.
