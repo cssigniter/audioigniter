@@ -6,7 +6,7 @@
  * Author: The CSSIgniter Team
  * Author URI: https://www.cssigniter.com
  * License: GPLv2 or later
- * Version: 2.0.4
+ * Version: 2.1.0
  * Requires at least: 6.3
  * Requires PHP: 7.4
  * Text Domain: audioigniter
