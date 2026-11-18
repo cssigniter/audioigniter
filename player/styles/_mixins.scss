@@ -1,0 +1,106 @@
+//
+// Mixins
+//
+@mixin clearfix() {
+	&::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+@keyframes ai-spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@mixin spinner($color: #fff, $opacity: .35, $size: 40px) {
+	border: 6px solid rgba($color, $opacity);
+	border-top-color: rgba($color, $opacity*2.5);
+	border-radius: 100%;
+	height: $size;
+	width: $size;
+	animation: ai-spin .8s infinite linear;
+}
+
+@mixin btn-reset {
+	display: inline-block;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	line-height: normal;
+	border: 0;
+	appearance: none;
+	text-align: center;
+	box-shadow: none;
+	vertical-align: middle;
+	cursor: pointer;
+	white-space: nowrap;
+	user-select: none;
+	border-radius: 0;
+	min-width: 0;
+	max-width: 100%;
+	min-height: 0;
+	width: auto;
+	height: auto;
+	background-image: none;
+	background-color: transparent;
+
+	&::before,
+	&::after {
+		display: none;
+	}
+}
+
+@keyframes backgroundPosition {
+	0% {
+		background-position: -140px 0
+	}
+
+	100% {
+		background-position: 140px 0
+	}
+}
+
+@mixin animatedBackground($width: 140px, $height: 8px, $top: 0, $left: 0) {
+	content: '';
+	width: $width;
+	height: $height;
+	background: linear-gradient(to right, $control-color 8%, lighten($control-color, 6%) 18%, $control-color 33%);
+	background-size: 500px;
+	position: absolute;
+	top: $top;
+	left: $left;
+	opacity: 1;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+	animation-name: backgroundPosition;
+	animation-timing-function: linear;
+}
+
+@mixin sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+@mixin dashicon($icon) {
+	content: $icon;
+	display: inline-block;
+	font: 400 20px/1 dashicons;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-decoration: none !important;
+}
