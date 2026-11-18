@@ -182,6 +182,7 @@ class AudioIgniter {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save_post' ) );
+		add_action( 'admin_notices', array( $this, 'admin_notice_playlist_has_password' ) );
 
 		add_filter( "manage_{$this->post_type}_posts_columns", array( $this, 'filter_posts_columns' ) );
 		add_action( "manage_{$this->post_type}_posts_custom_column", array( $this, 'add_custom_columns' ), 10, 2 );
@@ -1152,6 +1153,47 @@ class AudioIgniter {
 	}
 
 	/**
+	 * Determines whether a playlist has a password assigned.
+	 *
+	 * Playlists have no front-end page, so there's nowhere for visitors to enter a password.
+	 * Playlists with a password are therefore never shown or served to anyone.
+	 *
+	 * @since NewVersion
+	 *
+	 * @param int|WP_Post $post Post ID or post object.
+	 *
+	 * @return bool
+	 */
+	public function playlist_has_password( $post ) {
+		$post = get_post( $post );
+
+		return ! empty( $post ) && ! empty( $post->post_password );
+	}
+
+	/**
+	 * Echoes an admin notice on the edit screen of a playlist that has a password.
+	 *
+	 * @since NewVersion
+	 */
+	public function admin_notice_playlist_has_password() {
+		$screen = get_current_screen();
+
+		if ( empty( $screen ) || 'post' !== $screen->base || $screen->post_type !== $this->post_type ) {
+			return;
+		}
+
+		if ( ! $this->playlist_has_password( get_post() ) ) {
+			return;
+		}
+
+		?>
+		<div class="notice notice-warning">
+			<p><?php esc_html_e( 'This playlist has a password. Playlists with a password are not shown anywhere on your site. Remove the password (Visibility: Public) to show it.', 'audioigniter' ); ?></p>
+		</div>
+		<?php
+	}
+
+	/**
 	 * Returns a data attributes array for the given playlist.
 	 *
 	 * @version 1.4.0
@@ -1225,6 +1267,15 @@ class AudioIgniter {
 			return '';
 		}
 
+		if ( $this->playlist_has_password( $post ) ) {
+			if ( current_user_can( 'edit_post', $id ) ) {
+				return sprintf( '<p class="audioigniter-notice">%s</p>',
+					esc_html__( 'This playlist has a password, so it is not shown. Remove its password to show it. Only users who can edit the playlist see this message.', 'audioigniter' )
+				);
+			}
+
+			return '';
+		}
 
 		$params = apply_filters( 'audioigniter_shortcode_data_attributes_array', $this->get_playlist_data_attributes_array( $id ), $id, $post, $atts );
 		$params = array_filter( $params, array( $this->sanitizer, 'array_filter_empty_null' ) );
@@ -1279,12 +1330,17 @@ class AudioIgniter {
 		$post        = get_post( $playlist_id );
 
 		if ( empty( $post ) || $post->post_type !== $this->post_type ) {
-			wp_send_json_error( __( "ID doesn't match a playlist", 'audioigniter' ) );
+			wp_send_json_error( __( "ID doesn't match a playlist", 'audioigniter' ), 404 );
 		}
+		// Playlists that aren't published and playlists with a password get the same response,
+		// so that the response doesn't reveal which of the two a playlist is.
 		if ( ( ! is_user_logged_in() && 'publish' !== $post->post_status ) ||
 			( is_user_logged_in() && ! current_user_can( 'read_post', $playlist_id ) )
 		) {
-			wp_send_json_error( __( 'Sorry, you are not allowed to access this playlist.', 'audioigniter' ) );
+			wp_send_json_error( __( 'Sorry, you are not allowed to access this playlist.', 'audioigniter' ), 403 );
+		}
+		if ( $this->playlist_has_password( $post ) ) {
+			wp_send_json_error( __( 'Sorry, you are not allowed to access this playlist.', 'audioigniter' ), 403 );
 		}
 
 		$response = array();
