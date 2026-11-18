@@ -6,7 +6,7 @@
  * Author: The CSSIgniter Team
  * Author URI: https://www.cssigniter.com
  * License: GPLv2 or later
- * Version: 2.1.0
+ * Version: 2.1.1
  * Requires at least: 6.3
  * Requires PHP: 7.4
  * Text Domain: audioigniter
@@ -1158,7 +1158,7 @@ class AudioIgniter {
 	 * Playlists have no front-end page, so there's nowhere for visitors to enter a password.
 	 * Playlists with a password are therefore never shown or served to anyone.
 	 *
-	 * @since NewVersion
+	 * @since 2.1.1
 	 *
 	 * @param int|WP_Post $post Post ID or post object.
 	 *
@@ -1173,7 +1173,7 @@ class AudioIgniter {
 	/**
 	 * Echoes an admin notice on the edit screen of a playlist that has a password.
 	 *
-	 * @since NewVersion
+	 * @since 2.1.1
 	 */
 	public function admin_notice_playlist_has_password() {
 		$screen = get_current_screen();

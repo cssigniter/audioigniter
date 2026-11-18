@@ -4,7 +4,7 @@ Tags: audio, audio player, html5 player, mp3 player, podcast
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -112,8 +112,11 @@ Visit the [GitHub repository](https://github.com/cssigniter/audioigniter) for fu
 3. Advanced player customization
 
 == Changelog ==
+= 2.1.1 =
+* Password-protected playlists were served to visitors without requiring a password. These were never supported, and are now no longer shown. (Thanks "Respect").
+* The playlist endpoint now responds with 404 for unknown playlists and 403 for refused ones, instead of 200 for all.
 
-= 2.0.5 =
+= 2.1.0 =
 * Admin script now declares its jQuery dependency.
 * Trigger a "audioigniter:track-populated" event when a track is populated from a media gallery upload.
 * resetField() would empty the values checkboxes and radio buttons, resulting in checked states not persisting on new tracks.
