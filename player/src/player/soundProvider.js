@@ -94,7 +94,10 @@ const soundProvider = (Player, events) => {
         } catch {}
       }
 
-      const tracksPromised = fetch(tracksUrl).then(res => res.json());
+      // A refused or unknown playlist responds with an error (403/404) instead of tracks.
+      const tracksPromised = fetch(tracksUrl)
+        .then(res => (res.ok ? res.json() : []))
+        .then(tracks => (Array.isArray(tracks) ? tracks : []));
 
       if (!soundcloudClientId) {
         tracksPromised.then(tracks => {
